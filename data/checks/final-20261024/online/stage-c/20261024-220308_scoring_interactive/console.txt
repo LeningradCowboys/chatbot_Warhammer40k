@@ -1,0 +1,86 @@
+Source, Version, and Scope                                                                          
+
+ • Source / Version: Warhammer 40,000 Core Rules (10th Edition).                                    
+ • User-Supplied Premise: A general inquiry regarding the different ways to score points in the     
+   game.                                                                                            
+ • Tool-Established Scope: The Core Rules provide generic illustrative examples in the introduction 
+   [Core Rules p. 3], the foundational mechanics for controlling objective markers [Core Rules p.   
+   58], concrete scoring rules for the standard core mission ONLY WAR [Core Rules p. 59], and the   
+   separate procedure for determining the victor [Core Rules p. 60].                                
+
+----------------------------------------------------------------------------------------------------
+
+Explicit Conditions and Results                                                                     
+
+1. Thematic / Narrative Examples                                                                    
+
+The Core Rules introduction lists illustrative ways games can be won, but does not provide concrete 
+scoring amounts or timings for them:                                                                
+
+ • Games are won by scoring more Victory points (VP) than the opponent through achieving objectives,
+   described narratively as "recovering vital relics", "capturing enemy strongholds", or            
+   "eliminating the opposing Warlord" [Core Rules p. 3].                                            
+
+----------------------------------------------------------------------------------------------------
+
+2. Objective Marker Control (Scoring Prerequisite)                                                  
+
+Before points can be scored from objective markers, control must be established under the general   
+mission rules:                                                                                      
+
+ • Range: A model is within range of an objective marker if it is within 3" horizontally and 5"     
+   vertically [Core Rules p. 58].                                                                   
+ • Level of Control: Add together the Objective Control (OC) characteristics of all models from that
+   player's army within range of that objective marker [Core Rules p. 58].                          
+ • Control Determination: At the end of any phase, a player controls an objective marker if their   
+   Level of Control is greater than their opponent’s. If both players have equal Level of Control,  
+   the marker is contested [Core Rules p. 58]. At the start of the battle, all markers are contested
+   [Core Rules p. 58].                                                                              
+
+----------------------------------------------------------------------------------------------------
+
+3. Concrete Mission Scoring: Mission: ONLY WAR                                                      
+
+The concrete scoring rules specified in the Core Rules apply to the mission ONLY WAR under the      
+section Capture and Control:                                                                        
+
+ • Objective Type: Progressive Objective (Capture and Control) [Core Rules p. 59].                  
+ • Timing: Starting from the second battle round, at the end of each player's Command phase [Core   
+   Rules p. 59].                                                                                    
+ • Actor: The player whose turn it is [Core Rules p. 59].                                           
+ • Award / Amount: Scores 1 Victory point (VP) for each objective marker they control [Core Rules p.
+   59].                                                                                             
+ • Restrictions: Maximum of 3 VP per turn [Core Rules p. 59].                                       
+
+----------------------------------------------------------------------------------------------------
+
+4. Determining the Victor (Distinct from Scoring)                                                   
+
+Scoring Victory points must be distinguished from the ordered conditions that decide the winner at  
+the conclusion of the battle:                                                                       
+
+ • Timing: At the end of the battle [Core Rules p. 60].                                             
+ • Ordered Branches:                                                                                
+    1 Destroyed Army: If one army has been destroyed, the player commanding the opposing army is the
+      victor [Core Rules p. 60].                                                                    
+    2 VP Comparison: Otherwise, the player with the most Victory points is the victor [Core Rules p.
+      60].                                                                                          
+    3 Tie: In the case of a tie, the battle is a draw [Core Rules p. 60].                           
+
+----------------------------------------------------------------------------------------------------
+
+Supported Conclusion & Evidence Gap                                                                 
+
+ • Conclusion: Within the 10th Edition Core Rules, the sole concrete mechanism to score Victory     
+   points is provided in the ONLY WAR mission: controlling objective markers at the end of your     
+   Command phase from battle round 2 onwards (1 VP per controlled marker, up to 3 VP per turn).     
+ • Evidence Gap: The Core Rules do not contain other concrete mission scoring systems (such as      
+   Secondary Objectives, Gambit cards, or Chapter Approved / Tournament Mission Packs); those rules 
+   exist in separate mission decks and publications outside the Core Rules.                         
+
+Source notes (retrieved evidence, not verification of the answer):                                  
+
+ • This turn: Retrieved mission-specific evidence: ONLY WAR (Core Rules p. 59).                     
+ • This turn: Retrieved mission-specific evidence: ONLY WAR (Core Rules p. 60).                     
+1. search_rules: victory points and objective control for scoring
+   pages: 59, 58, 60, 3

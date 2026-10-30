@@ -1,0 +1,72 @@
+In Warhammer 40,000 (10th Edition Core Rules), using a Stratagem requires spending Command points   
+(CP) and following the specific instructions and restrictions printed on the Stratagem's card.      
+
+----------------------------------------------------------------------------------------------------
+
+1. Acquiring and Paying Command Points (CP)                                                         
+
+ • Gaining CP: At the start of your Command phase, before doing anything else, both players gain 1CP
+   [Core Rules p. 11]. Outside of the CP gained at the start of the Command phase, each player can  
+   only gain a maximum of 1CP per battle round, regardless of the source [Core Rules p. 11].        
+ • Paying CP Cost: Each Stratagem has a listed CP cost (e.g., 1CP) [Core Rules p. 41–42]. When you  
+   use a Stratagem, you must reduce your CP total by the amount listed on that Stratagem [Core Rules
+   p. 41].                                                                                          
+ • CP Sufficiency: If you do not have enough CP to pay the required cost for a specific Stratagem,  
+   you cannot use it [Core Rules p. 41].                                                            
+
+----------------------------------------------------------------------------------------------------
+
+2. General Usage Rules & Limits                                                                     
+
+ • Availability: All players can use the Core Stratagems found in the rulebook, and additional      
+   Stratagems can be found in Codexes and other publications [Core Rules p. 41].                    
+ • Phase Limit: You can use the same Stratagem multiple times over the course of a battle, but you  
+   cannot use the same Stratagem more than once in the same phase [Core Rules p. 41].               
+ • Battle-shock Restriction: While a unit is Battle-shocked, its controlling player cannot use      
+   Stratagems to affect that unit [Core Rules p. 11] (unless an explicit exception applies on the   
+   Stratagem itself, such as Insane Bravery targeting the unit that just tested [Core Rules p. 42]).
+
+----------------------------------------------------------------------------------------------------
+
+3. How to Read and Execute Stratagem Cards                                                          
+
+Stratagem cards define their execution through labeled sections [Core Rules p. 41–42]:              
+
+ • WHEN (Timing): Specifies the exact phase, player turn, or trigger during which the Stratagem can 
+   be used.                                                                                         
+    • Example (Core Rules p. 42, Fire Overwatch): "Your opponent's Movement or Charge phase, just   
+      after an enemy unit is set up or when an enemy unit starts or ends a Normal, Advance, Fall    
+      Back or Charge move."                                                                         
+    • Example (Core Rules p. 41, Command Re-roll): "In any phase, just after you have made a Hit    
+      roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate
+      Escape test, a Hazardous test, or just after you have rolled the dice to determine the number 
+      of attacks made with a weapon..."                                                             
+ • TARGET (Eligibility): Identifies the specific model or unit from your army (or in Reserves)      
+   eligible to receive the effect, including any positional requirements or exclusions.             
+    • Example (Core Rules p. 42, Grenade): "One Grenades unit from your army that is not within     
+      Engagement Range of any enemy units and has not been selected to shoot this phase."           
+ • EFFECT (Result): Describes the rule, action, or benefit applied once the CP is paid and targets  
+   are chosen.                                                                                      
+    • Example (Core Rules p. 41, Command Re-roll): "You re-roll that roll, test or saving throw."   
+    • Example (Core Rules p. 42, Grenade): You select an eligible visible enemy unit within 8" not  
+      in Engagement Range, roll six D6, and each 4+ inflicts 1 mortal wound.                        
+ • RESTRICTIONS (Limitations): Details any special prohibitions, usage caps, or rule modifications  
+   that constrain the Stratagem.                                                                    
+    • Example (Core Rules p. 42, Fire Overwatch): Until the end of the phase, ranged attacks require
+      an unmodified Hit roll of 6 to hit regardless of Ballistic Skill or modifiers, and the player 
+      can only use that Stratagem once per turn.                                                    
+    • Example [DB: stratagems, publication/edition not recorded]: Certain versions of Insane Bravery
+      specify that the Stratagem cannot be used more than once per battle.                          
+
+Source notes (retrieved evidence, not verification of the answer):                                  
+
+ • This turn: DB stratagems: publication and edition are not recorded.                              
+1. search_rules: STRATAGEMS Command points
+   pages: 11, 41, 10, 55, 42
+   core stratagem lookup: STRATAGEMS, STRATAGEM CATEGORIES, INSANE BRAVERY
+   database rows returned: 3
+2. search_rules: COMMAND RE-ROLL CORE STRATAGEM
+   pages: 41, 42, 9
+   core stratagem lookup: COMMAND RE-ROLL, STRATAGEMS, INSANE BRAVERY, GRENADE, FIRE OVERWATCH, 
+RAPID INGRESS, TANK SHOCK
+   database rows returned: 12

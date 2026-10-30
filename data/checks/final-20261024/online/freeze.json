@@ -1,0 +1,192 @@
+﻿{
+    "label":  "Round 4 / Final",
+    "date":  "2026-10-24",
+    "commit":  "2f3d3529533528501a35a3950128bf38d4a27f40",
+    "branch":  "lab2-clean",
+    "tracked_worktree_clean":  true,
+    "models":  {
+                   "chat_model":  "gemini-3.8-flash",
+                   "chat_temperature":  null,
+                   "embedding_model":  "gemini-embedding-001"
+               },
+    "budgets":  {
+                    "stage_c":  {
+                                    "chat":  32,
+                                    "embedding":  40
+                                },
+                    "answers":  {
+                                    "chat":  60,
+                                    "embedding":  60
+                                },
+                    "scoring":  {
+                                    "chat":  240,
+                                    "embedding":  30
+                                }
+                },
+    "files":  [
+                  {
+                      "path":  "data\\eval\\testset.jsonl",
+                      "bytes":  35082,
+                      "sha256":  "1b812f3a5f96042b5c3064a7f15c9178ee68ed8b1029fcfadbaf3d7abd3610cb"
+                  },
+                  {
+                      "path":  "data\\index\\rules_chunks.jsonl",
+                      "bytes":  200431,
+                      "sha256":  "045634d490ae8d9e6767c31e7ee5f22e5271443c8678ff03e6a8688a303dc3c0"
+                  },
+                  {
+                      "path":  "data\\index\\rules_embeddings.npz",
+                      "bytes":  784138,
+                      "sha256":  "0f5acaf9b1b576b3fece7fb472128d506863cadbf8214a4c58861550cd76dca2"
+                  },
+                  {
+                      "path":  "data\\processed\\wahadb_clean.sqlite",
+                      "bytes":  9699328,
+                      "sha256":  "d4a8e00528fa0d796e0bac95752da27348c084bbdb6f6affacfe203f708cf63a"
+                  },
+                  {
+                      "path":  "src\\rag\\storage\\sql_schema.md",
+                      "bytes":  13942,
+                      "sha256":  "605c2fb17ffa1c2dbae32e72ed9e6ecc79fda3b005c72d6d05cb9b4e790f55c1"
+                  },
+                  {
+                      "path":  "uv.lock",
+                      "bytes":  354948,
+                      "sha256":  "1b843947b0689855411575256590e2ddc3cec33c9baf1fa56298b83beae71ed4"
+                  }
+              ],
+    "python_files":  [
+                         {
+                             "path":  "src/__init__.py",
+                             "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                         },
+                         {
+                             "path":  "src/rag/__init__.py",
+                             "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                         },
+                         {
+                             "path":  "src/rag/chatbot/__init__.py",
+                             "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                         },
+                         {
+                             "path":  "src/rag/chatbot/agent.py",
+                             "sha256":  "8145ed6b4e4cdccc71d02070fb922bca18136300f5ee91e08d08408f2fc86568"
+                         },
+                         {
+                             "path":  "src/rag/chatbot/prompts.py",
+                             "sha256":  "de166ea7fb79f8a0b542b2749b7b704e5bd9a4ec11e281aa327256112969391d"
+                         },
+                         {
+                             "path":  "src/rag/chunker/__init__.py",
+                             "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                         },
+                         {
+                             "path":  "src/rag/chunker/markdown_chunker.py",
+                             "sha256":  "562bf4986852d2841012bc1b71a32c2103d727b557915a3124a9f8258a9d9548"
+                         },
+                         {
+                             "path":  "src/rag/config.py",
+                             "sha256":  "4bac4f2332e1226efce7fc298ab8e6e03fb4822bce8d014a17caa5bd7682d4f1"
+                         },
+                         {
+                             "path":  "src/rag/evaluation/__init__.py",
+                             "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                         },
+                         {
+                             "path":  "src/rag/evaluation/ragas_adapters.py",
+                             "sha256":  "649065942bb21b5914380c5b55d9d0c2bf3f977076539a6d550ab5b74c01f81d"
+                         },
+                         {
+                             "path":  "src/rag/evaluation/scoring.py",
+                             "sha256":  "ffdd5ffc7a8452f9b1bffc839d39de717ff49b3c5f8d716c8afeef9b223cf038"
+                         },
+                         {
+                             "path":  "src/rag/evaluation/testset.py",
+                             "sha256":  "0482fa8929378c86e2ef0da427ae3464e1006e416194aca082623b0219460062"
+                         },
+                         {
+                             "path":  "src/rag/llm/__init__.py",
+                             "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                         },
+                         {
+                             "path":  "src/rag/llm/budget.py",
+                             "sha256":  "ba8c1dfab2d3d9cce385bd0928932cdc5b5047c87efa17480ea5cd216f806c25"
+                         },
+                         {
+                             "path":  "src/rag/llm/gemini.py",
+                             "sha256":  "e82b73e64b24616984ea79b57406b4d3907dbff421c98996cd92da98733ee1ef"
+                         },
+                         {
+                             "path":  "src/rag/parser/__init__.py",
+                             "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                         },
+                         {
+                             "path":  "src/rag/parser/docling_parser.py",
+                             "sha256":  "0edaa1ce2dbc1f46883575441c9924c2eac6e89967287248927fc464c9564381"
+                         },
+                         {
+                             "path":  "src/rag/retriever/__init__.py",
+                             "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                         },
+                         {
+                             "path":  "src/rag/retriever/rules_retriever.py",
+                             "sha256":  "f7b86a5ed1c3ba11d58db6610c25c1661f3d280ffd6602719668122c22476b11"
+                         },
+                         {
+                             "path":  "src/rag/retriever/sql_retriever.py",
+                             "sha256":  "1281ff62639dc1346a0d0443f827d5ce0f72de8bb7a3da24aa2ee7fa1fc41cb5"
+                         },
+                         {
+                             "path":  "src/rag/storage/__init__.py",
+                             "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                         },
+                         {
+                             "path":  "src/rag/storage/clean_db.py",
+                             "sha256":  "74233b80188c0e5569e77dcbaf5cced2c2ad2f7864eeccf86494253fe41755f1"
+                         },
+                         {
+                             "path":  "src/rag/storage/evaluation_runs.py",
+                             "sha256":  "e76d3477ae786c6c3c4bc2242ad4b7eb29def70919138f4a11812acd9588761d"
+                         },
+                         {
+                             "path":  "src/rag/storage/rules_index.py",
+                             "sha256":  "59075dc13a6638db0c834d9cffc61fd64cff34e8cb483d6d2029d598c9db2ca5"
+                         },
+                         {
+                             "path":  "src/scripts/__init__.py",
+                             "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                         },
+                         {
+                             "path":  "src/scripts/build_index.py",
+                             "sha256":  "b4a92336ad7ac8c2c8dcb14b79dc40ad58a4a7dcf66a52d10fa8facbe9d90694"
+                         },
+                         {
+                             "path":  "src/scripts/chat.py",
+                             "sha256":  "234ea0f2c5d22c6d2811d71b613e61056d94b851bac5db3f6e5968478603f7f5"
+                         },
+                         {
+                             "path":  "src/scripts/chunk.py",
+                             "sha256":  "0d531eb5ea766f530d40119f9f3b454ed9f3c3a64abdefada0c241c96cadaaa5"
+                         },
+                         {
+                             "path":  "src/scripts/evaluate.py",
+                             "sha256":  "83cecad7befec5701f31dd0a892dd90592ddca9ca971498d509eba7c85c634b4"
+                         },
+                         {
+                             "path":  "src/scripts/generate_testset.py",
+                             "sha256":  "913ca350d02031398f0be42a1b69c27663aa8f571571d1697f6f454381b910b6"
+                         },
+                         {
+                             "path":  "src/scripts/outputs.py",
+                             "sha256":  "e2b2ab197d81ced230aaba6b77e5d85471acb3d8179e46b5ec1ab7a837485ab9"
+                         },
+                         {
+                             "path":  "src/scripts/parse.py",
+                             "sha256":  "ead0eec007d4cb50bac66a1c37a2175b691e6faa233216af04d8fdfe1bd2ca01"
+                         },
+                         {
+                             "path":  "src/scripts/prepare_db.py",
+                             "sha256":  "022e0784a2dcf78da900eb9a667f93e669b79f246214179fe128a1df9d9ce498"
+                         }
+                     ]
+}

@@ -1,0 +1,30 @@
+Wardens of Ultramar [DB: datasheets]                                                                
+
+ • Toughness: Ancient Gadriel, Veteran Sergeant Metaurus: T4; Gaius Silva, Aemelia Minervas, Dainal 
+   Kornelius, Lucia Vestha: T3. [DB: datasheets_models]                                             
+ • Recorded publication: Space Marines. [DB: source]                                                
+ • Recorded edition: 11. [DB: source]                                                               
+
+Source notes (retrieved evidence, not verification of the answer):                                  
+
+ • Earlier in this conversation: Database publication: Black Templars; edition 11.                  
+ • Earlier in this conversation: Database publication: Blood Angels; edition 11.                    
+ • Earlier in this conversation: Database publication: Dark Angels; edition 11.                     
+ • Earlier in this conversation: Database publication: Deathwatch; edition 10.                      
+ • Earlier in this conversation: Database publication: Space Marines; edition 11.                   
+ • Earlier in this conversation: Database publication: Space Wolves; edition 11.                    
+ • Earlier in this conversation: Database publication for Ancient In Terminator Armour (ID          
+   000002677): Space Marines; edition 11.                                                           
+ • Earlier in this conversation: Database publication for Arjac Rockfist (ID 000000317): Space      
+   Wolves; edition 11.                                                                              
+ • Earlier in this conversation: Database publication for Centurion Assault Squad (ID 000002703):   
+   Space Marines; edition 11.                                                                       
+ • Earlier in this conversation: Database publication for Centurion Devastator Squad (ID 000001193):
+   Space Marines; edition 11.                                                                       
+ • Earlier in this conversation: Database publication for Decimus Kill Team (ID 000004175):         
+   Deathwatch; edition 10.                                                                          
+ • Earlier in this conversation: Database publication for Talonstrike Kill Team (ID 000003874):     
+   Deathwatch; edition 10.                                                                          
+ • Earlier in this conversation: Database publication for Wardens of Ultramar (ID 000004188): Space 
+   Marines; edition 11.                                                                             
+No tool was called for the last answer.

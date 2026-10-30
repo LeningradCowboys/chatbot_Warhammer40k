@@ -1,0 +1,178 @@
+Source/Version and Scope                                                                            
+
+ • User-Supplied Terms: "A Space Marine".                                                           
+ • Scope Definition: "A Space Marine" is a category rather than a specific unit. It is resolved to  
+   datasheets with faction ID SM and the keyword Infantry [DB: datasheets, datasheets_keywords].    
+   Warhammer Legends publications are excluded. This covers all Chapter publications for non-Legends
+   Space Marine Infantry and leaves out non-Infantry models (such as Mounted, Monsters, and         
+   Vehicles) and non-SM Space Marine factions (such as Chaos Space Marines, Grey Knights, Thousand  
+   Sons, Death Guard, and World Eaters).                                                            
+ • Counting Units: Model profiles and datasheets. A Toughness characteristic belongs to a model     
+   profile rather than an entire unit [DB: datasheets_models].                                      
+
+----------------------------------------------------------------------------------------------------
+
+Distribution by Publication and Toughness Value                                                     
+
+The retrieved non-Legends SM Infantry profiles report the following counts per publication and      
+edition [DB: datasheets, datasheets_models, source]:                                                
+
+ • Black Templars (edition 11):                                                                     
+    • Toughness 4: 12 model profiles (10 datasheets)                                                
+    • Toughness 5: 1 model profile (1 datasheet)                                                    
+ • Blood Angels (edition 11):                                                                       
+    • Toughness 4: 12 model profiles (12 datasheets)                                                
+    • Toughness 5: 1 model profile (1 datasheet)                                                    
+ • Dark Angels (edition 11):                                                                        
+    • Toughness 4: 5 model profiles (5 datasheets)                                                  
+    • Toughness 5: 3 model profiles (3 datasheets)                                                  
+ • Deathwatch (edition 10):                                                                         
+    • Toughness 4: 7 model profiles (7 datasheets)                                                  
+    • Toughness 5: 1 model profile (1 datasheet)                                                    
+    • Toughness 6: 3 model profiles (3 datasheets)                                                  
+ • Space Marines (edition 11):                                                                      
+    • Toughness 3: 1 model profile (1 datasheet)                                                    
+    • Toughness 4: 46 model profiles (46 datasheets)                                                
+    • Toughness 5: 8 model profiles (8 datasheets)                                                  
+    • Toughness 6: 10 model profiles (10 datasheets)                                                
+    • Toughness 7: 2 model profiles (2 datasheets)                                                  
+ • Space Wolves (edition 11):                                                                       
+    • Toughness 4: 12 model profiles (10 datasheets)                                                
+    • Toughness 5: 3 model profiles (3 datasheets)                                                  
+    • Toughness 6: 2 model profiles (2 datasheets)                                                  
+
+----------------------------------------------------------------------------------------------------
+
+Typical Value and Exceptions                                                                        
+
+ • Typical Value: The standard Toughness for a Space Marine Infantry model profile is 4,            
+   representing the vast majority of profiles and datasheets across every publication.              
+ • Exceptions by Model Profile:                                                                     
+    • Toughness 3:                                                                                  
+       • Wardens of Ultramar (Space Marines, edition 11) [DB: datasheets, datasheets_models,        
+         source]: Ancient Gadriel and Veteran Sergeant Metaurus have Toughness 4; Gaius Silva,      
+         Aemelia Minervas, Dainal Kornelius, and Lucia Vestha have Toughness 3.                     
+    • Toughness 5:                                                                                  
+       • Ancient In Terminator Armour (Space Marines, edition 11) [DB: datasheets,                  
+         datasheets_models, source]: Ancient In Terminator Armour profile has Toughness 5.          
+       • Arjac Rockfist (Space Wolves, edition 11) [DB: datasheets, datasheets_models, source]:     
+         Arjac Rockfist profile has Toughness 5.                                                    
+    • Toughness 6:                                                                                  
+       • Decimus Kill Team (Deathwatch, edition 10) [DB: datasheets, datasheets_models, source]:    
+         GRAVIS VETERAN profile has Toughness 6; KILL TEAM SERGEANT and DEATHWATCH VETERAN profiles 
+         have Toughness 4.                                                                          
+       • Talonstrike Kill Team (Deathwatch, edition 10) [DB: datasheets, datasheets_models, source]:
+         KILL TEAM HEAVY INTERCESSORS WITH JUMP PACKS profile has Toughness 6; KILL TEAM SERGEANT   
+         WITH JUMP PACK AND KILL TEAM INTERCESSORS WITH JUMP PACKS profiles have Toughness 4.       
+    • Toughness 7:                                                                                  
+       • Centurion Assault Squad (Space Marines, edition 11) [DB: datasheets, datasheets_models,    
+         source]: Centurion Assault Squad profile has Toughness 7.                                  
+       • Centurion Devastator Squad (Space Marines, edition 11) [DB: datasheets, datasheets_models, 
+         source]: Centurion Devastator Squad profile has Toughness 7.                               
+
+----------------------------------------------------------------------------------------------------
+
+Supported Conclusion and Evidence Gap                                                               
+
+ • Conclusion: Across non-Legends Space Marine Infantry, the baseline model Toughness is 4.         
+   Variations exist depending on unit role and armor: auxiliary models within mixed datasheets reach
+   Toughness 3, heavier armor variants (such as Terminator, Gravis, and Centurion suits) range from 
+   Toughness 5 to Toughness 7.                                                                      
+ • Evidence Gap: No evidence gaps remain for the defined non-Legends faction SM Infantry category in
+   the database.                                                                                    
+
+Database statistics (authoritative SQL rows; the model answer above is unchanged). Rows remain      
+grouped by publication, edition and Toughness; the application does not calculate cross-publication 
+totals.                                                                                             
+
+                                                                
+ Publication     Edition  Toughness  Model profiles  Datasheets 
+ ────────────────────────────────────────────────────────────── 
+ Black Templars  11       4          12              10         
+ Black Templars  11       5          1               1          
+ Blood Angels    11       4          12              12         
+ Blood Angels    11       5          1               1          
+ Dark Angels     11       4          5               5          
+ Dark Angels     11       5          3               3          
+ Deathwatch      10       4          7               7          
+ Deathwatch      10       5          1               1          
+ Deathwatch      10       6          3               3          
+ Space Marines   11       3          1               1          
+ Space Marines   11       4          46              46         
+ Space Marines   11       5          8               8          
+ Space Marines   11       6          10              10         
+ Space Marines   11       7          2               2          
+ Space Wolves    11       4          12              10         
+ Space Wolves    11       5          3               3          
+ Space Wolves    11       6          2               2          
+                                                                
+
+Source notes (retrieved evidence, not verification of the answer):                                  
+
+ • This turn: Database publication: Black Templars; edition 11.                                     
+ • This turn: Database publication: Blood Angels; edition 11.                                       
+ • This turn: Database publication: Dark Angels; edition 11.                                        
+ • This turn: Database publication: Deathwatch; edition 10.                                         
+ • This turn: Database publication: Space Marines; edition 11.                                      
+ • This turn: Database publication: Space Wolves; edition 11.                                       
+ • This turn: Database publication for Ancient In Terminator Armour (ID 000002677): Space Marines;  
+   edition 11.                                                                                      
+ • This turn: Database publication for Arjac Rockfist (ID 000000317): Space Wolves; edition 11.     
+ • This turn: Database publication for Centurion Assault Squad (ID 000002703): Space Marines;       
+   edition 11.                                                                                      
+ • This turn: Database publication for Centurion Devastator Squad (ID 000001193): Space Marines;    
+   edition 11.                                                                                      
+ • This turn: Database publication for Decimus Kill Team (ID 000004175): Deathwatch; edition 10.    
+ • This turn: Database publication for Talonstrike Kill Team (ID 000003874): Deathwatch; edition 10.
+ • This turn: Database publication for Wardens of Ultramar (ID 000004188): Space Marines; edition   
+   11.                                                                                              
+1. run_sql: WITH profiles AS (
+  SELECT DISTINCT d.Id, m.line, m.t, s.Id AS source_id, s.name AS source, s.edition
+  FROM datasheets d
+  JOIN datasheets_models m ON m.DatasheetId = d.Id
+  LEFT JOIN source s ON s.Id = d.sourceId
+  WHERE d.factionId = 'SM'
+    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Infantry')
+    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')
+)
+SELECT source_id, source, edition, t, COUNT(*) AS model_profiles, COUNT(DISTINCT Id) AS datasheets
+FROM profiles
+GROUP BY source_id, source, edition, t
+ORDER BY source, edition, CAST(t AS INTEGER), t;
+2. run_sql: WITH category_profiles AS (
+  SELECT DISTINCT d.Id, d.name, s.name AS source, s.edition,
+                  m.line, m.name AS model, m.t
+  FROM datasheets d
+  JOIN datasheets_models m ON m.DatasheetId = d.Id
+  LEFT JOIN source s ON s.Id = d.sourceId
+  WHERE d.factionId = 'SM'
+    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Infantry')
+    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')
+),
+unit_variants AS (
+  SELECT Id, COUNT(DISTINCT t) AS toughness_values
+  FROM category_profiles
+  GROUP BY Id
+),
+ranked AS (
+  SELECT p.Id, p.name, p.source, p.edition, p.t,
+         ROW_NUMBER() OVER (
+           PARTITION BY p.t
+           ORDER BY v.toughness_values DESC, p.name, p.Id
+         ) AS representative
+  FROM (
+    SELECT DISTINCT Id, name, source, edition, t FROM category_profiles
+  ) p
+  JOIN unit_variants v ON v.Id = p.Id
+),
+selected AS (
+  SELECT DISTINCT Id, name, source, edition
+  FROM ranked
+  WHERE representative <= 2
+)
+SELECT s.Id, s.name, s.source, s.edition,
+       GROUP_CONCAT(p.model || ': T' || p.t, '; ') AS profiles
+FROM selected s
+JOIN category_profiles p ON p.Id = s.Id
+GROUP BY s.Id, s.name, s.source, s.edition
+ORDER BY s.name, s.Id;

@@ -1,0 +1,887 @@
+{
+ "question": {
+  "question_id": "q004",
+  "question": "Could you please explain the complete process of performing an Advance Move, including how the distance is determined and what restrictions are imposed on a unit that performs this action, so I can better plan my tactical maneuvers?",
+  "reference": "When a unit Advances, an Advance roll is made for that unit by rolling one D6. The result in inches from this roll is then added to the Move characteristic of each model in that unit until the end of the phase. Each model in that unit can then make an Advance move by moving a distance in inches less than or equal to this total, meaning models move up to M+D6\". However, there are specific restrictions: no model can be moved within Engagement Range of any enemy models, and a unit that Advanced cannot shoot or declare a charge in the same turn.",
+  "reference_contexts": [
+   "Section: ADVANCE MOVES\nWhen a unit Advances, make an Advance roll for that unit by rolling one D6. Add the result in inches to the Move characteristic of each model in that unit until the end of the phase. Each model in that unit can then make an Advance move by moving a distance in inches less than or equal to this total, but no model can be moved within Engagement Range of enemy models. A unit cannot shoot or declare a charge in the same turn that it Advanced.\n\n- Advance Move: Models move up to M+D6\".\n- Cannot move within Engagement Range of any enemy models.\n- Units that Advance cannot shoot or charge this turn."
+  ],
+  "synthesizer": "single_hop_specific_query_synthesizer"
+ },
+ "answer": "### Source, Version, and Scope\n* **Source:** Warhammer 40,000 Core Rules (10th Edition) [Core Rules p. 9, 13, 14, 15, 17, 25, 41, 54] and Core Stratagem records [DB: stratagems].\n* **Supplied Facts:** The user requested the full procedure for making an Advance Move, how distance is determined, and all imposed restrictions.\n* **Established Facts:** The rules for selecting units to move, making an Advance roll, model movement, and subsequent restrictions/exceptions on shooting, charging, and Engagement Range are established by the Core Rules citations below.\n\n---\n\n### Process and Rules for an Advance Move\n\n#### 1. Eligibility and Timing\n* **Phase & Step:** Performed during the **1. Move Units** step of the Movement phase [Core Rules p. 13].\n* **Eligibility:**\n  * When selecting a unit on the battlefield to move, it can make a Normal move, an Advance, or Remain Stationary **unless** that unit is within Engagement Range of any enemy models [Core Rules p. 13].\n  * If a unit is within Engagement Range of any enemy models, it can only Remain Stationary or Fall Back [Core Rules p. 13].\n  * *Aircraft Exception:* If the *only* enemy models within Engagement Range of the unit are Aircraft models, the unit can still make a Normal move or an Advance move [Core Rules p. 54].\n\n#### 2. Determining the Distance\n1. **Advance Roll:** Roll one D6 for the advancing unit [Core Rules p. 14].\n2. **Calculate Distance:** Add the result of the D6 (in inches) to the Move (M) characteristic of each model in that unit until the end of the phase [Core Rules p. 14].\n3. **Re-rolls:** \n   * A player may spend 1 CP to use the core Stratagem **Command Re-roll** immediately after making an Advance roll to re-roll the die [Core Rules p. 41; DB: stratagems].\n   * Re-rolls apply before any modifiers, and a die can never be re-rolled more than once [Core Rules p. 9].\n\n#### 3. Moving the Models\n* **Distance:** Each model in the unit can move a distance in inches less than or equal to the combined total ($\\text{Move characteristic} + \\text{Advance roll}$) [Core Rules p. 14].\n* **Path & Positioning:**\n  * Models can pivot and change position along any path, measured using the part of the base (or model, if it lacks a base) that moves furthest [Core Rules p. 13].\n  * Models cannot cross the battlefield edge and cannot move across enemy models [Core Rules p. 13] (unless the moving model has the **Fly** keyword or is moving over enemy Aircraft [Core Rules p. 15, 54]).\n  * Models can move over friendly models (other than Monster or Vehicle models moving over friendly Monster or Vehicle models), but cannot end their move on top of another model [Core Rules p. 13].\n\n---\n\n### Restrictions and Exceptions\n\n1. **Engagement Range:**\n   * **General Rule:** No model can be moved within Engagement Range of any enemy models at any point during or at the end of an Advance move [Core Rules p. 14].\n   * **Fly / Aircraft Exception:** Models with **Fly** or models moving over enemy **Aircraft** can move within Engagement Range of enemy models/Aircraft during the move, but they cannot end their move within Engagement Range of any enemy model [Core Rules p. 15, 54].\n\n2. **Shooting Restrictions:**\n   * **General Rule:** A unit cannot shoot in the same turn that it Advanced [Core Rules p. 14].\n   * **Assault Weapons Exception:** If an Advanced unit contains any models equipped with **Assault** (`[ASSAULT]`) weapons, the unit is still eligible to shoot in that turn's Shooting phase; however, it can only make attacks using its models' Assault weapons [Core Rules p. 25].\n\n3. **Charging Restrictions:**\n   * A unit cannot declare a charge in the same turn that it Advanced [Core Rules p. 14].\n\n4. **Embarking Option:**\n   * If every model in the unit ends its Advance move within 3\" of a friendly Transport, the unit is permitted to embark inside that Transport (provided it did not already disembark from a Transport in that same phase) [Core Rules p. 17].\n\n---\n\n### Conclusion & Evidence Gap\nAll conditions, measurement steps, and restrictions governing Advance moves are defined in the 10th Edition Core Rules. No missing rules or evidence gaps exist concerning the core Advance procedure. Specific abilities permitting charging after advancing or altering Advance roll mechanics depend on individual unit datasheets or detachment rules.",
+ "agent_contexts": [
+  "[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nSection: ADVANCE MOVES\nWhen a unit Advances, make an Advance roll for that unit by rolling one D6. Add the result in inches to the Move characteristic of each model in that unit until the end of the phase. Each model in that unit can then make an Advance move by moving a distance in inches less than or equal to this total, but no model can be moved within Engagement Range of enemy models. A unit cannot shoot or declare a charge in the same turn that it Advanced.\n\n- Advance Move: Models move up to M+D6\".\n- Cannot move within Engagement Range of any enemy models.\n- Units that Advance cannot shoot or charge this turn.\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: 1. MOVE UNITS\n- When a unit moves it can make a Normal move, Advance or Remain Stationary.\n- Units that are within Engagement Range of any enemy models can only Fall Back or Remain Stationary.\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: MOVEMENT PHASE\nThe ground shakes to the tread of marching feet and the growl of engines as armies advance across the battlefield and vie for advantageous positions.\n\n[Core Rules p. 54] (page footer p. 54: CORE RULES | AIRCRAFT)\nSection: AIRCRAFT AND THE MOVEMENT OF OTHER MODELS\nWhen a unit is selected to move in the Movement phase, if the only enemy models that are within Engagement Range of that unit are Aircraft models, then that unit can still make a Normal or Advance move.\n\nWhenever a model makes any kind of move, it can be moved over enemy Aircraft models as if they were not there, and can be moved within Engagement Range of enemy Aircraft models, but it cannot end that move on top of another model or within Engagement Range of any enemy Aircraft models.\n\n- Units can still make a Normal or Advance move if they are only within Engagement Range of enemy Aircraft.\n- Models can move within Engagement Range of enemy Aircraft, but cannot end a move within Engagement Range of enemy Aircraft.\n- Models can move over Aircraft when they make any kind of move.\n\n[Core Rules p. 17] (page footer p. 17: CORE RULES | TRANSPORTS)\nSection: EMBARK\nIf a unit makes a Normal, Advance or Fall Back move, and every model in that unit ends that move within 3\" of a friendly Transport model, they can embark within it. A unit cannot embark if it has already disembarked from a Transport model in the same phase. Remove the unit from the battlefield and place it to one side - it is now embarked within that Transport model. Unless otherwise stated, units cannot do anything or be affected in any way while they are embarked.\n\n- A unit can embark within a friendly Transport if all of its models end a Normal, Advance or Fall Back move within 3\" of that Transport.\n- A unit cannot embark and disembark in the same phase.\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: 1. MOVE UNITS\nStart your Movement phase by selecting one unit from your army that is on the battlefield to move:\n\n- Unless that unit is within Engagement Range of any enemy models, it can make a Normal move, or Advance, or Remain Stationary.\n- If that unit is within Engagement Range of any enemy models, it can either Remain Stationary or Fall Back.\n\nAfter you have finished moving that unit, select another unit from your army to move, and so on, until you have done so with all of your units. Once you have moved all of your units, progress to the Reinforcements step of your Movement phase.\n\nEach time you move a unit, you can move any of its models you choose to. The controlling player chooses the order in which to move their models. Whenever you move a model, you can pivot it and/or change its position on the battlefield along any path, but no part of its base can be moved across an enemy model or cross the edge of the battlefield. It can be moved over friendly models as if they were not there if you wish, but it cannot end its move on top of another model. The only exception to this is when moving Monster or Vehicle models; such models cannot be moved over other friendly Monster or Vehicle models and must be moved around them instead. The distance a model moves is measured using the part of its base that moves furthest along its path. If a model does not have a base, measure using whichever part of that model moves the furthest.\n\n[Core Rules p. 15] (page footer p. 15: CORE RULES | MOVEMENT PHASE)\nFigure label: In this example the Tyranid Prime makes a Normal move of 12\" to end on top of the ruin. Because it can Fly it can move directly over the enemy Terminators as if they were not there, and it is the diagonal distance through the air that is measured.\nFigure label: A The Von Ryan's\nSection: FLYING\nIf a model can Fly, then when it makes a Normal, Advance or Fall Back move, it can be moved over enemy models as if they were not there, and can be moved within Engagement Range of enemy models when making such a move. Note this also means that Monster and Vehicle models that can Fly can be moved over other Monster and Vehicle models when making such a move. However, models that can Fly cannot end their move on top of any other models or within Engagement Range of any enemy models.\n\nWhen a model that can Fly starts or ends a move on a terrain feature, instead of measuring the path it has moved across the battlefield, you instead measure its path 'through the air', as shown in the diagram below.\n\nIn this example the Tyranid Prime makes a Normal move of 12\" to end on top of the ruin. Because it can Fly it can move directly over the enemy Terminators as if they were not there, and it is the diagonal distance through the air that is measured.\n\n12\"\n\nA The Von Ryan's\n\nLeaper Advances\n\ntowards the building.\n\nIt moves a total of 9\",\n\nmoving freely over\n\nthe pipe as it is only\n\n2\" in height.\n\nB The building is taller\n\nthan 2\" so the vertical\n\ndistance of 3\" must\n\nbe counted as part of\n\nthe move.\n\nA\n\nB\n\n3\"\n\n- Fly models can move over enemy models when they make a Normal, Advance or Fall Back move.\n- Fly models that start or end a move on a terrain feature measure distance moved through the air when they make a Normal, Advance or Fall Back move.\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nFigure label: MOVE UNITS\nSection: MOVE UNITS\nREINFORCEMENTS\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+  "[Core Rules p. 25] (page footer p. 25: CORE RULES | WEAPON ABILITIES)\nSection: ASSAULT\nAssault weapons fire so indiscriminately that they can be shot from the hip as warriors dash forward.\n\nWeapons with [ASSAULT] in their profile are known as Assault weapons. If a unit that Advanced this turn contains any models equipped with Assault weapons, it is still eligible to shoot in this turn's Shooting phase. When such a unit is selected to shoot, you can only resolve attacks using Assault weapons its models are equipped with.\n\n- Can be shot even if the bearer's unit Advanced.\n\n[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nSection: ADVANCE MOVES\nWhen a unit Advances, make an Advance roll for that unit by rolling one D6. Add the result in inches to the Move characteristic of each model in that unit until the end of the phase. Each model in that unit can then make an Advance move by moving a distance in inches less than or equal to this total, but no model can be moved within Engagement Range of enemy models. A unit cannot shoot or declare a charge in the same turn that it Advanced.\n\n- Advance Move: Models move up to M+D6\".\n- Cannot move within Engagement Range of any enemy models.\n- Units that Advance cannot shoot or charge this turn.\n\n[Core Rules p. 25] (page footer p. 25: CORE RULES | WEAPON ABILITIES)\nSection: TORRENT\nTorrent weapons shoot clouds of fire, gas or other lethal substances that few foes can hope to evade.\n\nWeapons with [TORRENT] in their profile are known as Torrent weapons. Each time an attack is made with such a weapon, that attack automatically hits the target.\n\n[Core Rules p. 25] (page footer p. 25: CORE RULES | WEAPON ABILITIES)\nSection: IGNORES COVER\nSome weapons are designed to root enemy formations out of entrenched positions.\n\nWeapons with [IGNORES COVER] in their profile are known as Ignores Cover weapons. Each time an attack is made with such a weapon, the target cannot have the Benefit of Cover against that attack (pg 44).\n\n[Core Rules p. 28] (page footer p. 28: CORE RULES | WEAPON ABILITIES)\nSection: EXTRA ATTACKS\nSome warriors ride to battle atop trusty mounts that gore and trample nearby foes. Others wield combat weapons that deliver a frenzy of additional blows.\n\nWeapons with [EXTRA ATTACKS] in their profile are known as Extra Attacks weapons. Each time the bearer of such a weapon fights, it can make attacks with that weapon in addition to the one it chooses to fight with. The number of attacks made with an Extra Attacks weapon cannot be modified by other rules.\n\n- The bearer can attack with this weapon in addition to any other weapons it can make attacks with.\n\n[Core Rules p. 25] (page footer p. 25: CORE RULES | WEAPON ABILITIES)\nSection: RAPID FIRE\nRapid fire weapons are capable of long-ranged precision shots or controlled bursts at nearby targets.\n\nWeapons with [RAPID FIRE X] in their profile are known as Rapid Fire weapons. Each time such a weapon targets a unit within half that weapon's range, the Attacks characteristic of that weapon is increased by the amount denoted by 'x'.\n\nExample: A model targets a unit that is within half range of a weapon with an Attacks characteristic of 1 and the [RAPID FIRE 1] ability. That weapon therefore makes two attacks at the target, and you make two Hit rolls.\n\n- [RAPID FIRE X]: Increase the Attacks by 'x' when targeting units within half range.\n\n[Core Rules p. 38] (page footer p. 38: CORE RULES | DATASHEETS)\nSection: 4 WEAPONS\nWeapons are described with the following characteristics:\n\nRange: How far the weapon can shoot. Weapons with a range of 'Melee' are melee weapons and can only be used in close combat. All other weapons are ranged weapons.\n\nAttacks (A): This tells you how many attacks are made each time that weapon is used.\n\nWeapon Skill (WS): This reflects the bearer's skill in wielding the relevant melee weapon.\n\nBallistic Skill (BS): This shows how accurate the bearer is when shooting with the relevant ranged weapon.\n\nStrength (S): How likely the weapon is to wound a foe.\n\nArmour Penetration (AP): This represents the weapon's ability to cut through the target's defences.\n\nDamage (D): The amount of damage inflicted by a successful wound.\n\n[Core Rules p. 25] (page footer p. 25: CORE RULES | WEAPON ABILITIES)\nSection: WEAPON ABILITIES\nSome weapons have additional abilities in their profiles. Often these are unique to those weapons and are written out in full, but others are common to many weapons, and may only be referenced by name on a weapon's profile. Some notable examples of these common abilities are defined here; further weapon abilities may be found in other locations such as Codexes.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+  "[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: COMMAND RE-ROLL\n1CP\n\nCORE - BATTLE TACTIC STRATAGEM\n\nA great commander can bend even the vagaries of fate and fortune to their will, the better to ensure victory.\n\nWHEN: In any phase, just after you have made a Hit roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate Escape test, a Hazardous test, or just after you have rolled the dice to determine the number of attacks made with a weapon, for an attack, model or unit from your army.\n\nEFFECT: You re-roll that roll, test or saving throw.\n\n[Core Rules p. 9] (page footer p. 9: CORE RULES | CORE CONCEPTS)\nSection: RE-ROLLS\nSome rules allow you to re-roll a dice roll, which means you get to roll some or all of the dice again. If a rule allows you to re-roll a dice roll that was made by adding several dice together (e.g. 2D6, 3D6, etc.) then, unless otherwise stated, you must re-roll all of those dice again.\n\nYou can never re-roll a dice more than once, and re-rolls happen before modifiers (if any) are applied. Rules that refer to the value of an 'unmodified' dice roll are referring to the dice result after any re-rolls, but before any modifiers are applied.\n\n- Unmodified Dice: the result after re-rolls, but before any modifiers.\n- A dice can never be re-rolled more than once.\n- You must re-roll all dice if several need adding together (e.g. 2D6).\n- Re-rolls are applied before any modifiers.\n\n[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nSection: ADVANCE MOVES\nWhen a unit Advances, make an Advance roll for that unit by rolling one D6. Add the result in inches to the Move characteristic of each model in that unit until the end of the phase. Each model in that unit can then make an Advance move by moving a distance in inches less than or equal to this total, but no model can be moved within Engagement Range of enemy models. A unit cannot shoot or declare a charge in the same turn that it Advanced.\n\n- Advance Move: Models move up to M+D6\".\n- Cannot move within Engagement Range of any enemy models.\n- Units that Advance cannot shoot or charge this turn.\n\n[Core Rules p. 9] (page footer p. 9: CORE RULES | CORE CONCEPTS)\nSection: Hints and Tips DICE ROLLING\nIn a game of Warhammer 40,000 you and your opponent will be rolling, and in some cases re-rolling, lots of dice. It is good practice to always make sure your opponent knows what you are rolling dice for, and what abilities and rules are in effect that enable you to make any re-rolls.\n\nMany gamers roll their dice somewhere on the battlefield, but some roll their dice elsewhere, such as in a dice tray. Wherever you roll your dice, make sure you roll the dice where your opponent can see the results too. If a dice is rolled out of bounds (i.e. it rolls off your battlefield, out of your dice tray or ends up on the floor), it is very common to ignore the result of that dice and roll it again. Rolling an out-of-bounds dice again doesn't count as having re-rolled that dice.\n\nIf a dice does not lie flat on your battlefield after it has been thrown, it is called a cocked dice. Some players use a house rule that unless a dice is flat after it has been rolled, or unless you can balance another dice on top of a cocked dice without it sliding off, it must be rolled again. It is more common for players to roll the dice again only if they can't be sure of the result. In any case, rolling a cocked dice again doesn't count as having re-rolled that dice.\n\n[Core Rules p. 10] (page footer p. 10: CORE RULES | THE BATTLE ROUND)\nFigure label: COMMAND PHASE\nSection: THE BATTLE ROUND > COMMAND PHASE\nBoth players muster strategic resources, then you test your units' battle readiness.\n\n[Core Rules p. 3]\nFigure label: 1 COMMAND PHASE\nSection: Introduction\n1 COMMAND PHASE\n\n2 MOVEMENT PHASE\n\n3 SHOOTING PHASE\n\n4 CHARGE PHASE\n\n5 FIGHT PHASE\n\nIn a game as wide-ranging as Warhammer 40,000, there may be times when you are not sure exactly how to resolve a situation that has come up during play. When this happens, have a quick chat with your opponent and apply the solution that makes the most sense to both of you (or seems the most fun!). If no single solution presents itself, you and your opponent should roll off, and whoever rolls highest gets to choose what happens. Then you can get on with the fighting!\n\n[Core Rules p. 11] (page footer p. 11: CORE RULES | COMMAND PHASE)\nSection: 1. COMMAND\nAt the start of your Command phase, before doing anything else, both players gain 1CP. Command points are a strategic resource that you can spend during the battle to use Stratagems. You can find out more about Stratagems on pages 41-42.\n\nThen, if you have any other rules that need to be resolved in the Command phase, you do so now before progressing to the Battle-shock step.\n\n- Both players gain 1CP.\n- Resolve any other rules that occur in the Command phase.\n\n[Core Rules p. 25] (page footer p. 25: CORE RULES | WEAPON ABILITIES)\nSection: TWIN-LINKED\nDual weapons are often grafted to the same targeting system for greater lethality.\n\nWeapons with [TWIN-LINKED] in their profile are known as Twin-linked weapons. Each time an attack is made with such a weapon, you can re-roll that attack's Wound roll.\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"COMMAND RE-ROLL\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335002\", \"COMMAND RE-ROLL\", \"\", \"Core – Battle Tactic Stratagem\", \"1\", \"Either player’s turn\", \"Any phase\", \"\", \"WHEN: Any phase, just after you make an Advance roll, a Charge roll, a Desperate Escape test or a Hazardous test for a unit from your army, or a Hit roll, a Wound roll, a Damage roll or a saving throw for a model in that unit, or a roll to determine the number of attacks made with a weapon equipped by a model in that unit. If you are using fast dice rolling, this Stratagem can still be used after rolling multiple rolls or saving throws at once.\\nTARGET: That unit or model from your army.\\nEFFECT: You re-roll that roll, test or saving throw. If you are using fast dice rolling, select one of those rolls or saving throws to re-roll.\"], [\"000009218002\", \"COMMAND RE-ROLL\", \"\", \"Boarding Actions – Epic Deed Stratagem\", \"1\", \"Either player’s turn\", \"Any phase\", \"\", \"WHEN: Any phase, just after you have made a Hit roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate Escape test, a Hazardous test, or just after you have rolled the dice to determine the number of attacks made with a weapon, for an attack, model or unit from your army.\\nTARGET: That unit or model from your army.\\nEFFECT: You re-roll that roll, test or saving throw.\"], [\"000010810002\", \"COMMAND RE-ROLL\", \"\", \"Core Stratagem\", \"1\", \"Either player’s turn\", \"Any phase\", \"\", \"WHEN: Any phase, just after you make one of the following rolls for a friendly unit or model:Advance rollCharge rollDamage rollHazard rollHit rollSave rollWound rollA roll to determine the number of attacks generated with a weapon.\\nTARGET: That unit or model.\\nEFFECT: You re-roll that roll. If you are rolling more than one dice together, select one of those dice to re-roll (excluding charge rolls, which you must re-roll in full).\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge."
+ ],
+ "retriever_contexts": [
+  "[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nSection: ADVANCE MOVES\nWhen a unit Advances, make an Advance roll for that unit by rolling one D6. Add the result in inches to the Move characteristic of each model in that unit until the end of the phase. Each model in that unit can then make an Advance move by moving a distance in inches less than or equal to this total, but no model can be moved within Engagement Range of enemy models. A unit cannot shoot or declare a charge in the same turn that it Advanced.\n\n- Advance Move: Models move up to M+D6\".\n- Cannot move within Engagement Range of any enemy models.\n- Units that Advance cannot shoot or charge this turn.",
+  "[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: 1. MOVE UNITS\nStart your Movement phase by selecting one unit from your army that is on the battlefield to move:\n\n- Unless that unit is within Engagement Range of any enemy models, it can make a Normal move, or Advance, or Remain Stationary.\n- If that unit is within Engagement Range of any enemy models, it can either Remain Stationary or Fall Back.\n\nAfter you have finished moving that unit, select another unit from your army to move, and so on, until you have done so with all of your units. Once you have moved all of your units, progress to the Reinforcements step of your Movement phase.\n\nEach time you move a unit, you can move any of its models you choose to. The controlling player chooses the order in which to move their models. Whenever you move a model, you can pivot it and/or change its position on the battlefield along any path, but no part of its base can be moved across an enemy model or cross the edge of the battlefield. It can be moved over friendly models as if they were not there if you wish, but it cannot end its move on top of another model. The only exception to this is when moving Monster or Vehicle models; such models cannot be moved over other friendly Monster or Vehicle models and must be moved around them instead. The distance a model moves is measured using the part of its base that moves furthest along its path. If a model does not have a base, measure using whichever part of that model moves the furthest.",
+  "[Core Rules p. 15] (page footer p. 15: CORE RULES | MOVEMENT PHASE)\nFigure label: In this example the Tyranid Prime makes a Normal move of 12\" to end on top of the ruin. Because it can Fly it can move directly over the enemy Terminators as if they were not there, and it is the diagonal distance through the air that is measured.\nFigure label: A The Von Ryan's\nSection: FLYING\nIf a model can Fly, then when it makes a Normal, Advance or Fall Back move, it can be moved over enemy models as if they were not there, and can be moved within Engagement Range of enemy models when making such a move. Note this also means that Monster and Vehicle models that can Fly can be moved over other Monster and Vehicle models when making such a move. However, models that can Fly cannot end their move on top of any other models or within Engagement Range of any enemy models.\n\nWhen a model that can Fly starts or ends a move on a terrain feature, instead of measuring the path it has moved across the battlefield, you instead measure its path 'through the air', as shown in the diagram below.\n\nIn this example the Tyranid Prime makes a Normal move of 12\" to end on top of the ruin. Because it can Fly it can move directly over the enemy Terminators as if they were not there, and it is the diagonal distance through the air that is measured.\n\n12\"\n\nA The Von Ryan's\n\nLeaper Advances\n\ntowards the building.\n\nIt moves a total of 9\",\n\nmoving freely over\n\nthe pipe as it is only\n\n2\" in height.\n\nB The building is taller\n\nthan 2\" so the vertical\n\ndistance of 3\" must\n\nbe counted as part of\n\nthe move.\n\nA\n\nB\n\n3\"\n\n- Fly models can move over enemy models when they make a Normal, Advance or Fall Back move.\n- Fly models that start or end a move on a terrain feature measure distance moved through the air when they make a Normal, Advance or Fall Back move.",
+  "[Core Rules p. 53] (page footer p. 53: CORE RULES | AIRCRAFT)\nSection: AIRCRAFT IN THE MOVEMENT PHASE\nAircraft models cannot Advance, Fall Back or Remain Stationary. If, when an Aircraft model is selected to move in the Movement phase, any enemy units are within Engagement Range of it, that Aircraft model can still make a Normal move.\n\nEach time an Aircraft model makes a Normal move, first move the model straight forward, and it must move a minimum of 20\" - all parts of the model's base must end the move at least this far from where they started. After it has moved, it can pivot on the spot up to 90° - this does not contribute to how far the model moves. If, when making a Normal move, any part of an Aircraft model's base crosses the edge of the battlefield, or it cannot move a minimum of 20\", that model's move ends and it is placed into Strategic Reserves. There is no upper limit to how far Aircraft models can move, and their Move characteristic is therefore 20+\".\n\nIf placed into Strategic Reserves, an Aircraft model will always arrive from Strategic Reserves in your next turn.\n\n- Aircraft can only make a Normal move, and can do so even when within Engagement Range of enemy models.\n- Aircraft must move straight forward at least 20\", and can then make one pivot of up to 90°.\n- Aircraft that cross the edge of the battlefield, or that cannot make their minimum move, are placed into Strategic Reserves.",
+  "[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGING WITH A UNIT\nOnce you have selected an eligible unit to declare a charge, you must select one or more enemy units within 12\" of it as the targets of that charge. The targets of a charge do not need to be visible to the charging unit.\n\nYou then make a Charge roll for the charging unit by rolling 2D6. The result is the maximum number of inches each model in that unit can be moved if a Charge move is possible. For a Charge move to be possible, the Charge roll must be sufficient to enable the charging unit to end that move:\n\n- Within Engagement Range of every unit that you selected as a target of the charge.\n- Without moving within Engagement Range of any enemy units that were not a target of the charge.\n- In Unit Coherency.\n\nIf any of these conditions cannot be met, the charge fails and no models in the charging unit move this phase. Otherwise, the charge is successful and the models in the charging unit make a Charge move - move each model a distance in inches up to the result of the Charge roll. When doing so, each model in the charging unit must end its Charge move closer to one of the units selected as a target of its charge. If you can also move a charging model so that it ends its Charge move in base-to-base contact with one or more enemy models while still enabling the charging unit to end its move satisfying all of the conditions above, you must do so. The controlling player chooses the order in which to move their models.",
+  "[Core Rules p. 54] (page footer p. 54: CORE RULES | AIRCRAFT)\nSection: AIRCRAFT AND THE MOVEMENT OF OTHER MODELS\nWhen a unit is selected to move in the Movement phase, if the only enemy models that are within Engagement Range of that unit are Aircraft models, then that unit can still make a Normal or Advance move.\n\nWhenever a model makes any kind of move, it can be moved over enemy Aircraft models as if they were not there, and can be moved within Engagement Range of enemy Aircraft models, but it cannot end that move on top of another model or within Engagement Range of any enemy Aircraft models.\n\n- Units can still make a Normal or Advance move if they are only within Engagement Range of enemy Aircraft.\n- Models can move within Engagement Range of enemy Aircraft, but cannot end a move within Engagement Range of enemy Aircraft.\n- Models can move over Aircraft when they make any kind of move.",
+  "[Core Rules p. 16] (page footer p. 16: CORE RULES | MOVEMENT PHASE)\nSection: 2. REINFORCEMENTS\nSome units have a rule that allows them to start the battle in Reserves, such as Deep Strike (pg 39). Such units will arrive later in the battle and are known as Reserves units. Any Reserves units that have not been set up on the battlefield when the battle ends count as having been destroyed.\n\nIn the Reinforcements step of your Movement phase, if you have any Reserves units in your army, you can select one or more of them and set them up on the battlefield, one at a time. Once all your Reserves units that you wish to set up this turn have been set up, your Movement phase ends and you progress to your Shooting phase.\n\nDetails of how to set up Reserves units are described in the same rules that enabled the unit to be set up in Reserves. These rules will typically specify a distance away from all enemy models; whenever such a distance is specified, it always applies to the horizontal distance, even though normally you measure to and from the closest part of a model's base.\n\nReserves units always count as having made a Normal move in the turn they are set up on the battlefield, and so cannot move further during this phase. Otherwise, units set up in this way can act normally this turn (shoot, declare a charge, fight, etc.).",
+  "[Core Rules p. 17] (page footer p. 17: CORE RULES | TRANSPORTS)\nSection: DISEMBARK\nIf a unit from your army starts your Movement phase embarked within a Transport model, that unit can disembark in that phase.\n\nWhen a unit disembarks from a Transport model, set it up on the battlefield so that it is wholly within 3\" of that Transport model and not within Engagement Range of any enemy models. If, for any reason, a disembarking model cannot be set up, that model's unit cannot disembark.\n\nUnits that disembark from a Transport model that either Remained Stationary this phase or has not yet made a Normal, Advance or Fall Back move this phase can then act normally (make a Normal move, Advance, shoot, declare a charge, fight, etc.) in the remainder of the turn. Such a disembarking unit cannot choose to Remain Stationary.\n\nUnits that disembark from a Transport model that made a Normal move this phase count as having made a Normal move themselves; they cannot move further during this phase. Such a unit also cannot declare a charge in the same turn, but can otherwise act normally in the remainder of the turn.\n\nUnits cannot disembark from a Transport model that either Advanced or Fell Back this turn."
+ ],
+ "retriever_k": 8,
+ "trace": {
+  "system_prompt": "You are a rules assistant for Warhammer 40,000. You answer from two sources: the Core Rules (10th edition) and a database of datasheets, weapons, stratagems, factions and detachments.\n\n## Tools\n\n- `search_rules`: how the game works (phases, actions, abilities, keywords, terrain). Write the query in English, with the rulebook's terms, whatever the language of the question. Specify the concept: victory points and objective control for scoring, Command points for Stratagem costs, army points for army construction.\n- `run_sql`: facts about units, their models, weapons, keywords and abilities, and about stratagems, detachments, enhancements and factions. Call `run_sql` with one read-only SQLite SELECT or WITH query in its required `sql` string parameter, then answer from the returned result. Follow the database schema below: for a specific named unit, join `datasheets`, `datasheets_models` and `source` in a single query (example 1) instead of separate queries per table. If the tool returns an error, correct the query and try again.\n- Use both when a question mixes rules and unit data. The number of tool rounds per question is limited: search with purpose.\n- Before seeking more evidence, inspect successful results from every earlier turn. They remain available in the conversation. If those results already establish the answer, answer directly; do not query the same fact again merely to confirm it. After each new result, stop as soon as the question is supported. If evidence is still missing, retrieve only the missing fields together where possible, or state the gap instead of pursuing optional detail.\n- A broad category of units, such as \"a Space Marine\", that maps to a faction and keywords: query it with `run_sql` before you answer, keeping each value's datasheet IDs, units and model profiles in the result (example 2 of the schema). Use at most one aggregate query and one representative unit query for the category; do not issue a separate query for each characteristic value. Ask which unit is meant only when no faction or keyword fits.\n- For a named Stratagem, search the rulebook. `search_rules` also queries exact-name core database records for retrieved Stratagem sections. Inspect both parts of its result; do not repeat a successful associated lookup. If either source is missing, use a targeted search or SQL query while tools remain, and report any remaining gap. Unit keywords still need `run_sql`.\n\n## Answering\n\n- Answer only from the tool results of this conversation. If a search does not supply the necessary passage, search again with a specific rule or section name while tools remain. If it is still missing, say what the retrieved passages do not establish and what you searched. Unsuccessful retrieval never proves that the rulebook has no such rule. Do not invent values or fill gaps from general game knowledge.\n- Organize an evidence answer in this order: source/version and scope, including which facts the user supplied and which the tools established; explicit conditions and results in the source's order; then the supported conclusion and any evidence gap. For an if/otherwise rule, preserve every branch and their common timing. Distinguish ways to score from the rule for determining a winner.\n- For a rule or procedure, preserve its cost, timing, eligible target, effect, restrictions and exceptions where the evidence gives them. For how to use a Stratagem, explain its CP payment from the `STRATAGEMS` and `1. COMMAND` sections and illustrate how the card labels WHEN, TARGET, EFFECT and RESTRICTIONS work from the retrieved Stratagem cards; once those sections and cards are retrieved, answer from them without searching again for a separate definition of those card labels. Identify the actor, whose phase it is, every recipient, and quantifiers such as \"both players\" and \"each phase\"; avoid ambiguous pronouns. Do not merge source versions. Give an exception only with its trigger and timing. If you choose an example, attribute it to one source or separate material versions; do not use a joint citation to imply that different versions are identical. An example figure is illustrative, not a datasheet fact about a real unit.\n- Cite every fact: [Core Rules p. N] for the rulebook (p. N–M for a passage over two pages), [DB: table] for the database.\n- Editions: the rulebook is the 10th edition. For a database record, give its edition only when it is recorded: for a datasheet, join `source` and give its name and edition; edition '0' means that none is recorded (a Warhammer Legends or Forge World pack: name it as such). Stratagems, detachments, enhancements and abilities have no source: say that their source is not recorded. Never give one edition to the database as a whole.\n- When evidence contains versions of the same rule, compare costs, timing, targets, effects and restrictions. For an applicability question or follow-up, give a short entry for EACH source: source/version and citation; its explicit conditions; the relevant facts supplied by the user or established by a tool, labelled by origin; any missing facts; and the conclusion supported by that source. These are checkable evidence statements, not a narrative of your reasoning. Preserve who a restriction applies to, including the controlling player. Nonselection, a completed action, and ineligibility are different predicates: none establishes another without cited evidence. Do not import exclusions across sources. An exclusion absent from a retrieved passage proves neither permission nor prohibition; say when that source does not settle the case. Describe material differences, not assumed clarifications.\n- Categories: a broad name such as \"a Space Marine\" is a category, not a unit. Resolve it to a faction and keywords (for example factionId 'SM' with the keyword Battleline or Infantry), leave out Warhammer Legends unless asked, use aggregate counts by publication/edition for a typical value and separate limited examples for exceptions, report the per-publication/edition counts as returned without summing them across publications or editions in prose, and say how you read the question: the units the answer covers and what it leaves out. Do not answer with a question when the results let you answer this way. Name the counting unit (datasheets or model profiles). A truncated example list cannot support an overall distribution.\n- Profiles: a characteristic belongs to a model profile, not to a unit. When a unit you give as an exception has profiles of different values, state every profile/value variant of that exception; never give one profile's characteristic as the value of the whole unit. Cite the table name, not a record ID as though it were a table.\n- Missions: use the page footer to name the mission for both scoring and winner rules. A question about ways to score needs concrete award conditions, amounts and timing; an introduction or a winner rule does not supply them. Search again for victory points and objective control only if no mission scoring rule has been retrieved yet; once a mission's scoring rule is present, answer from it without further searches for generic examples. Keep mission-specific scoring separate from generic examples and winner conditions. Preserve the source's shared timing and all ordered winner branches, including the destroyed-army condition, otherwise VP comparison and tie. State any remaining evidence gap.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.\n\n## Database schema\n\n# The datasheet database (`wahadb_clean.sqlite`)\n\nA SQLite copy of Wahapedia's Warhammer 40,000 data: units (datasheets), their models, weapons, keywords and\nabilities, and stratagems, detachments and enhancements. Text encoding is already repaired. Last update of the\ndata: 2026-09-01.\n\n## Rules for writing SQL\n\n- Every column is `TEXT`, numbers included: compare and sort numbers with `CAST(t AS INTEGER)`. Some stat values are\n  not numbers (`D3`, `D6`, `N/A`, `Melee`, `-`).\n- There are no declared keys: join on the columns listed under Joins, with their exact case (`Id` vs `id`,\n  `FactionId` vs `factionId`, `DatasheetId`).\n- `=` compares text exactly and is case-sensitive; `LIKE` ignores the case of ASCII letters. Keywords are written\n  like `Infantry`, `Battleline`, `Grenades`; stratagem names in capitals, like `GRENADE`.\n- One `SELECT` (or `WITH ... SELECT`) per call. Select the columns you need and filter; results are cut after 50 rows.\n- Booleans are the text `'true'` or `'false'`.\n\n## Tables\n\n| Table | One row is | Main columns |\n|---|---|---|\n| `factions` | a faction (25) | `Id` (`SM` = Space Marines, `CSM` = Chaos Space Marines, `TAU`, `TYR`, …), `name` |\n| `datasheets` | a unit's datasheet (1 680) | `Id`, `name`, `factionId`, `sourceId`, `role`, `loadout`, `transport`, `legend` (lore text, not Warhammer Legends), `virtual`, `link` |\n| `datasheets_models` | a model profile of a datasheet (a unit can have several, one per `line`) | `DatasheetId`, `line`, `name`, `m` (Move), `t` (Toughness), `sv` (Save), `invSv` (invulnerable save, `-` if none), `w` (Wounds), `ld` (Leadership), `oc` (Objective Control), `baseSize` |\n| `datasheets_wargear` | a weapon profile of a datasheet | `DatasheetId`, `name`, `range` (inches, or `Melee`), `type` (`Ranged`/`Melee`), `a` (Attacks), `bsWs` (BS or WS: `3` means 3+), `s` (Strength), `ap` (`0`, `-1`, …), `d` (Damage), `description` (weapon abilities) |\n| `datasheets_keywords` | a keyword of a datasheet | `DatasheetId`, `keyword`, `model` (the models it applies to; empty = the unit), `isFactionKeyword` |\n| `datasheets_abilities` | an ability on a datasheet | `DatasheetId`, `line`, `abilityId`, `name`, `description`, `type` (`Core`, `Faction`, `Datasheet`, `Wargear`, …), `parameter` |\n| `abilities` | a Core or Faction ability's text | `Id`, `name`, `factionId`, `description` |\n| `datasheets_unit_composition` | a line of unit composition | `DatasheetId`, `line`, `description` |\n| `datasheets_options` | a wargear option | `DatasheetId`, `line`, `description` |\n| `datasheets_models_cost` | a points cost | `DatasheetId`, `line`, `description` (unit size), `cost` (points) |\n| `datasheets_leader` | a leader-to-unit link | `LeaderId` (the leader's datasheet), `attachedId` (a unit it can lead) |\n| `stratagems` | a stratagem | `id`, `name`, `FactionId`, `type`, `cpCost`, `turn`, `phase`, `detachment`, `detachmentId`, `description` (lines `WHEN:`, `TARGET:`, `EFFECT:`, `RESTRICTIONS:`) |\n| `datasheets_stratagems` | a datasheet-to-stratagem link | `DatasheetId`, `stratagemId` |\n| `detachments` | a detachment | `Id`, `factionId`, `name`, `type` |\n| `detachment_abilities` | a detachment rule | `Id`, `detachmentId`, `name`, `description` |\n| `enhancements` | an enhancement | `id`, `FactionId`, `name`, `cost`, `detachmentId`, `description` |\n| `source` | a publication | `Id`, `name`, `type`, `edition`, `version`, `errataDate` |\n\n## Joins\n\n- `datasheets.Id` = `DatasheetId` of every `datasheets_*` table; `datasheets.factionId` = `factions.Id`;\n  `datasheets.sourceId` = `source.Id`.\n- `datasheets_abilities.abilityId` = `abilities.Id`: see the abilities trap below.\n- `datasheets_stratagems.stratagemId` = `stratagems.id`; `stratagems.FactionId` = `factions.Id`.\n- `detachments.Id` = `detachment_abilities.detachmentId` = `stratagems.detachmentId` = `enhancements.detachmentId`.\n- `datasheets_leader.LeaderId` and `.attachedId` = `datasheets.Id`.\n\n## Traps\n\n- **Unit names are not unique** (1 680 datasheets, 1 291 names): the same name can exist in several factions or\n  sources. Filter by `factionId` when it matters, and say which one you used.\n- **A broad name is a category, not a unit.** \"A Space Marine\" is not a datasheet name: `name LIKE '%Space Marine%'`\n  finds only odd units. Use the faction (`factionId = 'SM'`) and keywords from `datasheets_keywords` (`Battleline`,\n  `Infantry`, `Vehicle`, …), then give the typical value and the notable exceptions (example 2).\n- **A characteristic belongs to a model profile, not to a unit.** A datasheet can have profiles of different values\n  (a sergeant and a heavier veteran, for example): keep each profile's name in a category result, so that a unit\n  that is an exception for one profile is not given that value as a whole (example 2).\n- **Warhammer Legends and Forge World.** A datasheet's source tells where it comes from: `source.name` ends with\n  `(Warhammer Legends)` for Legends units (retired from standard play) and with `(Forge World)` for Forge World\n  units. Exclude Legends unless the question asks for them: `source.name NOT LIKE '%(Warhammer Legends)%'`. Do not\n  use `datasheets.legend` for this: it is lore text.\n- **Editions are per record.** `source.edition` is `'11'`, `'10'`, or `'0'` (no edition recorded: Legends and Forge\n  World packs). Two datasheets have no source (`sourceId` empty). `stratagems`, `detachments`, `enhancements` and\n  `abilities` have no source column: their edition is not recorded. The Core Rules rulebook is 10th edition.\n- **Abilities are in two places.** Core and Faction abilities have an `abilityId` and their text in `abilities`; the\n  others (`Datasheet`, `Wargear`, …) have an empty `abilityId` and their text in `datasheets_abilities.description`.\n  `abilities` repeats each ability once per faction (91 rows, 71 `Id`s), so join it through\n  `(SELECT DISTINCT Id, name, description FROM abilities)`, never on `Id` alone (example 4).\n- **Core stratagems** have an empty `FactionId` and come in two forms. Rows of `type` `Core Stratagem` are linked to\n  datasheets in `datasheets_stratagems`; rows whose `type` reads like the rulebook's labels (`Core – Wargear\n  Stratagem`, `Core – Strategic Ploy Stratagem`, …) are linked to no datasheet. A name can have both forms\n  (`COMMAND RE-ROLL`) or only one (`GRENADE` exists only as `Core – Wargear Stratagem`), and their texts can differ;\n  their source is not recorded. Which units can use a core stratagem is written in its `TARGET:` line (for\n  `GRENADE`, a unit with the `Grenades` keyword). Other rows with an empty `FactionId` belong to other game modes\n  (`Boarding Actions`, `Challenger`) or describe core actions (`Movement Ability`, `Shooting Ability`).\n- **Game modes of detachments.** `detachments.type` is empty for the standard game and `Boarding Actions` for that\n  game mode (59 of 327 detachments); a faction's stratagems include those of its Boarding Actions detachments (for\n  Space Marines, `Boarding Strike`). For a question about the standard game, leave those out. A stratagem whose\n  `detachmentId` matches no row of `detachments` (six Aeldari `Army Rules` stratagems) has an unknown game mode,\n  not the standard one.\n- **Rows can repeat.** `datasheets_keywords` holds 16 358 rows but 12 172 different ones, and a datasheet's points\n  rows can appear twice, between header rows such as `YOUR UNIT COSTS` with an empty `cost`. Use `DISTINCT` when you\n  list or count.\n- **Model profiles.** A datasheet can have several rows in `datasheets_models` (one per kind of model, by `line`);\n  keep all profiles of a unit together when they differ. Filter units by their keywords or an `EXISTS` condition,\n  then return all profiles of those units; filtering model rows to one characteristic hides mixed-profile units.\n- Some `datasheets_abilities.type` values are leftovers of the export in Russian (for example\n  `Special (правая колонка)`); treat them as other datasheet abilities. The datasheet `Example Wargear` is a\n  placeholder (`virtual = 'true'`).\n\n## Examples\n\nAll examples run as written; replace the names and IDs.\n\n1. A unit's model profiles, with its faction and source:\n\n```sql\nSELECT d.name, f.name AS faction, m.name AS model, m.m, m.t, m.sv, m.invSv, m.w, m.ld, m.oc,\n       s.name AS source, s.edition\nFROM datasheets d\nJOIN factions f ON f.Id = d.factionId\nJOIN datasheets_models m ON m.DatasheetId = d.Id\nLEFT JOIN source s ON s.Id = d.sourceId\nWHERE d.name = 'Intercessor Squad' AND d.factionId = 'SM'\nORDER BY CAST(m.line AS INTEGER);\n```\n\n2. A category: Space Marine Battleline units, Legends excluded. Use one query for representative units across\n   the observed Toughness values. It ranks units with mixed profiles first, chooses at most two representatives\n   per value, then returns every profile of each chosen unit. This is a sample even if `truncated` is false.\n   Keep `source` and `edition` as the publication column names:\n\n```sql\nWITH category_profiles AS (\n  SELECT DISTINCT d.Id, d.name, s.name AS source, s.edition,\n                  m.line, m.name AS model, m.t\n  FROM datasheets d\n  JOIN datasheets_models m ON m.DatasheetId = d.Id\n  LEFT JOIN source s ON s.Id = d.sourceId\n  WHERE d.factionId = 'SM'\n    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Battleline')\n    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')\n),\nunit_variants AS (\n  SELECT Id, COUNT(DISTINCT t) AS toughness_values\n  FROM category_profiles\n  GROUP BY Id\n),\nranked AS (\n  SELECT p.Id, p.name, p.source, p.edition, p.t,\n         ROW_NUMBER() OVER (\n           PARTITION BY p.t\n           ORDER BY v.toughness_values DESC, p.name, p.Id\n         ) AS representative\n  FROM (\n    SELECT DISTINCT Id, name, source, edition, t FROM category_profiles\n  ) p\n  JOIN unit_variants v ON v.Id = p.Id\n),\nselected AS (\n  SELECT DISTINCT Id, name, source, edition\n  FROM ranked\n  WHERE representative <= 2\n)\nSELECT s.Id, s.name, s.source, s.edition,\n       GROUP_CONCAT(p.model || ': T' || p.t, '; ') AS profiles\nFROM selected s\nJOIN category_profiles p ON p.Id = s.Id\nGROUP BY s.Id, s.name, s.source, s.edition\nORDER BY s.name, s.Id;\n```\n\nFor an overall distribution, query the complete category separately, grouping by publication and edition.\n`model_profiles` counts distinct datasheet/model-line profiles, not individual miniatures; `datasheets` counts\ndistinct units having that Toughness. A mixed-profile unit can appear in multiple Toughness groups, so do not\nsum these unit counts to obtain a total. No LIMIT is applied before this aggregation. A truncated aggregate\nresult is still incomplete; narrow its publication/category scope before making overall claims:\n\n```sql\nWITH profiles AS (\n  SELECT DISTINCT d.Id, m.line, m.t, s.Id AS source_id, s.name AS source, s.edition\n  FROM datasheets d\n  JOIN datasheets_models m ON m.DatasheetId = d.Id\n  LEFT JOIN source s ON s.Id = d.sourceId\n  WHERE d.factionId = 'SM'\n    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Battleline')\n    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')\n)\nSELECT source_id, source, edition, t, COUNT(*) AS model_profiles, COUNT(DISTINCT Id) AS datasheets\nFROM profiles\nGROUP BY source_id, source, edition, t\nORDER BY source, edition, CAST(t AS INTEGER), t;\n```\n\n3. A unit's weapons:\n\n```sql\nSELECT w.name, w.range, w.type, w.a, w.bsWs, w.s, w.ap, w.d, w.description\nFROM datasheets_wargear w\nWHERE w.DatasheetId = '000001157'  -- Intercessor Squad (SM)\nORDER BY CAST(w.line AS INTEGER), CAST(w.lineInWargear AS INTEGER);\n```\n\n4. A unit's abilities, from both places, one row per ability:\n\n```sql\nSELECT da.type,\n       COALESCE(a.name, da.name)               AS ability_name,\n       COALESCE(a.description, da.description) AS ability_text\nFROM datasheets_abilities da\nLEFT JOIN (SELECT DISTINCT Id, name, description FROM abilities) a ON a.Id = da.abilityId\nWHERE da.DatasheetId = '000000070'  -- Tactical Squad (SM)\nORDER BY CAST(da.line AS INTEGER);\n```\n\n5. A core stratagem's text, in every form, and the units that have the keyword its target needs:\n\n```sql\nSELECT name, type, cpCost, turn, phase, description\nFROM stratagems\nWHERE name = 'GRENADE' AND FactionId = '';\n```\n\n```sql\nSELECT DISTINCT d.name\nFROM datasheets d\nJOIN datasheets_keywords k ON k.DatasheetId = d.Id AND k.keyword = 'Grenades'\nWHERE d.factionId = 'SM'\nORDER BY d.name;\n```\n\n6. The stratagems of a unit's own faction, with their detachment and game mode (`game_mode`: empty = the standard\n   game, `Boarding Actions`, or `NULL` when the detachment is not in `detachments`):\n\n```sql\nSELECT s.name, s.FactionId AS faction, s.type, s.detachment, dt.type AS game_mode, s.cpCost, s.phase\nFROM datasheets d\nJOIN datasheets_stratagems ds ON ds.DatasheetId = d.Id\nJOIN stratagems s ON s.id = ds.stratagemId AND s.FactionId = d.factionId\nLEFT JOIN detachments dt ON dt.Id = s.detachmentId\nWHERE d.Id = '000001157'  -- Intercessor Squad (SM)\nORDER BY dt.type, s.detachment, s.name;\n```\n\n7. A unit's keywords:\n\n```sql\nSELECT DISTINCT keyword, model, isFactionKeyword\nFROM datasheets_keywords\nWHERE DatasheetId = '000000070'  -- Tactical Squad (SM)\nORDER BY isFactionKeyword DESC, keyword;\n```\n\n8. A faction's detachments, with their rules:\n\n```sql\nSELECT dt.name AS detachment, da.name AS rule, da.description\nFROM detachments dt\nLEFT JOIN detachment_abilities da ON da.detachmentId = dt.Id\nWHERE dt.factionId = 'SM'\nORDER BY dt.name;\n```\n\n9. The units a leader can lead:\n\n```sql\nSELECT attached.name\nFROM datasheets leader\nJOIN datasheets_leader l ON l.LeaderId = leader.Id\nJOIN datasheets attached ON attached.Id = l.attachedId\nWHERE leader.Id = '000000073'  -- Captain (SM)\nORDER BY attached.name;\n```\n\n10. A unit's points:\n\n```sql\nSELECT DISTINCT description AS unit_size, cost\nFROM datasheets_models_cost\nWHERE DatasheetId = '000001157' AND cost != ''  -- Intercessor Squad (SM)\nORDER BY CAST(cost AS INTEGER);\n```\n",
+  "final_prompt": "You are a rules assistant for Warhammer 40,000. You answer from two sources: the Core Rules (10th edition) and a database of datasheets, weapons, stratagems, factions and detachments.\n\n## Tools are spent\n\nThe tool budget for this question is spent: no tool can be called any more. Answer now, from the tool results above. Where they are not enough, give what they show and say what is missing.\n\n## Answering\n\n- Answer only from the tool results of this conversation. If a search does not supply the necessary passage, search again with a specific rule or section name while tools remain. If it is still missing, say what the retrieved passages do not establish and what you searched. Unsuccessful retrieval never proves that the rulebook has no such rule. Do not invent values or fill gaps from general game knowledge.\n- Organize an evidence answer in this order: source/version and scope, including which facts the user supplied and which the tools established; explicit conditions and results in the source's order; then the supported conclusion and any evidence gap. For an if/otherwise rule, preserve every branch and their common timing. Distinguish ways to score from the rule for determining a winner.\n- For a rule or procedure, preserve its cost, timing, eligible target, effect, restrictions and exceptions where the evidence gives them. For how to use a Stratagem, explain its CP payment from the `STRATAGEMS` and `1. COMMAND` sections and illustrate how the card labels WHEN, TARGET, EFFECT and RESTRICTIONS work from the retrieved Stratagem cards; once those sections and cards are retrieved, answer from them without searching again for a separate definition of those card labels. Identify the actor, whose phase it is, every recipient, and quantifiers such as \"both players\" and \"each phase\"; avoid ambiguous pronouns. Do not merge source versions. Give an exception only with its trigger and timing. If you choose an example, attribute it to one source or separate material versions; do not use a joint citation to imply that different versions are identical. An example figure is illustrative, not a datasheet fact about a real unit.\n- Cite every fact: [Core Rules p. N] for the rulebook (p. N–M for a passage over two pages), [DB: table] for the database.\n- Editions: the rulebook is the 10th edition. For a database record, give its edition only when it is recorded: for a datasheet, join `source` and give its name and edition; edition '0' means that none is recorded (a Warhammer Legends or Forge World pack: name it as such). Stratagems, detachments, enhancements and abilities have no source: say that their source is not recorded. Never give one edition to the database as a whole.\n- When evidence contains versions of the same rule, compare costs, timing, targets, effects and restrictions. For an applicability question or follow-up, give a short entry for EACH source: source/version and citation; its explicit conditions; the relevant facts supplied by the user or established by a tool, labelled by origin; any missing facts; and the conclusion supported by that source. These are checkable evidence statements, not a narrative of your reasoning. Preserve who a restriction applies to, including the controlling player. Nonselection, a completed action, and ineligibility are different predicates: none establishes another without cited evidence. Do not import exclusions across sources. An exclusion absent from a retrieved passage proves neither permission nor prohibition; say when that source does not settle the case. Describe material differences, not assumed clarifications.\n- Categories: a broad name such as \"a Space Marine\" is a category, not a unit. Resolve it to a faction and keywords (for example factionId 'SM' with the keyword Battleline or Infantry), leave out Warhammer Legends unless asked, use aggregate counts by publication/edition for a typical value and separate limited examples for exceptions, report the per-publication/edition counts as returned without summing them across publications or editions in prose, and say how you read the question: the units the answer covers and what it leaves out. Do not answer with a question when the results let you answer this way. Name the counting unit (datasheets or model profiles). A truncated example list cannot support an overall distribution.\n- Profiles: a characteristic belongs to a model profile, not to a unit. When a unit you give as an exception has profiles of different values, state every profile/value variant of that exception; never give one profile's characteristic as the value of the whole unit. Cite the table name, not a record ID as though it were a table.\n- Missions: use the page footer to name the mission for both scoring and winner rules. A question about ways to score needs concrete award conditions, amounts and timing; an introduction or a winner rule does not supply them. Search again for victory points and objective control only if no mission scoring rule has been retrieved yet; once a mission's scoring rule is present, answer from it without further searches for generic examples. Keep mission-specific scoring separate from generic examples and winner conditions. Preserve the source's shared timing and all ordered winner branches, including the destroyed-army condition, otherwise VP comparison and tie. State any remaining evidence gap.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+  "final_instruction": "Tools are no longer available. Answer now in text, from the tool results above; if they are not enough, say what is missing.",
+  "model_settings": {
+   "model": "gemini-3.8-flash",
+   "temperature": null,
+   "frequency_penalty": null,
+   "presence_penalty": null,
+   "top_p": null,
+   "top_k": null,
+   "max_output_tokens": null,
+   "n": 1,
+   "safety_settings": null,
+   "response_modalities": null,
+   "media_resolution": null,
+   "thinking_budget": null,
+   "include_thoughts": null,
+   "thinking_level": null,
+   "thinking_config": null,
+   "image_config": null
+  },
+  "tools": [
+   {
+    "type": "function",
+    "function": {
+     "name": "search_rules",
+     "description": "Search the Core Rules: how the game works (phases, actions, keywords, terrain). Retrieved Stratagem sections also include exact-name core database records when found.",
+     "parameters": {
+      "properties": {
+       "query": {
+        "description": "In English, with the rulebook's terms, whatever the question's language.",
+        "type": "string"
+       }
+      },
+      "required": [
+       "query"
+      ],
+      "type": "object"
+     }
+    }
+   },
+   {
+    "type": "function",
+    "function": {
+     "name": "run_sql",
+     "description": "Query units, weapons, abilities, stratagems, detachments and factions with read-only SQL.",
+     "parameters": {
+      "properties": {
+       "sql": {
+        "description": "One SQLite SELECT or WITH query that follows the database schema.",
+        "type": "string"
+       }
+      },
+      "required": [
+       "sql"
+      ],
+      "type": "object"
+     }
+    }
+   }
+  ],
+  "messages": [
+   {
+    "type": "human",
+    "data": {
+     "content": "Could you please explain the complete process of performing an Advance Move, including how the distance is determined and what restrictions are imposed on a unit that performs this action, so I can better plan my tactical maneuvers?",
+     "additional_kwargs": {},
+     "response_metadata": {},
+     "type": "human",
+     "name": null,
+     "id": "dea02853-35cb-4696-849f-ab0e8e7c89f6"
+    }
+   },
+   {
+    "type": "ai",
+    "data": {
+     "content": [],
+     "additional_kwargs": {
+      "function_call": {
+       "name": "search_rules",
+       "arguments": "{\"query\": \"Advance Move\"}"
+      },
+      "__gemini_function_call_thought_signatures__": {
+       "call_1430032": "EoIECv8DAWkUfRN4wf/yEUKxSH32cnIwhD3fuhcfdSGyZvoygdGpBgWOyPv2QNKfA0yqlafyYrNluTU5K2S/6Ggw5RXmitFBt91bB1uC9Y8ARjyluJoOicfrlDa2q/BDLc6l2ZhVWf7rqdMXjq5Y7EXLM+nO49QuFEykL8I9xAkl1WAp94QAHhZc9SpEtElAeCkB9vjxh+ru5AF/CLk7APwg1j4pqNXZNbBnu4PSgww4yeMFS6G6Rhr7n6+M/hUieBmhLJpy+gTnxAhysNTHj5nLSqtrZe35PtFAML4cUEC3t2I9U318tkOMaT/rDPJe1s7KhlrWLF0eBGZ/JjtLbFkvsM6eXK8N1Eqk/91MMx2K4UEQ5el767EQDv7RjnwZLRG48yqukZX64gtZvJrOjURPLXnCsZNtd/giAoNmWnsjzgznoshAHbVhmpqmO9tAIq0zTzdnclxBMdSCor74f4bHjQU/JrRoTdPe7gKgnbr1yUPFuMAEf6p3/iPnUlIP0lcL9yQ8x5FDhchINWGNPesIe1fa/biMx2qfDOG6ERGEaeimmzQVOwPZ9C9vZk6qHdcORjSFK0vSuMPF8E1f12nvkCwwxiiFhEmryCyCHzJqXcnBeDr4CwjNI/nF6OctJYGfWBzzxLqxKZx/9QMBwaDR56eQ0OzJ4whChElKG2KREq7zSg=="
+      }
+     },
+     "response_metadata": {
+      "safety_ratings": [],
+      "finish_reason": "STOP",
+      "model_name": "gemini-3.8-flash",
+      "model_provider": "google_genai"
+     },
+     "type": "ai",
+     "name": null,
+     "id": "lc_run--01a16f87-c281-7d52-b4ef-2984b40e3aaf",
+     "tool_calls": [
+      {
+       "name": "search_rules",
+       "args": {
+        "query": "Advance Move"
+       },
+       "id": "call_1430032",
+       "type": "tool_call"
+      }
+     ],
+     "invalid_tool_calls": [],
+     "usage_metadata": {
+      "input_tokens": 6037,
+      "output_tokens": 88,
+      "total_tokens": 6125,
+      "input_token_details": {
+       "cache_read": 0
+      },
+      "output_token_details": {
+       "reasoning": 71
+      }
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "data": {
+     "content": "[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nSection: ADVANCE MOVES\nWhen a unit Advances, make an Advance roll for that unit by rolling one D6. Add the result in inches to the Move characteristic of each model in that unit until the end of the phase. Each model in that unit can then make an Advance move by moving a distance in inches less than or equal to this total, but no model can be moved within Engagement Range of enemy models. A unit cannot shoot or declare a charge in the same turn that it Advanced.\n\n- Advance Move: Models move up to M+D6\".\n- Cannot move within Engagement Range of any enemy models.\n- Units that Advance cannot shoot or charge this turn.\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: 1. MOVE UNITS\n- When a unit moves it can make a Normal move, Advance or Remain Stationary.\n- Units that are within Engagement Range of any enemy models can only Fall Back or Remain Stationary.\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: MOVEMENT PHASE\nThe ground shakes to the tread of marching feet and the growl of engines as armies advance across the battlefield and vie for advantageous positions.\n\n[Core Rules p. 54] (page footer p. 54: CORE RULES | AIRCRAFT)\nSection: AIRCRAFT AND THE MOVEMENT OF OTHER MODELS\nWhen a unit is selected to move in the Movement phase, if the only enemy models that are within Engagement Range of that unit are Aircraft models, then that unit can still make a Normal or Advance move.\n\nWhenever a model makes any kind of move, it can be moved over enemy Aircraft models as if they were not there, and can be moved within Engagement Range of enemy Aircraft models, but it cannot end that move on top of another model or within Engagement Range of any enemy Aircraft models.\n\n- Units can still make a Normal or Advance move if they are only within Engagement Range of enemy Aircraft.\n- Models can move within Engagement Range of enemy Aircraft, but cannot end a move within Engagement Range of enemy Aircraft.\n- Models can move over Aircraft when they make any kind of move.\n\n[Core Rules p. 17] (page footer p. 17: CORE RULES | TRANSPORTS)\nSection: EMBARK\nIf a unit makes a Normal, Advance or Fall Back move, and every model in that unit ends that move within 3\" of a friendly Transport model, they can embark within it. A unit cannot embark if it has already disembarked from a Transport model in the same phase. Remove the unit from the battlefield and place it to one side - it is now embarked within that Transport model. Unless otherwise stated, units cannot do anything or be affected in any way while they are embarked.\n\n- A unit can embark within a friendly Transport if all of its models end a Normal, Advance or Fall Back move within 3\" of that Transport.\n- A unit cannot embark and disembark in the same phase.\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: 1. MOVE UNITS\nStart your Movement phase by selecting one unit from your army that is on the battlefield to move:\n\n- Unless that unit is within Engagement Range of any enemy models, it can make a Normal move, or Advance, or Remain Stationary.\n- If that unit is within Engagement Range of any enemy models, it can either Remain Stationary or Fall Back.\n\nAfter you have finished moving that unit, select another unit from your army to move, and so on, until you have done so with all of your units. Once you have moved all of your units, progress to the Reinforcements step of your Movement phase.\n\nEach time you move a unit, you can move any of its models you choose to. The controlling player chooses the order in which to move their models. Whenever you move a model, you can pivot it and/or change its position on the battlefield along any path, but no part of its base can be moved across an enemy model or cross the edge of the battlefield. It can be moved over friendly models as if they were not there if you wish, but it cannot end its move on top of another model. The only exception to this is when moving Monster or Vehicle models; such models cannot be moved over other friendly Monster or Vehicle models and must be moved around them instead. The distance a model moves is measured using the part of its base that moves furthest along its path. If a model does not have a base, measure using whichever part of that model moves the furthest.\n\n[Core Rules p. 15] (page footer p. 15: CORE RULES | MOVEMENT PHASE)\nFigure label: In this example the Tyranid Prime makes a Normal move of 12\" to end on top of the ruin. Because it can Fly it can move directly over the enemy Terminators as if they were not there, and it is the diagonal distance through the air that is measured.\nFigure label: A The Von Ryan's\nSection: FLYING\nIf a model can Fly, then when it makes a Normal, Advance or Fall Back move, it can be moved over enemy models as if they were not there, and can be moved within Engagement Range of enemy models when making such a move. Note this also means that Monster and Vehicle models that can Fly can be moved over other Monster and Vehicle models when making such a move. However, models that can Fly cannot end their move on top of any other models or within Engagement Range of any enemy models.\n\nWhen a model that can Fly starts or ends a move on a terrain feature, instead of measuring the path it has moved across the battlefield, you instead measure its path 'through the air', as shown in the diagram below.\n\nIn this example the Tyranid Prime makes a Normal move of 12\" to end on top of the ruin. Because it can Fly it can move directly over the enemy Terminators as if they were not there, and it is the diagonal distance through the air that is measured.\n\n12\"\n\nA The Von Ryan's\n\nLeaper Advances\n\ntowards the building.\n\nIt moves a total of 9\",\n\nmoving freely over\n\nthe pipe as it is only\n\n2\" in height.\n\nB The building is taller\n\nthan 2\" so the vertical\n\ndistance of 3\" must\n\nbe counted as part of\n\nthe move.\n\nA\n\nB\n\n3\"\n\n- Fly models can move over enemy models when they make a Normal, Advance or Fall Back move.\n- Fly models that start or end a move on a terrain feature measure distance moved through the air when they make a Normal, Advance or Fall Back move.\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nFigure label: MOVE UNITS\nSection: MOVE UNITS\nREINFORCEMENTS\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+     "additional_kwargs": {},
+     "response_metadata": {},
+     "type": "tool",
+     "name": "search_rules",
+     "id": "0a0d276d-a182-4819-a192-9e1fb9efd2fd",
+     "tool_call_id": "call_1430032",
+     "artifact": {
+      "chunks": [
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0048",
+         "text": "Section: ADVANCE MOVES\nWhen a unit Advances, make an Advance roll for that unit by rolling one D6. Add the result in inches to the Move characteristic of each model in that unit until the end of the phase. Each model in that unit can then make an Advance move by moving a distance in inches less than or equal to this total, but no model can be moved within Engagement Range of enemy models. A unit cannot shoot or declare a charge in the same turn that it Advanced.\n\n- Advance Move: Models move up to M+D6\".\n- Cannot move within Engagement Range of any enemy models.\n- Units that Advance cannot shoot or charge this turn.",
+         "pages": [
+          14
+         ],
+         "section": "ADVANCE MOVES",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | MOVEMENT PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03278688524590164
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0044",
+         "text": "Section: 1. MOVE UNITS\n- When a unit moves it can make a Normal move, Advance or Remain Stationary.\n- Units that are within Engagement Range of any enemy models can only Fall Back or Remain Stationary.",
+         "pages": [
+          13
+         ],
+         "section": "1. MOVE UNITS",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | MOVEMENT PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03225806451612903
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0042",
+         "text": "Section: MOVEMENT PHASE\nThe ground shakes to the tread of marching feet and the growl of engines as armies advance across the battlefield and vie for advantageous positions.",
+         "pages": [
+          13
+         ],
+         "section": "MOVEMENT PHASE",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | MOVEMENT PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.030158730158730156
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0212",
+         "text": "Section: AIRCRAFT AND THE MOVEMENT OF OTHER MODELS\nWhen a unit is selected to move in the Movement phase, if the only enemy models that are within Engagement Range of that unit are Aircraft models, then that unit can still make a Normal or Advance move.\n\nWhenever a model makes any kind of move, it can be moved over enemy Aircraft models as if they were not there, and can be moved within Engagement Range of enemy Aircraft models, but it cannot end that move on top of another model or within Engagement Range of any enemy Aircraft models.\n\n- Units can still make a Normal or Advance move if they are only within Engagement Range of enemy Aircraft.\n- Models can move within Engagement Range of enemy Aircraft, but cannot end a move within Engagement Range of enemy Aircraft.\n- Models can move over Aircraft when they make any kind of move.",
+         "pages": [
+          54
+         ],
+         "section": "AIRCRAFT AND THE MOVEMENT OF OTHER MODELS",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | AIRCRAFT"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.030158730158730156
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0059",
+         "text": "Section: EMBARK\nIf a unit makes a Normal, Advance or Fall Back move, and every model in that unit ends that move within 3\" of a friendly Transport model, they can embark within it. A unit cannot embark if it has already disembarked from a Transport model in the same phase. Remove the unit from the battlefield and place it to one side - it is now embarked within that Transport model. Unless otherwise stated, units cannot do anything or be affected in any way while they are embarked.\n\n- A unit can embark within a friendly Transport if all of its models end a Normal, Advance or Fall Back move within 3\" of that Transport.\n- A unit cannot embark and disembark in the same phase.",
+         "pages": [
+          17
+         ],
+         "section": "EMBARK",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | TRANSPORTS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.029709507042253523
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0043",
+         "text": "Section: 1. MOVE UNITS\nStart your Movement phase by selecting one unit from your army that is on the battlefield to move:\n\n- Unless that unit is within Engagement Range of any enemy models, it can make a Normal move, or Advance, or Remain Stationary.\n- If that unit is within Engagement Range of any enemy models, it can either Remain Stationary or Fall Back.\n\nAfter you have finished moving that unit, select another unit from your army to move, and so on, until you have done so with all of your units. Once you have moved all of your units, progress to the Reinforcements step of your Movement phase.\n\nEach time you move a unit, you can move any of its models you choose to. The controlling player chooses the order in which to move their models. Whenever you move a model, you can pivot it and/or change its position on the battlefield along any path, but no part of its base can be moved across an enemy model or cross the edge of the battlefield. It can be moved over friendly models as if they were not there if you wish, but it cannot end its move on top of another model. The only exception to this is when moving Monster or Vehicle models; such models cannot be moved over other friendly Monster or Vehicle models and must be moved around them instead. The distance a model moves is measured using the part of its base that moves furthest along its path. If a model does not have a base, measure using whichever part of that model moves the furthest.",
+         "pages": [
+          13
+         ],
+         "section": "1. MOVE UNITS",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | MOVEMENT PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.029273504273504274
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0053",
+         "text": "Figure label: In this example the Tyranid Prime makes a Normal move of 12\" to end on top of the ruin. Because it can Fly it can move directly over the enemy Terminators as if they were not there, and it is the diagonal distance through the air that is measured.\nFigure label: A The Von Ryan's\nSection: FLYING\nIf a model can Fly, then when it makes a Normal, Advance or Fall Back move, it can be moved over enemy models as if they were not there, and can be moved within Engagement Range of enemy models when making such a move. Note this also means that Monster and Vehicle models that can Fly can be moved over other Monster and Vehicle models when making such a move. However, models that can Fly cannot end their move on top of any other models or within Engagement Range of any enemy models.\n\nWhen a model that can Fly starts or ends a move on a terrain feature, instead of measuring the path it has moved across the battlefield, you instead measure its path 'through the air', as shown in the diagram below.\n\nIn this example the Tyranid Prime makes a Normal move of 12\" to end on top of the ruin. Because it can Fly it can move directly over the enemy Terminators as if they were not there, and it is the diagonal distance through the air that is measured.\n\n12\"\n\nA The Von Ryan's\n\nLeaper Advances\n\ntowards the building.\n\nIt moves a total of 9\",\n\nmoving freely over\n\nthe pipe as it is only\n\n2\" in height.\n\nB The building is taller\n\nthan 2\" so the vertical\n\ndistance of 3\" must\n\nbe counted as part of\n\nthe move.\n\nA\n\nB\n\n3\"\n\n- Fly models can move over enemy models when they make a Normal, Advance or Fall Back move.\n- Fly models that start or end a move on a terrain feature measure distance moved through the air when they make a Normal, Advance or Fall Back move.",
+         "pages": [
+          15
+         ],
+         "section": "FLYING",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/33",
+          "#/pictures/34"
+         ],
+         "page_footers": [
+          "CORE RULES | MOVEMENT PHASE"
+         ],
+         "picture_labels": [
+          "In this example the Tyranid Prime makes a Normal move of 12\" to end on top of the ruin. Because it can Fly it can move directly over the enemy Terminators as if they were not there, and it is the diagonal distance through the air that is measured.",
+          "A The Von Ryan's"
+         ]
+        },
+        "score": 0.028850145288501453
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0047",
+         "text": "Figure label: MOVE UNITS\nSection: MOVE UNITS\nREINFORCEMENTS",
+         "pages": [
+          13
+         ],
+         "section": "MOVE UNITS",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/27"
+         ],
+         "page_footers": [
+          "CORE RULES | MOVEMENT PHASE"
+         ],
+         "picture_labels": [
+          "MOVE UNITS"
+         ]
+        },
+        "score": 0.028782894736842105
+       }
+      ],
+      "stratagem_names": [],
+      "stratagems": null,
+      "related_sections": []
+     },
+     "status": "success"
+    }
+   },
+   {
+    "type": "ai",
+    "data": {
+     "content": [],
+     "additional_kwargs": {
+      "function_call": {
+       "name": "search_rules",
+       "arguments": "{\"query\": \"Assault weapons Advance\"}"
+      },
+      "__gemini_function_call_thought_signatures__": {
+       "call_1015486": "EuQFCuEFAWkUfRPdjjIQ/w020KEXhs/o25WILJCQl7ATz6zIaUiO41P18BMO+iRzKPTbSK4dZ7FV0TQdWD2WSJmAbnymUNisqvJ8kxGg5SeZKhQjb8uiUuoN230xxHpcIZpoI4vWyhBd0ueKIbLAMyju68tIqYHHuCBYB4i1e2wDZLReV7IdXmIsv3lyTRsz9IeKHNLIVh+4FPa/cfF1Sl2SLI3ZPPUwQgR8jrMlWfMOgTcpevq+SIQof0C7ysgnfJLy7JRoVtqwmDYPFZDGD2eJsv5lvg6/Q7fpYAyDhRU5SPAnVH26AKajPEzLNRCUNvHnV8XpgaWpo25pClq4hZOq/xTVKkdnLzId6Jhi/OTl4NmNhwb4Cle+H5bsHtHcFbPO7x4F9wrf7n3q6oyL2LBRZGNxZb44nh9uvV2b33Dx/fMI4ekTUNhV8bu6HzplNDPxpnQVsNGMoKyU5+cI4ANNr4OqQT3F0heztwTu7mu2CZJvy9j29VPSFFj8UYF5Xk2fklG3pLXylhyoooZUquwgSeelbTdvSu3Pj6j1rWeYnVC8Ugheo5zpVoKOgq1l5SxNB9DFt3mXxWPJanWOkgG1MLd9Cx/mBaFiNgJT51lZBmzA9zIl3mrF7QVaxeydvA8bO4IBJHeWDRGIiDjXJ7FU8YVaF5hJiB0CbSBhfrZkJu9Ee1VAjfwGHKVK0qRBvWSfqNU6f48UTOLoJ6kQfPL2GFUauYSEBbirrGun6UNXMa+khxCxQKUtmmpkH9qQToRbcxnCU4GmL3ieyJEc2lF/cufTDtB8qaqm4AgoAMCxVEe/d+ksMv1hN80flKkkGKfit5OSBVu/VkKK0omIlOjyWHEj/Sz6J7xYcBgkNMMxqDhb7JGXVvkCCL2qTYOXUUji+xsCF5TTw7WhZsZn1I59QnIyGo/eZ1PW+az7i/PjtOeQZl2L3j5pB45UK/bssONYbCHYxxxywzo6kO+mkqPSDJY8BZU="
+      }
+     },
+     "response_metadata": {
+      "safety_ratings": [],
+      "finish_reason": "STOP",
+      "model_name": "gemini-3.8-flash",
+      "model_provider": "google_genai"
+     },
+     "type": "ai",
+     "name": null,
+     "id": "lc_run--01a16f87-cfac-79f1-b08f-ac2f857e47fb",
+     "tool_calls": [
+      {
+       "name": "search_rules",
+       "args": {
+        "query": "Assault weapons Advance"
+       },
+       "id": "call_1015486",
+       "type": "tool_call"
+      }
+     ],
+     "invalid_tool_calls": [],
+     "usage_metadata": {
+      "input_tokens": 7741,
+      "output_tokens": 129,
+      "total_tokens": 7870,
+      "input_token_details": {
+       "cache_read": 0
+      },
+      "output_token_details": {
+       "reasoning": 110
+      }
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "data": {
+     "content": "[Core Rules p. 25] (page footer p. 25: CORE RULES | WEAPON ABILITIES)\nSection: ASSAULT\nAssault weapons fire so indiscriminately that they can be shot from the hip as warriors dash forward.\n\nWeapons with [ASSAULT] in their profile are known as Assault weapons. If a unit that Advanced this turn contains any models equipped with Assault weapons, it is still eligible to shoot in this turn's Shooting phase. When such a unit is selected to shoot, you can only resolve attacks using Assault weapons its models are equipped with.\n\n- Can be shot even if the bearer's unit Advanced.\n\n[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nSection: ADVANCE MOVES\nWhen a unit Advances, make an Advance roll for that unit by rolling one D6. Add the result in inches to the Move characteristic of each model in that unit until the end of the phase. Each model in that unit can then make an Advance move by moving a distance in inches less than or equal to this total, but no model can be moved within Engagement Range of enemy models. A unit cannot shoot or declare a charge in the same turn that it Advanced.\n\n- Advance Move: Models move up to M+D6\".\n- Cannot move within Engagement Range of any enemy models.\n- Units that Advance cannot shoot or charge this turn.\n\n[Core Rules p. 25] (page footer p. 25: CORE RULES | WEAPON ABILITIES)\nSection: TORRENT\nTorrent weapons shoot clouds of fire, gas or other lethal substances that few foes can hope to evade.\n\nWeapons with [TORRENT] in their profile are known as Torrent weapons. Each time an attack is made with such a weapon, that attack automatically hits the target.\n\n[Core Rules p. 25] (page footer p. 25: CORE RULES | WEAPON ABILITIES)\nSection: IGNORES COVER\nSome weapons are designed to root enemy formations out of entrenched positions.\n\nWeapons with [IGNORES COVER] in their profile are known as Ignores Cover weapons. Each time an attack is made with such a weapon, the target cannot have the Benefit of Cover against that attack (pg 44).\n\n[Core Rules p. 28] (page footer p. 28: CORE RULES | WEAPON ABILITIES)\nSection: EXTRA ATTACKS\nSome warriors ride to battle atop trusty mounts that gore and trample nearby foes. Others wield combat weapons that deliver a frenzy of additional blows.\n\nWeapons with [EXTRA ATTACKS] in their profile are known as Extra Attacks weapons. Each time the bearer of such a weapon fights, it can make attacks with that weapon in addition to the one it chooses to fight with. The number of attacks made with an Extra Attacks weapon cannot be modified by other rules.\n\n- The bearer can attack with this weapon in addition to any other weapons it can make attacks with.\n\n[Core Rules p. 25] (page footer p. 25: CORE RULES | WEAPON ABILITIES)\nSection: RAPID FIRE\nRapid fire weapons are capable of long-ranged precision shots or controlled bursts at nearby targets.\n\nWeapons with [RAPID FIRE X] in their profile are known as Rapid Fire weapons. Each time such a weapon targets a unit within half that weapon's range, the Attacks characteristic of that weapon is increased by the amount denoted by 'x'.\n\nExample: A model targets a unit that is within half range of a weapon with an Attacks characteristic of 1 and the [RAPID FIRE 1] ability. That weapon therefore makes two attacks at the target, and you make two Hit rolls.\n\n- [RAPID FIRE X]: Increase the Attacks by 'x' when targeting units within half range.\n\n[Core Rules p. 38] (page footer p. 38: CORE RULES | DATASHEETS)\nSection: 4 WEAPONS\nWeapons are described with the following characteristics:\n\nRange: How far the weapon can shoot. Weapons with a range of 'Melee' are melee weapons and can only be used in close combat. All other weapons are ranged weapons.\n\nAttacks (A): This tells you how many attacks are made each time that weapon is used.\n\nWeapon Skill (WS): This reflects the bearer's skill in wielding the relevant melee weapon.\n\nBallistic Skill (BS): This shows how accurate the bearer is when shooting with the relevant ranged weapon.\n\nStrength (S): How likely the weapon is to wound a foe.\n\nArmour Penetration (AP): This represents the weapon's ability to cut through the target's defences.\n\nDamage (D): The amount of damage inflicted by a successful wound.\n\n[Core Rules p. 25] (page footer p. 25: CORE RULES | WEAPON ABILITIES)\nSection: WEAPON ABILITIES\nSome weapons have additional abilities in their profiles. Often these are unique to those weapons and are written out in full, but others are common to many weapons, and may only be referenced by name on a weapon's profile. Some notable examples of these common abilities are defined here; further weapon abilities may be found in other locations such as Codexes.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+     "additional_kwargs": {},
+     "response_metadata": {},
+     "type": "tool",
+     "name": "search_rules",
+     "id": "41cef131-b678-493b-89ab-620d60b951bf",
+     "tool_call_id": "call_1015486",
+     "artifact": {
+      "chunks": [
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0093",
+         "text": "Section: ASSAULT\nAssault weapons fire so indiscriminately that they can be shot from the hip as warriors dash forward.\n\nWeapons with [ASSAULT] in their profile are known as Assault weapons. If a unit that Advanced this turn contains any models equipped with Assault weapons, it is still eligible to shoot in this turn's Shooting phase. When such a unit is selected to shoot, you can only resolve attacks using Assault weapons its models are equipped with.\n\n- Can be shot even if the bearer's unit Advanced.",
+         "pages": [
+          25
+         ],
+         "section": "ASSAULT",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | WEAPON ABILITIES"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03278688524590164
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0048",
+         "text": "Section: ADVANCE MOVES\nWhen a unit Advances, make an Advance roll for that unit by rolling one D6. Add the result in inches to the Move characteristic of each model in that unit until the end of the phase. Each model in that unit can then make an Advance move by moving a distance in inches less than or equal to this total, but no model can be moved within Engagement Range of enemy models. A unit cannot shoot or declare a charge in the same turn that it Advanced.\n\n- Advance Move: Models move up to M+D6\".\n- Cannot move within Engagement Range of any enemy models.\n- Units that Advance cannot shoot or charge this turn.",
+         "pages": [
+          14
+         ],
+         "section": "ADVANCE MOVES",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | MOVEMENT PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03225806451612903
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0098",
+         "text": "Section: TORRENT\nTorrent weapons shoot clouds of fire, gas or other lethal substances that few foes can hope to evade.\n\nWeapons with [TORRENT] in their profile are known as Torrent weapons. Each time an attack is made with such a weapon, that attack automatically hits the target.",
+         "pages": [
+          25
+         ],
+         "section": "TORRENT",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | WEAPON ABILITIES"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.02904040404040404
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0095",
+         "text": "Section: IGNORES COVER\nSome weapons are designed to root enemy formations out of entrenched positions.\n\nWeapons with [IGNORES COVER] in their profile are known as Ignores Cover weapons. Each time an attack is made with such a weapon, the target cannot have the Benefit of Cover against that attack (pg 44).",
+         "pages": [
+          25
+         ],
+         "section": "IGNORES COVER",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | WEAPON ABILITIES"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.02871794871794872
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0109",
+         "text": "Section: EXTRA ATTACKS\nSome warriors ride to battle atop trusty mounts that gore and trample nearby foes. Others wield combat weapons that deliver a frenzy of additional blows.\n\nWeapons with [EXTRA ATTACKS] in their profile are known as Extra Attacks weapons. Each time the bearer of such a weapon fights, it can make attacks with that weapon in addition to the one it chooses to fight with. The number of attacks made with an Extra Attacks weapon cannot be modified by other rules.\n\n- The bearer can attack with this weapon in addition to any other weapons it can make attacks with.",
+         "pages": [
+          28
+         ],
+         "section": "EXTRA ATTACKS",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | WEAPON ABILITIES"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.02844551282051282
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0094",
+         "text": "Section: RAPID FIRE\nRapid fire weapons are capable of long-ranged precision shots or controlled bursts at nearby targets.\n\nWeapons with [RAPID FIRE X] in their profile are known as Rapid Fire weapons. Each time such a weapon targets a unit within half that weapon's range, the Attacks characteristic of that weapon is increased by the amount denoted by 'x'.\n\nExample: A model targets a unit that is within half range of a weapon with an Attacks characteristic of 1 and the [RAPID FIRE 1] ability. That weapon therefore makes two attacks at the target, and you make two Hit rolls.\n\n- [RAPID FIRE X]: Increase the Attacks by 'x' when targeting units within half range.",
+         "pages": [
+          25
+         ],
+         "section": "RAPID FIRE",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | WEAPON ABILITIES"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.027777777777777776
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0141",
+         "text": "Section: 4 WEAPONS\nWeapons are described with the following characteristics:\n\nRange: How far the weapon can shoot. Weapons with a range of 'Melee' are melee weapons and can only be used in close combat. All other weapons are ranged weapons.\n\nAttacks (A): This tells you how many attacks are made each time that weapon is used.\n\nWeapon Skill (WS): This reflects the bearer's skill in wielding the relevant melee weapon.\n\nBallistic Skill (BS): This shows how accurate the bearer is when shooting with the relevant ranged weapon.\n\nStrength (S): How likely the weapon is to wound a foe.\n\nArmour Penetration (AP): This represents the weapon's ability to cut through the target's defences.\n\nDamage (D): The amount of damage inflicted by a successful wound.",
+         "pages": [
+          38
+         ],
+         "section": "4 WEAPONS",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/81"
+         ],
+         "page_footers": [
+          "CORE RULES | DATASHEETS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.027598020555767037
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0092",
+         "text": "Section: WEAPON ABILITIES\nSome weapons have additional abilities in their profiles. Often these are unique to those weapons and are written out in full, but others are common to many weapons, and may only be referenced by name on a weapon's profile. Some notable examples of these common abilities are defined here; further weapon abilities may be found in other locations such as Codexes.",
+         "pages": [
+          25
+         ],
+         "section": "WEAPON ABILITIES",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | WEAPON ABILITIES"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.027272727272727275
+       }
+      ],
+      "stratagem_names": [],
+      "stratagems": null,
+      "related_sections": []
+     },
+     "status": "success"
+    }
+   },
+   {
+    "type": "ai",
+    "data": {
+     "content": [],
+     "additional_kwargs": {
+      "function_call": {
+       "name": "search_rules",
+       "arguments": "{\"query\": \"Advance roll Command Re-roll\"}"
+      },
+      "__gemini_function_call_thought_signatures__": {
+       "call_1110432": "EvwCCvkCAWkUfRM5o7ThVjGUqiRGqfC2+01wmvfdtrEJCMj8Tpkr3TyKjx5A2HYclyCvmMqfLCezw8xc91ivOtvNuY9HXKLTQ1zLwGK+ow3Ztjs3xMI3ERy3tpPA5Q57Jb1xcPynRp7jJwbc8E+PV0mssYgaFtlTF1Dbg+VF4AHrM6xxhwHZcyZbbWBiCmgFAvTZTeyU6wiIsZ3xYI6yoUL4ljWVcXWAdobvsTBd/DPP3EL79V+nXNthshdnxwv5bjuNwcafJplhPWvbAqyaVvHvMm8/Q1Xh/0n3YSr0EMVlLczkXz7BAIjsf7MDlPQ6Nru0Xj2nLlgJjhGT7PC3o1oyNpkZGBjfJWzHFUCz+hXpOZ9RDVxf2Imm0otZOuidSEeG43LQw/rxOcqCOda0ylFqLZf1WZCSAhQQ5r9zG8Ywnldco7sjsCOV9ko6VQgHz6SJSFqBhJO6U6Dx07jTKH9NWZDtxSCmEk9o4I9f/mVa6vVX0EllShVfoj1VwoY="
+      }
+     },
+     "response_metadata": {
+      "safety_ratings": [],
+      "finish_reason": "STOP",
+      "model_name": "gemini-3.8-flash",
+      "model_provider": "google_genai"
+     },
+     "type": "ai",
+     "name": null,
+     "id": "lc_run--01a16f87-fce9-7d03-af1a-846cfd3bbf79",
+     "tool_calls": [
+      {
+       "name": "search_rules",
+       "args": {
+        "query": "Advance roll Command Re-roll"
+       },
+       "id": "call_1110432",
+       "type": "tool_call"
+      }
+     ],
+     "invalid_tool_calls": [],
+     "usage_metadata": {
+      "input_tokens": 9111,
+      "output_tokens": 86,
+      "total_tokens": 9197,
+      "input_token_details": {
+       "cache_read": 0
+      },
+      "output_token_details": {
+       "reasoning": 65
+      }
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "data": {
+     "content": "[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: COMMAND RE-ROLL\n1CP\n\nCORE - BATTLE TACTIC STRATAGEM\n\nA great commander can bend even the vagaries of fate and fortune to their will, the better to ensure victory.\n\nWHEN: In any phase, just after you have made a Hit roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate Escape test, a Hazardous test, or just after you have rolled the dice to determine the number of attacks made with a weapon, for an attack, model or unit from your army.\n\nEFFECT: You re-roll that roll, test or saving throw.\n\n[Core Rules p. 9] (page footer p. 9: CORE RULES | CORE CONCEPTS)\nSection: RE-ROLLS\nSome rules allow you to re-roll a dice roll, which means you get to roll some or all of the dice again. If a rule allows you to re-roll a dice roll that was made by adding several dice together (e.g. 2D6, 3D6, etc.) then, unless otherwise stated, you must re-roll all of those dice again.\n\nYou can never re-roll a dice more than once, and re-rolls happen before modifiers (if any) are applied. Rules that refer to the value of an 'unmodified' dice roll are referring to the dice result after any re-rolls, but before any modifiers are applied.\n\n- Unmodified Dice: the result after re-rolls, but before any modifiers.\n- A dice can never be re-rolled more than once.\n- You must re-roll all dice if several need adding together (e.g. 2D6).\n- Re-rolls are applied before any modifiers.\n\n[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nSection: ADVANCE MOVES\nWhen a unit Advances, make an Advance roll for that unit by rolling one D6. Add the result in inches to the Move characteristic of each model in that unit until the end of the phase. Each model in that unit can then make an Advance move by moving a distance in inches less than or equal to this total, but no model can be moved within Engagement Range of enemy models. A unit cannot shoot or declare a charge in the same turn that it Advanced.\n\n- Advance Move: Models move up to M+D6\".\n- Cannot move within Engagement Range of any enemy models.\n- Units that Advance cannot shoot or charge this turn.\n\n[Core Rules p. 9] (page footer p. 9: CORE RULES | CORE CONCEPTS)\nSection: Hints and Tips DICE ROLLING\nIn a game of Warhammer 40,000 you and your opponent will be rolling, and in some cases re-rolling, lots of dice. It is good practice to always make sure your opponent knows what you are rolling dice for, and what abilities and rules are in effect that enable you to make any re-rolls.\n\nMany gamers roll their dice somewhere on the battlefield, but some roll their dice elsewhere, such as in a dice tray. Wherever you roll your dice, make sure you roll the dice where your opponent can see the results too. If a dice is rolled out of bounds (i.e. it rolls off your battlefield, out of your dice tray or ends up on the floor), it is very common to ignore the result of that dice and roll it again. Rolling an out-of-bounds dice again doesn't count as having re-rolled that dice.\n\nIf a dice does not lie flat on your battlefield after it has been thrown, it is called a cocked dice. Some players use a house rule that unless a dice is flat after it has been rolled, or unless you can balance another dice on top of a cocked dice without it sliding off, it must be rolled again. It is more common for players to roll the dice again only if they can't be sure of the result. In any case, rolling a cocked dice again doesn't count as having re-rolled that dice.\n\n[Core Rules p. 10] (page footer p. 10: CORE RULES | THE BATTLE ROUND)\nFigure label: COMMAND PHASE\nSection: THE BATTLE ROUND > COMMAND PHASE\nBoth players muster strategic resources, then you test your units' battle readiness.\n\n[Core Rules p. 3]\nFigure label: 1 COMMAND PHASE\nSection: Introduction\n1 COMMAND PHASE\n\n2 MOVEMENT PHASE\n\n3 SHOOTING PHASE\n\n4 CHARGE PHASE\n\n5 FIGHT PHASE\n\nIn a game as wide-ranging as Warhammer 40,000, there may be times when you are not sure exactly how to resolve a situation that has come up during play. When this happens, have a quick chat with your opponent and apply the solution that makes the most sense to both of you (or seems the most fun!). If no single solution presents itself, you and your opponent should roll off, and whoever rolls highest gets to choose what happens. Then you can get on with the fighting!\n\n[Core Rules p. 11] (page footer p. 11: CORE RULES | COMMAND PHASE)\nSection: 1. COMMAND\nAt the start of your Command phase, before doing anything else, both players gain 1CP. Command points are a strategic resource that you can spend during the battle to use Stratagems. You can find out more about Stratagems on pages 41-42.\n\nThen, if you have any other rules that need to be resolved in the Command phase, you do so now before progressing to the Battle-shock step.\n\n- Both players gain 1CP.\n- Resolve any other rules that occur in the Command phase.\n\n[Core Rules p. 25] (page footer p. 25: CORE RULES | WEAPON ABILITIES)\nSection: TWIN-LINKED\nDual weapons are often grafted to the same targeting system for greater lethality.\n\nWeapons with [TWIN-LINKED] in their profile are known as Twin-linked weapons. Each time an attack is made with such a weapon, you can re-roll that attack's Wound roll.\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"COMMAND RE-ROLL\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335002\", \"COMMAND RE-ROLL\", \"\", \"Core – Battle Tactic Stratagem\", \"1\", \"Either player’s turn\", \"Any phase\", \"\", \"WHEN: Any phase, just after you make an Advance roll, a Charge roll, a Desperate Escape test or a Hazardous test for a unit from your army, or a Hit roll, a Wound roll, a Damage roll or a saving throw for a model in that unit, or a roll to determine the number of attacks made with a weapon equipped by a model in that unit. If you are using fast dice rolling, this Stratagem can still be used after rolling multiple rolls or saving throws at once.\\nTARGET: That unit or model from your army.\\nEFFECT: You re-roll that roll, test or saving throw. If you are using fast dice rolling, select one of those rolls or saving throws to re-roll.\"], [\"000009218002\", \"COMMAND RE-ROLL\", \"\", \"Boarding Actions – Epic Deed Stratagem\", \"1\", \"Either player’s turn\", \"Any phase\", \"\", \"WHEN: Any phase, just after you have made a Hit roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate Escape test, a Hazardous test, or just after you have rolled the dice to determine the number of attacks made with a weapon, for an attack, model or unit from your army.\\nTARGET: That unit or model from your army.\\nEFFECT: You re-roll that roll, test or saving throw.\"], [\"000010810002\", \"COMMAND RE-ROLL\", \"\", \"Core Stratagem\", \"1\", \"Either player’s turn\", \"Any phase\", \"\", \"WHEN: Any phase, just after you make one of the following rolls for a friendly unit or model:Advance rollCharge rollDamage rollHazard rollHit rollSave rollWound rollA roll to determine the number of attacks generated with a weapon.\\nTARGET: That unit or model.\\nEFFECT: You re-roll that roll. If you are rolling more than one dice together, select one of those dice to re-roll (excluding charge rolls, which you must re-roll in full).\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+     "additional_kwargs": {},
+     "response_metadata": {},
+     "type": "tool",
+     "name": "search_rules",
+     "id": "c5cf05c6-f7e9-45a8-ad49-24c7864b0ac8",
+     "tool_call_id": "call_1110432",
+     "artifact": {
+      "chunks": [
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0157",
+         "text": "Section: COMMAND RE-ROLL\n1CP\n\nCORE - BATTLE TACTIC STRATAGEM\n\nA great commander can bend even the vagaries of fate and fortune to their will, the better to ensure victory.\n\nWHEN: In any phase, just after you have made a Hit roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate Escape test, a Hazardous test, or just after you have rolled the dice to determine the number of attacks made with a weapon, for an attack, model or unit from your army.\n\nEFFECT: You re-roll that roll, test or saving throw.",
+         "pages": [
+          41
+         ],
+         "section": "COMMAND RE-ROLL",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/93"
+         ],
+         "page_footers": [
+          "CORE RULES | STRATAGEMS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03278688524590164
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0025",
+         "text": "Section: RE-ROLLS\nSome rules allow you to re-roll a dice roll, which means you get to roll some or all of the dice again. If a rule allows you to re-roll a dice roll that was made by adding several dice together (e.g. 2D6, 3D6, etc.) then, unless otherwise stated, you must re-roll all of those dice again.\n\nYou can never re-roll a dice more than once, and re-rolls happen before modifiers (if any) are applied. Rules that refer to the value of an 'unmodified' dice roll are referring to the dice result after any re-rolls, but before any modifiers are applied.\n\n- Unmodified Dice: the result after re-rolls, but before any modifiers.\n- A dice can never be re-rolled more than once.\n- You must re-roll all dice if several need adding together (e.g. 2D6).\n- Re-rolls are applied before any modifiers.",
+         "pages": [
+          9
+         ],
+         "section": "RE-ROLLS",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | CORE CONCEPTS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03200204813108039
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0048",
+         "text": "Section: ADVANCE MOVES\nWhen a unit Advances, make an Advance roll for that unit by rolling one D6. Add the result in inches to the Move characteristic of each model in that unit until the end of the phase. Each model in that unit can then make an Advance move by moving a distance in inches less than or equal to this total, but no model can be moved within Engagement Range of enemy models. A unit cannot shoot or declare a charge in the same turn that it Advanced.\n\n- Advance Move: Models move up to M+D6\".\n- Cannot move within Engagement Range of any enemy models.\n- Units that Advance cannot shoot or charge this turn.",
+         "pages": [
+          14
+         ],
+         "section": "ADVANCE MOVES",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | MOVEMENT PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03128054740957967
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0021",
+         "text": "Section: Hints and Tips DICE ROLLING\nIn a game of Warhammer 40,000 you and your opponent will be rolling, and in some cases re-rolling, lots of dice. It is good practice to always make sure your opponent knows what you are rolling dice for, and what abilities and rules are in effect that enable you to make any re-rolls.\n\nMany gamers roll their dice somewhere on the battlefield, but some roll their dice elsewhere, such as in a dice tray. Wherever you roll your dice, make sure you roll the dice where your opponent can see the results too. If a dice is rolled out of bounds (i.e. it rolls off your battlefield, out of your dice tray or ends up on the floor), it is very common to ignore the result of that dice and roll it again. Rolling an out-of-bounds dice again doesn't count as having re-rolled that dice.\n\nIf a dice does not lie flat on your battlefield after it has been thrown, it is called a cocked dice. Some players use a house rule that unless a dice is flat after it has been rolled, or unless you can balance another dice on top of a cocked dice without it sliding off, it must be rolled again. It is more common for players to roll the dice again only if they can't be sure of the result. In any case, rolling a cocked dice again doesn't count as having re-rolled that dice.",
+         "pages": [
+          9
+         ],
+         "section": "Hints and Tips DICE ROLLING",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | CORE CONCEPTS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.031009615384615385
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0029",
+         "text": "Figure label: COMMAND PHASE\nSection: THE BATTLE ROUND > COMMAND PHASE\nBoth players muster strategic resources, then you test your units' battle readiness.",
+         "pages": [
+          10
+         ],
+         "section": "THE BATTLE ROUND > COMMAND PHASE",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/20"
+         ],
+         "page_footers": [
+          "CORE RULES | THE BATTLE ROUND"
+         ],
+         "picture_labels": [
+          "COMMAND PHASE"
+         ]
+        },
+        "score": 0.02782608695652174
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0002",
+         "text": "Figure label: 1 COMMAND PHASE\nSection: Introduction\n1 COMMAND PHASE\n\n2 MOVEMENT PHASE\n\n3 SHOOTING PHASE\n\n4 CHARGE PHASE\n\n5 FIGHT PHASE\n\nIn a game as wide-ranging as Warhammer 40,000, there may be times when you are not sure exactly how to resolve a situation that has come up during play. When this happens, have a quick chat with your opponent and apply the solution that makes the most sense to both of you (or seems the most fun!). If no single solution presents itself, you and your opponent should roll off, and whoever rolls highest gets to choose what happens. Then you can get on with the fighting!",
+         "pages": [
+          3
+         ],
+         "section": "Introduction",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/1"
+         ],
+         "page_footers": [
+          ""
+         ],
+         "picture_labels": [
+          "1 COMMAND PHASE"
+         ]
+        },
+        "score": 0.027242401779095628
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0035",
+         "text": "Section: 1. COMMAND\nAt the start of your Command phase, before doing anything else, both players gain 1CP. Command points are a strategic resource that you can spend during the battle to use Stratagems. You can find out more about Stratagems on pages 41-42.\n\nThen, if you have any other rules that need to be resolved in the Command phase, you do so now before progressing to the Battle-shock step.\n\n- Both players gain 1CP.\n- Resolve any other rules that occur in the Command phase.",
+         "pages": [
+          11
+         ],
+         "section": "1. COMMAND",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | COMMAND PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.02684684684684685
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0096",
+         "text": "Section: TWIN-LINKED\nDual weapons are often grafted to the same targeting system for greater lethality.\n\nWeapons with [TWIN-LINKED] in their profile are known as Twin-linked weapons. Each time an attack is made with such a weapon, you can re-roll that attack's Wound roll.",
+         "pages": [
+          25
+         ],
+         "section": "TWIN-LINKED",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | WEAPON ABILITIES"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.026736111111111113
+       }
+      ],
+      "stratagem_names": [
+       "COMMAND RE-ROLL"
+      ],
+      "stratagems": {
+       "columns": [
+        "id",
+        "name",
+        "FactionId",
+        "type",
+        "cpCost",
+        "turn",
+        "phase",
+        "detachment",
+        "description"
+       ],
+       "rows": [
+        [
+         "000008335002",
+         "COMMAND RE-ROLL",
+         "",
+         "Core – Battle Tactic Stratagem",
+         "1",
+         "Either player’s turn",
+         "Any phase",
+         "",
+         "WHEN: Any phase, just after you make an Advance roll, a Charge roll, a Desperate Escape test or a Hazardous test for a unit from your army, or a Hit roll, a Wound roll, a Damage roll or a saving throw for a model in that unit, or a roll to determine the number of attacks made with a weapon equipped by a model in that unit. If you are using fast dice rolling, this Stratagem can still be used after rolling multiple rolls or saving throws at once.\nTARGET: That unit or model from your army.\nEFFECT: You re-roll that roll, test or saving throw. If you are using fast dice rolling, select one of those rolls or saving throws to re-roll."
+        ],
+        [
+         "000009218002",
+         "COMMAND RE-ROLL",
+         "",
+         "Boarding Actions – Epic Deed Stratagem",
+         "1",
+         "Either player’s turn",
+         "Any phase",
+         "",
+         "WHEN: Any phase, just after you have made a Hit roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate Escape test, a Hazardous test, or just after you have rolled the dice to determine the number of attacks made with a weapon, for an attack, model or unit from your army.\nTARGET: That unit or model from your army.\nEFFECT: You re-roll that roll, test or saving throw."
+        ],
+        [
+         "000010810002",
+         "COMMAND RE-ROLL",
+         "",
+         "Core Stratagem",
+         "1",
+         "Either player’s turn",
+         "Any phase",
+         "",
+         "WHEN: Any phase, just after you make one of the following rolls for a friendly unit or model:Advance rollCharge rollDamage rollHazard rollHit rollSave rollWound rollA roll to determine the number of attacks generated with a weapon.\nTARGET: That unit or model.\nEFFECT: You re-roll that roll. If you are rolling more than one dice together, select one of those dice to re-roll (excluding charge rolls, which you must re-roll in full)."
+        ]
+       ],
+       "truncated": false,
+       "error": null
+      },
+      "related_sections": []
+     },
+     "status": "success"
+    }
+   },
+   {
+    "type": "ai",
+    "data": {
+     "content": [
+      {
+       "type": "text",
+       "text": "### Source, Version, and Scope\n* **Source:** Warhammer 40,000 Core Rules (10th Edition) [Core Rules p. 9, 13, 14, 15, 17, 25, 41, 54] and Core Stratagem records [DB: stratagems].\n* **Supplied Facts:** The user requested the full procedure for making an Advance Move, how distance is determined, and all imposed restrictions.\n* **Established Facts:** The rules for selecting units to move, making an Advance roll, model movement, and subsequent restrictions/exceptions on shooting, charging, and Engagement Range are established by the Core Rules citations below.\n\n---\n\n### Process and Rules for an Advance Move\n\n#### 1. Eligibility and Timing\n* **Phase & Step:** Performed during the **1. Move Units** step of the Movement phase [Core Rules p. 13].\n* **Eligibility:**\n  * When selecting a unit on the battlefield to move, it can make a Normal move, an Advance, or Remain Stationary **unless** that unit is within Engagement Range of any enemy models [Core Rules p. 13].\n  * If a unit is within Engagement Range of any enemy models, it can only Remain Stationary or Fall Back [Core Rules p. 13].\n  * *Aircraft Exception:* If the *only* enemy models within Engagement Range of the unit are Aircraft models, the unit can still make a Normal move or an Advance move [Core Rules p. 54].\n\n#### 2. Determining the Distance\n1. **Advance Roll:** Roll one D6 for the advancing unit [Core Rules p. 14].\n2. **Calculate Distance:** Add the result of the D6 (in inches) to the Move (M) characteristic of each model in that unit until the end of the phase [Core Rules p. 14].\n3. **Re-rolls:** \n   * A player may spend 1 CP to use the core Stratagem **Command Re-roll** immediately after making an Advance roll to re-roll the die [Core Rules p. 41; DB: stratagems].\n   * Re-rolls apply before any modifiers, and a die can never be re-rolled more than once [Core Rules p. 9].\n\n#### 3. Moving the Models\n* **Distance:** Each model in the unit can move a distance in inches less than or equal to the combined total ($\\text{Move characteristic} + \\text{Advance roll}$) [Core Rules p. 14].\n* **Path & Positioning:**\n  * Models can pivot and change position along any path, measured using the part of the base (or model, if it lacks a base) that moves furthest [Core Rules p. 13].\n  * Models cannot cross the battlefield edge and cannot move across enemy models [Core Rules p. 13] (unless the moving model has the **Fly** keyword or is moving over enemy Aircraft [Core Rules p. 15, 54]).\n  * Models can move over friendly models (other than Monster or Vehicle models moving over friendly Monster or Vehicle models), but cannot end their move on top of another model [Core Rules p. 13].\n\n---\n\n### Restrictions and Exceptions\n\n1. **Engagement Range:**\n   * **General Rule:** No model can be moved within Engagement Range of any enemy models at any point during or at the end of an Advance move [Core Rules p. 14].\n   * **Fly / Aircraft Exception:** Models with **Fly** or models moving over enemy **Aircraft** can move within Engagement Range of enemy models/Aircraft during the move, but they cannot end their move within Engagement Range of any enemy model [Core Rules p. 15, 54].\n\n2. **Shooting Restrictions:**\n   * **General Rule:** A unit cannot shoot in the same turn that it Advanced [Core Rules p. 14].\n   * **Assault Weapons Exception:** If an Advanced unit contains any models equipped with **Assault** (`[ASSAULT]`) weapons, the unit is still eligible to shoot in that turn's Shooting phase; however, it can only make attacks using its models' Assault weapons [Core Rules p. 25].\n\n3. **Charging Restrictions:**\n   * A unit cannot declare a charge in the same turn that it Advanced [Core Rules p. 14].\n\n4. **Embarking Option:**\n   * If every model in the unit ends its Advance move within 3\" of a friendly Transport, the unit is permitted to embark inside that Transport (provided it did not already disembark from a Transport in that same phase) [Core Rules p. 17].\n\n---\n\n### Conclusion & Evidence Gap\nAll conditions, measurement steps, and restrictions governing Advance moves are defined in the 10th Edition Core Rules. No missing rules or evidence gaps exist concerning the core Advance procedure. Specific abilities permitting charging after advancing or altering Advance roll mechanics depend on individual unit datasheets or detachment rules.",
+       "index": 0,
+       "extras": {
+        "signature": "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"
+       }
+      }
+     ],
+     "additional_kwargs": {},
+     "response_metadata": {
+      "safety_ratings": [],
+      "finish_reason": "STOP",
+      "model_name": "gemini-3.8-flash",
+      "model_provider": "google_genai"
+     },
+     "type": "ai",
+     "name": null,
+     "id": "lc_run--01a16f88-2d79-7362-b748-678358f7a0f3",
+     "tool_calls": [],
+     "invalid_tool_calls": [],
+     "usage_metadata": {
+      "input_tokens": 11226,
+      "output_tokens": 2288,
+      "total_tokens": 13514,
+      "input_token_details": {
+       "cache_read": 0
+      },
+      "output_token_details": {
+       "reasoning": 1210
+      }
+     }
+    }
+   }
+  ],
+  "model_calls": [
+   {
+    "node": "agent",
+    "input_count": 1,
+    "tool_choice": "validated",
+    "context": null
+   },
+   {
+    "node": "agent",
+    "input_count": 3,
+    "tool_choice": "validated",
+    "context": null
+   },
+   {
+    "node": "agent",
+    "input_count": 5,
+    "tool_choice": "validated",
+    "context": null
+   },
+   {
+    "node": "agent",
+    "input_count": 7,
+    "tool_choice": "validated",
+    "context": null
+   }
+  ]
+ },
+ "chat_attempts": [
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  }
+ ],
+ "embedding_attempts": [
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  }
+ ],
+ "source_notes": [
+  "This turn: DB stratagems: publication and edition are not recorded."
+ ],
+ "context_policy": "conversation-tool-outputs-v1"
+}

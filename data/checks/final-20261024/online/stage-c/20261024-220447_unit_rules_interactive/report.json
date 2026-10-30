@@ -1,0 +1,1910 @@
+{
+  "question_id": "unit_rules",
+  "question": "Can an Intercessor Squad use GRENADE, and what are its cost, timing, targets and effect? Compare the Core Rules with the database where they differ.",
+  "mode": "interactive",
+  "started": "20261024-220447",
+  "chat_budget": 8,
+  "turn_budgets": [
+    5,
+    3
+  ],
+  "embedding_budget": 12,
+  "follow_ups": [
+    "Can that same unit use it after advancing, and what must I pay?"
+  ],
+  "inputs": {
+    "D:/0-Labs/Broadening 1/chatbot/data/index/rules_chunks.jsonl": "045634d490ae8d9e6767c31e7ee5f22e5271443c8678ff03e6a8688a303dc3c0",
+    "D:/0-Labs/Broadening 1/chatbot/data/index/rules_embeddings.npz": "0f5acaf9b1b576b3fece7fb472128d506863cadbf8214a4c58861550cd76dca2",
+    "D:/0-Labs/Broadening 1/chatbot/data/processed/wahadb_clean.sqlite": "d4a8e00528fa0d796e0bac95752da27348c084bbdb6f6affacfe203f708cf63a",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/storage/sql_schema.md": "605c2fb17ffa1c2dbae32e72ed9e6ecc79fda3b005c72d6d05cb9b4e790f55c1",
+    "D:/0-Labs/Broadening 1/chatbot/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/chatbot/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/chatbot/agent.py": "8145ed6b4e4cdccc71d02070fb922bca18136300f5ee91e08d08408f2fc86568",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/chatbot/prompts.py": "de166ea7fb79f8a0b542b2749b7b704e5bd9a4ec11e281aa327256112969391d",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/chunker/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/chunker/markdown_chunker.py": "562bf4986852d2841012bc1b71a32c2103d727b557915a3124a9f8258a9d9548",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/config.py": "4bac4f2332e1226efce7fc298ab8e6e03fb4822bce8d014a17caa5bd7682d4f1",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/evaluation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/evaluation/ragas_adapters.py": "649065942bb21b5914380c5b55d9d0c2bf3f977076539a6d550ab5b74c01f81d",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/evaluation/scoring.py": "ffdd5ffc7a8452f9b1bffc839d39de717ff49b3c5f8d716c8afeef9b223cf038",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/evaluation/testset.py": "0482fa8929378c86e2ef0da427ae3464e1006e416194aca082623b0219460062",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/llm/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/llm/budget.py": "ba8c1dfab2d3d9cce385bd0928932cdc5b5047c87efa17480ea5cd216f806c25",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/llm/gemini.py": "e82b73e64b24616984ea79b57406b4d3907dbff421c98996cd92da98733ee1ef",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/parser/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/parser/docling_parser.py": "0edaa1ce2dbc1f46883575441c9924c2eac6e89967287248927fc464c9564381",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/retriever/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/retriever/rules_retriever.py": "f7b86a5ed1c3ba11d58db6610c25c1661f3d280ffd6602719668122c22476b11",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/retriever/sql_retriever.py": "1281ff62639dc1346a0d0443f827d5ce0f72de8bb7a3da24aa2ee7fa1fc41cb5",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/storage/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/storage/clean_db.py": "74233b80188c0e5569e77dcbaf5cced2c2ad2f7864eeccf86494253fe41755f1",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/storage/evaluation_runs.py": "e76d3477ae786c6c3c4bc2242ad4b7eb29def70919138f4a11812acd9588761d",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/storage/rules_index.py": "59075dc13a6638db0c834d9cffc61fd64cff34e8cb483d6d2029d598c9db2ca5",
+    "D:/0-Labs/Broadening 1/chatbot/src/scripts/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:/0-Labs/Broadening 1/chatbot/src/scripts/build_index.py": "b4a92336ad7ac8c2c8dcb14b79dc40ad58a4a7dcf66a52d10fa8facbe9d90694",
+    "D:/0-Labs/Broadening 1/chatbot/src/scripts/chat.py": "234ea0f2c5d22c6d2811d71b613e61056d94b851bac5db3f6e5968478603f7f5",
+    "D:/0-Labs/Broadening 1/chatbot/src/scripts/chunk.py": "0d531eb5ea766f530d40119f9f3b454ed9f3c3a64abdefada0c241c96cadaaa5",
+    "D:/0-Labs/Broadening 1/chatbot/src/scripts/evaluate.py": "83cecad7befec5701f31dd0a892dd90592ddca9ca971498d509eba7c85c634b4",
+    "D:/0-Labs/Broadening 1/chatbot/src/scripts/generate_testset.py": "913ca350d02031398f0be42a1b69c27663aa8f571571d1697f6f454381b910b6",
+    "D:/0-Labs/Broadening 1/chatbot/src/scripts/outputs.py": "e2b2ab197d81ced230aaba6b77e5d85471acb3d8179e46b5ec1ab7a837485ab9",
+    "D:/0-Labs/Broadening 1/chatbot/src/scripts/parse.py": "ead0eec007d4cb50bac66a1c37a2175b691e6faa233216af04d8fdfe1bd2ca01",
+    "D:/0-Labs/Broadening 1/chatbot/src/scripts/prepare_db.py": "022e0784a2dcf78da900eb9a667f93e669b79f246214179fe128a1df9d9ce498"
+  },
+  "turns": [
+    {
+      "question": "Can an Intercessor Squad use GRENADE, and what are its cost, timing, targets and effect? Compare the Core Rules with the database where they differ.",
+      "budget": 5,
+      "status": "complete",
+      "answer": {
+        "text": "### Scope and Established Facts\n\n- **User-supplied facts:** The unit inquired about is an Intercessor Squad.\n- **Database-established facts:** The datasheet `Intercessor Squad` (faction: Space Marines, source: Space Marines, edition 11) has the **Grenades** keyword [DB: datasheets_keywords].\n- **Sources retrieved:** \n  1. *Core Rules* (10th edition, p. 41–42).\n  2. Database table `stratagems` (source publication and edition not recorded) [DB: stratagems].\n\n---\n\n### GRENADE: Cost, Timing, Targets, and Effect\n\n#### 1. Core Rules (10th edition) [Core Rules p. 41–42]\n- **Cost:** 1 CP [Core Rules p. 41–42] (reduced from the player's CP total; the Stratagem cannot be used if the player lacks sufficient CP or if it has already been used in the same phase [Core Rules p. 41]).\n- **Type:** CORE – WARGEAR STRATAGEM [Core Rules p. 42].\n- **WHEN (Timing):** Your Shooting phase [Core Rules p. 42].\n- **TARGET:** One **Grenades** unit from your army that is not within Engagement Range of any enemy units and has not been selected to shoot this phase [Core Rules p. 42].\n- **EFFECT:** Select one enemy unit that is not within Engagement Range of any units from your army and is within 8\" of and visible to your **Grenades** unit. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound [Core Rules p. 42].\n\n#### 2. Database Record (`stratagems`, ID `000008335006`; source and edition not recorded) [DB: stratagems]\n- **Cost:** 1 CP [DB: stratagems].\n- **Type:** Core – Wargear Stratagem [DB: stratagems].\n- **WHEN (Timing):** Your Shooting phase (Turn: Your turn; Phase: Shooting phase) [DB: stratagems].\n- **TARGET:** One **GRENADES** unit from your army (excluding units that Advanced, Fell Back or have shot this turn) that is not within Engagement Range of one or more enemy units [DB: stratagems].\n- **EFFECT:** Select one **GRENADES** model in your unit and one enemy unit that is not within Engagement Range of any units from your army and is within 8\" of and visible to your **GRENADES** model. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound [DB: stratagems].\n\n---\n\n### Comparison: Core Rules vs. Database\n\n1. **Target Restrictions:**\n   - *Core Rules (10th edition):* Targets one **Grenades** unit that is not within Engagement Range of any enemy units and \"has not been selected to shoot this phase\" [Core Rules p. 42].\n   - *Database record:* Targets one **GRENADES** unit not within Engagement Range of one or more enemy units, explicitly \"(excluding units that Advanced, Fell Back or have shot this turn)\" [DB: stratagems].\n2. **Effect Measurement and Selection:**\n   - *Core Rules (10th edition):* The enemy unit must be within 8\" of and visible to the **Grenades unit** [Core Rules p. 42].\n   - *Database record:* Instructs the player to select one **GRENADES model** in the unit; the enemy unit must be within 8\" of and visible to that selected **GRENADES model** [DB: stratagems].\n3. **Cost, Timing, and Damage:**\n   - Both sources share the 1 CP cost, the timing of \"Your Shooting phase\", and the result of rolling six D6 where each 4+ inflicts 1 mortal wound on an enemy unit that is not within Engagement Range of any units from your army [Core Rules p. 42, DB: stratagems].\n\n---\n\n### Applicability Evidence\n\n#### Source 1: Core Rules (10th edition) [Core Rules p. 41–42]\n- **Citation:** [Core Rules p. 41–42]\n- **Explicit Conditions:**\n  - The controlling player pays 1 CP [Core Rules p. 41–42].\n  - The Stratagem has not been used more than once in the same phase [Core Rules p. 41].\n  - Timing is the controlling player's Shooting phase [Core Rules p. 42].\n  - The target is a friendly unit with the **Grenades** keyword [Core Rules p. 42].\n  - The target is not within Engagement Range of any enemy units [Core Rules p. 42].\n  - The target has not been selected to shoot this phase [Core Rules p. 42].\n- **Relevant Facts:**\n  - *Intercessor Squad* has the **Grenades** keyword [DB: datasheets_keywords].\n  - Missing facts: Whether the controlling player has 1 CP available, whether the Stratagem was already used this phase, whether it is currently the controlling player's Shooting phase, whether the Intercessor Squad is engaged, and whether it has already been selected to shoot this phase.\n- **Outcome:** **Conditional** (the unit has the required keyword, but operational game-state conditions must be met).\n\n#### Source 2: Database Record [DB: stratagems]\n- **Citation:** [DB: stratagems, ID `000008335006`]\n- **Explicit Conditions:**\n  - Cost of 1 CP [DB: stratagems].\n  - Timing is your Shooting phase [DB: stratagems].\n  - Target must be a friendly **GRENADES** unit [DB: stratagems].\n  - Target must not be within Engagement Range of one or more enemy units [DB: stratagems].\n  - Target excludes units that Advanced, Fell Back, or have shot this turn [DB: stratagems].\n- **Relevant Facts:**\n  - *Intercessor Squad* has the **Grenades** keyword [DB: datasheets_keywords].\n  - Missing facts: Current CP total, phase/turn status, engagement status, and whether the unit Advanced, Fell Back, or shot this turn.\n- **Outcome:** **Conditional** (the unit has the required keyword, but the situational restrictions must be satisfied).",
+        "source_notes": [
+          "This turn: DB stratagems: publication and edition are not recorded.",
+          "This turn: Database publication for Intercessor Squad (ID 000001157): Space Marines; edition 11.",
+          "This turn: Application could not identify publication/edition fields in the returned columns."
+        ],
+        "database_statistics": [],
+        "answered": true,
+        "finish_reason": "STOP",
+        "tool_calls": [
+          {
+            "name": "search_rules",
+            "arguments": {
+              "query": "GRENADE stratagem"
+            },
+            "pages": [
+              42,
+              41
+            ],
+            "error": null,
+            "output": "[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: GRENADE\n1CP\n\nCORE - WARGEAR STRATAGEM\n\nPriming their hand-held projectiles, these warriors draw back and hurl death into the enemy's midst.\n\nWHEN: Your Shooting phase.\n\nTARGET: One Grenades unit from your army that is not within Engagement Range of any enemy units and has not been selected to shoot this phase.\n\nEFFECT: Select one enemy unit that is not within Engagement Range of any units from your army and is within 8\" of and visible to your Grenades unit. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound.\n\n[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: STRATAGEM CATEGORIES\nEach Stratagem belongs to one of four categories, as described below. There are some rules (especially in Crusade games) that interact with Stratagems of a particular category.\n\nBATTLE TACTIC: These Stratagems bolster a unit's efficacy in battle, boosting their attacks or defensive capabilities at a critical moment.\n\nEPIC DEED: These Stratagems are used by individual models or units to perform mighty feats of heroism.\n\nSTRATEGIC PLOY: These Stratagems enable units to gain new strategic insights, granting them a small but valuable window of opportunity.\n\nWARGEAR: These Stratagems represent the effects of using specialised items of equipment in battle.\n\n[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: STRATAGEMS\nCommand points can be spent during the battle to use Stratagems. All players can use the Core Stratagems presented here. Additional Stratagems can be found in Codexes and other publications.\n\nWhen you use a Stratagem, reduce your CP total by the amount listed on that Stratagem. If you do not have enough CP for a specific Stratagem, you cannot use it. You can use the same Stratagem multiple times during a battle, but you cannot use the same Stratagem more than once in the same phase.\n\n- To use a Stratagem you must pay the CP specified.\n- The same Stratagem cannot be used more than once in the same phase.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: FIRE OVERWATCH\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nA hail of wildfire can drive back advancing foes.\n\nWHEN: Your opponent's Movement or Charge phase, just after an enemy unit is set up or when an enemy unit starts or ends a Normal, Advance, Fall Back or Charge move.\n\nTARGET: One unit from your army that is within 24\" of that enemy unit and that would be eligible to shoot if it were your Shooting phase.\n\nEFFECT: Your unit can shoot that enemy unit as if it were your Shooting phase.\n\nRESTRICTIONS: Until the end of the phase, each time a model in your unit makes a ranged attack, an unmodified Hit roll of 6 is required to score a hit, irrespective of the attacking weapon's Ballistic Skill or any modifiers. You can only use this Stratagem once per turn.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: RAPID INGRESS\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nBe it cunning strategy, potent technology or supernatural ritual, there are many means by which a commander may hasten their warriors' onset.\n\nWHEN: End of your opponent's Movement phase.\n\nTARGET: One unit from your army that is in Reserves.\n\nEFFECT: Your unit can arrive on the battlefield as if it were the Reinforcements step of your Movement phase.\n\nRESTRICTIONS: You cannot use this Stratagem to enable a unit to arrive on the battlefield during a battle round it would not normally be able to do so in.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: SMOKESCREEN\n1CP\n\nCORE - WARGEAR STRATAGEM\n\nEven the most skilled marksmen struggle to hit targets veiled by billowing screens of smoke.\n\nWHEN: Your opponent's Shooting phase, just after an enemy unit has selected its targets.\n\nTARGET: One Smoke unit from your army that was selected as the target of one or more of the attacking unit's attacks.\n\nEFFECT: Until the end of the phase, all models in your unit have the Benefit of Cover (pg 44) and the Stealth ability (pg 20).\n\n[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: COUNTER-OFFENSIVE\n2CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nIn close-quarters combat, the slightest hesitation can leave an opening for a swift foe to exploit.\n\nWHEN: Fight phase, just after an enemy unit has fought.\n\nTARGET: One unit from your army that is within Engagement Range of one or more enemy units and that has not already been selected to fight this phase.\n\nEFFECT: Your unit fights next.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: TANK SHOCK\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nRamming the foe with a speeding vehicle may be an unsubtle tactic, but it is a murderously effective one.\n\nWHEN: Your Charge phase.\n\nTARGET: One Vehicle unit from your army.\n\nEFFECT: Until the end of the phase, after your unit ends a Charge move, select one enemy unit within Engagement Range of it, then select one melee weapon your unit is equipped with. Roll a number of D6 equal to that weapon's Strength characteristic. If that Strength characteristic is greater than that enemy unit's Toughness characteristic, roll two additional D6. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"GRENADE\", \"STRATAGEM CATEGORIES\", \"STRATAGEMS\", \"FIRE OVERWATCH\", \"RAPID INGRESS\", \"SMOKESCREEN\", \"COUNTER-OFFENSIVE\", \"TANK SHOCK\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335003\", \"COUNTER-OFFENSIVE\", \"\", \"Core – Strategic Ploy Stratagem\", \"2\", \"Either player’s turn\", \"Fight phase\", \"\", \"WHEN: Fight phase, just after an enemy unit has fought.\\nTARGET: One unit from your army that is within Engagement Range of one or more enemy units and that has not already been selected to fight this phase.\\nEFFECT: Your unit fights next.\"], [\"000009218004\", \"COUNTER-OFFENSIVE\", \"\", \"Boarding Actions – Strategic Ploy Stratagem\", \"2\", \"Either player’s turn\", \"Fight phase\", \"\", \"WHEN: Fight phase, just after an enemy unit has fought.\\nTARGET: One unit from your army that is within Engagement Range of one or more enemy units and that has not already been selected to fight this phase.\\nEFFECT: Your unit fights next.\"], [\"000008335009\", \"FIRE OVERWATCH\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Opponent’s turn\", \"Movement or Charge phase\", \"\", \"WHEN: Your opponent’s Movement or Charge phase, just after an enemy unit is set up or when an enemy unit starts or ends a Normal, Advance or Fall Back move, or declares a charge.\\nTARGET: One unit from your army that is within 24\\\" of that enemy unit and that would be eligible to shoot if it were your Shooting phase.\\nEFFECT: If that enemy unit is visible to your unit, your unit can shoot that enemy unit as if it were your Shooting phase.\\nRESTRICTIONS: You cannot target a TITANIC unit with this Stratagem. Until the end of the phase, each time a model in your unit makes a ranged attack, an unmodified Hit roll of 6 is required to score a hit, irrespective of the attacking weapon’s Ballistic Skill or any modifiers. You can only use this Stratagem once per turn.\"], [\"000010810008\", \"FIRE OVERWATCH\", \"\", \"Core Stratagem\", \"1\", \"Opponent’s turn\", \"Movement phase\", \"\", \"WHEN: End of your opponent’s Movement phase.\\nTARGET: One friendly unengaged unit (excluding TITANIC units).\\nEFFECT: Your unit shoots using snap shooting.\"], [\"000008335006\", \"GRENADE\", \"\", \"Core – Wargear Stratagem\", \"1\", \"Your turn\", \"Shooting phase\", \"\", \"WHEN: Your Shooting phase.\\nTARGET: One GRENADES unit from your army (excluding units that Advanced, Fell Back or have shot this turn) that is not within Engagement Range of one or more enemy units.\\nEFFECT: Select one GRENADES model in your unit and one enemy unit that is not within Engagement Range of any units from your army and is within 8\\\" of and visible to your GRENADES model. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound.\"], [\"000008335008\", \"RAPID INGRESS\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Opponent’s turn\", \"Movement phase\", \"\", \"WHEN: End of your opponent’s Movement phase.\\nTARGET: One unit from your army that is in Reserves.\\nEFFECT: Your unit can arrive on the battlefield as if it were the Reinforcements step of your Movement phase, and if every model in that unit has the Deep Strike ability, you can set that unit up as described in the Deep Strike ability (even though it is not your Movement phase).\\nRESTRICTIONS: You cannot use this Stratagem to enable a unit to arrive on the battlefield during a battle round it would not normally be able to do so in.\"], [\"000010810007\", \"RAPID INGRESS\", \"\", \"Core Stratagem\", \"1\", \"Opponent’s turn\", \"Movement phase\", \"\", \"WHEN: End of your opponent’s Movement phase.\\nTARGET: One friendly unit that is in strategic reserves (excluding AIRCRAFT).\\nEFFECT: Your unit makes an ingress move (20.04).\\nRESTRICTIONS: You cannot use this stratagem during the first battle round.\"], [\"000008335011\", \"SMOKESCREEN\", \"\", \"Core – Wargear Stratagem\", \"1\", \"Opponent’s turn\", \"Shooting phase\", \"\", \"WHEN: Your opponent’s Shooting phase, just after an enemy unit has selected its targets.\\nTARGET: One SMOKE unit from your army that was selected as the target of one or more of the attacking unit’s attacks.\\nEFFECT: Until the end of the phase, all models in your unit have the Benefit of Cover and the Stealth ability.\"], [\"000010810010\", \"SMOKESCREEN\", \"\", \"Core Stratagem\", \"1\", \"Opponent’s turn\", \"Shooting phase\", \"\", \"WHEN: Start of your opponent’s Shooting phase.\\nTARGET: One friendly SMOKE unit.\\nEFFECT: Until the end of the phase, each time an attack targets either your SMOKE unit, or a unit that is not fully visible to the attacking model because of one or more models in your SMOKE unit, the target has the benefit of cover against that attack (13.08).\"], [\"000008335007\", \"TANK SHOCK\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Your turn\", \"Charge phase\", \"\", \"WHEN: Your Charge phase, just after a VEHICLE unit from your army ends a Charge move.\\nTARGET: That VEHICLE unit.\\nEFFECT: Select one enemy unit within Engagement Range of your unit, and select one VEHICLE model in your unit that is within Engagement Range of that enemy unit. Roll a number of D6 equal to the Toughness characteristic of the selected VEHICLE model. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge."
+          },
+          {
+            "name": "run_sql",
+            "arguments": {
+              "sql": "SELECT d.Id, d.name, f.name AS faction, s.name AS source, s.edition, k.keyword\nFROM datasheets d\nJOIN factions f ON f.Id = d.factionId\nLEFT JOIN source s ON s.Id = d.sourceId\nLEFT JOIN datasheets_keywords k ON k.DatasheetId = d.Id AND k.keyword = 'Grenades'\nWHERE d.name = 'Intercessor Squad' AND d.factionId = 'SM';"
+            },
+            "pages": [],
+            "error": null,
+            "output": "{\"columns\": [\"Id\", \"name\", \"faction\", \"source\", \"edition\", \"keyword\"], \"rows\": [[\"000001157\", \"Intercessor Squad\", \"Space Marines\", \"Space Marines\", \"11\", \"Grenades\"]], \"truncated\": false, \"error\": null}"
+          },
+          {
+            "name": "run_sql",
+            "arguments": {
+              "sql": "SELECT id, name, FactionId, type, cpCost, turn, phase, detachment, description\nFROM stratagems\nWHERE name = 'GRENADE';"
+            },
+            "pages": [],
+            "error": null,
+            "output": "{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335006\", \"GRENADE\", \"\", \"Core – Wargear Stratagem\", \"1\", \"Your turn\", \"Shooting phase\", \"\", \"WHEN: Your Shooting phase.\\nTARGET: One GRENADES unit from your army (excluding units that Advanced, Fell Back or have shot this turn) that is not within Engagement Range of one or more enemy units.\\nEFFECT: Select one GRENADES model in your unit and one enemy unit that is not within Engagement Range of any units from your army and is within 8\\\" of and visible to your GRENADES model. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound.\"]], \"truncated\": false, \"error\": null}"
+          }
+        ],
+        "model_calls": [
+          [
+            "agent",
+            1,
+            "validated"
+          ],
+          [
+            "agent",
+            4,
+            "validated"
+          ],
+          [
+            "final",
+            6,
+            "none"
+          ]
+        ]
+      }
+    },
+    {
+      "question": "Can that same unit use it after advancing, and what must I pay?",
+      "budget": 3,
+      "status": "complete",
+      "answer": {
+        "text": "### Cost to Use\n\nTo use **GRENADE**, the controlling player must pay **1 CP** [Core Rules p. 41–42, DB: stratagems]. \n- Under the Core Rules, when using a Stratagem, the player reduces their Command point total by the amount listed on the card (1 CP); if the player does not have enough CP, they cannot use it [Core Rules p. 41].\n- In the database record, `cpCost` is `1` [DB: stratagems].\n\n---\n\n### Applicability After Advancing\n\n#### Source 1: Database Record (`stratagems`, ID `000008335006`; source and edition not recorded)\n- **Citation:** [DB: stratagems]\n- **Explicit Conditions:**\n  - Cost: 1 CP.\n  - Timing: Your Shooting phase.\n  - Target: One **GRENADES** unit from your army **(excluding units that Advanced, Fell Back or have shot this turn)** that is not within Engagement Range of one or more enemy units.\n- **Relevant Facts:**\n  - Fact supplied by user: The unit has Advanced (\"after advancing\").\n  - Fact established by tool: *Intercessor Squad* has the **Grenades** keyword [DB: datasheets_keywords].\n- **Missing Facts:** None regarding the advance condition.\n- **Supported Conclusion:** **Supported prohibition**. The database text explicitly excludes units that Advanced this turn from being targeted.\n\n---\n\n#### Source 2: Core Rules (10th edition)\n- **Citation:** [Core Rules p. 14, 19, 41–42]\n- **Explicit Conditions:**\n  - Cost: 1 CP [Core Rules p. 41–42].\n  - Timing: Your Shooting phase [Core Rules p. 42].\n  - Target: One **Grenades** unit from your army that is not within Engagement Range of any enemy units and **has not been selected to shoot this phase** [Core Rules p. 42].\n  - Advancing rule: A unit cannot shoot or declare a charge in the same turn that it Advanced [Core Rules p. 14], and a unit is not eligible to shoot if it Advanced this turn [Core Rules p. 19].\n- **Relevant Facts:**\n  - Fact supplied by user: The unit has Advanced.\n  - Fact established by tool: *Intercessor Squad* has the **Grenades** keyword [DB: datasheets_keywords].\n  - Ineligibility to shoot: An Advanced unit is not eligible to shoot [Core Rules p. 19].\n- **Missing Facts / Evidence Gap:**\n  - The TARGET condition in the Core Rules requires that the unit *\"has not been selected to shoot this phase\"* rather than requiring the unit to be *\"eligible to shoot\"*, nor does the Stratagem's card text explicitly mention Advancing [Core Rules p. 42].\n  - Nonselection, a completed action, and ineligibility are distinct predicates. The retrieved Core Rules passages do not state whether ineligibility to shoot prevents selection under the wording of GRENADE, nor do they explicitly permit or prohibit an Advanced unit from being targeted.\n- **Supported Conclusion:** **Undetermined**. The absence of an explicit Advance exclusion in [Core Rules p. 42] proves neither permission nor prohibition, and the retrieved passages do not settle whether a unit that cannot be selected to shoot due to Advancing satisfies the predicate \"has not been selected to shoot this phase\".",
+        "source_notes": [
+          "Earlier in this conversation: DB stratagems: publication and edition are not recorded.",
+          "Earlier in this conversation: Database publication for Intercessor Squad (ID 000001157): Space Marines; edition 11.",
+          "Earlier in this conversation: Application could not identify publication/edition fields in the returned columns.",
+          "This turn: DB stratagems: publication and edition are not recorded."
+        ],
+        "database_statistics": [],
+        "answered": true,
+        "finish_reason": "STOP",
+        "tool_calls": [
+          {
+            "name": "search_rules",
+            "arguments": {
+              "query": "Advance move shoot"
+            },
+            "pages": [
+              14,
+              13,
+              42,
+              19,
+              25,
+              54
+            ],
+            "error": null,
+            "output": "[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nSection: ADVANCE MOVES\nWhen a unit Advances, make an Advance roll for that unit by rolling one D6. Add the result in inches to the Move characteristic of each model in that unit until the end of the phase. Each model in that unit can then make an Advance move by moving a distance in inches less than or equal to this total, but no model can be moved within Engagement Range of enemy models. A unit cannot shoot or declare a charge in the same turn that it Advanced.\n\n- Advance Move: Models move up to M+D6\".\n- Cannot move within Engagement Range of any enemy models.\n- Units that Advance cannot shoot or charge this turn.\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: 1. MOVE UNITS\n- When a unit moves it can make a Normal move, Advance or Remain Stationary.\n- Units that are within Engagement Range of any enemy models can only Fall Back or Remain Stationary.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: FIRE OVERWATCH\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nA hail of wildfire can drive back advancing foes.\n\nWHEN: Your opponent's Movement or Charge phase, just after an enemy unit is set up or when an enemy unit starts or ends a Normal, Advance, Fall Back or Charge move.\n\nTARGET: One unit from your army that is within 24\" of that enemy unit and that would be eligible to shoot if it were your Shooting phase.\n\nEFFECT: Your unit can shoot that enemy unit as if it were your Shooting phase.\n\nRESTRICTIONS: Until the end of the phase, each time a model in your unit makes a ranged attack, an unmodified Hit roll of 6 is required to score a hit, irrespective of the attacking weapon's Ballistic Skill or any modifiers. You can only use this Stratagem once per turn.\n\n[Core Rules p. 19] (page footer p. 19: CORE RULES | SHOOTING PHASE)\nFigure label: Use the following sequence when a unit shoots.\nSection: SHOOTING PHASE > SELECT TARGETS\nMAKE RANGED ATTACKS\n\nREPEAT FOR NEXT ELIGIBLE UNIT\n\nIn your Shooting phase, if you have one or more eligible units from your army on the battlefield, you can select those units, one at a time, and shoot with them. Each unit can only be selected to shoot once per phase. Once all of the units you selected have shot, progress to your Charge phase.\n\nA unit is eligible to shoot unless any of the following apply:\n\n- That unit Advanced this turn.\n- That unit Fell Back this turn.\n\n[Core Rules p. 25] (page footer p. 25: CORE RULES | WEAPON ABILITIES)\nSection: ASSAULT\nAssault weapons fire so indiscriminately that they can be shot from the hip as warriors dash forward.\n\nWeapons with [ASSAULT] in their profile are known as Assault weapons. If a unit that Advanced this turn contains any models equipped with Assault weapons, it is still eligible to shoot in this turn's Shooting phase. When such a unit is selected to shoot, you can only resolve attacks using Assault weapons its models are equipped with.\n\n- Can be shot even if the bearer's unit Advanced.\n\n[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nSection: FALL BACK MOVES\nWhen a unit Falls Back, each model in that unit can make a Fall Back move by moving a distance in inches less than or equal to its Move characteristic, and when doing so you can move it within Engagement Range of enemy models, provided it does not end that move within Engagement Range of any enemy models - if this is not possible, that unit cannot Fall Back.\n\nA unit cannot shoot or declare a charge in the same turn that it Fell Back.\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: MOVEMENT PHASE\nThe ground shakes to the tread of marching feet and the growl of engines as armies advance across the battlefield and vie for advantageous positions.\n\n[Core Rules p. 54] (page footer p. 54: CORE RULES | AIRCRAFT)\nSection: AIRCRAFT AND THE MOVEMENT OF OTHER MODELS\nWhen a unit is selected to move in the Movement phase, if the only enemy models that are within Engagement Range of that unit are Aircraft models, then that unit can still make a Normal or Advance move.\n\nWhenever a model makes any kind of move, it can be moved over enemy Aircraft models as if they were not there, and can be moved within Engagement Range of enemy Aircraft models, but it cannot end that move on top of another model or within Engagement Range of any enemy Aircraft models.\n\n- Units can still make a Normal or Advance move if they are only within Engagement Range of enemy Aircraft.\n- Models can move within Engagement Range of enemy Aircraft, but cannot end a move within Engagement Range of enemy Aircraft.\n- Models can move over Aircraft when they make any kind of move.\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"FIRE OVERWATCH\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335009\", \"FIRE OVERWATCH\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Opponent’s turn\", \"Movement or Charge phase\", \"\", \"WHEN: Your opponent’s Movement or Charge phase, just after an enemy unit is set up or when an enemy unit starts or ends a Normal, Advance or Fall Back move, or declares a charge.\\nTARGET: One unit from your army that is within 24\\\" of that enemy unit and that would be eligible to shoot if it were your Shooting phase.\\nEFFECT: If that enemy unit is visible to your unit, your unit can shoot that enemy unit as if it were your Shooting phase.\\nRESTRICTIONS: You cannot target a TITANIC unit with this Stratagem. Until the end of the phase, each time a model in your unit makes a ranged attack, an unmodified Hit roll of 6 is required to score a hit, irrespective of the attacking weapon’s Ballistic Skill or any modifiers. You can only use this Stratagem once per turn.\"], [\"000010810008\", \"FIRE OVERWATCH\", \"\", \"Core Stratagem\", \"1\", \"Opponent’s turn\", \"Movement phase\", \"\", \"WHEN: End of your opponent’s Movement phase.\\nTARGET: One friendly unengaged unit (excluding TITANIC units).\\nEFFECT: Your unit shoots using snap shooting.\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge."
+          }
+        ],
+        "model_calls": [
+          [
+            "agent",
+            1,
+            "validated"
+          ],
+          [
+            "agent",
+            4,
+            "validated"
+          ],
+          [
+            "final",
+            6,
+            "none"
+          ],
+          [
+            "agent",
+            8,
+            "validated"
+          ],
+          [
+            "agent",
+            10,
+            "validated"
+          ]
+        ]
+      }
+    }
+  ],
+  "exit_code": null,
+  "chat_attempts": [
+    {
+      "status": 200,
+      "error": null,
+      "diagnostic": {
+        "request": {
+          "path": "/v1beta/models/gemini-3.8-flash:streamGenerateContent",
+          "tools": [
+            {
+              "functionDeclarations": [
+                {
+                  "description": "Search the Core Rules: how the game works (phases, actions, keywords, terrain). Retrieved Stratagem sections also include exact-name core database records when found.",
+                  "name": "search_rules",
+                  "parameters": {
+                    "properties": {
+                      "query": {
+                        "description": "In English, with the rulebook's terms, whatever the question's language.",
+                        "type": "STRING"
+                      }
+                    },
+                    "required": [
+                      "query"
+                    ],
+                    "type": "OBJECT"
+                  }
+                },
+                {
+                  "description": "Query units, weapons, abilities, stratagems, detachments and factions with read-only SQL.",
+                  "name": "run_sql",
+                  "parameters": {
+                    "properties": {
+                      "sql": {
+                        "description": "One SQLite SELECT or WITH query that follows the database schema.",
+                        "type": "STRING"
+                      }
+                    },
+                    "required": [
+                      "sql"
+                    ],
+                    "type": "OBJECT"
+                  }
+                }
+              ]
+            }
+          ],
+          "tool_config": {
+            "functionCallingConfig": {
+              "mode": "VALIDATED"
+            }
+          },
+          "generation_config": {
+            "candidateCount": 1
+          },
+          "contents": [
+            {
+              "role": "user",
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 148
+                }
+              ]
+            }
+          ]
+        },
+        "response": {
+          "candidates": [
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "functionCall",
+                  "name": "search_rules",
+                  "args": {
+                    "query": "GRENADE stratagem"
+                  }
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "functionCall",
+                  "name": "run_sql",
+                  "args": {
+                    "sql": "SELECT d.Id, d.name, f.name AS faction, s.name AS source, s.edition, k.keyword\nFROM datasheets d\nJOIN factions f ON f.Id = d.factionId\nLEFT JOIN source s ON s.Id = d.sourceId\nLEFT JOIN datasheets_keywords k ON k.DatasheetId = d.Id AND k.keyword = 'Grenades'\nWHERE d.name = 'Intercessor Squad' AND d.factionId = 'SM';"
+                  }
+                }
+              ]
+            },
+            {
+              "finish_reason": "STOP",
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 0
+                }
+              ]
+            }
+          ],
+          "errors": [],
+          "prompt_feedback": []
+        }
+      }
+    },
+    {
+      "status": 200,
+      "error": null,
+      "diagnostic": {
+        "request": {
+          "path": "/v1beta/models/gemini-3.8-flash:streamGenerateContent",
+          "tools": [
+            {
+              "functionDeclarations": [
+                {
+                  "description": "Search the Core Rules: how the game works (phases, actions, keywords, terrain). Retrieved Stratagem sections also include exact-name core database records when found.",
+                  "name": "search_rules",
+                  "parameters": {
+                    "properties": {
+                      "query": {
+                        "description": "In English, with the rulebook's terms, whatever the question's language.",
+                        "type": "STRING"
+                      }
+                    },
+                    "required": [
+                      "query"
+                    ],
+                    "type": "OBJECT"
+                  }
+                },
+                {
+                  "description": "Query units, weapons, abilities, stratagems, detachments and factions with read-only SQL.",
+                  "name": "run_sql",
+                  "parameters": {
+                    "properties": {
+                      "sql": {
+                        "description": "One SQLite SELECT or WITH query that follows the database schema.",
+                        "type": "STRING"
+                      }
+                    },
+                    "required": [
+                      "sql"
+                    ],
+                    "type": "OBJECT"
+                  }
+                }
+              ]
+            }
+          ],
+          "tool_config": {
+            "functionCallingConfig": {
+              "mode": "VALIDATED"
+            }
+          },
+          "generation_config": {
+            "candidateCount": 1
+          },
+          "contents": [
+            {
+              "role": "user",
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 148
+                }
+              ]
+            },
+            {
+              "role": "model",
+              "parts": [
+                {
+                  "kind": "functionCall",
+                  "name": "search_rules",
+                  "args": {
+                    "query": "GRENADE stratagem"
+                  }
+                },
+                {
+                  "kind": "functionCall",
+                  "name": "run_sql",
+                  "args": {
+                    "sql": "SELECT d.Id, d.name, f.name AS faction, s.name AS source, s.edition, k.keyword\nFROM datasheets d\nJOIN factions f ON f.Id = d.factionId\nLEFT JOIN source s ON s.Id = d.sourceId\nLEFT JOIN datasheets_keywords k ON k.DatasheetId = d.Id AND k.keyword = 'Grenades'\nWHERE d.name = 'Intercessor Squad' AND d.factionId = 'SM';"
+                  }
+                }
+              ]
+            },
+            {
+              "role": "user",
+              "parts": [
+                {
+                  "kind": "functionResponse",
+                  "name": "search_rules",
+                  "response_keys": [
+                    "output"
+                  ]
+                },
+                {
+                  "kind": "functionResponse",
+                  "name": "run_sql",
+                  "response_keys": [
+                    "columns",
+                    "error",
+                    "rows",
+                    "truncated"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "response": {
+          "candidates": [
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "functionCall",
+                  "name": "run_sql",
+                  "args": {
+                    "sql": "SELECT id, name, FactionId, type, cpCost, turn, phase, detachment, description\nFROM stratagems\nWHERE name = 'GRENADE';"
+                  }
+                }
+              ]
+            },
+            {
+              "finish_reason": "STOP",
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 0
+                }
+              ]
+            }
+          ],
+          "errors": [],
+          "prompt_feedback": []
+        }
+      }
+    },
+    {
+      "status": 200,
+      "error": null,
+      "diagnostic": {
+        "request": {
+          "path": "/v1beta/models/gemini-3.8-flash:streamGenerateContent",
+          "tools": [
+            {
+              "functionDeclarations": [
+                {
+                  "description": "Search the Core Rules: how the game works (phases, actions, keywords, terrain). Retrieved Stratagem sections also include exact-name core database records when found.",
+                  "name": "search_rules",
+                  "parameters": {
+                    "properties": {
+                      "query": {
+                        "description": "In English, with the rulebook's terms, whatever the question's language.",
+                        "type": "STRING"
+                      }
+                    },
+                    "required": [
+                      "query"
+                    ],
+                    "type": "OBJECT"
+                  }
+                },
+                {
+                  "description": "Query units, weapons, abilities, stratagems, detachments and factions with read-only SQL.",
+                  "name": "run_sql",
+                  "parameters": {
+                    "properties": {
+                      "sql": {
+                        "description": "One SQLite SELECT or WITH query that follows the database schema.",
+                        "type": "STRING"
+                      }
+                    },
+                    "required": [
+                      "sql"
+                    ],
+                    "type": "OBJECT"
+                  }
+                }
+              ]
+            }
+          ],
+          "tool_config": {
+            "functionCallingConfig": {
+              "mode": "NONE"
+            }
+          },
+          "generation_config": {
+            "candidateCount": 1
+          },
+          "contents": [
+            {
+              "role": "user",
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 148
+                }
+              ]
+            },
+            {
+              "role": "model",
+              "parts": [
+                {
+                  "kind": "functionCall",
+                  "name": "search_rules",
+                  "args": {
+                    "query": "GRENADE stratagem"
+                  }
+                },
+                {
+                  "kind": "functionCall",
+                  "name": "run_sql",
+                  "args": {
+                    "sql": "SELECT d.Id, d.name, f.name AS faction, s.name AS source, s.edition, k.keyword\nFROM datasheets d\nJOIN factions f ON f.Id = d.factionId\nLEFT JOIN source s ON s.Id = d.sourceId\nLEFT JOIN datasheets_keywords k ON k.DatasheetId = d.Id AND k.keyword = 'Grenades'\nWHERE d.name = 'Intercessor Squad' AND d.factionId = 'SM';"
+                  }
+                }
+              ]
+            },
+            {
+              "role": "user",
+              "parts": [
+                {
+                  "kind": "functionResponse",
+                  "name": "search_rules",
+                  "response_keys": [
+                    "output"
+                  ]
+                },
+                {
+                  "kind": "functionResponse",
+                  "name": "run_sql",
+                  "response_keys": [
+                    "columns",
+                    "error",
+                    "rows",
+                    "truncated"
+                  ]
+                }
+              ]
+            },
+            {
+              "role": "model",
+              "parts": [
+                {
+                  "kind": "functionCall",
+                  "name": "run_sql",
+                  "args": {
+                    "sql": "SELECT id, name, FactionId, type, cpCost, turn, phase, detachment, description\nFROM stratagems\nWHERE name = 'GRENADE';"
+                  }
+                }
+              ]
+            },
+            {
+              "role": "user",
+              "parts": [
+                {
+                  "kind": "functionResponse",
+                  "name": "run_sql",
+                  "response_keys": [
+                    "columns",
+                    "error",
+                    "rows",
+                    "truncated"
+                  ]
+                }
+              ]
+            },
+            {
+              "role": "user",
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 124
+                }
+              ]
+            }
+          ]
+        },
+        "response": {
+          "candidates": [
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 25
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 97
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 112
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 89
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 59
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 89
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 78
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 52
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 80
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 99
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 66
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 81
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 123
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 93
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 93
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 74
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 58
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 74
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 69
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 100
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 96
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 102
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 95
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 98
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 83
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 89
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 100
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 104
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 135
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 96
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 98
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 81
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 104
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 91
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 99
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 116
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 83
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 68
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 86
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 90
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 79
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 88
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 89
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 91
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 92
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 133
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 144
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 118
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 84
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 50
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 81
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 79
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 101
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 92
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 83
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 120
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 134
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 2
+                }
+              ]
+            },
+            {
+              "finish_reason": "STOP",
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 0
+                }
+              ]
+            }
+          ],
+          "errors": [],
+          "prompt_feedback": []
+        }
+      }
+    },
+    {
+      "status": 200,
+      "error": null,
+      "diagnostic": {
+        "request": {
+          "path": "/v1beta/models/gemini-3.8-flash:streamGenerateContent",
+          "tools": [
+            {
+              "functionDeclarations": [
+                {
+                  "description": "Search the Core Rules: how the game works (phases, actions, keywords, terrain). Retrieved Stratagem sections also include exact-name core database records when found.",
+                  "name": "search_rules",
+                  "parameters": {
+                    "properties": {
+                      "query": {
+                        "description": "In English, with the rulebook's terms, whatever the question's language.",
+                        "type": "STRING"
+                      }
+                    },
+                    "required": [
+                      "query"
+                    ],
+                    "type": "OBJECT"
+                  }
+                },
+                {
+                  "description": "Query units, weapons, abilities, stratagems, detachments and factions with read-only SQL.",
+                  "name": "run_sql",
+                  "parameters": {
+                    "properties": {
+                      "sql": {
+                        "description": "One SQLite SELECT or WITH query that follows the database schema.",
+                        "type": "STRING"
+                      }
+                    },
+                    "required": [
+                      "sql"
+                    ],
+                    "type": "OBJECT"
+                  }
+                }
+              ]
+            }
+          ],
+          "tool_config": {
+            "functionCallingConfig": {
+              "mode": "VALIDATED"
+            }
+          },
+          "generation_config": {
+            "candidateCount": 1
+          },
+          "contents": [
+            {
+              "role": "user",
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 148
+                }
+              ]
+            },
+            {
+              "role": "model",
+              "parts": [
+                {
+                  "kind": "functionCall",
+                  "name": "search_rules",
+                  "args": {
+                    "query": "GRENADE stratagem"
+                  }
+                },
+                {
+                  "kind": "functionCall",
+                  "name": "run_sql",
+                  "args": {
+                    "sql": "SELECT d.Id, d.name, f.name AS faction, s.name AS source, s.edition, k.keyword\nFROM datasheets d\nJOIN factions f ON f.Id = d.factionId\nLEFT JOIN source s ON s.Id = d.sourceId\nLEFT JOIN datasheets_keywords k ON k.DatasheetId = d.Id AND k.keyword = 'Grenades'\nWHERE d.name = 'Intercessor Squad' AND d.factionId = 'SM';"
+                  }
+                }
+              ]
+            },
+            {
+              "role": "user",
+              "parts": [
+                {
+                  "kind": "functionResponse",
+                  "name": "search_rules",
+                  "response_keys": [
+                    "output"
+                  ]
+                },
+                {
+                  "kind": "functionResponse",
+                  "name": "run_sql",
+                  "response_keys": [
+                    "columns",
+                    "error",
+                    "rows",
+                    "truncated"
+                  ]
+                }
+              ]
+            },
+            {
+              "role": "model",
+              "parts": [
+                {
+                  "kind": "functionCall",
+                  "name": "run_sql",
+                  "args": {
+                    "sql": "SELECT id, name, FactionId, type, cpCost, turn, phase, detachment, description\nFROM stratagems\nWHERE name = 'GRENADE';"
+                  }
+                }
+              ]
+            },
+            {
+              "role": "user",
+              "parts": [
+                {
+                  "kind": "functionResponse",
+                  "name": "run_sql",
+                  "response_keys": [
+                    "columns",
+                    "error",
+                    "rows",
+                    "truncated"
+                  ]
+                }
+              ]
+            },
+            {
+              "role": "model",
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 5185
+                }
+              ]
+            },
+            {
+              "role": "user",
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 63
+                }
+              ]
+            }
+          ]
+        },
+        "response": {
+          "candidates": [
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "functionCall",
+                  "name": "search_rules",
+                  "args": {
+                    "query": "Advance move shoot"
+                  }
+                }
+              ]
+            },
+            {
+              "finish_reason": "STOP",
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 0
+                }
+              ]
+            }
+          ],
+          "errors": [],
+          "prompt_feedback": []
+        }
+      }
+    },
+    {
+      "status": 200,
+      "error": null,
+      "diagnostic": {
+        "request": {
+          "path": "/v1beta/models/gemini-3.8-flash:streamGenerateContent",
+          "tools": [
+            {
+              "functionDeclarations": [
+                {
+                  "description": "Search the Core Rules: how the game works (phases, actions, keywords, terrain). Retrieved Stratagem sections also include exact-name core database records when found.",
+                  "name": "search_rules",
+                  "parameters": {
+                    "properties": {
+                      "query": {
+                        "description": "In English, with the rulebook's terms, whatever the question's language.",
+                        "type": "STRING"
+                      }
+                    },
+                    "required": [
+                      "query"
+                    ],
+                    "type": "OBJECT"
+                  }
+                },
+                {
+                  "description": "Query units, weapons, abilities, stratagems, detachments and factions with read-only SQL.",
+                  "name": "run_sql",
+                  "parameters": {
+                    "properties": {
+                      "sql": {
+                        "description": "One SQLite SELECT or WITH query that follows the database schema.",
+                        "type": "STRING"
+                      }
+                    },
+                    "required": [
+                      "sql"
+                    ],
+                    "type": "OBJECT"
+                  }
+                }
+              ]
+            }
+          ],
+          "tool_config": {
+            "functionCallingConfig": {
+              "mode": "VALIDATED"
+            }
+          },
+          "generation_config": {
+            "candidateCount": 1
+          },
+          "contents": [
+            {
+              "role": "user",
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 148
+                }
+              ]
+            },
+            {
+              "role": "model",
+              "parts": [
+                {
+                  "kind": "functionCall",
+                  "name": "search_rules",
+                  "args": {
+                    "query": "GRENADE stratagem"
+                  }
+                },
+                {
+                  "kind": "functionCall",
+                  "name": "run_sql",
+                  "args": {
+                    "sql": "SELECT d.Id, d.name, f.name AS faction, s.name AS source, s.edition, k.keyword\nFROM datasheets d\nJOIN factions f ON f.Id = d.factionId\nLEFT JOIN source s ON s.Id = d.sourceId\nLEFT JOIN datasheets_keywords k ON k.DatasheetId = d.Id AND k.keyword = 'Grenades'\nWHERE d.name = 'Intercessor Squad' AND d.factionId = 'SM';"
+                  }
+                }
+              ]
+            },
+            {
+              "role": "user",
+              "parts": [
+                {
+                  "kind": "functionResponse",
+                  "name": "search_rules",
+                  "response_keys": [
+                    "output"
+                  ]
+                },
+                {
+                  "kind": "functionResponse",
+                  "name": "run_sql",
+                  "response_keys": [
+                    "columns",
+                    "error",
+                    "rows",
+                    "truncated"
+                  ]
+                }
+              ]
+            },
+            {
+              "role": "model",
+              "parts": [
+                {
+                  "kind": "functionCall",
+                  "name": "run_sql",
+                  "args": {
+                    "sql": "SELECT id, name, FactionId, type, cpCost, turn, phase, detachment, description\nFROM stratagems\nWHERE name = 'GRENADE';"
+                  }
+                }
+              ]
+            },
+            {
+              "role": "user",
+              "parts": [
+                {
+                  "kind": "functionResponse",
+                  "name": "run_sql",
+                  "response_keys": [
+                    "columns",
+                    "error",
+                    "rows",
+                    "truncated"
+                  ]
+                }
+              ]
+            },
+            {
+              "role": "model",
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 5185
+                }
+              ]
+            },
+            {
+              "role": "user",
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 63
+                }
+              ]
+            },
+            {
+              "role": "model",
+              "parts": [
+                {
+                  "kind": "functionCall",
+                  "name": "search_rules",
+                  "args": {
+                    "query": "Advance move shoot"
+                  }
+                }
+              ]
+            },
+            {
+              "role": "user",
+              "parts": [
+                {
+                  "kind": "functionResponse",
+                  "name": "search_rules",
+                  "response_keys": [
+                    "output"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "response": {
+          "candidates": [
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 64
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 53
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 117
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 90
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 72
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 90
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 71
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 73
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 90
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 105
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 119
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 110
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 151
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 85
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 55
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 60
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 80
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 120
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 111
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 103
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 96
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 84
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 89
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 115
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 119
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 83
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 151
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 138
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 144
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 141
+                }
+              ]
+            },
+            {
+              "finish_reason": "STOP",
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 0
+                }
+              ]
+            }
+          ],
+          "errors": [],
+          "prompt_feedback": []
+        }
+      }
+    }
+  ],
+  "embedding_attempts": [
+    {
+      "status": 200,
+      "error": null
+    },
+    {
+      "status": 200,
+      "error": null
+    }
+  ],
+  "complete": true,
+  "answer": {
+    "text": "### Cost to Use\n\nTo use **GRENADE**, the controlling player must pay **1 CP** [Core Rules p. 41–42, DB: stratagems]. \n- Under the Core Rules, when using a Stratagem, the player reduces their Command point total by the amount listed on the card (1 CP); if the player does not have enough CP, they cannot use it [Core Rules p. 41].\n- In the database record, `cpCost` is `1` [DB: stratagems].\n\n---\n\n### Applicability After Advancing\n\n#### Source 1: Database Record (`stratagems`, ID `000008335006`; source and edition not recorded)\n- **Citation:** [DB: stratagems]\n- **Explicit Conditions:**\n  - Cost: 1 CP.\n  - Timing: Your Shooting phase.\n  - Target: One **GRENADES** unit from your army **(excluding units that Advanced, Fell Back or have shot this turn)** that is not within Engagement Range of one or more enemy units.\n- **Relevant Facts:**\n  - Fact supplied by user: The unit has Advanced (\"after advancing\").\n  - Fact established by tool: *Intercessor Squad* has the **Grenades** keyword [DB: datasheets_keywords].\n- **Missing Facts:** None regarding the advance condition.\n- **Supported Conclusion:** **Supported prohibition**. The database text explicitly excludes units that Advanced this turn from being targeted.\n\n---\n\n#### Source 2: Core Rules (10th edition)\n- **Citation:** [Core Rules p. 14, 19, 41–42]\n- **Explicit Conditions:**\n  - Cost: 1 CP [Core Rules p. 41–42].\n  - Timing: Your Shooting phase [Core Rules p. 42].\n  - Target: One **Grenades** unit from your army that is not within Engagement Range of any enemy units and **has not been selected to shoot this phase** [Core Rules p. 42].\n  - Advancing rule: A unit cannot shoot or declare a charge in the same turn that it Advanced [Core Rules p. 14], and a unit is not eligible to shoot if it Advanced this turn [Core Rules p. 19].\n- **Relevant Facts:**\n  - Fact supplied by user: The unit has Advanced.\n  - Fact established by tool: *Intercessor Squad* has the **Grenades** keyword [DB: datasheets_keywords].\n  - Ineligibility to shoot: An Advanced unit is not eligible to shoot [Core Rules p. 19].\n- **Missing Facts / Evidence Gap:**\n  - The TARGET condition in the Core Rules requires that the unit *\"has not been selected to shoot this phase\"* rather than requiring the unit to be *\"eligible to shoot\"*, nor does the Stratagem's card text explicitly mention Advancing [Core Rules p. 42].\n  - Nonselection, a completed action, and ineligibility are distinct predicates. The retrieved Core Rules passages do not state whether ineligibility to shoot prevents selection under the wording of GRENADE, nor do they explicitly permit or prohibit an Advanced unit from being targeted.\n- **Supported Conclusion:** **Undetermined**. The absence of an explicit Advance exclusion in [Core Rules p. 42] proves neither permission nor prohibition, and the retrieved passages do not settle whether a unit that cannot be selected to shoot due to Advancing satisfies the predicate \"has not been selected to shoot this phase\".",
+    "source_notes": [
+      "Earlier in this conversation: DB stratagems: publication and edition are not recorded.",
+      "Earlier in this conversation: Database publication for Intercessor Squad (ID 000001157): Space Marines; edition 11.",
+      "Earlier in this conversation: Application could not identify publication/edition fields in the returned columns.",
+      "This turn: DB stratagems: publication and edition are not recorded."
+    ],
+    "database_statistics": [],
+    "answered": true,
+    "finish_reason": "STOP",
+    "tool_calls": [
+      {
+        "name": "search_rules",
+        "arguments": {
+          "query": "Advance move shoot"
+        },
+        "pages": [
+          14,
+          13,
+          42,
+          19,
+          25,
+          54
+        ],
+        "error": null,
+        "output": "[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nSection: ADVANCE MOVES\nWhen a unit Advances, make an Advance roll for that unit by rolling one D6. Add the result in inches to the Move characteristic of each model in that unit until the end of the phase. Each model in that unit can then make an Advance move by moving a distance in inches less than or equal to this total, but no model can be moved within Engagement Range of enemy models. A unit cannot shoot or declare a charge in the same turn that it Advanced.\n\n- Advance Move: Models move up to M+D6\".\n- Cannot move within Engagement Range of any enemy models.\n- Units that Advance cannot shoot or charge this turn.\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: 1. MOVE UNITS\n- When a unit moves it can make a Normal move, Advance or Remain Stationary.\n- Units that are within Engagement Range of any enemy models can only Fall Back or Remain Stationary.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: FIRE OVERWATCH\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nA hail of wildfire can drive back advancing foes.\n\nWHEN: Your opponent's Movement or Charge phase, just after an enemy unit is set up or when an enemy unit starts or ends a Normal, Advance, Fall Back or Charge move.\n\nTARGET: One unit from your army that is within 24\" of that enemy unit and that would be eligible to shoot if it were your Shooting phase.\n\nEFFECT: Your unit can shoot that enemy unit as if it were your Shooting phase.\n\nRESTRICTIONS: Until the end of the phase, each time a model in your unit makes a ranged attack, an unmodified Hit roll of 6 is required to score a hit, irrespective of the attacking weapon's Ballistic Skill or any modifiers. You can only use this Stratagem once per turn.\n\n[Core Rules p. 19] (page footer p. 19: CORE RULES | SHOOTING PHASE)\nFigure label: Use the following sequence when a unit shoots.\nSection: SHOOTING PHASE > SELECT TARGETS\nMAKE RANGED ATTACKS\n\nREPEAT FOR NEXT ELIGIBLE UNIT\n\nIn your Shooting phase, if you have one or more eligible units from your army on the battlefield, you can select those units, one at a time, and shoot with them. Each unit can only be selected to shoot once per phase. Once all of the units you selected have shot, progress to your Charge phase.\n\nA unit is eligible to shoot unless any of the following apply:\n\n- That unit Advanced this turn.\n- That unit Fell Back this turn.\n\n[Core Rules p. 25] (page footer p. 25: CORE RULES | WEAPON ABILITIES)\nSection: ASSAULT\nAssault weapons fire so indiscriminately that they can be shot from the hip as warriors dash forward.\n\nWeapons with [ASSAULT] in their profile are known as Assault weapons. If a unit that Advanced this turn contains any models equipped with Assault weapons, it is still eligible to shoot in this turn's Shooting phase. When such a unit is selected to shoot, you can only resolve attacks using Assault weapons its models are equipped with.\n\n- Can be shot even if the bearer's unit Advanced.\n\n[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nSection: FALL BACK MOVES\nWhen a unit Falls Back, each model in that unit can make a Fall Back move by moving a distance in inches less than or equal to its Move characteristic, and when doing so you can move it within Engagement Range of enemy models, provided it does not end that move within Engagement Range of any enemy models - if this is not possible, that unit cannot Fall Back.\n\nA unit cannot shoot or declare a charge in the same turn that it Fell Back.\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: MOVEMENT PHASE\nThe ground shakes to the tread of marching feet and the growl of engines as armies advance across the battlefield and vie for advantageous positions.\n\n[Core Rules p. 54] (page footer p. 54: CORE RULES | AIRCRAFT)\nSection: AIRCRAFT AND THE MOVEMENT OF OTHER MODELS\nWhen a unit is selected to move in the Movement phase, if the only enemy models that are within Engagement Range of that unit are Aircraft models, then that unit can still make a Normal or Advance move.\n\nWhenever a model makes any kind of move, it can be moved over enemy Aircraft models as if they were not there, and can be moved within Engagement Range of enemy Aircraft models, but it cannot end that move on top of another model or within Engagement Range of any enemy Aircraft models.\n\n- Units can still make a Normal or Advance move if they are only within Engagement Range of enemy Aircraft.\n- Models can move within Engagement Range of enemy Aircraft, but cannot end a move within Engagement Range of enemy Aircraft.\n- Models can move over Aircraft when they make any kind of move.\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"FIRE OVERWATCH\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335009\", \"FIRE OVERWATCH\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Opponent’s turn\", \"Movement or Charge phase\", \"\", \"WHEN: Your opponent’s Movement or Charge phase, just after an enemy unit is set up or when an enemy unit starts or ends a Normal, Advance or Fall Back move, or declares a charge.\\nTARGET: One unit from your army that is within 24\\\" of that enemy unit and that would be eligible to shoot if it were your Shooting phase.\\nEFFECT: If that enemy unit is visible to your unit, your unit can shoot that enemy unit as if it were your Shooting phase.\\nRESTRICTIONS: You cannot target a TITANIC unit with this Stratagem. Until the end of the phase, each time a model in your unit makes a ranged attack, an unmodified Hit roll of 6 is required to score a hit, irrespective of the attacking weapon’s Ballistic Skill or any modifiers. You can only use this Stratagem once per turn.\"], [\"000010810008\", \"FIRE OVERWATCH\", \"\", \"Core Stratagem\", \"1\", \"Opponent’s turn\", \"Movement phase\", \"\", \"WHEN: End of your opponent’s Movement phase.\\nTARGET: One friendly unengaged unit (excluding TITANIC units).\\nEFFECT: Your unit shoots using snap shooting.\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge."
+      }
+    ],
+    "model_calls": [
+      [
+        "agent",
+        1,
+        "validated"
+      ],
+      [
+        "agent",
+        4,
+        "validated"
+      ],
+      [
+        "final",
+        6,
+        "none"
+      ],
+      [
+        "agent",
+        8,
+        "validated"
+      ],
+      [
+        "agent",
+        10,
+        "validated"
+      ]
+    ]
+  }
+}

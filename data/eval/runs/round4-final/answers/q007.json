@@ -1,0 +1,982 @@
+{
+ "question": {
+  "question_id": "q007",
+  "question": "After makin' ranged attaks in the shootin' phase, what makes a unit eligable for a charge in the charge phase?",
+  "reference": "After making ranged attacks in the shooting phase, a unit progresses to the charge phase. For a unit to be eligible for a charge in the charge phase, it must be within 12\" of one or more enemy units at the start of that phase. However, a unit is not eligible to charge if it Advanced or Fell Back this turn, if it is within Engagement Range of any enemy models, or if it is an Aircraft unit.",
+  "reference_contexts": [
+   "<1-hop>\n\nSection: CHARGE BONUS\nMany warriors thunder headlong into combat, using the impetus of their charge to bring swift death to their foes.\n\nEach time a unit makes a Charge move, until the end of the turn, that unit has the Fights First ability (pg 32).\n\nIn your Charge phase, if you have any eligible units from your army on the battlefield that you want to charge into close combat, you can select those units, one at a time, to declare a charge. Each can only be selected once per phase. Once all of these charges (if any) have been resolved, progress to the Fight phase.\n\nA unit is eligible to charge if it is within 12\" of one or more enemy units at the start of your Charge phase, unless any of the following apply:\n\n- That unit Advanced or Fell Back this turn.\n- That unit is within Engagement Range of any enemy models.\n- That unit is an Aircraft unit.\n\nSection: CHARGING WITH A UNIT\nOnce you have selected an eligible unit to declare a charge, you must select one or more enemy units within 12\" of it as the targets of that charge. The targets of a charge do not need to be visible to the charging unit.\n\nYou then make a Charge roll for the charging unit by rolling 2D6. The result is the maximum number of inches each model in that unit can be moved if a Charge move is possible. For a Charge move to be possible, the Charge roll must be sufficient to enable the charging unit to end that move:\n\n- Within Engagement Range of every unit that you selected as a target of the charge.\n- Without moving within Engagement Range of any enemy units that were not a target of the charge.\n- In Unit Coherency.\n\nIf any of these conditions cannot be met, the charge fails and no models in the charging unit move this phase. Otherwise, the charge is successful and the models in the charging unit make a Charge move - move each model a distance in inches up to the result of the Charge roll. When doing so, each model in the charging unit must end its Charge move closer to one of the units selected as a target of its charge. If you can also move a charging model so that it ends its Charge move in base-to-base contact with one or more enemy models while still enabling the charging unit to end its move satisfying all of the conditions above, you must do so. The controlling player chooses the order in which to move their models.\n\n- Charge Roll: 2D6\".\n- Targets of a charge must be within 12\" but do not need to be visible.\n- If the distance rolled is insufficient to move within Engagement Range of all targets while maintaining Unit Coherency, the charge fails.\n- Cannot move within Engagement Range of any unit that was not a target of the charge.\n- If the charge is successful, each model makes a Charge move less than or equal to the Charge roll, and must move into base-to-base contact with an enemy model if possible.",
+   "<2-hop>\n\nSection: MAKE RANGED ATTACKS\nThe shooting unit's models now make attacks using their ranged weapons. Each time a model shoots with a ranged weapon, it will make a number of attacks equal to the Attacks (A) characteristic in that weapon's profile. You make one Hit roll for each attack being made (see Making Attacks, pages 21-23).\n\nIf you selected more than one target for your unit to shoot at, you must resolve all of the attacks against one target before moving on to the next target. If your unit is shooting more than one ranged weapon at a target, and those weapons have different profiles, then after you have resolved attacks with one of those weapons you must, if any other weapons with the same profile are also being shot at that unit, resolve those attacks before resolving any other attacks against the target.\n\nNote that, provided at least one model in the target unit was visible to an attacking model and in range of that attacking model's weapon when that target unit was selected, that weapon's attacks can still be made, even if no models in the target unit remain visible to or in range of it when you come to resolve those attacks (for example, because models in the target unit have already been destroyed by attacks made with other weapons in the attacking model's unit).\n\n- When a model shoots a weapon, it makes a number of attacks equal to that weapon's Attacks characteristic.\n- Resolve all attacks against one unit before resolving attacks against any other unit.\n- Resolve all attacks made with the same weapon profile before resolving attacks with any other profile.\n- If a weapon was in range and its target was visible when selected, that weapon's attacks can always be made.",
+   "<3-hop>\n\nSection: SHOOTING PHASE > SELECT TARGETS\nMAKE RANGED ATTACKS\n\nREPEAT FOR NEXT ELIGIBLE UNIT\n\nIn your Shooting phase, if you have one or more eligible units from your army on the battlefield, you can select those units, one at a time, and shoot with them. Each unit can only be selected to shoot once per phase. Once all of the units you selected have shot, progress to your Charge phase.\n\nA unit is eligible to shoot unless any of the following apply:\n\n- That unit Advanced this turn.\n- That unit Fell Back this turn.\n\n\nEach time a unit shoots, before any attacks are resolved, you must select the enemy units that will be the targets for all of the ranged weapons you wish its models to make attacks with. Each time you select a target for a model's ranged weapon, you can only select an enemy unit as the target if at least one model in that unit is both within range of that weapon and visible to that attacking model (pg 8). An enemy model is within range of a weapon if the distance between it and the attacking model is equal to or less than that weapon's Range characteristic.\n\nIf a model has more than one ranged weapon, it can shoot all of them at the same target or it can shoot each of them at a different target, but it cannot split attacks from the same weapon across more than one target. Similarly, if a unit has more than one model, those models can shoot at the same or different targets. In any case, when you select a target unit you must declare which models will target that unit with which weapons before any attacks are resolved. If any of these weapons have more than one profile that you must choose between, you must also declare which profile is being used.\n\n- Before a unit shoots, select the targets for all of its ranged weapons.\n- At least one model in the target unit must be visible to the attacking model and within range of the weapon being used.\n- Models with more than one ranged weapon can shoot them at the same or different targets, but models cannot split attacks from the same weapon across more than one target.\n- Models in the same unit can shoot at the same or different targets."
+  ],
+  "synthesizer": "multi_hop_abstract_query_synthesizer"
+ },
+ "answer": "### Source and Scope\n* **Source:** Warhammer 40,000 Core Rules (10th Edition), p. 25, 29.\n* **User-supplied fact:** The unit has made ranged attacks in the Shooting phase of the turn.\n* **Established rules:** The Core Rules criteria for unit charge eligibility and the interaction between shooting, moving, and charging.\n\n---\n\n### Explicit Conditions and Rules\n\n1. **Shooting Does Not Disqualify Charging:**\n   * Making ranged attacks in the Shooting phase does not prevent a unit from being eligible to declare a charge in the subsequent Charge phase, nor does it restrict which enemy unit(s) can be selected as the target of the charge [Core Rules p. 19, 29].\n\n2. **Conditions for Charge Eligibility:**\n   Under the Core Rules, a unit is eligible to charge if it satisfies the following requirement at the start of the phase [Core Rules p. 29]:\n   * It is within 12\" of one or more enemy units at the start of your Charge phase.\n\n3. **Explicit Disqualifiers (Exceptions):**\n   A unit is **not** eligible to charge if any of the following conditions apply [Core Rules p. 29]:\n   * That unit **Advanced** or **Fell Back** this turn.\n   * That unit is already within **Engagement Range** of any enemy models.\n   * That unit is an **Aircraft** unit.\n\n*(Note on Advance and Assault weapons: While models with `[ASSAULT]` weapons are permitted to shoot after Advancing [Core Rules p. 25], Advancing remains an explicit disqualifier for declaring a charge [Core Rules p. 29].)*\n\n---\n\n### Conclusion\nMaking ranged attacks in the Shooting phase has no bearing on charge eligibility. A unit that shot remains eligible to charge in the Charge phase provided:\n1. It is within 12\" of at least one enemy unit at the start of the Charge phase.\n2. It did not Advance or Fall Back earlier in the turn.\n3. It is not currently within Engagement Range of any enemy models.\n4. It is not an Aircraft unit.",
+ "agent_contexts": [
+  "[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGE BONUS\nMany warriors thunder headlong into combat, using the impetus of their charge to bring swift death to their foes.\n\nEach time a unit makes a Charge move, until the end of the turn, that unit has the Fights First ability (pg 32).\n\nIn your Charge phase, if you have any eligible units from your army on the battlefield that you want to charge into close combat, you can select those units, one at a time, to declare a charge. Each can only be selected once per phase. Once all of these charges (if any) have been resolved, progress to the Fight phase.\n\nA unit is eligible to charge if it is within 12\" of one or more enemy units at the start of your Charge phase, unless any of the following apply:\n\n- That unit Advanced or Fell Back this turn.\n- That unit is within Engagement Range of any enemy models.\n- That unit is an Aircraft unit.\n\n[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGING WITH A UNIT\nOnce you have selected an eligible unit to declare a charge, you must select one or more enemy units within 12\" of it as the targets of that charge. The targets of a charge do not need to be visible to the charging unit.\n\nYou then make a Charge roll for the charging unit by rolling 2D6. The result is the maximum number of inches each model in that unit can be moved if a Charge move is possible. For a Charge move to be possible, the Charge roll must be sufficient to enable the charging unit to end that move:\n\n- Within Engagement Range of every unit that you selected as a target of the charge.\n- Without moving within Engagement Range of any enemy units that were not a target of the charge.\n- In Unit Coherency.\n\nIf any of these conditions cannot be met, the charge fails and no models in the charging unit move this phase. Otherwise, the charge is successful and the models in the charging unit make a Charge move - move each model a distance in inches up to the result of the Charge roll. When doing so, each model in the charging unit must end its Charge move closer to one of the units selected as a target of its charge. If you can also move a charging model so that it ends its Charge move in base-to-base contact with one or more enemy models while still enabling the charging unit to end its move satisfying all of the conditions above, you must do so. The controlling player chooses the order in which to move their models.\n\n[Core Rules p. 10] (page footer p. 10: CORE RULES | THE BATTLE ROUND)\nFigure label: COMMAND PHASE\nSection: THE BATTLE ROUND > CHARGE PHASE\nYour units charge forward to battle at close quarters.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: HEROIC INTERVENTION\n2CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nVoices raised in furious war cries, your warriors surge forth to meet the enemy's onslaught head-on.\n\nWHEN: Your opponent's Charge phase, just after an enemy unit ends a Charge move.\n\nTARGET: One unit from your army that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\n\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\n\nRESTRICTIONS: You can only select a Vehicle unit from your army if it is a Walker. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn (pg 29).\n\n[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nFigure label: Use the following sequence to charge with your units.\nSection: CHARGE PHASE\nWarriors hurl themselves into battle to slay with blade, hammer and claw. Strident war cries and frantic screams echo through the whirling smoke as the moment of cataclysmic violence draws near.\n\nUse the following sequence to charge with your units.\n\n[Core Rules p. 19] (page footer p. 19: CORE RULES | SHOOTING PHASE)\nFigure label: Use the following sequence when a unit shoots.\nSection: SHOOTING PHASE > SELECT TARGETS\nMAKE RANGED ATTACKS\n\nREPEAT FOR NEXT ELIGIBLE UNIT\n\nIn your Shooting phase, if you have one or more eligible units from your army on the battlefield, you can select those units, one at a time, and shoot with them. Each unit can only be selected to shoot once per phase. Once all of the units you selected have shot, progress to your Charge phase.\n\nA unit is eligible to shoot unless any of the following apply:\n\n- That unit Advanced this turn.\n- That unit Fell Back this turn.\n\n[Core Rules p. 45] (page footer p. 45: CORE RULES | TERRAIN FEATURES)\nSection: BARRICADES AND FUEL PIPES > ENGAGEMENT RANGE\n- In the Charge phase, if an enemy unit is within 1\" of this terrain feature, a charging unit on the opposite side of this terrain feature can still make a Charge move against that enemy unit provided it ends that Charge move as close as possible to this terrain feature and within 2\" of that enemy unit.\n- In the Fight phase, units are eligible to fight - and models can make attacks - if their target is on the opposite side of this terrain feature and within 2\" of them.\n\n[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGING WITH A UNIT\n- Charge Roll: 2D6\".\n- Targets of a charge must be within 12\" but do not need to be visible.\n- If the distance rolled is insufficient to move within Engagement Range of all targets while maintaining Unit Coherency, the charge fails.\n- Cannot move within Engagement Range of any unit that was not a target of the charge.\n- If the charge is successful, each model makes a Charge move less than or equal to the Charge roll, and must move into base-to-base contact with an enemy model if possible.\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"HEROIC INTERVENTION\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335012\", \"HEROIC INTERVENTION\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Opponent’s turn\", \"Charge phase\", \"\", \"WHEN: Your opponent’s Charge phase, just after an enemy unit ends a Charge move.\\nTARGET: One unit from your army that is within 6\\\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\\nRESTRICTIONS: You can only select a VEHICLE unit from your army if it is a WALKER. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn.\"], [\"000010810011\", \"HEROIC INTERVENTION\", \"\", \"Core Stratagem\", \"1\", \"Opponent’s turn\", \"Charge phase\", \"\", \"WHEN: End of your opponent’s Charge phase.\\nTARGET: One friendly unengaged unit within 12\\\" of one or more enemy units. You can only select a VEHICLE unit if it is a CHARACTER/WALKER unit.\\nEFFECT: Resolve a charge with your unit (11.02). While doing so, before making the charge roll, you must select one of the following modes:Leap to Defend: When selecting charge targets, you can only select enemy units that made a charge move this phase and are within the maximum distance.+1CPInto the Fray:When making the charge roll, if the result is greater than 6 (after modifiers), change it to 6.When selecting charge targets, you can select any enemy units that are within 6\\\" of your unit and within the maximum distance.\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+  "[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGE BONUS\nMany warriors thunder headlong into combat, using the impetus of their charge to bring swift death to their foes.\n\nEach time a unit makes a Charge move, until the end of the turn, that unit has the Fights First ability (pg 32).\n\nIn your Charge phase, if you have any eligible units from your army on the battlefield that you want to charge into close combat, you can select those units, one at a time, to declare a charge. Each can only be selected once per phase. Once all of these charges (if any) have been resolved, progress to the Fight phase.\n\nA unit is eligible to charge if it is within 12\" of one or more enemy units at the start of your Charge phase, unless any of the following apply:\n\n- That unit Advanced or Fell Back this turn.\n- That unit is within Engagement Range of any enemy models.\n- That unit is an Aircraft unit.\n\n[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGING WITH A UNIT\nOnce you have selected an eligible unit to declare a charge, you must select one or more enemy units within 12\" of it as the targets of that charge. The targets of a charge do not need to be visible to the charging unit.\n\nYou then make a Charge roll for the charging unit by rolling 2D6. The result is the maximum number of inches each model in that unit can be moved if a Charge move is possible. For a Charge move to be possible, the Charge roll must be sufficient to enable the charging unit to end that move:\n\n- Within Engagement Range of every unit that you selected as a target of the charge.\n- Without moving within Engagement Range of any enemy units that were not a target of the charge.\n- In Unit Coherency.\n\nIf any of these conditions cannot be met, the charge fails and no models in the charging unit move this phase. Otherwise, the charge is successful and the models in the charging unit make a Charge move - move each model a distance in inches up to the result of the Charge roll. When doing so, each model in the charging unit must end its Charge move closer to one of the units selected as a target of its charge. If you can also move a charging model so that it ends its Charge move in base-to-base contact with one or more enemy models while still enabling the charging unit to end its move satisfying all of the conditions above, you must do so. The controlling player chooses the order in which to move their models.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: HEROIC INTERVENTION\n2CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nVoices raised in furious war cries, your warriors surge forth to meet the enemy's onslaught head-on.\n\nWHEN: Your opponent's Charge phase, just after an enemy unit ends a Charge move.\n\nTARGET: One unit from your army that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\n\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\n\nRESTRICTIONS: You can only select a Vehicle unit from your army if it is a Walker. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn (pg 29).\n\n[Core Rules p. 45] (page footer p. 45: CORE RULES | TERRAIN FEATURES)\nSection: BARRICADES AND FUEL PIPES > ENGAGEMENT RANGE\n- In the Charge phase, if an enemy unit is within 1\" of this terrain feature, a charging unit on the opposite side of this terrain feature can still make a Charge move against that enemy unit provided it ends that Charge move as close as possible to this terrain feature and within 2\" of that enemy unit.\n- In the Fight phase, units are eligible to fight - and models can make attacks - if their target is on the opposite side of this terrain feature and within 2\" of them.\n\n[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGING WITH A UNIT\n- Charge Roll: 2D6\".\n- Targets of a charge must be within 12\" but do not need to be visible.\n- If the distance rolled is insufficient to move within Engagement Range of all targets while maintaining Unit Coherency, the charge fails.\n- Cannot move within Engagement Range of any unit that was not a target of the charge.\n- If the charge is successful, each model makes a Charge move less than or equal to the Charge roll, and must move into base-to-base contact with an enemy model if possible.\n\n[Core Rules p. 19] (page footer p. 19: CORE RULES | SHOOTING PHASE)\nFigure label: Use the following sequence when a unit shoots.\nSection: SHOOTING PHASE > SELECT TARGETS\nMAKE RANGED ATTACKS\n\nREPEAT FOR NEXT ELIGIBLE UNIT\n\nIn your Shooting phase, if you have one or more eligible units from your army on the battlefield, you can select those units, one at a time, and shoot with them. Each unit can only be selected to shoot once per phase. Once all of the units you selected have shot, progress to your Charge phase.\n\nA unit is eligible to shoot unless any of the following apply:\n\n- That unit Advanced this turn.\n- That unit Fell Back this turn.\n\n[Core Rules p. 30] (page footer p. 30: CORE RULES | CHARGE PHASE)\nFigure label: 2½\"\nFigure label: 10\"\nSection: CHARGING WITH FLYING MODELS\nWhen a model that can Fly starts or ends a Charge move on a terrain feature, instead of measuring the path it has moved across the battlefield, you instead measure its path 'through the air'. In addition, it can be moved over other models as if they were not there. A model that can Fly cannot end any move on top of another model.\n\n- Fly models can move over other models when they make a Charge move.\n- Fly models that start or end a Charge move on a terrain feature measure distance moved through the air when they make a Charge move.\n\n3\"\n\n2\"\n\n2½\"\n\nThe Von Ryan's Leaper declares a charge against the Eradicators, who are on top of a terrain feature 3\" in height. The horizontal distance between the two units when the charge is declared is 4 1/2\". To end a Charge move within Engagement Range, the Tyranids player would need a Charge roll of 7 or higher.\n\nThe Tyranid Prime is selected to declare a charge, and targets the Sternguard Veterans on top of the ruin. The Tyranids player rolls 10\" for the Charge roll, allowing the Tyranid Prime to move within Engagement Range of its target.\n\nNote that as the Tyranid Prime can Fly, it can move over the Terminators, and the distance moved is the diagonal distance through the air.\n\n10\"\n\n[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nFigure label: Use the following sequence to charge with your units.\nSection: CHARGE PHASE\nWarriors hurl themselves into battle to slay with blade, hammer and claw. Strident war cries and frantic screams echo through the whirling smoke as the moment of cataclysmic violence draws near.\n\nUse the following sequence to charge with your units.\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"HEROIC INTERVENTION\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335012\", \"HEROIC INTERVENTION\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Opponent’s turn\", \"Charge phase\", \"\", \"WHEN: Your opponent’s Charge phase, just after an enemy unit ends a Charge move.\\nTARGET: One unit from your army that is within 6\\\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\\nRESTRICTIONS: You can only select a VEHICLE unit from your army if it is a WALKER. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn.\"], [\"000010810011\", \"HEROIC INTERVENTION\", \"\", \"Core Stratagem\", \"1\", \"Opponent’s turn\", \"Charge phase\", \"\", \"WHEN: End of your opponent’s Charge phase.\\nTARGET: One friendly unengaged unit within 12\\\" of one or more enemy units. You can only select a VEHICLE unit if it is a CHARACTER/WALKER unit.\\nEFFECT: Resolve a charge with your unit (11.02). While doing so, before making the charge roll, you must select one of the following modes:Leap to Defend: When selecting charge targets, you can only select enemy units that made a charge move this phase and are within the maximum distance.+1CPInto the Fray:When making the charge roll, if the result is greater than 6 (after modifiers), change it to 6.When selecting charge targets, you can select any enemy units that are within 6\\\" of your unit and within the maximum distance.\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+  "[Core Rules p. 25] (page footer p. 25: CORE RULES | WEAPON ABILITIES)\nSection: ASSAULT\nAssault weapons fire so indiscriminately that they can be shot from the hip as warriors dash forward.\n\nWeapons with [ASSAULT] in their profile are known as Assault weapons. If a unit that Advanced this turn contains any models equipped with Assault weapons, it is still eligible to shoot in this turn's Shooting phase. When such a unit is selected to shoot, you can only resolve attacks using Assault weapons its models are equipped with.\n\n- Can be shot even if the bearer's unit Advanced.\n\n[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGING WITH A UNIT\n- Charge Roll: 2D6\".\n- Targets of a charge must be within 12\" but do not need to be visible.\n- If the distance rolled is insufficient to move within Engagement Range of all targets while maintaining Unit Coherency, the charge fails.\n- Cannot move within Engagement Range of any unit that was not a target of the charge.\n- If the charge is successful, each model makes a Charge move less than or equal to the Charge roll, and must move into base-to-base contact with an enemy model if possible.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: HEROIC INTERVENTION\n2CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nVoices raised in furious war cries, your warriors surge forth to meet the enemy's onslaught head-on.\n\nWHEN: Your opponent's Charge phase, just after an enemy unit ends a Charge move.\n\nTARGET: One unit from your army that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\n\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\n\nRESTRICTIONS: You can only select a Vehicle unit from your army if it is a Walker. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn (pg 29).\n\n[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGING WITH A UNIT\nOnce you have selected an eligible unit to declare a charge, you must select one or more enemy units within 12\" of it as the targets of that charge. The targets of a charge do not need to be visible to the charging unit.\n\nYou then make a Charge roll for the charging unit by rolling 2D6. The result is the maximum number of inches each model in that unit can be moved if a Charge move is possible. For a Charge move to be possible, the Charge roll must be sufficient to enable the charging unit to end that move:\n\n- Within Engagement Range of every unit that you selected as a target of the charge.\n- Without moving within Engagement Range of any enemy units that were not a target of the charge.\n- In Unit Coherency.\n\nIf any of these conditions cannot be met, the charge fails and no models in the charging unit move this phase. Otherwise, the charge is successful and the models in the charging unit make a Charge move - move each model a distance in inches up to the result of the Charge roll. When doing so, each model in the charging unit must end its Charge move closer to one of the units selected as a target of its charge. If you can also move a charging model so that it ends its Charge move in base-to-base contact with one or more enemy models while still enabling the charging unit to end its move satisfying all of the conditions above, you must do so. The controlling player chooses the order in which to move their models.\n\n[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nFigure label: Use the following sequence to charge with your units.\nSection: CHARGE PHASE\nWarriors hurl themselves into battle to slay with blade, hammer and claw. Strident war cries and frantic screams echo through the whirling smoke as the moment of cataclysmic violence draws near.\n\nUse the following sequence to charge with your units.\n\n[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGE BONUS\nMany warriors thunder headlong into combat, using the impetus of their charge to bring swift death to their foes.\n\nEach time a unit makes a Charge move, until the end of the turn, that unit has the Fights First ability (pg 32).\n\nIn your Charge phase, if you have any eligible units from your army on the battlefield that you want to charge into close combat, you can select those units, one at a time, to declare a charge. Each can only be selected once per phase. Once all of these charges (if any) have been resolved, progress to the Fight phase.\n\nA unit is eligible to charge if it is within 12\" of one or more enemy units at the start of your Charge phase, unless any of the following apply:\n\n- That unit Advanced or Fell Back this turn.\n- That unit is within Engagement Range of any enemy models.\n- That unit is an Aircraft unit.\n\n[Core Rules p. 10] (page footer p. 10: CORE RULES | THE BATTLE ROUND)\nFigure label: COMMAND PHASE\nSection: THE BATTLE ROUND > CHARGE PHASE\nYour units charge forward to battle at close quarters.\n\n[Core Rules p. 30] (page footer p. 30: CORE RULES | CHARGE PHASE)\nFigure label: 2½\"\nFigure label: 10\"\nSection: CHARGING WITH FLYING MODELS\nWhen a model that can Fly starts or ends a Charge move on a terrain feature, instead of measuring the path it has moved across the battlefield, you instead measure its path 'through the air'. In addition, it can be moved over other models as if they were not there. A model that can Fly cannot end any move on top of another model.\n\n- Fly models can move over other models when they make a Charge move.\n- Fly models that start or end a Charge move on a terrain feature measure distance moved through the air when they make a Charge move.\n\n3\"\n\n2\"\n\n2½\"\n\nThe Von Ryan's Leaper declares a charge against the Eradicators, who are on top of a terrain feature 3\" in height. The horizontal distance between the two units when the charge is declared is 4 1/2\". To end a Charge move within Engagement Range, the Tyranids player would need a Charge roll of 7 or higher.\n\nThe Tyranid Prime is selected to declare a charge, and targets the Sternguard Veterans on top of the ruin. The Tyranids player rolls 10\" for the Charge roll, allowing the Tyranid Prime to move within Engagement Range of its target.\n\nNote that as the Tyranid Prime can Fly, it can move over the Terminators, and the distance moved is the diagonal distance through the air.\n\n10\"\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"HEROIC INTERVENTION\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335012\", \"HEROIC INTERVENTION\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Opponent’s turn\", \"Charge phase\", \"\", \"WHEN: Your opponent’s Charge phase, just after an enemy unit ends a Charge move.\\nTARGET: One unit from your army that is within 6\\\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\\nRESTRICTIONS: You can only select a VEHICLE unit from your army if it is a WALKER. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn.\"], [\"000010810011\", \"HEROIC INTERVENTION\", \"\", \"Core Stratagem\", \"1\", \"Opponent’s turn\", \"Charge phase\", \"\", \"WHEN: End of your opponent’s Charge phase.\\nTARGET: One friendly unengaged unit within 12\\\" of one or more enemy units. You can only select a VEHICLE unit if it is a CHARACTER/WALKER unit.\\nEFFECT: Resolve a charge with your unit (11.02). While doing so, before making the charge roll, you must select one of the following modes:Leap to Defend: When selecting charge targets, you can only select enemy units that made a charge move this phase and are within the maximum distance.+1CPInto the Fray:When making the charge roll, if the result is greater than 6 (after modifiers), change it to 6.When selecting charge targets, you can select any enemy units that are within 6\\\" of your unit and within the maximum distance.\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge."
+ ],
+ "retriever_contexts": [
+  "[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGE BONUS\nMany warriors thunder headlong into combat, using the impetus of their charge to bring swift death to their foes.\n\nEach time a unit makes a Charge move, until the end of the turn, that unit has the Fights First ability (pg 32).\n\nIn your Charge phase, if you have any eligible units from your army on the battlefield that you want to charge into close combat, you can select those units, one at a time, to declare a charge. Each can only be selected once per phase. Once all of these charges (if any) have been resolved, progress to the Fight phase.\n\nA unit is eligible to charge if it is within 12\" of one or more enemy units at the start of your Charge phase, unless any of the following apply:\n\n- That unit Advanced or Fell Back this turn.\n- That unit is within Engagement Range of any enemy models.\n- That unit is an Aircraft unit.",
+  "[Core Rules p. 19] (page footer p. 19: CORE RULES | SHOOTING PHASE)\nFigure label: Use the following sequence when a unit shoots.\nSection: SHOOTING PHASE > SELECT TARGETS\nMAKE RANGED ATTACKS\n\nREPEAT FOR NEXT ELIGIBLE UNIT\n\nIn your Shooting phase, if you have one or more eligible units from your army on the battlefield, you can select those units, one at a time, and shoot with them. Each unit can only be selected to shoot once per phase. Once all of the units you selected have shot, progress to your Charge phase.\n\nA unit is eligible to shoot unless any of the following apply:\n\n- That unit Advanced this turn.\n- That unit Fell Back this turn.",
+  "[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGING WITH A UNIT\nOnce you have selected an eligible unit to declare a charge, you must select one or more enemy units within 12\" of it as the targets of that charge. The targets of a charge do not need to be visible to the charging unit.\n\nYou then make a Charge roll for the charging unit by rolling 2D6. The result is the maximum number of inches each model in that unit can be moved if a Charge move is possible. For a Charge move to be possible, the Charge roll must be sufficient to enable the charging unit to end that move:\n\n- Within Engagement Range of every unit that you selected as a target of the charge.\n- Without moving within Engagement Range of any enemy units that were not a target of the charge.\n- In Unit Coherency.\n\nIf any of these conditions cannot be met, the charge fails and no models in the charging unit move this phase. Otherwise, the charge is successful and the models in the charging unit make a Charge move - move each model a distance in inches up to the result of the Charge roll. When doing so, each model in the charging unit must end its Charge move closer to one of the units selected as a target of its charge. If you can also move a charging model so that it ends its Charge move in base-to-base contact with one or more enemy models while still enabling the charging unit to end its move satisfying all of the conditions above, you must do so. The controlling player chooses the order in which to move their models.",
+  "[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nSection: ADVANCE MOVES\nWhen a unit Advances, make an Advance roll for that unit by rolling one D6. Add the result in inches to the Move characteristic of each model in that unit until the end of the phase. Each model in that unit can then make an Advance move by moving a distance in inches less than or equal to this total, but no model can be moved within Engagement Range of enemy models. A unit cannot shoot or declare a charge in the same turn that it Advanced.\n\n- Advance Move: Models move up to M+D6\".\n- Cannot move within Engagement Range of any enemy models.\n- Units that Advance cannot shoot or charge this turn.",
+  "[Core Rules p. 45] (page footer p. 45: CORE RULES | TERRAIN FEATURES)\nSection: BARRICADES AND FUEL PIPES > ENGAGEMENT RANGE\n- In the Charge phase, if an enemy unit is within 1\" of this terrain feature, a charging unit on the opposite side of this terrain feature can still make a Charge move against that enemy unit provided it ends that Charge move as close as possible to this terrain feature and within 2\" of that enemy unit.\n- In the Fight phase, units are eligible to fight - and models can make attacks - if their target is on the opposite side of this terrain feature and within 2\" of them.",
+  "[Core Rules p. 32] (page footer p. 32: CORE RULES | FIGHT PHASE)\nSection: FIGHT PHASE\nCarnage engulfs the battlefield as the warring armies meet head-on. Fangs and claws crunch through bone. Blades ring like hammers on anvils. Blood spurts and flesh tears as hate-filled foes tear one another apart.\n\nIn both steps of the Fight phase, players alternate selecting eligible units from their army, one at a time, starting with the player whose turn is not taking place, and fighting with them. Note that a player cannot pass or opt not to fight when they have one or more eligible units that could fight - they must select one of them to fight.\n\nIn both steps, a unit is eligible to fight if either or both of the following apply:\n\n- It is within Engagement Range of one or more enemy units.\n- It made a Charge move this turn.\n\nNo unit can fight more than once in the Fight phase. In each step, if all of one player's eligible units that can fight during that step have fought, the opposing player can then fight with all of their remaining eligible units that can fight during that step, one at a time.\n\nOnce neither player has any eligible units to fight with during the current step, you progress to the next step. Once all eligible units have fought in every step, the Fight phase ends. The player's turn then ends and, unless the battle ends, the next player's turn begins.",
+  "[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGING WITH A UNIT\n- Charge Roll: 2D6\".\n- Targets of a charge must be within 12\" but do not need to be visible.\n- If the distance rolled is insufficient to move within Engagement Range of all targets while maintaining Unit Coherency, the charge fails.\n- Cannot move within Engagement Range of any unit that was not a target of the charge.\n- If the charge is successful, each model makes a Charge move less than or equal to the Charge roll, and must move into base-to-base contact with an enemy model if possible.",
+  "[Core Rules p. 54] (page footer p. 54: CORE RULES | AIRCRAFT)\nFigure label: A\nSection: AIRCRAFT IN THE CHARGE AND FIGHT PHASES\nAircraft units cannot declare a charge, and only units that can Fly can select an Aircraft unit as a target of their charge. Such units can end their Charge move within Engagement Range of one or more enemy Aircraft units.\n\nAn Aircraft model is only eligible to fight if it is within Engagement Range of one or more enemy units that can Fly, and it can only make melee attacks against units that can Fly. Only models that can Fly can make melee attacks against Aircraft units.\n\nAircraft models cannot make Pile-in or Consolidation moves. Each time a model makes a Pile-in or Consolidation move, unless that model can Fly, Aircraft models are ignored for the purposes of moving closer to the closest enemy model.\n\n- Only units that can Fly can charge at or make melee attacks against Aircraft.\n- Aircraft cannot charge, Pile In or Consolidate, and can only make melee attacks against units that can Fly.\n- When a model Piles In or Consolidates, unless it can Fly, ignore Aircraft when determining the closest enemy model.\n\n- A The Stormtalon Gunship begins the Movement phase within Engagement Range of the Tyranid Prime. The Stormtalon is an Aircraft model and is not in Hover mode, so is free to make a Normal move.\n\n- B The Stormtalon must move a minimum of 20\" straight forward, even though this would bring it within Engagement Range of an enemy unit.\n\nC After finishing its Normal move, the Stormtalon can then pivot on the spot up to 90º."
+ ],
+ "retriever_k": 8,
+ "trace": {
+  "system_prompt": "You are a rules assistant for Warhammer 40,000. You answer from two sources: the Core Rules (10th edition) and a database of datasheets, weapons, stratagems, factions and detachments.\n\n## Tools\n\n- `search_rules`: how the game works (phases, actions, abilities, keywords, terrain). Write the query in English, with the rulebook's terms, whatever the language of the question. Specify the concept: victory points and objective control for scoring, Command points for Stratagem costs, army points for army construction.\n- `run_sql`: facts about units, their models, weapons, keywords and abilities, and about stratagems, detachments, enhancements and factions. Call `run_sql` with one read-only SQLite SELECT or WITH query in its required `sql` string parameter, then answer from the returned result. Follow the database schema below: for a specific named unit, join `datasheets`, `datasheets_models` and `source` in a single query (example 1) instead of separate queries per table. If the tool returns an error, correct the query and try again.\n- Use both when a question mixes rules and unit data. The number of tool rounds per question is limited: search with purpose.\n- Before seeking more evidence, inspect successful results from every earlier turn. They remain available in the conversation. If those results already establish the answer, answer directly; do not query the same fact again merely to confirm it. After each new result, stop as soon as the question is supported. If evidence is still missing, retrieve only the missing fields together where possible, or state the gap instead of pursuing optional detail.\n- A broad category of units, such as \"a Space Marine\", that maps to a faction and keywords: query it with `run_sql` before you answer, keeping each value's datasheet IDs, units and model profiles in the result (example 2 of the schema). Use at most one aggregate query and one representative unit query for the category; do not issue a separate query for each characteristic value. Ask which unit is meant only when no faction or keyword fits.\n- For a named Stratagem, search the rulebook. `search_rules` also queries exact-name core database records for retrieved Stratagem sections. Inspect both parts of its result; do not repeat a successful associated lookup. If either source is missing, use a targeted search or SQL query while tools remain, and report any remaining gap. Unit keywords still need `run_sql`.\n\n## Answering\n\n- Answer only from the tool results of this conversation. If a search does not supply the necessary passage, search again with a specific rule or section name while tools remain. If it is still missing, say what the retrieved passages do not establish and what you searched. Unsuccessful retrieval never proves that the rulebook has no such rule. Do not invent values or fill gaps from general game knowledge.\n- Organize an evidence answer in this order: source/version and scope, including which facts the user supplied and which the tools established; explicit conditions and results in the source's order; then the supported conclusion and any evidence gap. For an if/otherwise rule, preserve every branch and their common timing. Distinguish ways to score from the rule for determining a winner.\n- For a rule or procedure, preserve its cost, timing, eligible target, effect, restrictions and exceptions where the evidence gives them. For how to use a Stratagem, explain its CP payment from the `STRATAGEMS` and `1. COMMAND` sections and illustrate how the card labels WHEN, TARGET, EFFECT and RESTRICTIONS work from the retrieved Stratagem cards; once those sections and cards are retrieved, answer from them without searching again for a separate definition of those card labels. Identify the actor, whose phase it is, every recipient, and quantifiers such as \"both players\" and \"each phase\"; avoid ambiguous pronouns. Do not merge source versions. Give an exception only with its trigger and timing. If you choose an example, attribute it to one source or separate material versions; do not use a joint citation to imply that different versions are identical. An example figure is illustrative, not a datasheet fact about a real unit.\n- Cite every fact: [Core Rules p. N] for the rulebook (p. N–M for a passage over two pages), [DB: table] for the database.\n- Editions: the rulebook is the 10th edition. For a database record, give its edition only when it is recorded: for a datasheet, join `source` and give its name and edition; edition '0' means that none is recorded (a Warhammer Legends or Forge World pack: name it as such). Stratagems, detachments, enhancements and abilities have no source: say that their source is not recorded. Never give one edition to the database as a whole.\n- When evidence contains versions of the same rule, compare costs, timing, targets, effects and restrictions. For an applicability question or follow-up, give a short entry for EACH source: source/version and citation; its explicit conditions; the relevant facts supplied by the user or established by a tool, labelled by origin; any missing facts; and the conclusion supported by that source. These are checkable evidence statements, not a narrative of your reasoning. Preserve who a restriction applies to, including the controlling player. Nonselection, a completed action, and ineligibility are different predicates: none establishes another without cited evidence. Do not import exclusions across sources. An exclusion absent from a retrieved passage proves neither permission nor prohibition; say when that source does not settle the case. Describe material differences, not assumed clarifications.\n- Categories: a broad name such as \"a Space Marine\" is a category, not a unit. Resolve it to a faction and keywords (for example factionId 'SM' with the keyword Battleline or Infantry), leave out Warhammer Legends unless asked, use aggregate counts by publication/edition for a typical value and separate limited examples for exceptions, report the per-publication/edition counts as returned without summing them across publications or editions in prose, and say how you read the question: the units the answer covers and what it leaves out. Do not answer with a question when the results let you answer this way. Name the counting unit (datasheets or model profiles). A truncated example list cannot support an overall distribution.\n- Profiles: a characteristic belongs to a model profile, not to a unit. When a unit you give as an exception has profiles of different values, state every profile/value variant of that exception; never give one profile's characteristic as the value of the whole unit. Cite the table name, not a record ID as though it were a table.\n- Missions: use the page footer to name the mission for both scoring and winner rules. A question about ways to score needs concrete award conditions, amounts and timing; an introduction or a winner rule does not supply them. Search again for victory points and objective control only if no mission scoring rule has been retrieved yet; once a mission's scoring rule is present, answer from it without further searches for generic examples. Keep mission-specific scoring separate from generic examples and winner conditions. Preserve the source's shared timing and all ordered winner branches, including the destroyed-army condition, otherwise VP comparison and tie. State any remaining evidence gap.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.\n\n## Database schema\n\n# The datasheet database (`wahadb_clean.sqlite`)\n\nA SQLite copy of Wahapedia's Warhammer 40,000 data: units (datasheets), their models, weapons, keywords and\nabilities, and stratagems, detachments and enhancements. Text encoding is already repaired. Last update of the\ndata: 2026-09-01.\n\n## Rules for writing SQL\n\n- Every column is `TEXT`, numbers included: compare and sort numbers with `CAST(t AS INTEGER)`. Some stat values are\n  not numbers (`D3`, `D6`, `N/A`, `Melee`, `-`).\n- There are no declared keys: join on the columns listed under Joins, with their exact case (`Id` vs `id`,\n  `FactionId` vs `factionId`, `DatasheetId`).\n- `=` compares text exactly and is case-sensitive; `LIKE` ignores the case of ASCII letters. Keywords are written\n  like `Infantry`, `Battleline`, `Grenades`; stratagem names in capitals, like `GRENADE`.\n- One `SELECT` (or `WITH ... SELECT`) per call. Select the columns you need and filter; results are cut after 50 rows.\n- Booleans are the text `'true'` or `'false'`.\n\n## Tables\n\n| Table | One row is | Main columns |\n|---|---|---|\n| `factions` | a faction (25) | `Id` (`SM` = Space Marines, `CSM` = Chaos Space Marines, `TAU`, `TYR`, …), `name` |\n| `datasheets` | a unit's datasheet (1 680) | `Id`, `name`, `factionId`, `sourceId`, `role`, `loadout`, `transport`, `legend` (lore text, not Warhammer Legends), `virtual`, `link` |\n| `datasheets_models` | a model profile of a datasheet (a unit can have several, one per `line`) | `DatasheetId`, `line`, `name`, `m` (Move), `t` (Toughness), `sv` (Save), `invSv` (invulnerable save, `-` if none), `w` (Wounds), `ld` (Leadership), `oc` (Objective Control), `baseSize` |\n| `datasheets_wargear` | a weapon profile of a datasheet | `DatasheetId`, `name`, `range` (inches, or `Melee`), `type` (`Ranged`/`Melee`), `a` (Attacks), `bsWs` (BS or WS: `3` means 3+), `s` (Strength), `ap` (`0`, `-1`, …), `d` (Damage), `description` (weapon abilities) |\n| `datasheets_keywords` | a keyword of a datasheet | `DatasheetId`, `keyword`, `model` (the models it applies to; empty = the unit), `isFactionKeyword` |\n| `datasheets_abilities` | an ability on a datasheet | `DatasheetId`, `line`, `abilityId`, `name`, `description`, `type` (`Core`, `Faction`, `Datasheet`, `Wargear`, …), `parameter` |\n| `abilities` | a Core or Faction ability's text | `Id`, `name`, `factionId`, `description` |\n| `datasheets_unit_composition` | a line of unit composition | `DatasheetId`, `line`, `description` |\n| `datasheets_options` | a wargear option | `DatasheetId`, `line`, `description` |\n| `datasheets_models_cost` | a points cost | `DatasheetId`, `line`, `description` (unit size), `cost` (points) |\n| `datasheets_leader` | a leader-to-unit link | `LeaderId` (the leader's datasheet), `attachedId` (a unit it can lead) |\n| `stratagems` | a stratagem | `id`, `name`, `FactionId`, `type`, `cpCost`, `turn`, `phase`, `detachment`, `detachmentId`, `description` (lines `WHEN:`, `TARGET:`, `EFFECT:`, `RESTRICTIONS:`) |\n| `datasheets_stratagems` | a datasheet-to-stratagem link | `DatasheetId`, `stratagemId` |\n| `detachments` | a detachment | `Id`, `factionId`, `name`, `type` |\n| `detachment_abilities` | a detachment rule | `Id`, `detachmentId`, `name`, `description` |\n| `enhancements` | an enhancement | `id`, `FactionId`, `name`, `cost`, `detachmentId`, `description` |\n| `source` | a publication | `Id`, `name`, `type`, `edition`, `version`, `errataDate` |\n\n## Joins\n\n- `datasheets.Id` = `DatasheetId` of every `datasheets_*` table; `datasheets.factionId` = `factions.Id`;\n  `datasheets.sourceId` = `source.Id`.\n- `datasheets_abilities.abilityId` = `abilities.Id`: see the abilities trap below.\n- `datasheets_stratagems.stratagemId` = `stratagems.id`; `stratagems.FactionId` = `factions.Id`.\n- `detachments.Id` = `detachment_abilities.detachmentId` = `stratagems.detachmentId` = `enhancements.detachmentId`.\n- `datasheets_leader.LeaderId` and `.attachedId` = `datasheets.Id`.\n\n## Traps\n\n- **Unit names are not unique** (1 680 datasheets, 1 291 names): the same name can exist in several factions or\n  sources. Filter by `factionId` when it matters, and say which one you used.\n- **A broad name is a category, not a unit.** \"A Space Marine\" is not a datasheet name: `name LIKE '%Space Marine%'`\n  finds only odd units. Use the faction (`factionId = 'SM'`) and keywords from `datasheets_keywords` (`Battleline`,\n  `Infantry`, `Vehicle`, …), then give the typical value and the notable exceptions (example 2).\n- **A characteristic belongs to a model profile, not to a unit.** A datasheet can have profiles of different values\n  (a sergeant and a heavier veteran, for example): keep each profile's name in a category result, so that a unit\n  that is an exception for one profile is not given that value as a whole (example 2).\n- **Warhammer Legends and Forge World.** A datasheet's source tells where it comes from: `source.name` ends with\n  `(Warhammer Legends)` for Legends units (retired from standard play) and with `(Forge World)` for Forge World\n  units. Exclude Legends unless the question asks for them: `source.name NOT LIKE '%(Warhammer Legends)%'`. Do not\n  use `datasheets.legend` for this: it is lore text.\n- **Editions are per record.** `source.edition` is `'11'`, `'10'`, or `'0'` (no edition recorded: Legends and Forge\n  World packs). Two datasheets have no source (`sourceId` empty). `stratagems`, `detachments`, `enhancements` and\n  `abilities` have no source column: their edition is not recorded. The Core Rules rulebook is 10th edition.\n- **Abilities are in two places.** Core and Faction abilities have an `abilityId` and their text in `abilities`; the\n  others (`Datasheet`, `Wargear`, …) have an empty `abilityId` and their text in `datasheets_abilities.description`.\n  `abilities` repeats each ability once per faction (91 rows, 71 `Id`s), so join it through\n  `(SELECT DISTINCT Id, name, description FROM abilities)`, never on `Id` alone (example 4).\n- **Core stratagems** have an empty `FactionId` and come in two forms. Rows of `type` `Core Stratagem` are linked to\n  datasheets in `datasheets_stratagems`; rows whose `type` reads like the rulebook's labels (`Core – Wargear\n  Stratagem`, `Core – Strategic Ploy Stratagem`, …) are linked to no datasheet. A name can have both forms\n  (`COMMAND RE-ROLL`) or only one (`GRENADE` exists only as `Core – Wargear Stratagem`), and their texts can differ;\n  their source is not recorded. Which units can use a core stratagem is written in its `TARGET:` line (for\n  `GRENADE`, a unit with the `Grenades` keyword). Other rows with an empty `FactionId` belong to other game modes\n  (`Boarding Actions`, `Challenger`) or describe core actions (`Movement Ability`, `Shooting Ability`).\n- **Game modes of detachments.** `detachments.type` is empty for the standard game and `Boarding Actions` for that\n  game mode (59 of 327 detachments); a faction's stratagems include those of its Boarding Actions detachments (for\n  Space Marines, `Boarding Strike`). For a question about the standard game, leave those out. A stratagem whose\n  `detachmentId` matches no row of `detachments` (six Aeldari `Army Rules` stratagems) has an unknown game mode,\n  not the standard one.\n- **Rows can repeat.** `datasheets_keywords` holds 16 358 rows but 12 172 different ones, and a datasheet's points\n  rows can appear twice, between header rows such as `YOUR UNIT COSTS` with an empty `cost`. Use `DISTINCT` when you\n  list or count.\n- **Model profiles.** A datasheet can have several rows in `datasheets_models` (one per kind of model, by `line`);\n  keep all profiles of a unit together when they differ. Filter units by their keywords or an `EXISTS` condition,\n  then return all profiles of those units; filtering model rows to one characteristic hides mixed-profile units.\n- Some `datasheets_abilities.type` values are leftovers of the export in Russian (for example\n  `Special (правая колонка)`); treat them as other datasheet abilities. The datasheet `Example Wargear` is a\n  placeholder (`virtual = 'true'`).\n\n## Examples\n\nAll examples run as written; replace the names and IDs.\n\n1. A unit's model profiles, with its faction and source:\n\n```sql\nSELECT d.name, f.name AS faction, m.name AS model, m.m, m.t, m.sv, m.invSv, m.w, m.ld, m.oc,\n       s.name AS source, s.edition\nFROM datasheets d\nJOIN factions f ON f.Id = d.factionId\nJOIN datasheets_models m ON m.DatasheetId = d.Id\nLEFT JOIN source s ON s.Id = d.sourceId\nWHERE d.name = 'Intercessor Squad' AND d.factionId = 'SM'\nORDER BY CAST(m.line AS INTEGER);\n```\n\n2. A category: Space Marine Battleline units, Legends excluded. Use one query for representative units across\n   the observed Toughness values. It ranks units with mixed profiles first, chooses at most two representatives\n   per value, then returns every profile of each chosen unit. This is a sample even if `truncated` is false.\n   Keep `source` and `edition` as the publication column names:\n\n```sql\nWITH category_profiles AS (\n  SELECT DISTINCT d.Id, d.name, s.name AS source, s.edition,\n                  m.line, m.name AS model, m.t\n  FROM datasheets d\n  JOIN datasheets_models m ON m.DatasheetId = d.Id\n  LEFT JOIN source s ON s.Id = d.sourceId\n  WHERE d.factionId = 'SM'\n    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Battleline')\n    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')\n),\nunit_variants AS (\n  SELECT Id, COUNT(DISTINCT t) AS toughness_values\n  FROM category_profiles\n  GROUP BY Id\n),\nranked AS (\n  SELECT p.Id, p.name, p.source, p.edition, p.t,\n         ROW_NUMBER() OVER (\n           PARTITION BY p.t\n           ORDER BY v.toughness_values DESC, p.name, p.Id\n         ) AS representative\n  FROM (\n    SELECT DISTINCT Id, name, source, edition, t FROM category_profiles\n  ) p\n  JOIN unit_variants v ON v.Id = p.Id\n),\nselected AS (\n  SELECT DISTINCT Id, name, source, edition\n  FROM ranked\n  WHERE representative <= 2\n)\nSELECT s.Id, s.name, s.source, s.edition,\n       GROUP_CONCAT(p.model || ': T' || p.t, '; ') AS profiles\nFROM selected s\nJOIN category_profiles p ON p.Id = s.Id\nGROUP BY s.Id, s.name, s.source, s.edition\nORDER BY s.name, s.Id;\n```\n\nFor an overall distribution, query the complete category separately, grouping by publication and edition.\n`model_profiles` counts distinct datasheet/model-line profiles, not individual miniatures; `datasheets` counts\ndistinct units having that Toughness. A mixed-profile unit can appear in multiple Toughness groups, so do not\nsum these unit counts to obtain a total. No LIMIT is applied before this aggregation. A truncated aggregate\nresult is still incomplete; narrow its publication/category scope before making overall claims:\n\n```sql\nWITH profiles AS (\n  SELECT DISTINCT d.Id, m.line, m.t, s.Id AS source_id, s.name AS source, s.edition\n  FROM datasheets d\n  JOIN datasheets_models m ON m.DatasheetId = d.Id\n  LEFT JOIN source s ON s.Id = d.sourceId\n  WHERE d.factionId = 'SM'\n    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Battleline')\n    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')\n)\nSELECT source_id, source, edition, t, COUNT(*) AS model_profiles, COUNT(DISTINCT Id) AS datasheets\nFROM profiles\nGROUP BY source_id, source, edition, t\nORDER BY source, edition, CAST(t AS INTEGER), t;\n```\n\n3. A unit's weapons:\n\n```sql\nSELECT w.name, w.range, w.type, w.a, w.bsWs, w.s, w.ap, w.d, w.description\nFROM datasheets_wargear w\nWHERE w.DatasheetId = '000001157'  -- Intercessor Squad (SM)\nORDER BY CAST(w.line AS INTEGER), CAST(w.lineInWargear AS INTEGER);\n```\n\n4. A unit's abilities, from both places, one row per ability:\n\n```sql\nSELECT da.type,\n       COALESCE(a.name, da.name)               AS ability_name,\n       COALESCE(a.description, da.description) AS ability_text\nFROM datasheets_abilities da\nLEFT JOIN (SELECT DISTINCT Id, name, description FROM abilities) a ON a.Id = da.abilityId\nWHERE da.DatasheetId = '000000070'  -- Tactical Squad (SM)\nORDER BY CAST(da.line AS INTEGER);\n```\n\n5. A core stratagem's text, in every form, and the units that have the keyword its target needs:\n\n```sql\nSELECT name, type, cpCost, turn, phase, description\nFROM stratagems\nWHERE name = 'GRENADE' AND FactionId = '';\n```\n\n```sql\nSELECT DISTINCT d.name\nFROM datasheets d\nJOIN datasheets_keywords k ON k.DatasheetId = d.Id AND k.keyword = 'Grenades'\nWHERE d.factionId = 'SM'\nORDER BY d.name;\n```\n\n6. The stratagems of a unit's own faction, with their detachment and game mode (`game_mode`: empty = the standard\n   game, `Boarding Actions`, or `NULL` when the detachment is not in `detachments`):\n\n```sql\nSELECT s.name, s.FactionId AS faction, s.type, s.detachment, dt.type AS game_mode, s.cpCost, s.phase\nFROM datasheets d\nJOIN datasheets_stratagems ds ON ds.DatasheetId = d.Id\nJOIN stratagems s ON s.id = ds.stratagemId AND s.FactionId = d.factionId\nLEFT JOIN detachments dt ON dt.Id = s.detachmentId\nWHERE d.Id = '000001157'  -- Intercessor Squad (SM)\nORDER BY dt.type, s.detachment, s.name;\n```\n\n7. A unit's keywords:\n\n```sql\nSELECT DISTINCT keyword, model, isFactionKeyword\nFROM datasheets_keywords\nWHERE DatasheetId = '000000070'  -- Tactical Squad (SM)\nORDER BY isFactionKeyword DESC, keyword;\n```\n\n8. A faction's detachments, with their rules:\n\n```sql\nSELECT dt.name AS detachment, da.name AS rule, da.description\nFROM detachments dt\nLEFT JOIN detachment_abilities da ON da.detachmentId = dt.Id\nWHERE dt.factionId = 'SM'\nORDER BY dt.name;\n```\n\n9. The units a leader can lead:\n\n```sql\nSELECT attached.name\nFROM datasheets leader\nJOIN datasheets_leader l ON l.LeaderId = leader.Id\nJOIN datasheets attached ON attached.Id = l.attachedId\nWHERE leader.Id = '000000073'  -- Captain (SM)\nORDER BY attached.name;\n```\n\n10. A unit's points:\n\n```sql\nSELECT DISTINCT description AS unit_size, cost\nFROM datasheets_models_cost\nWHERE DatasheetId = '000001157' AND cost != ''  -- Intercessor Squad (SM)\nORDER BY CAST(cost AS INTEGER);\n```\n",
+  "final_prompt": "You are a rules assistant for Warhammer 40,000. You answer from two sources: the Core Rules (10th edition) and a database of datasheets, weapons, stratagems, factions and detachments.\n\n## Tools are spent\n\nThe tool budget for this question is spent: no tool can be called any more. Answer now, from the tool results above. Where they are not enough, give what they show and say what is missing.\n\n## Answering\n\n- Answer only from the tool results of this conversation. If a search does not supply the necessary passage, search again with a specific rule or section name while tools remain. If it is still missing, say what the retrieved passages do not establish and what you searched. Unsuccessful retrieval never proves that the rulebook has no such rule. Do not invent values or fill gaps from general game knowledge.\n- Organize an evidence answer in this order: source/version and scope, including which facts the user supplied and which the tools established; explicit conditions and results in the source's order; then the supported conclusion and any evidence gap. For an if/otherwise rule, preserve every branch and their common timing. Distinguish ways to score from the rule for determining a winner.\n- For a rule or procedure, preserve its cost, timing, eligible target, effect, restrictions and exceptions where the evidence gives them. For how to use a Stratagem, explain its CP payment from the `STRATAGEMS` and `1. COMMAND` sections and illustrate how the card labels WHEN, TARGET, EFFECT and RESTRICTIONS work from the retrieved Stratagem cards; once those sections and cards are retrieved, answer from them without searching again for a separate definition of those card labels. Identify the actor, whose phase it is, every recipient, and quantifiers such as \"both players\" and \"each phase\"; avoid ambiguous pronouns. Do not merge source versions. Give an exception only with its trigger and timing. If you choose an example, attribute it to one source or separate material versions; do not use a joint citation to imply that different versions are identical. An example figure is illustrative, not a datasheet fact about a real unit.\n- Cite every fact: [Core Rules p. N] for the rulebook (p. N–M for a passage over two pages), [DB: table] for the database.\n- Editions: the rulebook is the 10th edition. For a database record, give its edition only when it is recorded: for a datasheet, join `source` and give its name and edition; edition '0' means that none is recorded (a Warhammer Legends or Forge World pack: name it as such). Stratagems, detachments, enhancements and abilities have no source: say that their source is not recorded. Never give one edition to the database as a whole.\n- When evidence contains versions of the same rule, compare costs, timing, targets, effects and restrictions. For an applicability question or follow-up, give a short entry for EACH source: source/version and citation; its explicit conditions; the relevant facts supplied by the user or established by a tool, labelled by origin; any missing facts; and the conclusion supported by that source. These are checkable evidence statements, not a narrative of your reasoning. Preserve who a restriction applies to, including the controlling player. Nonselection, a completed action, and ineligibility are different predicates: none establishes another without cited evidence. Do not import exclusions across sources. An exclusion absent from a retrieved passage proves neither permission nor prohibition; say when that source does not settle the case. Describe material differences, not assumed clarifications.\n- Categories: a broad name such as \"a Space Marine\" is a category, not a unit. Resolve it to a faction and keywords (for example factionId 'SM' with the keyword Battleline or Infantry), leave out Warhammer Legends unless asked, use aggregate counts by publication/edition for a typical value and separate limited examples for exceptions, report the per-publication/edition counts as returned without summing them across publications or editions in prose, and say how you read the question: the units the answer covers and what it leaves out. Do not answer with a question when the results let you answer this way. Name the counting unit (datasheets or model profiles). A truncated example list cannot support an overall distribution.\n- Profiles: a characteristic belongs to a model profile, not to a unit. When a unit you give as an exception has profiles of different values, state every profile/value variant of that exception; never give one profile's characteristic as the value of the whole unit. Cite the table name, not a record ID as though it were a table.\n- Missions: use the page footer to name the mission for both scoring and winner rules. A question about ways to score needs concrete award conditions, amounts and timing; an introduction or a winner rule does not supply them. Search again for victory points and objective control only if no mission scoring rule has been retrieved yet; once a mission's scoring rule is present, answer from it without further searches for generic examples. Keep mission-specific scoring separate from generic examples and winner conditions. Preserve the source's shared timing and all ordered winner branches, including the destroyed-army condition, otherwise VP comparison and tie. State any remaining evidence gap.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+  "final_instruction": "Tools are no longer available. Answer now in text, from the tool results above; if they are not enough, say what is missing.",
+  "model_settings": {
+   "model": "gemini-3.8-flash",
+   "temperature": null,
+   "frequency_penalty": null,
+   "presence_penalty": null,
+   "top_p": null,
+   "top_k": null,
+   "max_output_tokens": null,
+   "n": 1,
+   "safety_settings": null,
+   "response_modalities": null,
+   "media_resolution": null,
+   "thinking_budget": null,
+   "include_thoughts": null,
+   "thinking_level": null,
+   "thinking_config": null,
+   "image_config": null
+  },
+  "tools": [
+   {
+    "type": "function",
+    "function": {
+     "name": "search_rules",
+     "description": "Search the Core Rules: how the game works (phases, actions, keywords, terrain). Retrieved Stratagem sections also include exact-name core database records when found.",
+     "parameters": {
+      "properties": {
+       "query": {
+        "description": "In English, with the rulebook's terms, whatever the question's language.",
+        "type": "string"
+       }
+      },
+      "required": [
+       "query"
+      ],
+      "type": "object"
+     }
+    }
+   },
+   {
+    "type": "function",
+    "function": {
+     "name": "run_sql",
+     "description": "Query units, weapons, abilities, stratagems, detachments and factions with read-only SQL.",
+     "parameters": {
+      "properties": {
+       "sql": {
+        "description": "One SQLite SELECT or WITH query that follows the database schema.",
+        "type": "string"
+       }
+      },
+      "required": [
+       "sql"
+      ],
+      "type": "object"
+     }
+    }
+   }
+  ],
+  "messages": [
+   {
+    "type": "human",
+    "data": {
+     "content": "After makin' ranged attaks in the shootin' phase, what makes a unit eligable for a charge in the charge phase?",
+     "additional_kwargs": {},
+     "response_metadata": {},
+     "type": "human",
+     "name": null,
+     "id": "b0185d7a-be1d-44d9-9bce-171e88443187"
+    }
+   },
+   {
+    "type": "ai",
+    "data": {
+     "content": [],
+     "additional_kwargs": {
+      "function_call": {
+       "name": "search_rules",
+       "arguments": "{\"query\": \"charge phase eligible to charge\"}"
+      },
+      "__gemini_function_call_thought_signatures__": {
+       "call_1016477": "Eu0ECuoEAWkUfRMTKZZVGzO816QfqaFXrAzR1jeE/FAhlhBVpV0owtUhvMamQ72q7qSzMvj1vTOnwyWCchTsWc+4XEC4qY74XuyJfudBYuIKTpQWsgCH+7O0he6cltYpnVny1+szeMP6AMNUfTqYKZu2n/yChioToeBETRgLxhIUW+gjxgP4hjzg+hQJiKmCGtIYFY2M91as7zKmH/9xM6+9VtIERKOgQMsn25BXkmCrdt4iwXgcU20kzHJsJEqtxOcPmsV2GTWi63ToSFN+awZjSIVwhEAjLUYP7SGv401qexh7El2W/+eq3eWdFXPpjuUfZhwC1VqAXvPTUf4559DENT4CJ5iLXISaGbzlN38C29pKHjiVnmf2gGNH6CxOqhN13ipA8AqcjAL//QxuInFNey1Ich/H1E6JMDL8FJEfq13wkc0Ui4or2Uk2hZzrx1SZkOtFqhIyqPE8yDKhgFIHWAvX7J4Aoz0MDyRzI7mErRXTM1WQJapRZbvG5mR2vsCZykt4KUJnMtbzVW0YKHhM1tVnnVMsRZ1zhB6MVFORsalaL17sZpwoIRHK/tAo1OsJKCdhztl2XbHWBdBjfnOtB0zF6eR6spSTmens3zoBP8Lbw2W35V+pTTidCqGoyHCzFFzMQPuN5/eKKaJku76EzBMEigp6VbbokCJ2Y2QtBoh+Ey95GEZcAFjE8gTjrxwF6IKCP1U884OGL4DzEx2dm+Y2mC3FZYPPTPdli9ee2KK8BJBABO1RZvcHQ/w6cnaWy4w7YsGoRzR6TYnVYuIL61dpdQUN5QCADFQcVDEZFRaQxY83WGg9bL2yq2ns"
+      }
+     },
+     "response_metadata": {
+      "safety_ratings": [],
+      "finish_reason": "STOP",
+      "model_name": "gemini-3.8-flash",
+      "model_provider": "google_genai"
+     },
+     "type": "ai",
+     "name": null,
+     "id": "lc_run--01a16f89-237a-7af0-b9fc-1b79d2919cdb",
+     "tool_calls": [
+      {
+       "name": "search_rules",
+       "args": {
+        "query": "charge phase eligible to charge"
+       },
+       "id": "call_1016477",
+       "type": "tool_call"
+      }
+     ],
+     "invalid_tool_calls": [],
+     "usage_metadata": {
+      "input_tokens": 6023,
+      "output_tokens": 123,
+      "total_tokens": 6146,
+      "input_token_details": {
+       "cache_read": 0
+      },
+      "output_token_details": {
+       "reasoning": 103
+      }
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "data": {
+     "content": "[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGE BONUS\nMany warriors thunder headlong into combat, using the impetus of their charge to bring swift death to their foes.\n\nEach time a unit makes a Charge move, until the end of the turn, that unit has the Fights First ability (pg 32).\n\nIn your Charge phase, if you have any eligible units from your army on the battlefield that you want to charge into close combat, you can select those units, one at a time, to declare a charge. Each can only be selected once per phase. Once all of these charges (if any) have been resolved, progress to the Fight phase.\n\nA unit is eligible to charge if it is within 12\" of one or more enemy units at the start of your Charge phase, unless any of the following apply:\n\n- That unit Advanced or Fell Back this turn.\n- That unit is within Engagement Range of any enemy models.\n- That unit is an Aircraft unit.\n\n[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGING WITH A UNIT\nOnce you have selected an eligible unit to declare a charge, you must select one or more enemy units within 12\" of it as the targets of that charge. The targets of a charge do not need to be visible to the charging unit.\n\nYou then make a Charge roll for the charging unit by rolling 2D6. The result is the maximum number of inches each model in that unit can be moved if a Charge move is possible. For a Charge move to be possible, the Charge roll must be sufficient to enable the charging unit to end that move:\n\n- Within Engagement Range of every unit that you selected as a target of the charge.\n- Without moving within Engagement Range of any enemy units that were not a target of the charge.\n- In Unit Coherency.\n\nIf any of these conditions cannot be met, the charge fails and no models in the charging unit move this phase. Otherwise, the charge is successful and the models in the charging unit make a Charge move - move each model a distance in inches up to the result of the Charge roll. When doing so, each model in the charging unit must end its Charge move closer to one of the units selected as a target of its charge. If you can also move a charging model so that it ends its Charge move in base-to-base contact with one or more enemy models while still enabling the charging unit to end its move satisfying all of the conditions above, you must do so. The controlling player chooses the order in which to move their models.\n\n[Core Rules p. 10] (page footer p. 10: CORE RULES | THE BATTLE ROUND)\nFigure label: COMMAND PHASE\nSection: THE BATTLE ROUND > CHARGE PHASE\nYour units charge forward to battle at close quarters.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: HEROIC INTERVENTION\n2CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nVoices raised in furious war cries, your warriors surge forth to meet the enemy's onslaught head-on.\n\nWHEN: Your opponent's Charge phase, just after an enemy unit ends a Charge move.\n\nTARGET: One unit from your army that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\n\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\n\nRESTRICTIONS: You can only select a Vehicle unit from your army if it is a Walker. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn (pg 29).\n\n[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nFigure label: Use the following sequence to charge with your units.\nSection: CHARGE PHASE\nWarriors hurl themselves into battle to slay with blade, hammer and claw. Strident war cries and frantic screams echo through the whirling smoke as the moment of cataclysmic violence draws near.\n\nUse the following sequence to charge with your units.\n\n[Core Rules p. 19] (page footer p. 19: CORE RULES | SHOOTING PHASE)\nFigure label: Use the following sequence when a unit shoots.\nSection: SHOOTING PHASE > SELECT TARGETS\nMAKE RANGED ATTACKS\n\nREPEAT FOR NEXT ELIGIBLE UNIT\n\nIn your Shooting phase, if you have one or more eligible units from your army on the battlefield, you can select those units, one at a time, and shoot with them. Each unit can only be selected to shoot once per phase. Once all of the units you selected have shot, progress to your Charge phase.\n\nA unit is eligible to shoot unless any of the following apply:\n\n- That unit Advanced this turn.\n- That unit Fell Back this turn.\n\n[Core Rules p. 45] (page footer p. 45: CORE RULES | TERRAIN FEATURES)\nSection: BARRICADES AND FUEL PIPES > ENGAGEMENT RANGE\n- In the Charge phase, if an enemy unit is within 1\" of this terrain feature, a charging unit on the opposite side of this terrain feature can still make a Charge move against that enemy unit provided it ends that Charge move as close as possible to this terrain feature and within 2\" of that enemy unit.\n- In the Fight phase, units are eligible to fight - and models can make attacks - if their target is on the opposite side of this terrain feature and within 2\" of them.\n\n[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGING WITH A UNIT\n- Charge Roll: 2D6\".\n- Targets of a charge must be within 12\" but do not need to be visible.\n- If the distance rolled is insufficient to move within Engagement Range of all targets while maintaining Unit Coherency, the charge fails.\n- Cannot move within Engagement Range of any unit that was not a target of the charge.\n- If the charge is successful, each model makes a Charge move less than or equal to the Charge roll, and must move into base-to-base contact with an enemy model if possible.\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"HEROIC INTERVENTION\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335012\", \"HEROIC INTERVENTION\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Opponent’s turn\", \"Charge phase\", \"\", \"WHEN: Your opponent’s Charge phase, just after an enemy unit ends a Charge move.\\nTARGET: One unit from your army that is within 6\\\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\\nRESTRICTIONS: You can only select a VEHICLE unit from your army if it is a WALKER. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn.\"], [\"000010810011\", \"HEROIC INTERVENTION\", \"\", \"Core Stratagem\", \"1\", \"Opponent’s turn\", \"Charge phase\", \"\", \"WHEN: End of your opponent’s Charge phase.\\nTARGET: One friendly unengaged unit within 12\\\" of one or more enemy units. You can only select a VEHICLE unit if it is a CHARACTER/WALKER unit.\\nEFFECT: Resolve a charge with your unit (11.02). While doing so, before making the charge roll, you must select one of the following modes:Leap to Defend: When selecting charge targets, you can only select enemy units that made a charge move this phase and are within the maximum distance.+1CPInto the Fray:When making the charge roll, if the result is greater than 6 (after modifiers), change it to 6.When selecting charge targets, you can select any enemy units that are within 6\\\" of your unit and within the maximum distance.\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+     "additional_kwargs": {},
+     "response_metadata": {},
+     "type": "tool",
+     "name": "search_rules",
+     "id": "b73ff160-5b8d-482a-9831-2c7998ed023e",
+     "tool_call_id": "call_1016477",
+     "artifact": {
+      "chunks": [
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0112",
+         "text": "Section: CHARGE BONUS\nMany warriors thunder headlong into combat, using the impetus of their charge to bring swift death to their foes.\n\nEach time a unit makes a Charge move, until the end of the turn, that unit has the Fights First ability (pg 32).\n\nIn your Charge phase, if you have any eligible units from your army on the battlefield that you want to charge into close combat, you can select those units, one at a time, to declare a charge. Each can only be selected once per phase. Once all of these charges (if any) have been resolved, progress to the Fight phase.\n\nA unit is eligible to charge if it is within 12\" of one or more enemy units at the start of your Charge phase, unless any of the following apply:\n\n- That unit Advanced or Fell Back this turn.\n- That unit is within Engagement Range of any enemy models.\n- That unit is an Aircraft unit.",
+         "pages": [
+          29
+         ],
+         "section": "CHARGE BONUS",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | CHARGE PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03278688524590164
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0113",
+         "text": "Section: CHARGING WITH A UNIT\nOnce you have selected an eligible unit to declare a charge, you must select one or more enemy units within 12\" of it as the targets of that charge. The targets of a charge do not need to be visible to the charging unit.\n\nYou then make a Charge roll for the charging unit by rolling 2D6. The result is the maximum number of inches each model in that unit can be moved if a Charge move is possible. For a Charge move to be possible, the Charge roll must be sufficient to enable the charging unit to end that move:\n\n- Within Engagement Range of every unit that you selected as a target of the charge.\n- Without moving within Engagement Range of any enemy units that were not a target of the charge.\n- In Unit Coherency.\n\nIf any of these conditions cannot be met, the charge fails and no models in the charging unit move this phase. Otherwise, the charge is successful and the models in the charging unit make a Charge move - move each model a distance in inches up to the result of the Charge roll. When doing so, each model in the charging unit must end its Charge move closer to one of the units selected as a target of its charge. If you can also move a charging model so that it ends its Charge move in base-to-base contact with one or more enemy models while still enabling the charging unit to end its move satisfying all of the conditions above, you must do so. The controlling player chooses the order in which to move their models.",
+         "pages": [
+          29
+         ],
+         "section": "CHARGING WITH A UNIT",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | CHARGE PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.031754032258064516
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0032",
+         "text": "Figure label: COMMAND PHASE\nSection: THE BATTLE ROUND > CHARGE PHASE\nYour units charge forward to battle at close quarters.",
+         "pages": [
+          10
+         ],
+         "section": "THE BATTLE ROUND > CHARGE PHASE",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/20"
+         ],
+         "page_footers": [
+          "CORE RULES | THE BATTLE ROUND"
+         ],
+         "picture_labels": [
+          "COMMAND PHASE"
+         ]
+        },
+        "score": 0.03125763125763126
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0167",
+         "text": "Section: HEROIC INTERVENTION\n2CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nVoices raised in furious war cries, your warriors surge forth to meet the enemy's onslaught head-on.\n\nWHEN: Your opponent's Charge phase, just after an enemy unit ends a Charge move.\n\nTARGET: One unit from your army that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\n\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\n\nRESTRICTIONS: You can only select a Vehicle unit from your army if it is a Walker. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn (pg 29).",
+         "pages": [
+          42
+         ],
+         "section": "HEROIC INTERVENTION",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/102"
+         ],
+         "page_footers": [
+          "CORE RULES | STRATAGEMS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.031054405392392875
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0111",
+         "text": "Figure label: Use the following sequence to charge with your units.\nSection: CHARGE PHASE\nWarriors hurl themselves into battle to slay with blade, hammer and claw. Strident war cries and frantic screams echo through the whirling smoke as the moment of cataclysmic violence draws near.\n\nUse the following sequence to charge with your units.",
+         "pages": [
+          29
+         ],
+         "section": "CHARGE PHASE",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/61"
+         ],
+         "page_footers": [
+          "CORE RULES | CHARGE PHASE"
+         ],
+         "picture_labels": [
+          "Use the following sequence to charge with your units."
+         ]
+        },
+        "score": 0.03055037313432836
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0066",
+         "text": "Figure label: Use the following sequence when a unit shoots.\nSection: SHOOTING PHASE > SELECT TARGETS\nMAKE RANGED ATTACKS\n\nREPEAT FOR NEXT ELIGIBLE UNIT\n\nIn your Shooting phase, if you have one or more eligible units from your army on the battlefield, you can select those units, one at a time, and shoot with them. Each unit can only be selected to shoot once per phase. Once all of the units you selected have shot, progress to your Charge phase.\n\nA unit is eligible to shoot unless any of the following apply:\n\n- That unit Advanced this turn.\n- That unit Fell Back this turn.",
+         "pages": [
+          19
+         ],
+         "section": "SHOOTING PHASE > SELECT TARGETS",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/39"
+         ],
+         "page_footers": [
+          "CORE RULES | SHOOTING PHASE"
+         ],
+         "picture_labels": [
+          "Use the following sequence when a unit shoots."
+         ]
+        },
+        "score": 0.030536130536130537
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0183",
+         "text": "Section: BARRICADES AND FUEL PIPES > ENGAGEMENT RANGE\n- In the Charge phase, if an enemy unit is within 1\" of this terrain feature, a charging unit on the opposite side of this terrain feature can still make a Charge move against that enemy unit provided it ends that Charge move as close as possible to this terrain feature and within 2\" of that enemy unit.\n- In the Fight phase, units are eligible to fight - and models can make attacks - if their target is on the opposite side of this terrain feature and within 2\" of them.",
+         "pages": [
+          45
+         ],
+         "section": "BARRICADES AND FUEL PIPES > ENGAGEMENT RANGE",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | TERRAIN FEATURES"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.029957522915269395
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0114",
+         "text": "Section: CHARGING WITH A UNIT\n- Charge Roll: 2D6\".\n- Targets of a charge must be within 12\" but do not need to be visible.\n- If the distance rolled is insufficient to move within Engagement Range of all targets while maintaining Unit Coherency, the charge fails.\n- Cannot move within Engagement Range of any unit that was not a target of the charge.\n- If the charge is successful, each model makes a Charge move less than or equal to the Charge roll, and must move into base-to-base contact with an enemy model if possible.",
+         "pages": [
+          29
+         ],
+         "section": "CHARGING WITH A UNIT",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | CHARGE PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.02964426877470356
+       }
+      ],
+      "stratagem_names": [
+       "HEROIC INTERVENTION"
+      ],
+      "stratagems": {
+       "columns": [
+        "id",
+        "name",
+        "FactionId",
+        "type",
+        "cpCost",
+        "turn",
+        "phase",
+        "detachment",
+        "description"
+       ],
+       "rows": [
+        [
+         "000008335012",
+         "HEROIC INTERVENTION",
+         "",
+         "Core – Strategic Ploy Stratagem",
+         "1",
+         "Opponent’s turn",
+         "Charge phase",
+         "",
+         "WHEN: Your opponent’s Charge phase, just after an enemy unit ends a Charge move.\nTARGET: One unit from your army that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\nRESTRICTIONS: You can only select a VEHICLE unit from your army if it is a WALKER. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn."
+        ],
+        [
+         "000010810011",
+         "HEROIC INTERVENTION",
+         "",
+         "Core Stratagem",
+         "1",
+         "Opponent’s turn",
+         "Charge phase",
+         "",
+         "WHEN: End of your opponent’s Charge phase.\nTARGET: One friendly unengaged unit within 12\" of one or more enemy units. You can only select a VEHICLE unit if it is a CHARACTER/WALKER unit.\nEFFECT: Resolve a charge with your unit (11.02). While doing so, before making the charge roll, you must select one of the following modes:Leap to Defend: When selecting charge targets, you can only select enemy units that made a charge move this phase and are within the maximum distance.+1CPInto the Fray:When making the charge roll, if the result is greater than 6 (after modifiers), change it to 6.When selecting charge targets, you can select any enemy units that are within 6\" of your unit and within the maximum distance."
+        ]
+       ],
+       "truncated": false,
+       "error": null
+      },
+      "related_sections": []
+     },
+     "status": "success"
+    }
+   },
+   {
+    "type": "ai",
+    "data": {
+     "content": [],
+     "additional_kwargs": {
+      "function_call": {
+       "name": "search_rules",
+       "arguments": "{\"query\": \"eligible to charge\"}"
+      },
+      "__gemini_function_call_thought_signatures__": {
+       "call_1367264": "EucCCuQCAWkUfRPIBar/KScDnsgY6kFiZgXPWp2z5TMGZL6+/Sr+LCFd3inLcrGDkURsc+h70+iQHK9ngW1vEAl9pUKtLU0Tf1qXKP4tIUnVNBLmPXkP4OXb2G5nob4aWVjTJ2+Wt3Tv6iwwZ9h1GFZwiytxncrUqu4hWMFnOxvVuYhxNa83pk0pY8uImRBC1HdrI0Bww6MkMdu0YdHlAWrRbcGhO30Ba0rkDd0SEM6yJdtiHyJjkB0GD5Gp3+WGsbJsOtClmWc/oI1SMRM2QJosC+qLVvc4UHuTBuCAHZTTlDPwfHyUX0na+oc7LcifSwNeskrItGCKAVfwmX5UDprvUUpg8ve2OrKtUih1O1mWudReRHUeHRc83dhkEwvYw1KZzdQlliAmq3BHhaW68ClCA7p6q7pTrA8cdpOYOzks7iTskmadW9FmbW6sx/lzvD+K5cSQjgskMvF/7Oot11dnBPigGOR/w1s="
+      }
+     },
+     "response_metadata": {
+      "safety_ratings": [],
+      "finish_reason": "STOP",
+      "model_name": "gemini-3.8-flash",
+      "model_provider": "google_genai"
+     },
+     "type": "ai",
+     "name": null,
+     "id": "lc_run--01a16f89-2e87-7b50-bade-7372fda34016",
+     "tool_calls": [
+      {
+       "name": "search_rules",
+       "args": {
+        "query": "eligible to charge"
+       },
+       "id": "call_1367264",
+       "type": "tool_call"
+      }
+     ],
+     "invalid_tool_calls": [],
+     "usage_metadata": {
+      "input_tokens": 8118,
+      "output_tokens": 67,
+      "total_tokens": 8185,
+      "input_token_details": {
+       "cache_read": 0
+      },
+      "output_token_details": {
+       "reasoning": 49
+      }
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "data": {
+     "content": "[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGE BONUS\nMany warriors thunder headlong into combat, using the impetus of their charge to bring swift death to their foes.\n\nEach time a unit makes a Charge move, until the end of the turn, that unit has the Fights First ability (pg 32).\n\nIn your Charge phase, if you have any eligible units from your army on the battlefield that you want to charge into close combat, you can select those units, one at a time, to declare a charge. Each can only be selected once per phase. Once all of these charges (if any) have been resolved, progress to the Fight phase.\n\nA unit is eligible to charge if it is within 12\" of one or more enemy units at the start of your Charge phase, unless any of the following apply:\n\n- That unit Advanced or Fell Back this turn.\n- That unit is within Engagement Range of any enemy models.\n- That unit is an Aircraft unit.\n\n[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGING WITH A UNIT\nOnce you have selected an eligible unit to declare a charge, you must select one or more enemy units within 12\" of it as the targets of that charge. The targets of a charge do not need to be visible to the charging unit.\n\nYou then make a Charge roll for the charging unit by rolling 2D6. The result is the maximum number of inches each model in that unit can be moved if a Charge move is possible. For a Charge move to be possible, the Charge roll must be sufficient to enable the charging unit to end that move:\n\n- Within Engagement Range of every unit that you selected as a target of the charge.\n- Without moving within Engagement Range of any enemy units that were not a target of the charge.\n- In Unit Coherency.\n\nIf any of these conditions cannot be met, the charge fails and no models in the charging unit move this phase. Otherwise, the charge is successful and the models in the charging unit make a Charge move - move each model a distance in inches up to the result of the Charge roll. When doing so, each model in the charging unit must end its Charge move closer to one of the units selected as a target of its charge. If you can also move a charging model so that it ends its Charge move in base-to-base contact with one or more enemy models while still enabling the charging unit to end its move satisfying all of the conditions above, you must do so. The controlling player chooses the order in which to move their models.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: HEROIC INTERVENTION\n2CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nVoices raised in furious war cries, your warriors surge forth to meet the enemy's onslaught head-on.\n\nWHEN: Your opponent's Charge phase, just after an enemy unit ends a Charge move.\n\nTARGET: One unit from your army that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\n\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\n\nRESTRICTIONS: You can only select a Vehicle unit from your army if it is a Walker. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn (pg 29).\n\n[Core Rules p. 45] (page footer p. 45: CORE RULES | TERRAIN FEATURES)\nSection: BARRICADES AND FUEL PIPES > ENGAGEMENT RANGE\n- In the Charge phase, if an enemy unit is within 1\" of this terrain feature, a charging unit on the opposite side of this terrain feature can still make a Charge move against that enemy unit provided it ends that Charge move as close as possible to this terrain feature and within 2\" of that enemy unit.\n- In the Fight phase, units are eligible to fight - and models can make attacks - if their target is on the opposite side of this terrain feature and within 2\" of them.\n\n[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGING WITH A UNIT\n- Charge Roll: 2D6\".\n- Targets of a charge must be within 12\" but do not need to be visible.\n- If the distance rolled is insufficient to move within Engagement Range of all targets while maintaining Unit Coherency, the charge fails.\n- Cannot move within Engagement Range of any unit that was not a target of the charge.\n- If the charge is successful, each model makes a Charge move less than or equal to the Charge roll, and must move into base-to-base contact with an enemy model if possible.\n\n[Core Rules p. 19] (page footer p. 19: CORE RULES | SHOOTING PHASE)\nFigure label: Use the following sequence when a unit shoots.\nSection: SHOOTING PHASE > SELECT TARGETS\nMAKE RANGED ATTACKS\n\nREPEAT FOR NEXT ELIGIBLE UNIT\n\nIn your Shooting phase, if you have one or more eligible units from your army on the battlefield, you can select those units, one at a time, and shoot with them. Each unit can only be selected to shoot once per phase. Once all of the units you selected have shot, progress to your Charge phase.\n\nA unit is eligible to shoot unless any of the following apply:\n\n- That unit Advanced this turn.\n- That unit Fell Back this turn.\n\n[Core Rules p. 30] (page footer p. 30: CORE RULES | CHARGE PHASE)\nFigure label: 2½\"\nFigure label: 10\"\nSection: CHARGING WITH FLYING MODELS\nWhen a model that can Fly starts or ends a Charge move on a terrain feature, instead of measuring the path it has moved across the battlefield, you instead measure its path 'through the air'. In addition, it can be moved over other models as if they were not there. A model that can Fly cannot end any move on top of another model.\n\n- Fly models can move over other models when they make a Charge move.\n- Fly models that start or end a Charge move on a terrain feature measure distance moved through the air when they make a Charge move.\n\n3\"\n\n2\"\n\n2½\"\n\nThe Von Ryan's Leaper declares a charge against the Eradicators, who are on top of a terrain feature 3\" in height. The horizontal distance between the two units when the charge is declared is 4 1/2\". To end a Charge move within Engagement Range, the Tyranids player would need a Charge roll of 7 or higher.\n\nThe Tyranid Prime is selected to declare a charge, and targets the Sternguard Veterans on top of the ruin. The Tyranids player rolls 10\" for the Charge roll, allowing the Tyranid Prime to move within Engagement Range of its target.\n\nNote that as the Tyranid Prime can Fly, it can move over the Terminators, and the distance moved is the diagonal distance through the air.\n\n10\"\n\n[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nFigure label: Use the following sequence to charge with your units.\nSection: CHARGE PHASE\nWarriors hurl themselves into battle to slay with blade, hammer and claw. Strident war cries and frantic screams echo through the whirling smoke as the moment of cataclysmic violence draws near.\n\nUse the following sequence to charge with your units.\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"HEROIC INTERVENTION\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335012\", \"HEROIC INTERVENTION\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Opponent’s turn\", \"Charge phase\", \"\", \"WHEN: Your opponent’s Charge phase, just after an enemy unit ends a Charge move.\\nTARGET: One unit from your army that is within 6\\\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\\nRESTRICTIONS: You can only select a VEHICLE unit from your army if it is a WALKER. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn.\"], [\"000010810011\", \"HEROIC INTERVENTION\", \"\", \"Core Stratagem\", \"1\", \"Opponent’s turn\", \"Charge phase\", \"\", \"WHEN: End of your opponent’s Charge phase.\\nTARGET: One friendly unengaged unit within 12\\\" of one or more enemy units. You can only select a VEHICLE unit if it is a CHARACTER/WALKER unit.\\nEFFECT: Resolve a charge with your unit (11.02). While doing so, before making the charge roll, you must select one of the following modes:Leap to Defend: When selecting charge targets, you can only select enemy units that made a charge move this phase and are within the maximum distance.+1CPInto the Fray:When making the charge roll, if the result is greater than 6 (after modifiers), change it to 6.When selecting charge targets, you can select any enemy units that are within 6\\\" of your unit and within the maximum distance.\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+     "additional_kwargs": {},
+     "response_metadata": {},
+     "type": "tool",
+     "name": "search_rules",
+     "id": "afd77284-d59e-4937-bdc3-6f41d2d0c61f",
+     "tool_call_id": "call_1367264",
+     "artifact": {
+      "chunks": [
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0112",
+         "text": "Section: CHARGE BONUS\nMany warriors thunder headlong into combat, using the impetus of their charge to bring swift death to their foes.\n\nEach time a unit makes a Charge move, until the end of the turn, that unit has the Fights First ability (pg 32).\n\nIn your Charge phase, if you have any eligible units from your army on the battlefield that you want to charge into close combat, you can select those units, one at a time, to declare a charge. Each can only be selected once per phase. Once all of these charges (if any) have been resolved, progress to the Fight phase.\n\nA unit is eligible to charge if it is within 12\" of one or more enemy units at the start of your Charge phase, unless any of the following apply:\n\n- That unit Advanced or Fell Back this turn.\n- That unit is within Engagement Range of any enemy models.\n- That unit is an Aircraft unit.",
+         "pages": [
+          29
+         ],
+         "section": "CHARGE BONUS",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | CHARGE PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03278688524590164
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0113",
+         "text": "Section: CHARGING WITH A UNIT\nOnce you have selected an eligible unit to declare a charge, you must select one or more enemy units within 12\" of it as the targets of that charge. The targets of a charge do not need to be visible to the charging unit.\n\nYou then make a Charge roll for the charging unit by rolling 2D6. The result is the maximum number of inches each model in that unit can be moved if a Charge move is possible. For a Charge move to be possible, the Charge roll must be sufficient to enable the charging unit to end that move:\n\n- Within Engagement Range of every unit that you selected as a target of the charge.\n- Without moving within Engagement Range of any enemy units that were not a target of the charge.\n- In Unit Coherency.\n\nIf any of these conditions cannot be met, the charge fails and no models in the charging unit move this phase. Otherwise, the charge is successful and the models in the charging unit make a Charge move - move each model a distance in inches up to the result of the Charge roll. When doing so, each model in the charging unit must end its Charge move closer to one of the units selected as a target of its charge. If you can also move a charging model so that it ends its Charge move in base-to-base contact with one or more enemy models while still enabling the charging unit to end its move satisfying all of the conditions above, you must do so. The controlling player chooses the order in which to move their models.",
+         "pages": [
+          29
+         ],
+         "section": "CHARGING WITH A UNIT",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | CHARGE PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.031754032258064516
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0167",
+         "text": "Section: HEROIC INTERVENTION\n2CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nVoices raised in furious war cries, your warriors surge forth to meet the enemy's onslaught head-on.\n\nWHEN: Your opponent's Charge phase, just after an enemy unit ends a Charge move.\n\nTARGET: One unit from your army that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\n\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\n\nRESTRICTIONS: You can only select a Vehicle unit from your army if it is a Walker. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn (pg 29).",
+         "pages": [
+          42
+         ],
+         "section": "HEROIC INTERVENTION",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/102"
+         ],
+         "page_footers": [
+          "CORE RULES | STRATAGEMS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.031024531024531024
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0183",
+         "text": "Section: BARRICADES AND FUEL PIPES > ENGAGEMENT RANGE\n- In the Charge phase, if an enemy unit is within 1\" of this terrain feature, a charging unit on the opposite side of this terrain feature can still make a Charge move against that enemy unit provided it ends that Charge move as close as possible to this terrain feature and within 2\" of that enemy unit.\n- In the Fight phase, units are eligible to fight - and models can make attacks - if their target is on the opposite side of this terrain feature and within 2\" of them.",
+         "pages": [
+          45
+         ],
+         "section": "BARRICADES AND FUEL PIPES > ENGAGEMENT RANGE",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | TERRAIN FEATURES"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.030309988518943745
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0114",
+         "text": "Section: CHARGING WITH A UNIT\n- Charge Roll: 2D6\".\n- Targets of a charge must be within 12\" but do not need to be visible.\n- If the distance rolled is insufficient to move within Engagement Range of all targets while maintaining Unit Coherency, the charge fails.\n- Cannot move within Engagement Range of any unit that was not a target of the charge.\n- If the charge is successful, each model makes a Charge move less than or equal to the Charge roll, and must move into base-to-base contact with an enemy model if possible.",
+         "pages": [
+          29
+         ],
+         "section": "CHARGING WITH A UNIT",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | CHARGE PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.030117753623188408
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0066",
+         "text": "Figure label: Use the following sequence when a unit shoots.\nSection: SHOOTING PHASE > SELECT TARGETS\nMAKE RANGED ATTACKS\n\nREPEAT FOR NEXT ELIGIBLE UNIT\n\nIn your Shooting phase, if you have one or more eligible units from your army on the battlefield, you can select those units, one at a time, and shoot with them. Each unit can only be selected to shoot once per phase. Once all of the units you selected have shot, progress to your Charge phase.\n\nA unit is eligible to shoot unless any of the following apply:\n\n- That unit Advanced this turn.\n- That unit Fell Back this turn.",
+         "pages": [
+          19
+         ],
+         "section": "SHOOTING PHASE > SELECT TARGETS",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/39"
+         ],
+         "page_footers": [
+          "CORE RULES | SHOOTING PHASE"
+         ],
+         "picture_labels": [
+          "Use the following sequence when a unit shoots."
+         ]
+        },
+        "score": 0.02964254577157803
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0116",
+         "text": "Figure label: 2½\"\nFigure label: 10\"\nSection: CHARGING WITH FLYING MODELS\nWhen a model that can Fly starts or ends a Charge move on a terrain feature, instead of measuring the path it has moved across the battlefield, you instead measure its path 'through the air'. In addition, it can be moved over other models as if they were not there. A model that can Fly cannot end any move on top of another model.\n\n- Fly models can move over other models when they make a Charge move.\n- Fly models that start or end a Charge move on a terrain feature measure distance moved through the air when they make a Charge move.\n\n3\"\n\n2\"\n\n2½\"\n\nThe Von Ryan's Leaper declares a charge against the Eradicators, who are on top of a terrain feature 3\" in height. The horizontal distance between the two units when the charge is declared is 4 1/2\". To end a Charge move within Engagement Range, the Tyranids player would need a Charge roll of 7 or higher.\n\nThe Tyranid Prime is selected to declare a charge, and targets the Sternguard Veterans on top of the ruin. The Tyranids player rolls 10\" for the Charge roll, allowing the Tyranid Prime to move within Engagement Range of its target.\n\nNote that as the Tyranid Prime can Fly, it can move over the Terminators, and the distance moved is the diagonal distance through the air.\n\n10\"",
+         "pages": [
+          30
+         ],
+         "section": "CHARGING WITH FLYING MODELS",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/62",
+          "#/pictures/63"
+         ],
+         "page_footers": [
+          "CORE RULES | CHARGE PHASE"
+         ],
+         "picture_labels": [
+          "2½\"",
+          "10\""
+         ]
+        },
+        "score": 0.029386529386529386
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0111",
+         "text": "Figure label: Use the following sequence to charge with your units.\nSection: CHARGE PHASE\nWarriors hurl themselves into battle to slay with blade, hammer and claw. Strident war cries and frantic screams echo through the whirling smoke as the moment of cataclysmic violence draws near.\n\nUse the following sequence to charge with your units.",
+         "pages": [
+          29
+         ],
+         "section": "CHARGE PHASE",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/61"
+         ],
+         "page_footers": [
+          "CORE RULES | CHARGE PHASE"
+         ],
+         "picture_labels": [
+          "Use the following sequence to charge with your units."
+         ]
+        },
+        "score": 0.029273504273504274
+       }
+      ],
+      "stratagem_names": [
+       "HEROIC INTERVENTION"
+      ],
+      "stratagems": {
+       "columns": [
+        "id",
+        "name",
+        "FactionId",
+        "type",
+        "cpCost",
+        "turn",
+        "phase",
+        "detachment",
+        "description"
+       ],
+       "rows": [
+        [
+         "000008335012",
+         "HEROIC INTERVENTION",
+         "",
+         "Core – Strategic Ploy Stratagem",
+         "1",
+         "Opponent’s turn",
+         "Charge phase",
+         "",
+         "WHEN: Your opponent’s Charge phase, just after an enemy unit ends a Charge move.\nTARGET: One unit from your army that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\nRESTRICTIONS: You can only select a VEHICLE unit from your army if it is a WALKER. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn."
+        ],
+        [
+         "000010810011",
+         "HEROIC INTERVENTION",
+         "",
+         "Core Stratagem",
+         "1",
+         "Opponent’s turn",
+         "Charge phase",
+         "",
+         "WHEN: End of your opponent’s Charge phase.\nTARGET: One friendly unengaged unit within 12\" of one or more enemy units. You can only select a VEHICLE unit if it is a CHARACTER/WALKER unit.\nEFFECT: Resolve a charge with your unit (11.02). While doing so, before making the charge roll, you must select one of the following modes:Leap to Defend: When selecting charge targets, you can only select enemy units that made a charge move this phase and are within the maximum distance.+1CPInto the Fray:When making the charge roll, if the result is greater than 6 (after modifiers), change it to 6.When selecting charge targets, you can select any enemy units that are within 6\" of your unit and within the maximum distance."
+        ]
+       ],
+       "truncated": false,
+       "error": null
+      },
+      "related_sections": []
+     },
+     "status": "success"
+    }
+   },
+   {
+    "type": "ai",
+    "data": {
+     "content": [],
+     "additional_kwargs": {
+      "function_call": {
+       "name": "search_rules",
+       "arguments": "{\"query\": \"ASSAULT charge\"}"
+      },
+      "__gemini_function_call_thought_signatures__": {
+       "call_1079143": "EscLCsQLAWkUfRNOYLa1V9AW/q249pYjHRNrL3m9EX+3F3/fGcP+pt4536ClLvWS4W4oIJRRNWGHhsQkDX2EwsbZs0ZZRos8apVZRbcmPiKiUl46IsLrnseYe2o4oL/HRIEyYOk7dF6hAK+8qkuzBHspn2+ZVqSqGX9PlxbZGiFthasaVwm5aWmIPEFteakoDMPgygYX0YYrZc9FIkmQRusApcYZHDGVbQoooD4/Iwf58ogGyLDcImZm83sUieuyqg4/gVAjUMGw7G+C6fg/jTCWL6RnVsklqk4X0qe4CxIaiQe+Y1pgV6bE0Y+elMRSeT9MFWchLwXEFQno9F2XdJcu8ApCsu+hdBw6lvxC9905hoq/prwIqfryIHt03bpMLMHMVJNupDhDOlA0IVUAQLnwIQcoVbE+1nRQi2i4gWflNi8OH/3/AOMEzkj1PMo+BkxQN/P77t0+fhLOIsGKbiLMVgQvUwGtTj5VxemWOstaqiEsbEUiPZy47wQLahfyNo8PfyuOOW3smxq5az9d8kkBuouL0muuaxoXSwFtBCun+22cVEJNuz2DM3U+EVXfnE2f8L6RupMfZszbBsdhgyPS9W9OxNMBwh5ssMmJ30bLWwJV5U7jZXq6DO7CLjjxGYcvp35obyjdBo2ccUB8Nc90w7+UQyycBkWhikNSiRYieeh4VnwGx6KppRCp4wGrhYU+uJQWnFpIPqHnoXAkfzaQ4T0agCua9vT5fSN+F3evQDBj2lixSk+X7gNnvHh8iCuwbEgaRxPk26PAmqR2qthkuHAnOuObOyOmXm8zXmroQMqHYhYUq3/8Vs3rezWP5lRHno5TBoNYu+JFWMG3mOuBR5Mo0esapzR8osKBQNmoKOvrONOP88SsbX4ewbwJZWIBXV4royx0i8XFjaQsVY96wKA6ereRubpUwM9GO51oIEUjjZ87gNu9kL7UZwB09gTNqAao1EUmYe3Sc1x7oNSg8YA5OSTYpQWrM2Dpq6bZJONkzeQ38ZMHHhu0z2PkTIINN9bRf6wyB8yUnCw3rbgK6Qe5oHvs/6u+scjJpqP6eA4K323J3PYIap3Gc48wmiZNrH9XgRdqTmK94BPlLAqmS38759EK2U7qentlKAht5xT9NPPkpk0/yVqdSAvGs0rxjb2ZWbaJw2LgG+wk8D8zfqJxXEied1Cky57Hk6+Xrq7UxnytgqYBGt9yl9Xr1yGGjU19baAS65jrlJwJ4WmHmqYxPtGnjoX58o0vgtT4eylNbJPSYB/cUeNyMexnYEFTX3Uw02oCTzccFIV2m7T8P/HBRH/vXMzPqyEzPmm5pI62dty0mIQMCW9yBqQdRmFqx2tlohCC+O9V0IenkBFnxmBQesUu9/B/0oLTcSxkCq9SeM94FX2CYDiczVxYf/uWxjMkINAZtO3SZjRuPtTSXBAZR/2tL+mhLQGexPi5yYFhsXaGlTTbjmkEOVoVMAmQ8Zf7P/gd8f2pDnNts3zz77EsjTS6mDRdD9XJZHwl5kvh/rvPPIC7rzLD+DE9q56QJbinvu4kRS/ax+4vA1XrrkJ7xjC0pMHdoB28Wwqf+whIoqyZb9gaL5PKInP2ARVj9Y0QPgHepNOQ7UOUG/l02OtKqO0K/AaowDrrd3r8j2kJzW1htPSH94P77HyM7BwTDQ4VESU51aoYJ7h+S/JVRmRotfV26CwDkTZf9mHE3Lt8C1udY6HHfbQbQFjWiNqC/L1sZXK5E+5ulirETKnt5hbcTWHawpVwb1i98vTFajboVSTOelnwKbiQ6/LMYINxlj/qngjzkJhOn2HJ3cZCz8+OHpUkHY0RDVaWB95UkUlsRT7BgcuROfiqrqgp1cR7ulXaakwuxb/Bw84B9OE8vJVPQ1TskKoDaJ+hi/dwfPgnKWxPanAS8ruv0fszI7vyqg+ziN9Av7e7bXTmWpJQCJ3oYEL2G93sDXQGUi6Z6TVFpJljYNSz"
+      }
+     },
+     "response_metadata": {
+      "safety_ratings": [],
+      "finish_reason": "STOP",
+      "model_name": "gemini-3.8-flash",
+      "model_provider": "google_genai"
+     },
+     "type": "ai",
+     "name": null,
+     "id": "lc_run--01a16f89-5d83-74e2-9986-426139d4d44d",
+     "tool_calls": [
+      {
+       "name": "search_rules",
+       "args": {
+        "query": "ASSAULT charge"
+       },
+       "id": "call_1079143",
+       "type": "tool_call"
+      }
+     ],
+     "invalid_tool_calls": [],
+     "usage_metadata": {
+      "input_tokens": 10448,
+      "output_tokens": 300,
+      "total_tokens": 10748,
+      "input_token_details": {
+       "cache_read": 0
+      },
+      "output_token_details": {
+       "reasoning": 281
+      }
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "data": {
+     "content": "[Core Rules p. 25] (page footer p. 25: CORE RULES | WEAPON ABILITIES)\nSection: ASSAULT\nAssault weapons fire so indiscriminately that they can be shot from the hip as warriors dash forward.\n\nWeapons with [ASSAULT] in their profile are known as Assault weapons. If a unit that Advanced this turn contains any models equipped with Assault weapons, it is still eligible to shoot in this turn's Shooting phase. When such a unit is selected to shoot, you can only resolve attacks using Assault weapons its models are equipped with.\n\n- Can be shot even if the bearer's unit Advanced.\n\n[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGING WITH A UNIT\n- Charge Roll: 2D6\".\n- Targets of a charge must be within 12\" but do not need to be visible.\n- If the distance rolled is insufficient to move within Engagement Range of all targets while maintaining Unit Coherency, the charge fails.\n- Cannot move within Engagement Range of any unit that was not a target of the charge.\n- If the charge is successful, each model makes a Charge move less than or equal to the Charge roll, and must move into base-to-base contact with an enemy model if possible.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: HEROIC INTERVENTION\n2CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nVoices raised in furious war cries, your warriors surge forth to meet the enemy's onslaught head-on.\n\nWHEN: Your opponent's Charge phase, just after an enemy unit ends a Charge move.\n\nTARGET: One unit from your army that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\n\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\n\nRESTRICTIONS: You can only select a Vehicle unit from your army if it is a Walker. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn (pg 29).\n\n[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGING WITH A UNIT\nOnce you have selected an eligible unit to declare a charge, you must select one or more enemy units within 12\" of it as the targets of that charge. The targets of a charge do not need to be visible to the charging unit.\n\nYou then make a Charge roll for the charging unit by rolling 2D6. The result is the maximum number of inches each model in that unit can be moved if a Charge move is possible. For a Charge move to be possible, the Charge roll must be sufficient to enable the charging unit to end that move:\n\n- Within Engagement Range of every unit that you selected as a target of the charge.\n- Without moving within Engagement Range of any enemy units that were not a target of the charge.\n- In Unit Coherency.\n\nIf any of these conditions cannot be met, the charge fails and no models in the charging unit move this phase. Otherwise, the charge is successful and the models in the charging unit make a Charge move - move each model a distance in inches up to the result of the Charge roll. When doing so, each model in the charging unit must end its Charge move closer to one of the units selected as a target of its charge. If you can also move a charging model so that it ends its Charge move in base-to-base contact with one or more enemy models while still enabling the charging unit to end its move satisfying all of the conditions above, you must do so. The controlling player chooses the order in which to move their models.\n\n[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nFigure label: Use the following sequence to charge with your units.\nSection: CHARGE PHASE\nWarriors hurl themselves into battle to slay with blade, hammer and claw. Strident war cries and frantic screams echo through the whirling smoke as the moment of cataclysmic violence draws near.\n\nUse the following sequence to charge with your units.\n\n[Core Rules p. 29] (page footer p. 29: CORE RULES | CHARGE PHASE)\nSection: CHARGE BONUS\nMany warriors thunder headlong into combat, using the impetus of their charge to bring swift death to their foes.\n\nEach time a unit makes a Charge move, until the end of the turn, that unit has the Fights First ability (pg 32).\n\nIn your Charge phase, if you have any eligible units from your army on the battlefield that you want to charge into close combat, you can select those units, one at a time, to declare a charge. Each can only be selected once per phase. Once all of these charges (if any) have been resolved, progress to the Fight phase.\n\nA unit is eligible to charge if it is within 12\" of one or more enemy units at the start of your Charge phase, unless any of the following apply:\n\n- That unit Advanced or Fell Back this turn.\n- That unit is within Engagement Range of any enemy models.\n- That unit is an Aircraft unit.\n\n[Core Rules p. 10] (page footer p. 10: CORE RULES | THE BATTLE ROUND)\nFigure label: COMMAND PHASE\nSection: THE BATTLE ROUND > CHARGE PHASE\nYour units charge forward to battle at close quarters.\n\n[Core Rules p. 30] (page footer p. 30: CORE RULES | CHARGE PHASE)\nFigure label: 2½\"\nFigure label: 10\"\nSection: CHARGING WITH FLYING MODELS\nWhen a model that can Fly starts or ends a Charge move on a terrain feature, instead of measuring the path it has moved across the battlefield, you instead measure its path 'through the air'. In addition, it can be moved over other models as if they were not there. A model that can Fly cannot end any move on top of another model.\n\n- Fly models can move over other models when they make a Charge move.\n- Fly models that start or end a Charge move on a terrain feature measure distance moved through the air when they make a Charge move.\n\n3\"\n\n2\"\n\n2½\"\n\nThe Von Ryan's Leaper declares a charge against the Eradicators, who are on top of a terrain feature 3\" in height. The horizontal distance between the two units when the charge is declared is 4 1/2\". To end a Charge move within Engagement Range, the Tyranids player would need a Charge roll of 7 or higher.\n\nThe Tyranid Prime is selected to declare a charge, and targets the Sternguard Veterans on top of the ruin. The Tyranids player rolls 10\" for the Charge roll, allowing the Tyranid Prime to move within Engagement Range of its target.\n\nNote that as the Tyranid Prime can Fly, it can move over the Terminators, and the distance moved is the diagonal distance through the air.\n\n10\"\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"HEROIC INTERVENTION\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335012\", \"HEROIC INTERVENTION\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Opponent’s turn\", \"Charge phase\", \"\", \"WHEN: Your opponent’s Charge phase, just after an enemy unit ends a Charge move.\\nTARGET: One unit from your army that is within 6\\\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\\nRESTRICTIONS: You can only select a VEHICLE unit from your army if it is a WALKER. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn.\"], [\"000010810011\", \"HEROIC INTERVENTION\", \"\", \"Core Stratagem\", \"1\", \"Opponent’s turn\", \"Charge phase\", \"\", \"WHEN: End of your opponent’s Charge phase.\\nTARGET: One friendly unengaged unit within 12\\\" of one or more enemy units. You can only select a VEHICLE unit if it is a CHARACTER/WALKER unit.\\nEFFECT: Resolve a charge with your unit (11.02). While doing so, before making the charge roll, you must select one of the following modes:Leap to Defend: When selecting charge targets, you can only select enemy units that made a charge move this phase and are within the maximum distance.+1CPInto the Fray:When making the charge roll, if the result is greater than 6 (after modifiers), change it to 6.When selecting charge targets, you can select any enemy units that are within 6\\\" of your unit and within the maximum distance.\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+     "additional_kwargs": {},
+     "response_metadata": {},
+     "type": "tool",
+     "name": "search_rules",
+     "id": "26e6b4f7-ae27-4cc6-97e9-9cea290aa7cd",
+     "tool_call_id": "call_1079143",
+     "artifact": {
+      "chunks": [
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0093",
+         "text": "Section: ASSAULT\nAssault weapons fire so indiscriminately that they can be shot from the hip as warriors dash forward.\n\nWeapons with [ASSAULT] in their profile are known as Assault weapons. If a unit that Advanced this turn contains any models equipped with Assault weapons, it is still eligible to shoot in this turn's Shooting phase. When such a unit is selected to shoot, you can only resolve attacks using Assault weapons its models are equipped with.\n\n- Can be shot even if the bearer's unit Advanced.",
+         "pages": [
+          25
+         ],
+         "section": "ASSAULT",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | WEAPON ABILITIES"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03278688524590164
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0114",
+         "text": "Section: CHARGING WITH A UNIT\n- Charge Roll: 2D6\".\n- Targets of a charge must be within 12\" but do not need to be visible.\n- If the distance rolled is insufficient to move within Engagement Range of all targets while maintaining Unit Coherency, the charge fails.\n- Cannot move within Engagement Range of any unit that was not a target of the charge.\n- If the charge is successful, each model makes a Charge move less than or equal to the Charge roll, and must move into base-to-base contact with an enemy model if possible.",
+         "pages": [
+          29
+         ],
+         "section": "CHARGING WITH A UNIT",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | CHARGE PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.031754032258064516
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0167",
+         "text": "Section: HEROIC INTERVENTION\n2CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nVoices raised in furious war cries, your warriors surge forth to meet the enemy's onslaught head-on.\n\nWHEN: Your opponent's Charge phase, just after an enemy unit ends a Charge move.\n\nTARGET: One unit from your army that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\n\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\n\nRESTRICTIONS: You can only select a Vehicle unit from your army if it is a Walker. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn (pg 29).",
+         "pages": [
+          42
+         ],
+         "section": "HEROIC INTERVENTION",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/102"
+         ],
+         "page_footers": [
+          "CORE RULES | STRATAGEMS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.031746031746031744
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0113",
+         "text": "Section: CHARGING WITH A UNIT\nOnce you have selected an eligible unit to declare a charge, you must select one or more enemy units within 12\" of it as the targets of that charge. The targets of a charge do not need to be visible to the charging unit.\n\nYou then make a Charge roll for the charging unit by rolling 2D6. The result is the maximum number of inches each model in that unit can be moved if a Charge move is possible. For a Charge move to be possible, the Charge roll must be sufficient to enable the charging unit to end that move:\n\n- Within Engagement Range of every unit that you selected as a target of the charge.\n- Without moving within Engagement Range of any enemy units that were not a target of the charge.\n- In Unit Coherency.\n\nIf any of these conditions cannot be met, the charge fails and no models in the charging unit move this phase. Otherwise, the charge is successful and the models in the charging unit make a Charge move - move each model a distance in inches up to the result of the Charge roll. When doing so, each model in the charging unit must end its Charge move closer to one of the units selected as a target of its charge. If you can also move a charging model so that it ends its Charge move in base-to-base contact with one or more enemy models while still enabling the charging unit to end its move satisfying all of the conditions above, you must do so. The controlling player chooses the order in which to move their models.",
+         "pages": [
+          29
+         ],
+         "section": "CHARGING WITH A UNIT",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | CHARGE PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.031009615384615385
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0111",
+         "text": "Figure label: Use the following sequence to charge with your units.\nSection: CHARGE PHASE\nWarriors hurl themselves into battle to slay with blade, hammer and claw. Strident war cries and frantic screams echo through the whirling smoke as the moment of cataclysmic violence draws near.\n\nUse the following sequence to charge with your units.",
+         "pages": [
+          29
+         ],
+         "section": "CHARGE PHASE",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/61"
+         ],
+         "page_footers": [
+          "CORE RULES | CHARGE PHASE"
+         ],
+         "picture_labels": [
+          "Use the following sequence to charge with your units."
+         ]
+        },
+        "score": 0.030834914611005692
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0112",
+         "text": "Section: CHARGE BONUS\nMany warriors thunder headlong into combat, using the impetus of their charge to bring swift death to their foes.\n\nEach time a unit makes a Charge move, until the end of the turn, that unit has the Fights First ability (pg 32).\n\nIn your Charge phase, if you have any eligible units from your army on the battlefield that you want to charge into close combat, you can select those units, one at a time, to declare a charge. Each can only be selected once per phase. Once all of these charges (if any) have been resolved, progress to the Fight phase.\n\nA unit is eligible to charge if it is within 12\" of one or more enemy units at the start of your Charge phase, unless any of the following apply:\n\n- That unit Advanced or Fell Back this turn.\n- That unit is within Engagement Range of any enemy models.\n- That unit is an Aircraft unit.",
+         "pages": [
+          29
+         ],
+         "section": "CHARGE BONUS",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | CHARGE PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.030309988518943745
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0032",
+         "text": "Figure label: COMMAND PHASE\nSection: THE BATTLE ROUND > CHARGE PHASE\nYour units charge forward to battle at close quarters.",
+         "pages": [
+          10
+         ],
+         "section": "THE BATTLE ROUND > CHARGE PHASE",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/20"
+         ],
+         "page_footers": [
+          "CORE RULES | THE BATTLE ROUND"
+         ],
+         "picture_labels": [
+          "COMMAND PHASE"
+         ]
+        },
+        "score": 0.030303030303030304
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0116",
+         "text": "Figure label: 2½\"\nFigure label: 10\"\nSection: CHARGING WITH FLYING MODELS\nWhen a model that can Fly starts or ends a Charge move on a terrain feature, instead of measuring the path it has moved across the battlefield, you instead measure its path 'through the air'. In addition, it can be moved over other models as if they were not there. A model that can Fly cannot end any move on top of another model.\n\n- Fly models can move over other models when they make a Charge move.\n- Fly models that start or end a Charge move on a terrain feature measure distance moved through the air when they make a Charge move.\n\n3\"\n\n2\"\n\n2½\"\n\nThe Von Ryan's Leaper declares a charge against the Eradicators, who are on top of a terrain feature 3\" in height. The horizontal distance between the two units when the charge is declared is 4 1/2\". To end a Charge move within Engagement Range, the Tyranids player would need a Charge roll of 7 or higher.\n\nThe Tyranid Prime is selected to declare a charge, and targets the Sternguard Veterans on top of the ruin. The Tyranids player rolls 10\" for the Charge roll, allowing the Tyranid Prime to move within Engagement Range of its target.\n\nNote that as the Tyranid Prime can Fly, it can move over the Terminators, and the distance moved is the diagonal distance through the air.\n\n10\"",
+         "pages": [
+          30
+         ],
+         "section": "CHARGING WITH FLYING MODELS",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/62",
+          "#/pictures/63"
+         ],
+         "page_footers": [
+          "CORE RULES | CHARGE PHASE"
+         ],
+         "picture_labels": [
+          "2½\"",
+          "10\""
+         ]
+        },
+        "score": 0.029211087420042643
+       }
+      ],
+      "stratagem_names": [
+       "HEROIC INTERVENTION"
+      ],
+      "stratagems": {
+       "columns": [
+        "id",
+        "name",
+        "FactionId",
+        "type",
+        "cpCost",
+        "turn",
+        "phase",
+        "detachment",
+        "description"
+       ],
+       "rows": [
+        [
+         "000008335012",
+         "HEROIC INTERVENTION",
+         "",
+         "Core – Strategic Ploy Stratagem",
+         "1",
+         "Opponent’s turn",
+         "Charge phase",
+         "",
+         "WHEN: Your opponent’s Charge phase, just after an enemy unit ends a Charge move.\nTARGET: One unit from your army that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\nRESTRICTIONS: You can only select a VEHICLE unit from your army if it is a WALKER. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn."
+        ],
+        [
+         "000010810011",
+         "HEROIC INTERVENTION",
+         "",
+         "Core Stratagem",
+         "1",
+         "Opponent’s turn",
+         "Charge phase",
+         "",
+         "WHEN: End of your opponent’s Charge phase.\nTARGET: One friendly unengaged unit within 12\" of one or more enemy units. You can only select a VEHICLE unit if it is a CHARACTER/WALKER unit.\nEFFECT: Resolve a charge with your unit (11.02). While doing so, before making the charge roll, you must select one of the following modes:Leap to Defend: When selecting charge targets, you can only select enemy units that made a charge move this phase and are within the maximum distance.+1CPInto the Fray:When making the charge roll, if the result is greater than 6 (after modifiers), change it to 6.When selecting charge targets, you can select any enemy units that are within 6\" of your unit and within the maximum distance."
+        ]
+       ],
+       "truncated": false,
+       "error": null
+      },
+      "related_sections": []
+     },
+     "status": "success"
+    }
+   },
+   {
+    "type": "ai",
+    "data": {
+     "content": [
+      {
+       "type": "text",
+       "text": "### Source and Scope\n* **Source:** Warhammer 40,000 Core Rules (10th Edition), p. 25, 29.\n* **User-supplied fact:** The unit has made ranged attacks in the Shooting phase of the turn.\n* **Established rules:** The Core Rules criteria for unit charge eligibility and the interaction between shooting, moving, and charging.\n\n---\n\n### Explicit Conditions and Rules\n\n1. **Shooting Does Not Disqualify Charging:**\n   * Making ranged attacks in the Shooting phase does not prevent a unit from being eligible to declare a charge in the subsequent Charge phase, nor does it restrict which enemy unit(s) can be selected as the target of the charge [Core Rules p. 19, 29].\n\n2. **Conditions for Charge Eligibility:**\n   Under the Core Rules, a unit is eligible to charge if it satisfies the following requirement at the start of the phase [Core Rules p. 29]:\n   * It is within 12\" of one or more enemy units at the start of your Charge phase.\n\n3. **Explicit Disqualifiers (Exceptions):**\n   A unit is **not** eligible to charge if any of the following conditions apply [Core Rules p. 29]:\n   * That unit **Advanced** or **Fell Back** this turn.\n   * That unit is already within **Engagement Range** of any enemy models.\n   * That unit is an **Aircraft** unit.\n\n*(Note on Advance and Assault weapons: While models with `[ASSAULT]` weapons are permitted to shoot after Advancing [Core Rules p. 25], Advancing remains an explicit disqualifier for declaring a charge [Core Rules p. 29].)*\n\n---\n\n### Conclusion\nMaking ranged attacks in the Shooting phase has no bearing on charge eligibility. A unit that shot remains eligible to charge in the Charge phase provided:\n1. It is within 12\" of at least one enemy unit at the start of the Charge phase.\n2. It did not Advance or Fall Back earlier in the turn.\n3. It is not currently within Engagement Range of any enemy models.\n4. It is not an Aircraft unit.",
+       "index": 0,
+       "extras": {
+        "signature": "EtkOCtYOAWkUfROM9bh9XmXgL7i4Scd1DtvDyRtbWhkC+SvHeDryKM6ln49WVtrhXmoeBYzJKdKKg4I2e31M76IYNg/gIyECcXTTCt9gbug8LOeZ3agFI3zWBzLhBCZTzpFab1gjNvPThVbhRrVV3Ne6DHW61xz+RqX9jNaUCr1r14P+Eisgtsjq1hhSq0bCsZTuQAQahBOwTmqp+D8XCyKzhWBBM+YwNiM6ND+iFsyvhxQs8S41h+Q/7EVMwWKKgTnnoL0aN1CVJxCOY4BfZET0LndLLRgT+tKt9xBh40Q5AdoK9Vrin/KHBHMDhMHC5wkOeg8wP4F8B80jh/G0d/oXJcPHOxEBQyR+iwyCkNTn72ciimM3niqA+PaSe4Jj7CJ15VVwsMSy2APfECpaNcIwEVd5xTDCvOpZfQ0+7+M1ybPuYFgyPDqGcnXXGvmcer0puc7+8k2nwRwp09btdj15RBi5xEEeT0XcnHW9RHo/7TaMd4MzzMSBCByZrnJs1VH/BVjcXQGit2yXUrv6zWCJHFp5P1WuVyUiGs0x8kgC5ZnDQbZyhdVVfCo29jWTWNviPDRpdgl41n/B3rHvfSzpItrKd/zy5awQjSAfEoCtnTWOrghQ5mSV9M/kb56zvI7Am5qWCaJiM78GMfD7rmBL1aauLqs10fuVAZUDHb9IUP2G+15E9XpHqqP40lt/0htXz43YyJUB5SNG+ShSkBiqYkgA+YWC1TpCE0adTJOOyli05dyGgjxonGZIq8MWsS3Jt+M4M1rYbBKCuL9QlUtzQgkjeM8gWUWGAB63o1+YC0K3XgMTTikJ5ggV6dLqHRRFgSDoMA8783CiRAwXmRKB8oqjinEwBCCqfimsmA5seIEDFTtoZtHYUpfjkpg0Mpw40vsHIkqTkDYdIbxNp0cvy2cBazeyR2Qe6DwvYnhJnlHHTBwzMfb+SU4js3R2hqRo3S3zJHYfEFbg0ivF68mAAPe7hpjTYpQqDUkrIae31qS9Lqbs099NB142/EbMXFjQXxS7GZkcnr6rLx9VFMoAYUUO4kaIKyMSmlUd23cmf+kwuKQArFAZWeBGY+9dDpvXhIaEe8tvpY8k7K1rpJ+SpMbYoHxFqmjdTxjB6Gh6MNhHbKhWZc5VhX8wgSVkNXTN1FlapBgCzb7tNlm+VWHMiY2O78lcBc2qtDIeUHoStkX6mxeFkLk87psTdWBVUmY6XcaEWrlUUdM6Dw/QYgbYX/r4FsUdicbvsLNYw2f3qJfPkFN+ZfrNwp3XY7XUZZEKVLFM+EUMRqACMDLVLbBMTy7KnJAUeDDoi20Z9JKpVzB+QRTlzVvp287M5DnXI8+ohPpKiv4yK9BLFIU8a1BjDcxupJNyw/Nox83Lay0jrK2fyvJAMaNjpSIL6VZvdXgNMorzzGkYnDXdzf9AacSSIZRGU+3qXSaLDn41fh96JcgTBs2GKdwYlY03Bi7Rqes6R6UYTK4LFF/kOpfkonLnyj9M3C+JaML0LbMfhcsQfbvhMsRSEz5+qidoe6wKBhDdv/k28chXMRLxwLKwtOx//XeEpd9Pe3VR4bbTPe55qNsYnm0NTXe4dz12V/NAZFCShwwCRQbM05NYABZF2Vt3WXLjq0Jtx8ZUnNRxwGfSAjDHTv2Sxp8zsxU0MLt87d9KDKOWAML0Pe1fJhlBEi+8FTWmnhzh8Ee6Ru1dLomTxE92wOq1Up2FglXhQyjpl2E0XFUPSOwmP83RWOX5zhdrp4QeaDXxcgsxoOAqti9M6bamC9VIokPuFAg+X/bftzbA3MUaYzxp+tXvCkdu3B3L5AB/OL7WP2uWbmAl+xwsD1xpJDJJOEmscOc8CW+EI+CuyQU0ocPtcqa1PFTOZhDUWFskpUGiCPGIHQpzktQkiQgw1FT8wZk9gt0B42+jPzXRCysslV/vjfHoE0R7wNkp63Hnx+kzwrOhiC1qg/I9ofUU3CFa/QQl+6WesuiRGgs/EbyTng970EJ9K0ktHIjopxjSBSWSN/wZjaU2br+GdQmeTnlUVy5YB4SlinDNAYyQefgvi9EsGL4pwyUpVih+63vcIVji0rqJWTZLA+IS0G+OdV9LL8nlIqTisVA79ti5X4HVCRvbYB5lf9IwncKYHw9U5A4MVI6kGqfFCwvAC/idMaPqy+Dyz4+OrlDX6TvnpKOVarWP3ZbgarBIC+SHiKYlJYg/qeZgDGO0xO7hrOCdDXhUUc3mu3mjbvbfKlAo0O8WJ0Sdz1YhnVHEsDa/VPryLLUstBzfWnCEZYdW1/2sDajmugfyVUWIGFFkmaT2TScu1o03GipwNHhcoQO6Wwj5a7le2T1Vd5bxVRHfQt8G4IXPluvisPfwIb18C1sK/08E2EIa7Shyt1mgJM/cq9CLRpFJihvp3HjAkQbQ8KFXenziz/10Vc6CF+jwupbxx4kaignM4H79f2DWprJO9wACP4xOd7fkfeZ+9BL07OTuf4ceAFmu7uOZGLmKv9P1Hay9vinS5jCV"
+       }
+      }
+     ],
+     "additional_kwargs": {},
+     "response_metadata": {
+      "safety_ratings": [],
+      "finish_reason": "STOP",
+      "model_name": "gemini-3.8-flash",
+      "model_provider": "google_genai"
+     },
+     "type": "ai",
+     "name": null,
+     "id": "lc_run--01a16f89-9529-78a2-a3af-ee77843f621d",
+     "tool_calls": [],
+     "invalid_tool_calls": [],
+     "usage_metadata": {
+      "input_tokens": 12896,
+      "output_tokens": 826,
+      "total_tokens": 13722,
+      "input_token_details": {
+       "cache_read": 0
+      },
+      "output_token_details": {
+       "reasoning": 357
+      }
+     }
+    }
+   }
+  ],
+  "model_calls": [
+   {
+    "node": "agent",
+    "input_count": 1,
+    "tool_choice": "validated",
+    "context": null
+   },
+   {
+    "node": "agent",
+    "input_count": 3,
+    "tool_choice": "validated",
+    "context": null
+   },
+   {
+    "node": "agent",
+    "input_count": 5,
+    "tool_choice": "validated",
+    "context": null
+   },
+   {
+    "node": "agent",
+    "input_count": 7,
+    "tool_choice": "validated",
+    "context": null
+   }
+  ]
+ },
+ "chat_attempts": [
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  }
+ ],
+ "embedding_attempts": [
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  }
+ ],
+ "source_notes": [
+  "This turn: DB stratagems: publication and edition are not recorded."
+ ],
+ "context_policy": "conversation-tool-outputs-v1"
+}

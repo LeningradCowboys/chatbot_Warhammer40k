@@ -1,0 +1,811 @@
+{
+ "question": {
+  "question_id": "q009",
+  "question": "How does battle-shock afect the use of stratagemz on a unit?",
+  "reference": "While a unit is Battle-shocked, its controlling player cannot use Stratagems to affect that unit. This is a significant restriction on the strategic resource of Command points, which are normally gained at the start of the Command phase and spent to use Stratagems during the battle.",
+  "reference_contexts": [
+   "<1-hop>\n\nSection: 1. COMMAND\nAt the start of your Command phase, before doing anything else, both players gain 1CP. Command points are a strategic resource that you can spend during the battle to use Stratagems. You can find out more about Stratagems on pages 41-42.\n\nThen, if you have any other rules that need to be resolved in the Command phase, you do so now before progressing to the Battle-shock step.\n\n- Both players gain 1CP.\n- Resolve any other rules that occur in the Command phase.",
+   "<2-hop>\n\nSection: 2. BATTLE-SHOCK\nIn this step, you must take a Battle-shock test for each of your units on the battlefield that is Below Half-strength (pg 12). To do so, roll 2D6: if the result is greater than or equal to the best Leadership characteristic in that unit, the test is passed; otherwise, the test is failed and, until the start of your next Command phase, that unit is Battle-shocked.\n\nWhile a unit is Battle-shocked:\n\n- The Objective Control characteristic of all of its models is 0.\n- If it Falls Back, you must take a Desperate Escape test for every model in that unit (pg 14).\n- Its controlling player cannot use Stratagems to affect that unit.\n\nOnce you have taken Battle-shock tests for all of your units that require them, your Command phase ends and you progress to your Movement phase.\n\n- Take a Battle-shock test for each unit from your army on the battlefield that is Below Half-strength.\n- Roll 2D6: if the result is greater than or equal to the unit's Leadership, the test is passed. Otherwise, the unit is Battle-shocked until the start of your next Command phase.\n- Battle-shocked units have an OC of 0 and their controlling player cannot use Stratagems to affect them.\n- Battle-shocked units must take Desperate Escape tests if they Fall Back.\n\nYour Command phase is split into two steps. In the first, both players gain 1 Command point (CP) and you resolve any other Command phase rules; in the second, you test to see if any of your units are Battle-shocked."
+  ],
+  "synthesizer": "multi_hop_specific_query_synthesizer"
+ },
+ "answer": "### Source and Scope\n* **Source:** Warhammer 40,000 Core Rules (10th Edition) [Core Rules p. 11, 41–42]; database Stratagem records (source publication/edition not recorded) [DB: stratagems].\n* **Scope:** How a unit being Battle-shocked affects the use of Stratagems targeting or affecting that unit.\n\n---\n\n### Rules and Effects\n\n#### 1. Controlling Player Restriction (General Prohibition)\nWhile a unit is Battle-shocked:\n* **\"Its controlling player cannot use Stratagems to affect that unit.\"** [Core Rules p. 11]\n\nAs a result:\n* The controlling player cannot target that unit with their own Stratagems or apply the effects of their Stratagems to it (for example, applying defensive boosts, movement Stratagems, or offensive buffs to that unit) [Core Rules p. 11, 41–42].\n\n#### 2. Opposing Player\n* The prohibition is explicitly restricted to the unit's **controlling player** [Core Rules p. 11].\n* The rules do not prohibit an opponent from using their own Stratagems to affect or target an enemy unit that is Battle-shocked.\n\n#### 3. Exceptions and Interaction with Specific Stratagems\n* **Core Rules (10th Edition) — *Insane Bravery*:**\n  In the printed Core Rules, the Epic Deed Stratagem *Insane Bravery* provided an explicit exception immediately upon failing a test:\n  * **When:** Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army [Core Rules p. 42].\n  * **Target:** *\"The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\"* [Core Rules p. 42]\n  * **Effect:** The unit is treated as having passed the test instead and is not Battle-shocked as a result [Core Rules p. 42].\n* **Database Record — *Insane Bravery* (Core – Epic Deed Stratagem):**\n  In the updated database record, *Insane Bravery* is used preemptively to prevent the state entirely:\n  * **When:** Battle-shock step of your Command phase, *just before* you take a Battle-shock test for a unit from your army [DB: stratagems].\n  * **Target:** That unit [DB: stratagems].\n  * **Effect:** That unit automatically passes that Battle-shock test [DB: stratagems].\n\n---\n\n### Conclusion\n* **For the controlling player:** Supported prohibition. You cannot use Stratagems to affect your own Battle-shocked unit [Core Rules p. 11].\n* **For the opponent:** The rule restricts only the controlling player; there is no general prohibition preventing an opponent from using Stratagems that affect an enemy Battle-shocked unit [Core Rules p. 11].",
+ "agent_contexts": [
+  "[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: INSANE BRAVERY\n1CP\n\nCORE - EPIC DEED STRATAGEM\n\nIndifferent to their own survival, these warriors hold their ground against seemingly impossible odds.\n\nWHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army (pg 11).\n\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\n\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.\n\n[Core Rules p. 11] (page footer p. 11: CORE RULES | COMMAND PHASE)\nSection: 2. BATTLE-SHOCK\nIn this step, you must take a Battle-shock test for each of your units on the battlefield that is Below Half-strength (pg 12). To do so, roll 2D6: if the result is greater than or equal to the best Leadership characteristic in that unit, the test is passed; otherwise, the test is failed and, until the start of your next Command phase, that unit is Battle-shocked.\n\nWhile a unit is Battle-shocked:\n\n- The Objective Control characteristic of all of its models is 0.\n- If it Falls Back, you must take a Desperate Escape test for every model in that unit (pg 14).\n- Its controlling player cannot use Stratagems to affect that unit.\n\nOnce you have taken Battle-shock tests for all of your units that require them, your Command phase ends and you progress to your Movement phase.\n\n- Take a Battle-shock test for each unit from your army on the battlefield that is Below Half-strength.\n- Roll 2D6: if the result is greater than or equal to the unit's Leadership, the test is passed. Otherwise, the unit is Battle-shocked until the start of your next Command phase.\n- Battle-shocked units have an OC of 0 and their controlling player cannot use Stratagems to affect them.\n- Battle-shocked units must take Desperate Escape tests if they Fall Back.\n\nYour Command phase is split into two steps. In the first, both players gain 1 Command point (CP) and you resolve any other Command phase rules; in the second, you test to see if any of your units are Battle-shocked.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: TANK SHOCK\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nRamming the foe with a speeding vehicle may be an unsubtle tactic, but it is a murderously effective one.\n\nWHEN: Your Charge phase.\n\nTARGET: One Vehicle unit from your army.\n\nEFFECT: Until the end of the phase, after your unit ends a Charge move, select one enemy unit within Engagement Range of it, then select one melee weapon your unit is equipped with. Roll a number of D6 equal to that weapon's Strength characteristic. If that Strength characteristic is greater than that enemy unit's Toughness characteristic, roll two additional D6. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).\n\n[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: STRATAGEM CATEGORIES\nEach Stratagem belongs to one of four categories, as described below. There are some rules (especially in Crusade games) that interact with Stratagems of a particular category.\n\nBATTLE TACTIC: These Stratagems bolster a unit's efficacy in battle, boosting their attacks or defensive capabilities at a critical moment.\n\nEPIC DEED: These Stratagems are used by individual models or units to perform mighty feats of heroism.\n\nSTRATEGIC PLOY: These Stratagems enable units to gain new strategic insights, granting them a small but valuable window of opportunity.\n\nWARGEAR: These Stratagems represent the effects of using specialised items of equipment in battle.\n\n[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: COMMAND RE-ROLL\n1CP\n\nCORE - BATTLE TACTIC STRATAGEM\n\nA great commander can bend even the vagaries of fate and fortune to their will, the better to ensure victory.\n\nWHEN: In any phase, just after you have made a Hit roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate Escape test, a Hazardous test, or just after you have rolled the dice to determine the number of attacks made with a weapon, for an attack, model or unit from your army.\n\nEFFECT: You re-roll that roll, test or saving throw.\n\n[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: STRATAGEMS\nCommand points can be spent during the battle to use Stratagems. All players can use the Core Stratagems presented here. Additional Stratagems can be found in Codexes and other publications.\n\nWhen you use a Stratagem, reduce your CP total by the amount listed on that Stratagem. If you do not have enough CP for a specific Stratagem, you cannot use it. You can use the same Stratagem multiple times during a battle, but you cannot use the same Stratagem more than once in the same phase.\n\n- To use a Stratagem you must pay the CP specified.\n- The same Stratagem cannot be used more than once in the same phase.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: GO TO GROUND\n1CP\n\nCORE - BATTLE TACTIC STRATAGEM\n\nSeeking salvation from incoming fire, warriors hurl themselves into whatever cover they can find.\n\nWHEN: Your opponent's Shooting phase, just after an enemy unit has selected its targets.\n\nTARGET: One Infantry unit from your army that was selected as the target of one or more of the attacking unit's attacks.\n\nEFFECT: Until the end of the phase, all models in your unit have a 6+ invulnerable save and have the Benefit of Cover (pg 44).\n\n[Core Rules p. 11] (page footer p. 11: CORE RULES | COMMAND PHASE)\nSection: 1. COMMAND\nAt the start of your Command phase, before doing anything else, both players gain 1CP. Command points are a strategic resource that you can spend during the battle to use Stratagems. You can find out more about Stratagems on pages 41-42.\n\nThen, if you have any other rules that need to be resolved in the Command phase, you do so now before progressing to the Battle-shock step.\n\n- Both players gain 1CP.\n- Resolve any other rules that occur in the Command phase.\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"INSANE BRAVERY\", \"TANK SHOCK\", \"STRATAGEM CATEGORIES\", \"COMMAND RE-ROLL\", \"STRATAGEMS\", \"GO TO GROUND\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335002\", \"COMMAND RE-ROLL\", \"\", \"Core – Battle Tactic Stratagem\", \"1\", \"Either player’s turn\", \"Any phase\", \"\", \"WHEN: Any phase, just after you make an Advance roll, a Charge roll, a Desperate Escape test or a Hazardous test for a unit from your army, or a Hit roll, a Wound roll, a Damage roll or a saving throw for a model in that unit, or a roll to determine the number of attacks made with a weapon equipped by a model in that unit. If you are using fast dice rolling, this Stratagem can still be used after rolling multiple rolls or saving throws at once.\\nTARGET: That unit or model from your army.\\nEFFECT: You re-roll that roll, test or saving throw. If you are using fast dice rolling, select one of those rolls or saving throws to re-roll.\"], [\"000009218002\", \"COMMAND RE-ROLL\", \"\", \"Boarding Actions – Epic Deed Stratagem\", \"1\", \"Either player’s turn\", \"Any phase\", \"\", \"WHEN: Any phase, just after you have made a Hit roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate Escape test, a Hazardous test, or just after you have rolled the dice to determine the number of attacks made with a weapon, for an attack, model or unit from your army.\\nTARGET: That unit or model from your army.\\nEFFECT: You re-roll that roll, test or saving throw.\"], [\"000010810002\", \"COMMAND RE-ROLL\", \"\", \"Core Stratagem\", \"1\", \"Either player’s turn\", \"Any phase\", \"\", \"WHEN: Any phase, just after you make one of the following rolls for a friendly unit or model:Advance rollCharge rollDamage rollHazard rollHit rollSave rollWound rollA roll to determine the number of attacks generated with a weapon.\\nTARGET: That unit or model.\\nEFFECT: You re-roll that roll. If you are rolling more than one dice together, select one of those dice to re-roll (excluding charge rolls, which you must re-roll in full).\"], [\"000008335010\", \"GO TO GROUND\", \"\", \"Core – Battle Tactic Stratagem\", \"1\", \"Opponent’s turn\", \"Shooting phase\", \"\", \"WHEN: Your opponent’s Shooting phase, just after an enemy unit has selected its targets.\\nTARGET: One INFANTRY unit from your army that was selected as the target of one or more of the attacking unit’s attacks.\\nEFFECT: Until the end of the phase, all models in your unit have a 6+ invulnerable save and have the Benefit of Cover.\"], [\"000008335005\", \"INSANE BRAVERY\", \"\", \"Core – Epic Deed Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just before you take a Battle-shock test for a unit from your army.\\nTARGET: That unit from your army.\\nEFFECT: Your unit automatically passes that Battle-shock test.\\nRESTRICTIONS: You cannot use this Stratagem more than once per battle.\"], [\"000009218005\", \"INSANE BRAVERY\", \"\", \"Boarding Actions – Epic Deed Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army.\\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.\"], [\"000010810004\", \"INSANE BRAVERY\", \"\", \"Core Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just before you make a battle-shock roll for a friendly unit.\\nTARGET: That unit.\\nEFFECT: That battle-shock roll is automatically successful.\\nRESTRICTIONS: You cannot use this stratagem more than once per battle.\"], [\"000008335007\", \"TANK SHOCK\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Your turn\", \"Charge phase\", \"\", \"WHEN: Your Charge phase, just after a VEHICLE unit from your army ends a Charge move.\\nTARGET: That VEHICLE unit.\\nEFFECT: Select one enemy unit within Engagement Range of your unit, and select one VEHICLE model in your unit that is within Engagement Range of that enemy unit. Roll a number of D6 equal to the Toughness characteristic of the selected VEHICLE model. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+  "[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: STRATAGEM CATEGORIES\nEach Stratagem belongs to one of four categories, as described below. There are some rules (especially in Crusade games) that interact with Stratagems of a particular category.\n\nBATTLE TACTIC: These Stratagems bolster a unit's efficacy in battle, boosting their attacks or defensive capabilities at a critical moment.\n\nEPIC DEED: These Stratagems are used by individual models or units to perform mighty feats of heroism.\n\nSTRATEGIC PLOY: These Stratagems enable units to gain new strategic insights, granting them a small but valuable window of opportunity.\n\nWARGEAR: These Stratagems represent the effects of using specialised items of equipment in battle.\n\n[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: STRATAGEMS\nCommand points can be spent during the battle to use Stratagems. All players can use the Core Stratagems presented here. Additional Stratagems can be found in Codexes and other publications.\n\nWhen you use a Stratagem, reduce your CP total by the amount listed on that Stratagem. If you do not have enough CP for a specific Stratagem, you cannot use it. You can use the same Stratagem multiple times during a battle, but you cannot use the same Stratagem more than once in the same phase.\n\n- To use a Stratagem you must pay the CP specified.\n- The same Stratagem cannot be used more than once in the same phase.\n\n[Core Rules p. 38] (page footer p. 38: CORE RULES | DATASHEETS)\nSection: AURA ABILITIES\nSome abilities affect multiple models or units in a given range. These are known as Aura abilities and are tagged with the word 'Aura'. A model with an Aura ability is always within range of its own Aura ability. A unit can be affected by more than one Aura ability at a time, but if a unit is within range of the same Aura ability more than once, that Aura ability only applies to that unit once.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: INSANE BRAVERY\n1CP\n\nCORE - EPIC DEED STRATAGEM\n\nIndifferent to their own survival, these warriors hold their ground against seemingly impossible odds.\n\nWHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army (pg 11).\n\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\n\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: HEROIC INTERVENTION\n2CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nVoices raised in furious war cries, your warriors surge forth to meet the enemy's onslaught head-on.\n\nWHEN: Your opponent's Charge phase, just after an enemy unit ends a Charge move.\n\nTARGET: One unit from your army that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\n\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\n\nRESTRICTIONS: You can only select a Vehicle unit from your army if it is a Walker. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn (pg 29).\n\n[Core Rules p. 11] (page footer p. 11: CORE RULES | COMMAND PHASE)\nSection: 1. COMMAND\nAt the start of your Command phase, before doing anything else, both players gain 1CP. Command points are a strategic resource that you can spend during the battle to use Stratagems. You can find out more about Stratagems on pages 41-42.\n\nThen, if you have any other rules that need to be resolved in the Command phase, you do so now before progressing to the Battle-shock step.\n\n- Both players gain 1CP.\n- Resolve any other rules that occur in the Command phase.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: TANK SHOCK\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nRamming the foe with a speeding vehicle may be an unsubtle tactic, but it is a murderously effective one.\n\nWHEN: Your Charge phase.\n\nTARGET: One Vehicle unit from your army.\n\nEFFECT: Until the end of the phase, after your unit ends a Charge move, select one enemy unit within Engagement Range of it, then select one melee weapon your unit is equipped with. Roll a number of D6 equal to that weapon's Strength characteristic. If that Strength characteristic is greater than that enemy unit's Toughness characteristic, roll two additional D6. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).\n\n[Core Rules p. 39] (page footer p. 39: CORE RULES | DEPLOYMENT ABILITIES)\nSection: LEADER\nWhile a Bodyguard unit contains a Leader, it is known as an Attached unit and, with the exception of rules that are triggered when units are destroyed (pg 12), it is treated as a single unit for all rules purposes. Each time an attack targets an Attached unit, until the attacking unit has resolved all of its attacks, you must use the Toughness characteristic of the Bodyguard models in that unit, even if a Leader in that unit has a different Toughness characteristic. Each time an attack sucessfully wounds an Attached unit, that attack cannot be allocated to a Character model in that unit, even if that Character model has lost one or more wounds or has already had attacks allocated to it this phase. As soon as the last Bodyguard model in an Attached unit has been destroyed, any attacks made against that unit that have yet to be allocated can then be allocated to Character models in that unit.\n\n- Before the battle, Character units with the Leader ability can be attached to one of their Bodyguard units to form an Attached unit.\n- Attached units can only contain one Leader.\n- Attacks cannot be allocated to Character models in Attached units.\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"STRATAGEM CATEGORIES\", \"STRATAGEMS\", \"INSANE BRAVERY\", \"HEROIC INTERVENTION\", \"TANK SHOCK\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335012\", \"HEROIC INTERVENTION\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Opponent’s turn\", \"Charge phase\", \"\", \"WHEN: Your opponent’s Charge phase, just after an enemy unit ends a Charge move.\\nTARGET: One unit from your army that is within 6\\\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\\nRESTRICTIONS: You can only select a VEHICLE unit from your army if it is a WALKER. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn.\"], [\"000010810011\", \"HEROIC INTERVENTION\", \"\", \"Core Stratagem\", \"1\", \"Opponent’s turn\", \"Charge phase\", \"\", \"WHEN: End of your opponent’s Charge phase.\\nTARGET: One friendly unengaged unit within 12\\\" of one or more enemy units. You can only select a VEHICLE unit if it is a CHARACTER/WALKER unit.\\nEFFECT: Resolve a charge with your unit (11.02). While doing so, before making the charge roll, you must select one of the following modes:Leap to Defend: When selecting charge targets, you can only select enemy units that made a charge move this phase and are within the maximum distance.+1CPInto the Fray:When making the charge roll, if the result is greater than 6 (after modifiers), change it to 6.When selecting charge targets, you can select any enemy units that are within 6\\\" of your unit and within the maximum distance.\"], [\"000008335005\", \"INSANE BRAVERY\", \"\", \"Core – Epic Deed Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just before you take a Battle-shock test for a unit from your army.\\nTARGET: That unit from your army.\\nEFFECT: Your unit automatically passes that Battle-shock test.\\nRESTRICTIONS: You cannot use this Stratagem more than once per battle.\"], [\"000009218005\", \"INSANE BRAVERY\", \"\", \"Boarding Actions – Epic Deed Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army.\\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.\"], [\"000010810004\", \"INSANE BRAVERY\", \"\", \"Core Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just before you make a battle-shock roll for a friendly unit.\\nTARGET: That unit.\\nEFFECT: That battle-shock roll is automatically successful.\\nRESTRICTIONS: You cannot use this stratagem more than once per battle.\"], [\"000008335007\", \"TANK SHOCK\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Your turn\", \"Charge phase\", \"\", \"WHEN: Your Charge phase, just after a VEHICLE unit from your army ends a Charge move.\\nTARGET: That VEHICLE unit.\\nEFFECT: Select one enemy unit within Engagement Range of your unit, and select one VEHICLE model in your unit that is within Engagement Range of that enemy unit. Roll a number of D6 equal to the Toughness characteristic of the selected VEHICLE model. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge."
+ ],
+ "retriever_contexts": [
+  "[Core Rules p. 11] (page footer p. 11: CORE RULES | COMMAND PHASE)\nSection: 2. BATTLE-SHOCK\nIn this step, you must take a Battle-shock test for each of your units on the battlefield that is Below Half-strength (pg 12). To do so, roll 2D6: if the result is greater than or equal to the best Leadership characteristic in that unit, the test is passed; otherwise, the test is failed and, until the start of your next Command phase, that unit is Battle-shocked.\n\nWhile a unit is Battle-shocked:\n\n- The Objective Control characteristic of all of its models is 0.\n- If it Falls Back, you must take a Desperate Escape test for every model in that unit (pg 14).\n- Its controlling player cannot use Stratagems to affect that unit.\n\nOnce you have taken Battle-shock tests for all of your units that require them, your Command phase ends and you progress to your Movement phase.\n\n- Take a Battle-shock test for each unit from your army on the battlefield that is Below Half-strength.\n- Roll 2D6: if the result is greater than or equal to the unit's Leadership, the test is passed. Otherwise, the unit is Battle-shocked until the start of your next Command phase.\n- Battle-shocked units have an OC of 0 and their controlling player cannot use Stratagems to affect them.\n- Battle-shocked units must take Desperate Escape tests if they Fall Back.\n\nYour Command phase is split into two steps. In the first, both players gain 1 Command point (CP) and you resolve any other Command phase rules; in the second, you test to see if any of your units are Battle-shocked.",
+  "[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: INSANE BRAVERY\n1CP\n\nCORE - EPIC DEED STRATAGEM\n\nIndifferent to their own survival, these warriors hold their ground against seemingly impossible odds.\n\nWHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army (pg 11).\n\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\n\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.",
+  "[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: STRATAGEMS\nCommand points can be spent during the battle to use Stratagems. All players can use the Core Stratagems presented here. Additional Stratagems can be found in Codexes and other publications.\n\nWhen you use a Stratagem, reduce your CP total by the amount listed on that Stratagem. If you do not have enough CP for a specific Stratagem, you cannot use it. You can use the same Stratagem multiple times during a battle, but you cannot use the same Stratagem more than once in the same phase.\n\n- To use a Stratagem you must pay the CP specified.\n- The same Stratagem cannot be used more than once in the same phase.",
+  "[Core Rules p. 11] (page footer p. 11: CORE RULES | COMMAND PHASE)\nSection: 1. COMMAND\nAt the start of your Command phase, before doing anything else, both players gain 1CP. Command points are a strategic resource that you can spend during the battle to use Stratagems. You can find out more about Stratagems on pages 41-42.\n\nThen, if you have any other rules that need to be resolved in the Command phase, you do so now before progressing to the Battle-shock step.\n\n- Both players gain 1CP.\n- Resolve any other rules that occur in the Command phase.",
+  "[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: STRATAGEM CATEGORIES\nEach Stratagem belongs to one of four categories, as described below. There are some rules (especially in Crusade games) that interact with Stratagems of a particular category.\n\nBATTLE TACTIC: These Stratagems bolster a unit's efficacy in battle, boosting their attacks or defensive capabilities at a critical moment.\n\nEPIC DEED: These Stratagems are used by individual models or units to perform mighty feats of heroism.\n\nSTRATEGIC PLOY: These Stratagems enable units to gain new strategic insights, granting them a small but valuable window of opportunity.\n\nWARGEAR: These Stratagems represent the effects of using specialised items of equipment in battle.",
+  "[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: TANK SHOCK\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nRamming the foe with a speeding vehicle may be an unsubtle tactic, but it is a murderously effective one.\n\nWHEN: Your Charge phase.\n\nTARGET: One Vehicle unit from your army.\n\nEFFECT: Until the end of the phase, after your unit ends a Charge move, select one enemy unit within Engagement Range of it, then select one melee weapon your unit is equipped with. Roll a number of D6 equal to that weapon's Strength characteristic. If that Strength characteristic is greater than that enemy unit's Toughness characteristic, roll two additional D6. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).",
+  "[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: FIRE OVERWATCH\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nA hail of wildfire can drive back advancing foes.\n\nWHEN: Your opponent's Movement or Charge phase, just after an enemy unit is set up or when an enemy unit starts or ends a Normal, Advance, Fall Back or Charge move.\n\nTARGET: One unit from your army that is within 24\" of that enemy unit and that would be eligible to shoot if it were your Shooting phase.\n\nEFFECT: Your unit can shoot that enemy unit as if it were your Shooting phase.\n\nRESTRICTIONS: Until the end of the phase, each time a model in your unit makes a ranged attack, an unmodified Hit roll of 6 is required to score a hit, irrespective of the attacking weapon's Ballistic Skill or any modifiers. You can only use this Stratagem once per turn.",
+  "[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: COMMAND RE-ROLL\n1CP\n\nCORE - BATTLE TACTIC STRATAGEM\n\nA great commander can bend even the vagaries of fate and fortune to their will, the better to ensure victory.\n\nWHEN: In any phase, just after you have made a Hit roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate Escape test, a Hazardous test, or just after you have rolled the dice to determine the number of attacks made with a weapon, for an attack, model or unit from your army.\n\nEFFECT: You re-roll that roll, test or saving throw."
+ ],
+ "retriever_k": 8,
+ "trace": {
+  "system_prompt": "You are a rules assistant for Warhammer 40,000. You answer from two sources: the Core Rules (10th edition) and a database of datasheets, weapons, stratagems, factions and detachments.\n\n## Tools\n\n- `search_rules`: how the game works (phases, actions, abilities, keywords, terrain). Write the query in English, with the rulebook's terms, whatever the language of the question. Specify the concept: victory points and objective control for scoring, Command points for Stratagem costs, army points for army construction.\n- `run_sql`: facts about units, their models, weapons, keywords and abilities, and about stratagems, detachments, enhancements and factions. Call `run_sql` with one read-only SQLite SELECT or WITH query in its required `sql` string parameter, then answer from the returned result. Follow the database schema below: for a specific named unit, join `datasheets`, `datasheets_models` and `source` in a single query (example 1) instead of separate queries per table. If the tool returns an error, correct the query and try again.\n- Use both when a question mixes rules and unit data. The number of tool rounds per question is limited: search with purpose.\n- Before seeking more evidence, inspect successful results from every earlier turn. They remain available in the conversation. If those results already establish the answer, answer directly; do not query the same fact again merely to confirm it. After each new result, stop as soon as the question is supported. If evidence is still missing, retrieve only the missing fields together where possible, or state the gap instead of pursuing optional detail.\n- A broad category of units, such as \"a Space Marine\", that maps to a faction and keywords: query it with `run_sql` before you answer, keeping each value's datasheet IDs, units and model profiles in the result (example 2 of the schema). Use at most one aggregate query and one representative unit query for the category; do not issue a separate query for each characteristic value. Ask which unit is meant only when no faction or keyword fits.\n- For a named Stratagem, search the rulebook. `search_rules` also queries exact-name core database records for retrieved Stratagem sections. Inspect both parts of its result; do not repeat a successful associated lookup. If either source is missing, use a targeted search or SQL query while tools remain, and report any remaining gap. Unit keywords still need `run_sql`.\n\n## Answering\n\n- Answer only from the tool results of this conversation. If a search does not supply the necessary passage, search again with a specific rule or section name while tools remain. If it is still missing, say what the retrieved passages do not establish and what you searched. Unsuccessful retrieval never proves that the rulebook has no such rule. Do not invent values or fill gaps from general game knowledge.\n- Organize an evidence answer in this order: source/version and scope, including which facts the user supplied and which the tools established; explicit conditions and results in the source's order; then the supported conclusion and any evidence gap. For an if/otherwise rule, preserve every branch and their common timing. Distinguish ways to score from the rule for determining a winner.\n- For a rule or procedure, preserve its cost, timing, eligible target, effect, restrictions and exceptions where the evidence gives them. For how to use a Stratagem, explain its CP payment from the `STRATAGEMS` and `1. COMMAND` sections and illustrate how the card labels WHEN, TARGET, EFFECT and RESTRICTIONS work from the retrieved Stratagem cards; once those sections and cards are retrieved, answer from them without searching again for a separate definition of those card labels. Identify the actor, whose phase it is, every recipient, and quantifiers such as \"both players\" and \"each phase\"; avoid ambiguous pronouns. Do not merge source versions. Give an exception only with its trigger and timing. If you choose an example, attribute it to one source or separate material versions; do not use a joint citation to imply that different versions are identical. An example figure is illustrative, not a datasheet fact about a real unit.\n- Cite every fact: [Core Rules p. N] for the rulebook (p. N–M for a passage over two pages), [DB: table] for the database.\n- Editions: the rulebook is the 10th edition. For a database record, give its edition only when it is recorded: for a datasheet, join `source` and give its name and edition; edition '0' means that none is recorded (a Warhammer Legends or Forge World pack: name it as such). Stratagems, detachments, enhancements and abilities have no source: say that their source is not recorded. Never give one edition to the database as a whole.\n- When evidence contains versions of the same rule, compare costs, timing, targets, effects and restrictions. For an applicability question or follow-up, give a short entry for EACH source: source/version and citation; its explicit conditions; the relevant facts supplied by the user or established by a tool, labelled by origin; any missing facts; and the conclusion supported by that source. These are checkable evidence statements, not a narrative of your reasoning. Preserve who a restriction applies to, including the controlling player. Nonselection, a completed action, and ineligibility are different predicates: none establishes another without cited evidence. Do not import exclusions across sources. An exclusion absent from a retrieved passage proves neither permission nor prohibition; say when that source does not settle the case. Describe material differences, not assumed clarifications.\n- Categories: a broad name such as \"a Space Marine\" is a category, not a unit. Resolve it to a faction and keywords (for example factionId 'SM' with the keyword Battleline or Infantry), leave out Warhammer Legends unless asked, use aggregate counts by publication/edition for a typical value and separate limited examples for exceptions, report the per-publication/edition counts as returned without summing them across publications or editions in prose, and say how you read the question: the units the answer covers and what it leaves out. Do not answer with a question when the results let you answer this way. Name the counting unit (datasheets or model profiles). A truncated example list cannot support an overall distribution.\n- Profiles: a characteristic belongs to a model profile, not to a unit. When a unit you give as an exception has profiles of different values, state every profile/value variant of that exception; never give one profile's characteristic as the value of the whole unit. Cite the table name, not a record ID as though it were a table.\n- Missions: use the page footer to name the mission for both scoring and winner rules. A question about ways to score needs concrete award conditions, amounts and timing; an introduction or a winner rule does not supply them. Search again for victory points and objective control only if no mission scoring rule has been retrieved yet; once a mission's scoring rule is present, answer from it without further searches for generic examples. Keep mission-specific scoring separate from generic examples and winner conditions. Preserve the source's shared timing and all ordered winner branches, including the destroyed-army condition, otherwise VP comparison and tie. State any remaining evidence gap.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.\n\n## Database schema\n\n# The datasheet database (`wahadb_clean.sqlite`)\n\nA SQLite copy of Wahapedia's Warhammer 40,000 data: units (datasheets), their models, weapons, keywords and\nabilities, and stratagems, detachments and enhancements. Text encoding is already repaired. Last update of the\ndata: 2026-09-01.\n\n## Rules for writing SQL\n\n- Every column is `TEXT`, numbers included: compare and sort numbers with `CAST(t AS INTEGER)`. Some stat values are\n  not numbers (`D3`, `D6`, `N/A`, `Melee`, `-`).\n- There are no declared keys: join on the columns listed under Joins, with their exact case (`Id` vs `id`,\n  `FactionId` vs `factionId`, `DatasheetId`).\n- `=` compares text exactly and is case-sensitive; `LIKE` ignores the case of ASCII letters. Keywords are written\n  like `Infantry`, `Battleline`, `Grenades`; stratagem names in capitals, like `GRENADE`.\n- One `SELECT` (or `WITH ... SELECT`) per call. Select the columns you need and filter; results are cut after 50 rows.\n- Booleans are the text `'true'` or `'false'`.\n\n## Tables\n\n| Table | One row is | Main columns |\n|---|---|---|\n| `factions` | a faction (25) | `Id` (`SM` = Space Marines, `CSM` = Chaos Space Marines, `TAU`, `TYR`, …), `name` |\n| `datasheets` | a unit's datasheet (1 680) | `Id`, `name`, `factionId`, `sourceId`, `role`, `loadout`, `transport`, `legend` (lore text, not Warhammer Legends), `virtual`, `link` |\n| `datasheets_models` | a model profile of a datasheet (a unit can have several, one per `line`) | `DatasheetId`, `line`, `name`, `m` (Move), `t` (Toughness), `sv` (Save), `invSv` (invulnerable save, `-` if none), `w` (Wounds), `ld` (Leadership), `oc` (Objective Control), `baseSize` |\n| `datasheets_wargear` | a weapon profile of a datasheet | `DatasheetId`, `name`, `range` (inches, or `Melee`), `type` (`Ranged`/`Melee`), `a` (Attacks), `bsWs` (BS or WS: `3` means 3+), `s` (Strength), `ap` (`0`, `-1`, …), `d` (Damage), `description` (weapon abilities) |\n| `datasheets_keywords` | a keyword of a datasheet | `DatasheetId`, `keyword`, `model` (the models it applies to; empty = the unit), `isFactionKeyword` |\n| `datasheets_abilities` | an ability on a datasheet | `DatasheetId`, `line`, `abilityId`, `name`, `description`, `type` (`Core`, `Faction`, `Datasheet`, `Wargear`, …), `parameter` |\n| `abilities` | a Core or Faction ability's text | `Id`, `name`, `factionId`, `description` |\n| `datasheets_unit_composition` | a line of unit composition | `DatasheetId`, `line`, `description` |\n| `datasheets_options` | a wargear option | `DatasheetId`, `line`, `description` |\n| `datasheets_models_cost` | a points cost | `DatasheetId`, `line`, `description` (unit size), `cost` (points) |\n| `datasheets_leader` | a leader-to-unit link | `LeaderId` (the leader's datasheet), `attachedId` (a unit it can lead) |\n| `stratagems` | a stratagem | `id`, `name`, `FactionId`, `type`, `cpCost`, `turn`, `phase`, `detachment`, `detachmentId`, `description` (lines `WHEN:`, `TARGET:`, `EFFECT:`, `RESTRICTIONS:`) |\n| `datasheets_stratagems` | a datasheet-to-stratagem link | `DatasheetId`, `stratagemId` |\n| `detachments` | a detachment | `Id`, `factionId`, `name`, `type` |\n| `detachment_abilities` | a detachment rule | `Id`, `detachmentId`, `name`, `description` |\n| `enhancements` | an enhancement | `id`, `FactionId`, `name`, `cost`, `detachmentId`, `description` |\n| `source` | a publication | `Id`, `name`, `type`, `edition`, `version`, `errataDate` |\n\n## Joins\n\n- `datasheets.Id` = `DatasheetId` of every `datasheets_*` table; `datasheets.factionId` = `factions.Id`;\n  `datasheets.sourceId` = `source.Id`.\n- `datasheets_abilities.abilityId` = `abilities.Id`: see the abilities trap below.\n- `datasheets_stratagems.stratagemId` = `stratagems.id`; `stratagems.FactionId` = `factions.Id`.\n- `detachments.Id` = `detachment_abilities.detachmentId` = `stratagems.detachmentId` = `enhancements.detachmentId`.\n- `datasheets_leader.LeaderId` and `.attachedId` = `datasheets.Id`.\n\n## Traps\n\n- **Unit names are not unique** (1 680 datasheets, 1 291 names): the same name can exist in several factions or\n  sources. Filter by `factionId` when it matters, and say which one you used.\n- **A broad name is a category, not a unit.** \"A Space Marine\" is not a datasheet name: `name LIKE '%Space Marine%'`\n  finds only odd units. Use the faction (`factionId = 'SM'`) and keywords from `datasheets_keywords` (`Battleline`,\n  `Infantry`, `Vehicle`, …), then give the typical value and the notable exceptions (example 2).\n- **A characteristic belongs to a model profile, not to a unit.** A datasheet can have profiles of different values\n  (a sergeant and a heavier veteran, for example): keep each profile's name in a category result, so that a unit\n  that is an exception for one profile is not given that value as a whole (example 2).\n- **Warhammer Legends and Forge World.** A datasheet's source tells where it comes from: `source.name` ends with\n  `(Warhammer Legends)` for Legends units (retired from standard play) and with `(Forge World)` for Forge World\n  units. Exclude Legends unless the question asks for them: `source.name NOT LIKE '%(Warhammer Legends)%'`. Do not\n  use `datasheets.legend` for this: it is lore text.\n- **Editions are per record.** `source.edition` is `'11'`, `'10'`, or `'0'` (no edition recorded: Legends and Forge\n  World packs). Two datasheets have no source (`sourceId` empty). `stratagems`, `detachments`, `enhancements` and\n  `abilities` have no source column: their edition is not recorded. The Core Rules rulebook is 10th edition.\n- **Abilities are in two places.** Core and Faction abilities have an `abilityId` and their text in `abilities`; the\n  others (`Datasheet`, `Wargear`, …) have an empty `abilityId` and their text in `datasheets_abilities.description`.\n  `abilities` repeats each ability once per faction (91 rows, 71 `Id`s), so join it through\n  `(SELECT DISTINCT Id, name, description FROM abilities)`, never on `Id` alone (example 4).\n- **Core stratagems** have an empty `FactionId` and come in two forms. Rows of `type` `Core Stratagem` are linked to\n  datasheets in `datasheets_stratagems`; rows whose `type` reads like the rulebook's labels (`Core – Wargear\n  Stratagem`, `Core – Strategic Ploy Stratagem`, …) are linked to no datasheet. A name can have both forms\n  (`COMMAND RE-ROLL`) or only one (`GRENADE` exists only as `Core – Wargear Stratagem`), and their texts can differ;\n  their source is not recorded. Which units can use a core stratagem is written in its `TARGET:` line (for\n  `GRENADE`, a unit with the `Grenades` keyword). Other rows with an empty `FactionId` belong to other game modes\n  (`Boarding Actions`, `Challenger`) or describe core actions (`Movement Ability`, `Shooting Ability`).\n- **Game modes of detachments.** `detachments.type` is empty for the standard game and `Boarding Actions` for that\n  game mode (59 of 327 detachments); a faction's stratagems include those of its Boarding Actions detachments (for\n  Space Marines, `Boarding Strike`). For a question about the standard game, leave those out. A stratagem whose\n  `detachmentId` matches no row of `detachments` (six Aeldari `Army Rules` stratagems) has an unknown game mode,\n  not the standard one.\n- **Rows can repeat.** `datasheets_keywords` holds 16 358 rows but 12 172 different ones, and a datasheet's points\n  rows can appear twice, between header rows such as `YOUR UNIT COSTS` with an empty `cost`. Use `DISTINCT` when you\n  list or count.\n- **Model profiles.** A datasheet can have several rows in `datasheets_models` (one per kind of model, by `line`);\n  keep all profiles of a unit together when they differ. Filter units by their keywords or an `EXISTS` condition,\n  then return all profiles of those units; filtering model rows to one characteristic hides mixed-profile units.\n- Some `datasheets_abilities.type` values are leftovers of the export in Russian (for example\n  `Special (правая колонка)`); treat them as other datasheet abilities. The datasheet `Example Wargear` is a\n  placeholder (`virtual = 'true'`).\n\n## Examples\n\nAll examples run as written; replace the names and IDs.\n\n1. A unit's model profiles, with its faction and source:\n\n```sql\nSELECT d.name, f.name AS faction, m.name AS model, m.m, m.t, m.sv, m.invSv, m.w, m.ld, m.oc,\n       s.name AS source, s.edition\nFROM datasheets d\nJOIN factions f ON f.Id = d.factionId\nJOIN datasheets_models m ON m.DatasheetId = d.Id\nLEFT JOIN source s ON s.Id = d.sourceId\nWHERE d.name = 'Intercessor Squad' AND d.factionId = 'SM'\nORDER BY CAST(m.line AS INTEGER);\n```\n\n2. A category: Space Marine Battleline units, Legends excluded. Use one query for representative units across\n   the observed Toughness values. It ranks units with mixed profiles first, chooses at most two representatives\n   per value, then returns every profile of each chosen unit. This is a sample even if `truncated` is false.\n   Keep `source` and `edition` as the publication column names:\n\n```sql\nWITH category_profiles AS (\n  SELECT DISTINCT d.Id, d.name, s.name AS source, s.edition,\n                  m.line, m.name AS model, m.t\n  FROM datasheets d\n  JOIN datasheets_models m ON m.DatasheetId = d.Id\n  LEFT JOIN source s ON s.Id = d.sourceId\n  WHERE d.factionId = 'SM'\n    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Battleline')\n    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')\n),\nunit_variants AS (\n  SELECT Id, COUNT(DISTINCT t) AS toughness_values\n  FROM category_profiles\n  GROUP BY Id\n),\nranked AS (\n  SELECT p.Id, p.name, p.source, p.edition, p.t,\n         ROW_NUMBER() OVER (\n           PARTITION BY p.t\n           ORDER BY v.toughness_values DESC, p.name, p.Id\n         ) AS representative\n  FROM (\n    SELECT DISTINCT Id, name, source, edition, t FROM category_profiles\n  ) p\n  JOIN unit_variants v ON v.Id = p.Id\n),\nselected AS (\n  SELECT DISTINCT Id, name, source, edition\n  FROM ranked\n  WHERE representative <= 2\n)\nSELECT s.Id, s.name, s.source, s.edition,\n       GROUP_CONCAT(p.model || ': T' || p.t, '; ') AS profiles\nFROM selected s\nJOIN category_profiles p ON p.Id = s.Id\nGROUP BY s.Id, s.name, s.source, s.edition\nORDER BY s.name, s.Id;\n```\n\nFor an overall distribution, query the complete category separately, grouping by publication and edition.\n`model_profiles` counts distinct datasheet/model-line profiles, not individual miniatures; `datasheets` counts\ndistinct units having that Toughness. A mixed-profile unit can appear in multiple Toughness groups, so do not\nsum these unit counts to obtain a total. No LIMIT is applied before this aggregation. A truncated aggregate\nresult is still incomplete; narrow its publication/category scope before making overall claims:\n\n```sql\nWITH profiles AS (\n  SELECT DISTINCT d.Id, m.line, m.t, s.Id AS source_id, s.name AS source, s.edition\n  FROM datasheets d\n  JOIN datasheets_models m ON m.DatasheetId = d.Id\n  LEFT JOIN source s ON s.Id = d.sourceId\n  WHERE d.factionId = 'SM'\n    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Battleline')\n    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')\n)\nSELECT source_id, source, edition, t, COUNT(*) AS model_profiles, COUNT(DISTINCT Id) AS datasheets\nFROM profiles\nGROUP BY source_id, source, edition, t\nORDER BY source, edition, CAST(t AS INTEGER), t;\n```\n\n3. A unit's weapons:\n\n```sql\nSELECT w.name, w.range, w.type, w.a, w.bsWs, w.s, w.ap, w.d, w.description\nFROM datasheets_wargear w\nWHERE w.DatasheetId = '000001157'  -- Intercessor Squad (SM)\nORDER BY CAST(w.line AS INTEGER), CAST(w.lineInWargear AS INTEGER);\n```\n\n4. A unit's abilities, from both places, one row per ability:\n\n```sql\nSELECT da.type,\n       COALESCE(a.name, da.name)               AS ability_name,\n       COALESCE(a.description, da.description) AS ability_text\nFROM datasheets_abilities da\nLEFT JOIN (SELECT DISTINCT Id, name, description FROM abilities) a ON a.Id = da.abilityId\nWHERE da.DatasheetId = '000000070'  -- Tactical Squad (SM)\nORDER BY CAST(da.line AS INTEGER);\n```\n\n5. A core stratagem's text, in every form, and the units that have the keyword its target needs:\n\n```sql\nSELECT name, type, cpCost, turn, phase, description\nFROM stratagems\nWHERE name = 'GRENADE' AND FactionId = '';\n```\n\n```sql\nSELECT DISTINCT d.name\nFROM datasheets d\nJOIN datasheets_keywords k ON k.DatasheetId = d.Id AND k.keyword = 'Grenades'\nWHERE d.factionId = 'SM'\nORDER BY d.name;\n```\n\n6. The stratagems of a unit's own faction, with their detachment and game mode (`game_mode`: empty = the standard\n   game, `Boarding Actions`, or `NULL` when the detachment is not in `detachments`):\n\n```sql\nSELECT s.name, s.FactionId AS faction, s.type, s.detachment, dt.type AS game_mode, s.cpCost, s.phase\nFROM datasheets d\nJOIN datasheets_stratagems ds ON ds.DatasheetId = d.Id\nJOIN stratagems s ON s.id = ds.stratagemId AND s.FactionId = d.factionId\nLEFT JOIN detachments dt ON dt.Id = s.detachmentId\nWHERE d.Id = '000001157'  -- Intercessor Squad (SM)\nORDER BY dt.type, s.detachment, s.name;\n```\n\n7. A unit's keywords:\n\n```sql\nSELECT DISTINCT keyword, model, isFactionKeyword\nFROM datasheets_keywords\nWHERE DatasheetId = '000000070'  -- Tactical Squad (SM)\nORDER BY isFactionKeyword DESC, keyword;\n```\n\n8. A faction's detachments, with their rules:\n\n```sql\nSELECT dt.name AS detachment, da.name AS rule, da.description\nFROM detachments dt\nLEFT JOIN detachment_abilities da ON da.detachmentId = dt.Id\nWHERE dt.factionId = 'SM'\nORDER BY dt.name;\n```\n\n9. The units a leader can lead:\n\n```sql\nSELECT attached.name\nFROM datasheets leader\nJOIN datasheets_leader l ON l.LeaderId = leader.Id\nJOIN datasheets attached ON attached.Id = l.attachedId\nWHERE leader.Id = '000000073'  -- Captain (SM)\nORDER BY attached.name;\n```\n\n10. A unit's points:\n\n```sql\nSELECT DISTINCT description AS unit_size, cost\nFROM datasheets_models_cost\nWHERE DatasheetId = '000001157' AND cost != ''  -- Intercessor Squad (SM)\nORDER BY CAST(cost AS INTEGER);\n```\n",
+  "final_prompt": "You are a rules assistant for Warhammer 40,000. You answer from two sources: the Core Rules (10th edition) and a database of datasheets, weapons, stratagems, factions and detachments.\n\n## Tools are spent\n\nThe tool budget for this question is spent: no tool can be called any more. Answer now, from the tool results above. Where they are not enough, give what they show and say what is missing.\n\n## Answering\n\n- Answer only from the tool results of this conversation. If a search does not supply the necessary passage, search again with a specific rule or section name while tools remain. If it is still missing, say what the retrieved passages do not establish and what you searched. Unsuccessful retrieval never proves that the rulebook has no such rule. Do not invent values or fill gaps from general game knowledge.\n- Organize an evidence answer in this order: source/version and scope, including which facts the user supplied and which the tools established; explicit conditions and results in the source's order; then the supported conclusion and any evidence gap. For an if/otherwise rule, preserve every branch and their common timing. Distinguish ways to score from the rule for determining a winner.\n- For a rule or procedure, preserve its cost, timing, eligible target, effect, restrictions and exceptions where the evidence gives them. For how to use a Stratagem, explain its CP payment from the `STRATAGEMS` and `1. COMMAND` sections and illustrate how the card labels WHEN, TARGET, EFFECT and RESTRICTIONS work from the retrieved Stratagem cards; once those sections and cards are retrieved, answer from them without searching again for a separate definition of those card labels. Identify the actor, whose phase it is, every recipient, and quantifiers such as \"both players\" and \"each phase\"; avoid ambiguous pronouns. Do not merge source versions. Give an exception only with its trigger and timing. If you choose an example, attribute it to one source or separate material versions; do not use a joint citation to imply that different versions are identical. An example figure is illustrative, not a datasheet fact about a real unit.\n- Cite every fact: [Core Rules p. N] for the rulebook (p. N–M for a passage over two pages), [DB: table] for the database.\n- Editions: the rulebook is the 10th edition. For a database record, give its edition only when it is recorded: for a datasheet, join `source` and give its name and edition; edition '0' means that none is recorded (a Warhammer Legends or Forge World pack: name it as such). Stratagems, detachments, enhancements and abilities have no source: say that their source is not recorded. Never give one edition to the database as a whole.\n- When evidence contains versions of the same rule, compare costs, timing, targets, effects and restrictions. For an applicability question or follow-up, give a short entry for EACH source: source/version and citation; its explicit conditions; the relevant facts supplied by the user or established by a tool, labelled by origin; any missing facts; and the conclusion supported by that source. These are checkable evidence statements, not a narrative of your reasoning. Preserve who a restriction applies to, including the controlling player. Nonselection, a completed action, and ineligibility are different predicates: none establishes another without cited evidence. Do not import exclusions across sources. An exclusion absent from a retrieved passage proves neither permission nor prohibition; say when that source does not settle the case. Describe material differences, not assumed clarifications.\n- Categories: a broad name such as \"a Space Marine\" is a category, not a unit. Resolve it to a faction and keywords (for example factionId 'SM' with the keyword Battleline or Infantry), leave out Warhammer Legends unless asked, use aggregate counts by publication/edition for a typical value and separate limited examples for exceptions, report the per-publication/edition counts as returned without summing them across publications or editions in prose, and say how you read the question: the units the answer covers and what it leaves out. Do not answer with a question when the results let you answer this way. Name the counting unit (datasheets or model profiles). A truncated example list cannot support an overall distribution.\n- Profiles: a characteristic belongs to a model profile, not to a unit. When a unit you give as an exception has profiles of different values, state every profile/value variant of that exception; never give one profile's characteristic as the value of the whole unit. Cite the table name, not a record ID as though it were a table.\n- Missions: use the page footer to name the mission for both scoring and winner rules. A question about ways to score needs concrete award conditions, amounts and timing; an introduction or a winner rule does not supply them. Search again for victory points and objective control only if no mission scoring rule has been retrieved yet; once a mission's scoring rule is present, answer from it without further searches for generic examples. Keep mission-specific scoring separate from generic examples and winner conditions. Preserve the source's shared timing and all ordered winner branches, including the destroyed-army condition, otherwise VP comparison and tie. State any remaining evidence gap.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+  "final_instruction": "Tools are no longer available. Answer now in text, from the tool results above; if they are not enough, say what is missing.",
+  "model_settings": {
+   "model": "gemini-3.8-flash",
+   "temperature": null,
+   "frequency_penalty": null,
+   "presence_penalty": null,
+   "top_p": null,
+   "top_k": null,
+   "max_output_tokens": null,
+   "n": 1,
+   "safety_settings": null,
+   "response_modalities": null,
+   "media_resolution": null,
+   "thinking_budget": null,
+   "include_thoughts": null,
+   "thinking_level": null,
+   "thinking_config": null,
+   "image_config": null
+  },
+  "tools": [
+   {
+    "type": "function",
+    "function": {
+     "name": "search_rules",
+     "description": "Search the Core Rules: how the game works (phases, actions, keywords, terrain). Retrieved Stratagem sections also include exact-name core database records when found.",
+     "parameters": {
+      "properties": {
+       "query": {
+        "description": "In English, with the rulebook's terms, whatever the question's language.",
+        "type": "string"
+       }
+      },
+      "required": [
+       "query"
+      ],
+      "type": "object"
+     }
+    }
+   },
+   {
+    "type": "function",
+    "function": {
+     "name": "run_sql",
+     "description": "Query units, weapons, abilities, stratagems, detachments and factions with read-only SQL.",
+     "parameters": {
+      "properties": {
+       "sql": {
+        "description": "One SQLite SELECT or WITH query that follows the database schema.",
+        "type": "string"
+       }
+      },
+      "required": [
+       "sql"
+      ],
+      "type": "object"
+     }
+    }
+   }
+  ],
+  "messages": [
+   {
+    "type": "human",
+    "data": {
+     "content": "How does battle-shock afect the use of stratagemz on a unit?",
+     "additional_kwargs": {},
+     "response_metadata": {},
+     "type": "human",
+     "name": null,
+     "id": "196fa878-95f5-4053-91da-f7d7878e456c"
+    }
+   },
+   {
+    "type": "ai",
+    "data": {
+     "content": [],
+     "additional_kwargs": {
+      "function_call": {
+       "name": "search_rules",
+       "arguments": "{\"query\": \"Battle-shock Stratagem\"}"
+      },
+      "__gemini_function_call_thought_signatures__": {
+       "call_912385": "EoIDCv8CAWkUfRN+VgVjJkV/NMcX37wh5y+Fe4J7lo3kXnPsXcEMPvgSxgY71q5/BroRc88emszQMB2kkjGy1zo+/Gkul/0O02ZFKW+DZDwM/z3yyYZyB8wrc3YPknvMjDAYUhXkZKgtYEU/n/VXmEtHsDfpmKwpBzrYg5XW8DyDjczviwgVjY4q7ZM+g7VWE7XM0WoTinVTYuK8LlxrMQPkBSWGsVuToltHdhwAaqd+R8wjdqey2bMJaZjSTQCz+r1FBMoZQhs1xftwPalgO9gk0eg8jA23LTuvIHA+3/bfc0yyZKz79SxY5HHcov7a1hRGyKG1p2/nngYjZ28U3xi8rkMRJmyxK/Pqp01BGvf/77quqOFbbX+RPApfDYmMNqc35pgejhVnalVXRSSpLwkRGGLToNvuqIRlldfb2FRHVndVk62nUXMnoQMqmKFAebKsGVQexuEPhW3Fjqo/Qm+B1vSl6PvrkSA9DU+YSjrVV+TPyE33/cVvs92mKTphzKNsW5U="
+      }
+     },
+     "response_metadata": {
+      "safety_ratings": [],
+      "finish_reason": "STOP",
+      "model_name": "gemini-3.8-flash",
+      "model_provider": "google_genai"
+     },
+     "type": "ai",
+     "name": null,
+     "id": "lc_run--01a16f8a-8c40-7552-8383-a8da46bb31ef",
+     "tool_calls": [
+      {
+       "name": "search_rules",
+       "args": {
+        "query": "Battle-shock Stratagem"
+       },
+       "id": "call_912385",
+       "type": "tool_call"
+      }
+     ],
+     "invalid_tool_calls": [],
+     "usage_metadata": {
+      "input_tokens": 6012,
+      "output_tokens": 85,
+      "total_tokens": 6097,
+      "input_token_details": {
+       "cache_read": 0
+      },
+      "output_token_details": {
+       "reasoning": 65
+      }
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "data": {
+     "content": "[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: INSANE BRAVERY\n1CP\n\nCORE - EPIC DEED STRATAGEM\n\nIndifferent to their own survival, these warriors hold their ground against seemingly impossible odds.\n\nWHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army (pg 11).\n\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\n\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.\n\n[Core Rules p. 11] (page footer p. 11: CORE RULES | COMMAND PHASE)\nSection: 2. BATTLE-SHOCK\nIn this step, you must take a Battle-shock test for each of your units on the battlefield that is Below Half-strength (pg 12). To do so, roll 2D6: if the result is greater than or equal to the best Leadership characteristic in that unit, the test is passed; otherwise, the test is failed and, until the start of your next Command phase, that unit is Battle-shocked.\n\nWhile a unit is Battle-shocked:\n\n- The Objective Control characteristic of all of its models is 0.\n- If it Falls Back, you must take a Desperate Escape test for every model in that unit (pg 14).\n- Its controlling player cannot use Stratagems to affect that unit.\n\nOnce you have taken Battle-shock tests for all of your units that require them, your Command phase ends and you progress to your Movement phase.\n\n- Take a Battle-shock test for each unit from your army on the battlefield that is Below Half-strength.\n- Roll 2D6: if the result is greater than or equal to the unit's Leadership, the test is passed. Otherwise, the unit is Battle-shocked until the start of your next Command phase.\n- Battle-shocked units have an OC of 0 and their controlling player cannot use Stratagems to affect them.\n- Battle-shocked units must take Desperate Escape tests if they Fall Back.\n\nYour Command phase is split into two steps. In the first, both players gain 1 Command point (CP) and you resolve any other Command phase rules; in the second, you test to see if any of your units are Battle-shocked.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: TANK SHOCK\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nRamming the foe with a speeding vehicle may be an unsubtle tactic, but it is a murderously effective one.\n\nWHEN: Your Charge phase.\n\nTARGET: One Vehicle unit from your army.\n\nEFFECT: Until the end of the phase, after your unit ends a Charge move, select one enemy unit within Engagement Range of it, then select one melee weapon your unit is equipped with. Roll a number of D6 equal to that weapon's Strength characteristic. If that Strength characteristic is greater than that enemy unit's Toughness characteristic, roll two additional D6. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).\n\n[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: STRATAGEM CATEGORIES\nEach Stratagem belongs to one of four categories, as described below. There are some rules (especially in Crusade games) that interact with Stratagems of a particular category.\n\nBATTLE TACTIC: These Stratagems bolster a unit's efficacy in battle, boosting their attacks or defensive capabilities at a critical moment.\n\nEPIC DEED: These Stratagems are used by individual models or units to perform mighty feats of heroism.\n\nSTRATEGIC PLOY: These Stratagems enable units to gain new strategic insights, granting them a small but valuable window of opportunity.\n\nWARGEAR: These Stratagems represent the effects of using specialised items of equipment in battle.\n\n[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: COMMAND RE-ROLL\n1CP\n\nCORE - BATTLE TACTIC STRATAGEM\n\nA great commander can bend even the vagaries of fate and fortune to their will, the better to ensure victory.\n\nWHEN: In any phase, just after you have made a Hit roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate Escape test, a Hazardous test, or just after you have rolled the dice to determine the number of attacks made with a weapon, for an attack, model or unit from your army.\n\nEFFECT: You re-roll that roll, test or saving throw.\n\n[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: STRATAGEMS\nCommand points can be spent during the battle to use Stratagems. All players can use the Core Stratagems presented here. Additional Stratagems can be found in Codexes and other publications.\n\nWhen you use a Stratagem, reduce your CP total by the amount listed on that Stratagem. If you do not have enough CP for a specific Stratagem, you cannot use it. You can use the same Stratagem multiple times during a battle, but you cannot use the same Stratagem more than once in the same phase.\n\n- To use a Stratagem you must pay the CP specified.\n- The same Stratagem cannot be used more than once in the same phase.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: GO TO GROUND\n1CP\n\nCORE - BATTLE TACTIC STRATAGEM\n\nSeeking salvation from incoming fire, warriors hurl themselves into whatever cover they can find.\n\nWHEN: Your opponent's Shooting phase, just after an enemy unit has selected its targets.\n\nTARGET: One Infantry unit from your army that was selected as the target of one or more of the attacking unit's attacks.\n\nEFFECT: Until the end of the phase, all models in your unit have a 6+ invulnerable save and have the Benefit of Cover (pg 44).\n\n[Core Rules p. 11] (page footer p. 11: CORE RULES | COMMAND PHASE)\nSection: 1. COMMAND\nAt the start of your Command phase, before doing anything else, both players gain 1CP. Command points are a strategic resource that you can spend during the battle to use Stratagems. You can find out more about Stratagems on pages 41-42.\n\nThen, if you have any other rules that need to be resolved in the Command phase, you do so now before progressing to the Battle-shock step.\n\n- Both players gain 1CP.\n- Resolve any other rules that occur in the Command phase.\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"INSANE BRAVERY\", \"TANK SHOCK\", \"STRATAGEM CATEGORIES\", \"COMMAND RE-ROLL\", \"STRATAGEMS\", \"GO TO GROUND\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335002\", \"COMMAND RE-ROLL\", \"\", \"Core – Battle Tactic Stratagem\", \"1\", \"Either player’s turn\", \"Any phase\", \"\", \"WHEN: Any phase, just after you make an Advance roll, a Charge roll, a Desperate Escape test or a Hazardous test for a unit from your army, or a Hit roll, a Wound roll, a Damage roll or a saving throw for a model in that unit, or a roll to determine the number of attacks made with a weapon equipped by a model in that unit. If you are using fast dice rolling, this Stratagem can still be used after rolling multiple rolls or saving throws at once.\\nTARGET: That unit or model from your army.\\nEFFECT: You re-roll that roll, test or saving throw. If you are using fast dice rolling, select one of those rolls or saving throws to re-roll.\"], [\"000009218002\", \"COMMAND RE-ROLL\", \"\", \"Boarding Actions – Epic Deed Stratagem\", \"1\", \"Either player’s turn\", \"Any phase\", \"\", \"WHEN: Any phase, just after you have made a Hit roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate Escape test, a Hazardous test, or just after you have rolled the dice to determine the number of attacks made with a weapon, for an attack, model or unit from your army.\\nTARGET: That unit or model from your army.\\nEFFECT: You re-roll that roll, test or saving throw.\"], [\"000010810002\", \"COMMAND RE-ROLL\", \"\", \"Core Stratagem\", \"1\", \"Either player’s turn\", \"Any phase\", \"\", \"WHEN: Any phase, just after you make one of the following rolls for a friendly unit or model:Advance rollCharge rollDamage rollHazard rollHit rollSave rollWound rollA roll to determine the number of attacks generated with a weapon.\\nTARGET: That unit or model.\\nEFFECT: You re-roll that roll. If you are rolling more than one dice together, select one of those dice to re-roll (excluding charge rolls, which you must re-roll in full).\"], [\"000008335010\", \"GO TO GROUND\", \"\", \"Core – Battle Tactic Stratagem\", \"1\", \"Opponent’s turn\", \"Shooting phase\", \"\", \"WHEN: Your opponent’s Shooting phase, just after an enemy unit has selected its targets.\\nTARGET: One INFANTRY unit from your army that was selected as the target of one or more of the attacking unit’s attacks.\\nEFFECT: Until the end of the phase, all models in your unit have a 6+ invulnerable save and have the Benefit of Cover.\"], [\"000008335005\", \"INSANE BRAVERY\", \"\", \"Core – Epic Deed Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just before you take a Battle-shock test for a unit from your army.\\nTARGET: That unit from your army.\\nEFFECT: Your unit automatically passes that Battle-shock test.\\nRESTRICTIONS: You cannot use this Stratagem more than once per battle.\"], [\"000009218005\", \"INSANE BRAVERY\", \"\", \"Boarding Actions – Epic Deed Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army.\\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.\"], [\"000010810004\", \"INSANE BRAVERY\", \"\", \"Core Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just before you make a battle-shock roll for a friendly unit.\\nTARGET: That unit.\\nEFFECT: That battle-shock roll is automatically successful.\\nRESTRICTIONS: You cannot use this stratagem more than once per battle.\"], [\"000008335007\", \"TANK SHOCK\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Your turn\", \"Charge phase\", \"\", \"WHEN: Your Charge phase, just after a VEHICLE unit from your army ends a Charge move.\\nTARGET: That VEHICLE unit.\\nEFFECT: Select one enemy unit within Engagement Range of your unit, and select one VEHICLE model in your unit that is within Engagement Range of that enemy unit. Roll a number of D6 equal to the Toughness characteristic of the selected VEHICLE model. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+     "additional_kwargs": {},
+     "response_metadata": {},
+     "type": "tool",
+     "name": "search_rules",
+     "id": "0ed2ea59-2824-4e73-a033-d04d342c4794",
+     "tool_call_id": "call_912385",
+     "artifact": {
+      "chunks": [
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0160",
+         "text": "Section: INSANE BRAVERY\n1CP\n\nCORE - EPIC DEED STRATAGEM\n\nIndifferent to their own survival, these warriors hold their ground against seemingly impossible odds.\n\nWHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army (pg 11).\n\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\n\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.",
+         "pages": [
+          42
+         ],
+         "section": "INSANE BRAVERY",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/96"
+         ],
+         "page_footers": [
+          "CORE RULES | STRATAGEMS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03278688524590164
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0036",
+         "text": "Section: 2. BATTLE-SHOCK\nIn this step, you must take a Battle-shock test for each of your units on the battlefield that is Below Half-strength (pg 12). To do so, roll 2D6: if the result is greater than or equal to the best Leadership characteristic in that unit, the test is passed; otherwise, the test is failed and, until the start of your next Command phase, that unit is Battle-shocked.\n\nWhile a unit is Battle-shocked:\n\n- The Objective Control characteristic of all of its models is 0.\n- If it Falls Back, you must take a Desperate Escape test for every model in that unit (pg 14).\n- Its controlling player cannot use Stratagems to affect that unit.\n\nOnce you have taken Battle-shock tests for all of your units that require them, your Command phase ends and you progress to your Movement phase.\n\n- Take a Battle-shock test for each unit from your army on the battlefield that is Below Half-strength.\n- Roll 2D6: if the result is greater than or equal to the unit's Leadership, the test is passed. Otherwise, the unit is Battle-shocked until the start of your next Command phase.\n- Battle-shocked units have an OC of 0 and their controlling player cannot use Stratagems to affect them.\n- Battle-shocked units must take Desperate Escape tests if they Fall Back.\n\nYour Command phase is split into two steps. In the first, both players gain 1 Command point (CP) and you resolve any other Command phase rules; in the second, you test to see if any of your units are Battle-shocked.",
+         "pages": [
+          11
+         ],
+         "section": "2. BATTLE-SHOCK",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | COMMAND PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03225806451612903
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0162",
+         "text": "Section: TANK SHOCK\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nRamming the foe with a speeding vehicle may be an unsubtle tactic, but it is a murderously effective one.\n\nWHEN: Your Charge phase.\n\nTARGET: One Vehicle unit from your army.\n\nEFFECT: Until the end of the phase, after your unit ends a Charge move, select one enemy unit within Engagement Range of it, then select one melee weapon your unit is equipped with. Roll a number of D6 equal to that weapon's Strength characteristic. If that Strength characteristic is greater than that enemy unit's Toughness characteristic, roll two additional D6. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).",
+         "pages": [
+          42
+         ],
+         "section": "TANK SHOCK",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/98"
+         ],
+         "page_footers": [
+          "CORE RULES | STRATAGEMS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03149801587301587
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0156",
+         "text": "Section: STRATAGEM CATEGORIES\nEach Stratagem belongs to one of four categories, as described below. There are some rules (especially in Crusade games) that interact with Stratagems of a particular category.\n\nBATTLE TACTIC: These Stratagems bolster a unit's efficacy in battle, boosting their attacks or defensive capabilities at a critical moment.\n\nEPIC DEED: These Stratagems are used by individual models or units to perform mighty feats of heroism.\n\nSTRATEGIC PLOY: These Stratagems enable units to gain new strategic insights, granting them a small but valuable window of opportunity.\n\nWARGEAR: These Stratagems represent the effects of using specialised items of equipment in battle.",
+         "pages": [
+          41
+         ],
+         "section": "STRATAGEM CATEGORIES",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | STRATAGEMS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.030536130536130537
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0157",
+         "text": "Section: COMMAND RE-ROLL\n1CP\n\nCORE - BATTLE TACTIC STRATAGEM\n\nA great commander can bend even the vagaries of fate and fortune to their will, the better to ensure victory.\n\nWHEN: In any phase, just after you have made a Hit roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate Escape test, a Hazardous test, or just after you have rolled the dice to determine the number of attacks made with a weapon, for an attack, model or unit from your army.\n\nEFFECT: You re-roll that roll, test or saving throw.",
+         "pages": [
+          41
+         ],
+         "section": "COMMAND RE-ROLL",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/93"
+         ],
+         "page_footers": [
+          "CORE RULES | STRATAGEMS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.030117753623188408
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0155",
+         "text": "Section: STRATAGEMS\nCommand points can be spent during the battle to use Stratagems. All players can use the Core Stratagems presented here. Additional Stratagems can be found in Codexes and other publications.\n\nWhen you use a Stratagem, reduce your CP total by the amount listed on that Stratagem. If you do not have enough CP for a specific Stratagem, you cannot use it. You can use the same Stratagem multiple times during a battle, but you cannot use the same Stratagem more than once in the same phase.\n\n- To use a Stratagem you must pay the CP specified.\n- The same Stratagem cannot be used more than once in the same phase.",
+         "pages": [
+          41
+         ],
+         "section": "STRATAGEMS",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | STRATAGEMS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.029957522915269395
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0165",
+         "text": "Section: GO TO GROUND\n1CP\n\nCORE - BATTLE TACTIC STRATAGEM\n\nSeeking salvation from incoming fire, warriors hurl themselves into whatever cover they can find.\n\nWHEN: Your opponent's Shooting phase, just after an enemy unit has selected its targets.\n\nTARGET: One Infantry unit from your army that was selected as the target of one or more of the attacking unit's attacks.\n\nEFFECT: Until the end of the phase, all models in your unit have a 6+ invulnerable save and have the Benefit of Cover (pg 44).",
+         "pages": [
+          42
+         ],
+         "section": "GO TO GROUND",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/100"
+         ],
+         "page_footers": [
+          "CORE RULES | STRATAGEMS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.029857397504456328
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0035",
+         "text": "Section: 1. COMMAND\nAt the start of your Command phase, before doing anything else, both players gain 1CP. Command points are a strategic resource that you can spend during the battle to use Stratagems. You can find out more about Stratagems on pages 41-42.\n\nThen, if you have any other rules that need to be resolved in the Command phase, you do so now before progressing to the Battle-shock step.\n\n- Both players gain 1CP.\n- Resolve any other rules that occur in the Command phase.",
+         "pages": [
+          11
+         ],
+         "section": "1. COMMAND",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | COMMAND PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.02967032967032967
+       }
+      ],
+      "stratagem_names": [
+       "INSANE BRAVERY",
+       "TANK SHOCK",
+       "STRATAGEM CATEGORIES",
+       "COMMAND RE-ROLL",
+       "STRATAGEMS",
+       "GO TO GROUND"
+      ],
+      "stratagems": {
+       "columns": [
+        "id",
+        "name",
+        "FactionId",
+        "type",
+        "cpCost",
+        "turn",
+        "phase",
+        "detachment",
+        "description"
+       ],
+       "rows": [
+        [
+         "000008335002",
+         "COMMAND RE-ROLL",
+         "",
+         "Core – Battle Tactic Stratagem",
+         "1",
+         "Either player’s turn",
+         "Any phase",
+         "",
+         "WHEN: Any phase, just after you make an Advance roll, a Charge roll, a Desperate Escape test or a Hazardous test for a unit from your army, or a Hit roll, a Wound roll, a Damage roll or a saving throw for a model in that unit, or a roll to determine the number of attacks made with a weapon equipped by a model in that unit. If you are using fast dice rolling, this Stratagem can still be used after rolling multiple rolls or saving throws at once.\nTARGET: That unit or model from your army.\nEFFECT: You re-roll that roll, test or saving throw. If you are using fast dice rolling, select one of those rolls or saving throws to re-roll."
+        ],
+        [
+         "000009218002",
+         "COMMAND RE-ROLL",
+         "",
+         "Boarding Actions – Epic Deed Stratagem",
+         "1",
+         "Either player’s turn",
+         "Any phase",
+         "",
+         "WHEN: Any phase, just after you have made a Hit roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate Escape test, a Hazardous test, or just after you have rolled the dice to determine the number of attacks made with a weapon, for an attack, model or unit from your army.\nTARGET: That unit or model from your army.\nEFFECT: You re-roll that roll, test or saving throw."
+        ],
+        [
+         "000010810002",
+         "COMMAND RE-ROLL",
+         "",
+         "Core Stratagem",
+         "1",
+         "Either player’s turn",
+         "Any phase",
+         "",
+         "WHEN: Any phase, just after you make one of the following rolls for a friendly unit or model:Advance rollCharge rollDamage rollHazard rollHit rollSave rollWound rollA roll to determine the number of attacks generated with a weapon.\nTARGET: That unit or model.\nEFFECT: You re-roll that roll. If you are rolling more than one dice together, select one of those dice to re-roll (excluding charge rolls, which you must re-roll in full)."
+        ],
+        [
+         "000008335010",
+         "GO TO GROUND",
+         "",
+         "Core – Battle Tactic Stratagem",
+         "1",
+         "Opponent’s turn",
+         "Shooting phase",
+         "",
+         "WHEN: Your opponent’s Shooting phase, just after an enemy unit has selected its targets.\nTARGET: One INFANTRY unit from your army that was selected as the target of one or more of the attacking unit’s attacks.\nEFFECT: Until the end of the phase, all models in your unit have a 6+ invulnerable save and have the Benefit of Cover."
+        ],
+        [
+         "000008335005",
+         "INSANE BRAVERY",
+         "",
+         "Core – Epic Deed Stratagem",
+         "1",
+         "Your turn",
+         "Command phase",
+         "",
+         "WHEN: Battle-shock step of your Command phase, just before you take a Battle-shock test for a unit from your army.\nTARGET: That unit from your army.\nEFFECT: Your unit automatically passes that Battle-shock test.\nRESTRICTIONS: You cannot use this Stratagem more than once per battle."
+        ],
+        [
+         "000009218005",
+         "INSANE BRAVERY",
+         "",
+         "Boarding Actions – Epic Deed Stratagem",
+         "1",
+         "Your turn",
+         "Command phase",
+         "",
+         "WHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army.\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result."
+        ],
+        [
+         "000010810004",
+         "INSANE BRAVERY",
+         "",
+         "Core Stratagem",
+         "1",
+         "Your turn",
+         "Command phase",
+         "",
+         "WHEN: Battle-shock step of your Command phase, just before you make a battle-shock roll for a friendly unit.\nTARGET: That unit.\nEFFECT: That battle-shock roll is automatically successful.\nRESTRICTIONS: You cannot use this stratagem more than once per battle."
+        ],
+        [
+         "000008335007",
+         "TANK SHOCK",
+         "",
+         "Core – Strategic Ploy Stratagem",
+         "1",
+         "Your turn",
+         "Charge phase",
+         "",
+         "WHEN: Your Charge phase, just after a VEHICLE unit from your army ends a Charge move.\nTARGET: That VEHICLE unit.\nEFFECT: Select one enemy unit within Engagement Range of your unit, and select one VEHICLE model in your unit that is within Engagement Range of that enemy unit. Roll a number of D6 equal to the Toughness characteristic of the selected VEHICLE model. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds)."
+        ]
+       ],
+       "truncated": false,
+       "error": null
+      },
+      "related_sections": []
+     },
+     "status": "success"
+    }
+   },
+   {
+    "type": "ai",
+    "data": {
+     "content": [],
+     "additional_kwargs": {
+      "function_call": {
+       "name": "search_rules",
+       "arguments": "{\"query\": \"affect that unit Stratagems\"}"
+      },
+      "__gemini_function_call_thought_signatures__": {
+       "call_1369101": "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"
+      }
+     },
+     "response_metadata": {
+      "safety_ratings": [],
+      "finish_reason": "STOP",
+      "model_name": "gemini-3.8-flash",
+      "model_provider": "google_genai"
+     },
+     "type": "ai",
+     "name": null,
+     "id": "lc_run--01a16f8a-a2d8-7ad3-bb36-2d4ed659f509",
+     "tool_calls": [
+      {
+       "name": "search_rules",
+       "args": {
+        "query": "affect that unit Stratagems"
+       },
+       "id": "call_1369101",
+       "type": "tool_call"
+      }
+     ],
+     "invalid_tool_calls": [],
+     "usage_metadata": {
+      "input_tokens": 8964,
+      "output_tokens": 462,
+      "total_tokens": 9426,
+      "input_token_details": {
+       "cache_read": 0
+      },
+      "output_token_details": {
+       "reasoning": 441
+      }
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "data": {
+     "content": "[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: STRATAGEM CATEGORIES\nEach Stratagem belongs to one of four categories, as described below. There are some rules (especially in Crusade games) that interact with Stratagems of a particular category.\n\nBATTLE TACTIC: These Stratagems bolster a unit's efficacy in battle, boosting their attacks or defensive capabilities at a critical moment.\n\nEPIC DEED: These Stratagems are used by individual models or units to perform mighty feats of heroism.\n\nSTRATEGIC PLOY: These Stratagems enable units to gain new strategic insights, granting them a small but valuable window of opportunity.\n\nWARGEAR: These Stratagems represent the effects of using specialised items of equipment in battle.\n\n[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: STRATAGEMS\nCommand points can be spent during the battle to use Stratagems. All players can use the Core Stratagems presented here. Additional Stratagems can be found in Codexes and other publications.\n\nWhen you use a Stratagem, reduce your CP total by the amount listed on that Stratagem. If you do not have enough CP for a specific Stratagem, you cannot use it. You can use the same Stratagem multiple times during a battle, but you cannot use the same Stratagem more than once in the same phase.\n\n- To use a Stratagem you must pay the CP specified.\n- The same Stratagem cannot be used more than once in the same phase.\n\n[Core Rules p. 38] (page footer p. 38: CORE RULES | DATASHEETS)\nSection: AURA ABILITIES\nSome abilities affect multiple models or units in a given range. These are known as Aura abilities and are tagged with the word 'Aura'. A model with an Aura ability is always within range of its own Aura ability. A unit can be affected by more than one Aura ability at a time, but if a unit is within range of the same Aura ability more than once, that Aura ability only applies to that unit once.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: INSANE BRAVERY\n1CP\n\nCORE - EPIC DEED STRATAGEM\n\nIndifferent to their own survival, these warriors hold their ground against seemingly impossible odds.\n\nWHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army (pg 11).\n\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\n\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: HEROIC INTERVENTION\n2CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nVoices raised in furious war cries, your warriors surge forth to meet the enemy's onslaught head-on.\n\nWHEN: Your opponent's Charge phase, just after an enemy unit ends a Charge move.\n\nTARGET: One unit from your army that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\n\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\n\nRESTRICTIONS: You can only select a Vehicle unit from your army if it is a Walker. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn (pg 29).\n\n[Core Rules p. 11] (page footer p. 11: CORE RULES | COMMAND PHASE)\nSection: 1. COMMAND\nAt the start of your Command phase, before doing anything else, both players gain 1CP. Command points are a strategic resource that you can spend during the battle to use Stratagems. You can find out more about Stratagems on pages 41-42.\n\nThen, if you have any other rules that need to be resolved in the Command phase, you do so now before progressing to the Battle-shock step.\n\n- Both players gain 1CP.\n- Resolve any other rules that occur in the Command phase.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: TANK SHOCK\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nRamming the foe with a speeding vehicle may be an unsubtle tactic, but it is a murderously effective one.\n\nWHEN: Your Charge phase.\n\nTARGET: One Vehicle unit from your army.\n\nEFFECT: Until the end of the phase, after your unit ends a Charge move, select one enemy unit within Engagement Range of it, then select one melee weapon your unit is equipped with. Roll a number of D6 equal to that weapon's Strength characteristic. If that Strength characteristic is greater than that enemy unit's Toughness characteristic, roll two additional D6. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).\n\n[Core Rules p. 39] (page footer p. 39: CORE RULES | DEPLOYMENT ABILITIES)\nSection: LEADER\nWhile a Bodyguard unit contains a Leader, it is known as an Attached unit and, with the exception of rules that are triggered when units are destroyed (pg 12), it is treated as a single unit for all rules purposes. Each time an attack targets an Attached unit, until the attacking unit has resolved all of its attacks, you must use the Toughness characteristic of the Bodyguard models in that unit, even if a Leader in that unit has a different Toughness characteristic. Each time an attack sucessfully wounds an Attached unit, that attack cannot be allocated to a Character model in that unit, even if that Character model has lost one or more wounds or has already had attacks allocated to it this phase. As soon as the last Bodyguard model in an Attached unit has been destroyed, any attacks made against that unit that have yet to be allocated can then be allocated to Character models in that unit.\n\n- Before the battle, Character units with the Leader ability can be attached to one of their Bodyguard units to form an Attached unit.\n- Attached units can only contain one Leader.\n- Attacks cannot be allocated to Character models in Attached units.\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"STRATAGEM CATEGORIES\", \"STRATAGEMS\", \"INSANE BRAVERY\", \"HEROIC INTERVENTION\", \"TANK SHOCK\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335012\", \"HEROIC INTERVENTION\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Opponent’s turn\", \"Charge phase\", \"\", \"WHEN: Your opponent’s Charge phase, just after an enemy unit ends a Charge move.\\nTARGET: One unit from your army that is within 6\\\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\\nRESTRICTIONS: You can only select a VEHICLE unit from your army if it is a WALKER. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn.\"], [\"000010810011\", \"HEROIC INTERVENTION\", \"\", \"Core Stratagem\", \"1\", \"Opponent’s turn\", \"Charge phase\", \"\", \"WHEN: End of your opponent’s Charge phase.\\nTARGET: One friendly unengaged unit within 12\\\" of one or more enemy units. You can only select a VEHICLE unit if it is a CHARACTER/WALKER unit.\\nEFFECT: Resolve a charge with your unit (11.02). While doing so, before making the charge roll, you must select one of the following modes:Leap to Defend: When selecting charge targets, you can only select enemy units that made a charge move this phase and are within the maximum distance.+1CPInto the Fray:When making the charge roll, if the result is greater than 6 (after modifiers), change it to 6.When selecting charge targets, you can select any enemy units that are within 6\\\" of your unit and within the maximum distance.\"], [\"000008335005\", \"INSANE BRAVERY\", \"\", \"Core – Epic Deed Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just before you take a Battle-shock test for a unit from your army.\\nTARGET: That unit from your army.\\nEFFECT: Your unit automatically passes that Battle-shock test.\\nRESTRICTIONS: You cannot use this Stratagem more than once per battle.\"], [\"000009218005\", \"INSANE BRAVERY\", \"\", \"Boarding Actions – Epic Deed Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army.\\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.\"], [\"000010810004\", \"INSANE BRAVERY\", \"\", \"Core Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just before you make a battle-shock roll for a friendly unit.\\nTARGET: That unit.\\nEFFECT: That battle-shock roll is automatically successful.\\nRESTRICTIONS: You cannot use this stratagem more than once per battle.\"], [\"000008335007\", \"TANK SHOCK\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Your turn\", \"Charge phase\", \"\", \"WHEN: Your Charge phase, just after a VEHICLE unit from your army ends a Charge move.\\nTARGET: That VEHICLE unit.\\nEFFECT: Select one enemy unit within Engagement Range of your unit, and select one VEHICLE model in your unit that is within Engagement Range of that enemy unit. Roll a number of D6 equal to the Toughness characteristic of the selected VEHICLE model. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+     "additional_kwargs": {},
+     "response_metadata": {},
+     "type": "tool",
+     "name": "search_rules",
+     "id": "49871004-712a-4cd6-b03b-bc2dfe3bac30",
+     "tool_call_id": "call_1369101",
+     "artifact": {
+      "chunks": [
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0156",
+         "text": "Section: STRATAGEM CATEGORIES\nEach Stratagem belongs to one of four categories, as described below. There are some rules (especially in Crusade games) that interact with Stratagems of a particular category.\n\nBATTLE TACTIC: These Stratagems bolster a unit's efficacy in battle, boosting their attacks or defensive capabilities at a critical moment.\n\nEPIC DEED: These Stratagems are used by individual models or units to perform mighty feats of heroism.\n\nSTRATEGIC PLOY: These Stratagems enable units to gain new strategic insights, granting them a small but valuable window of opportunity.\n\nWARGEAR: These Stratagems represent the effects of using specialised items of equipment in battle.",
+         "pages": [
+          41
+         ],
+         "section": "STRATAGEM CATEGORIES",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | STRATAGEMS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03252247488101534
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0155",
+         "text": "Section: STRATAGEMS\nCommand points can be spent during the battle to use Stratagems. All players can use the Core Stratagems presented here. Additional Stratagems can be found in Codexes and other publications.\n\nWhen you use a Stratagem, reduce your CP total by the amount listed on that Stratagem. If you do not have enough CP for a specific Stratagem, you cannot use it. You can use the same Stratagem multiple times during a battle, but you cannot use the same Stratagem more than once in the same phase.\n\n- To use a Stratagem you must pay the CP specified.\n- The same Stratagem cannot be used more than once in the same phase.",
+         "pages": [
+          41
+         ],
+         "section": "STRATAGEMS",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | STRATAGEMS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.030798389007344232
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0147",
+         "text": "Section: AURA ABILITIES\nSome abilities affect multiple models or units in a given range. These are known as Aura abilities and are tagged with the word 'Aura'. A model with an Aura ability is always within range of its own Aura ability. A unit can be affected by more than one Aura ability at a time, but if a unit is within range of the same Aura ability more than once, that Aura ability only applies to that unit once.",
+         "pages": [
+          38
+         ],
+         "section": "AURA ABILITIES",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | DATASHEETS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.02964426877470356
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0160",
+         "text": "Section: INSANE BRAVERY\n1CP\n\nCORE - EPIC DEED STRATAGEM\n\nIndifferent to their own survival, these warriors hold their ground against seemingly impossible odds.\n\nWHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army (pg 11).\n\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\n\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.",
+         "pages": [
+          42
+         ],
+         "section": "INSANE BRAVERY",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/96"
+         ],
+         "page_footers": [
+          "CORE RULES | STRATAGEMS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.02900988017658188
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0167",
+         "text": "Section: HEROIC INTERVENTION\n2CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nVoices raised in furious war cries, your warriors surge forth to meet the enemy's onslaught head-on.\n\nWHEN: Your opponent's Charge phase, just after an enemy unit ends a Charge move.\n\nTARGET: One unit from your army that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\n\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\n\nRESTRICTIONS: You can only select a Vehicle unit from your army if it is a Walker. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn (pg 29).",
+         "pages": [
+          42
+         ],
+         "section": "HEROIC INTERVENTION",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/102"
+         ],
+         "page_footers": [
+          "CORE RULES | STRATAGEMS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.027984344422700584
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0035",
+         "text": "Section: 1. COMMAND\nAt the start of your Command phase, before doing anything else, both players gain 1CP. Command points are a strategic resource that you can spend during the battle to use Stratagems. You can find out more about Stratagems on pages 41-42.\n\nThen, if you have any other rules that need to be resolved in the Command phase, you do so now before progressing to the Battle-shock step.\n\n- Both players gain 1CP.\n- Resolve any other rules that occur in the Command phase.",
+         "pages": [
+          11
+         ],
+         "section": "1. COMMAND",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | COMMAND PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.02797067901234568
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0162",
+         "text": "Section: TANK SHOCK\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nRamming the foe with a speeding vehicle may be an unsubtle tactic, but it is a murderously effective one.\n\nWHEN: Your Charge phase.\n\nTARGET: One Vehicle unit from your army.\n\nEFFECT: Until the end of the phase, after your unit ends a Charge move, select one enemy unit within Engagement Range of it, then select one melee weapon your unit is equipped with. Roll a number of D6 equal to that weapon's Strength characteristic. If that Strength characteristic is greater than that enemy unit's Toughness characteristic, roll two additional D6. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).",
+         "pages": [
+          42
+         ],
+         "section": "TANK SHOCK",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/98"
+         ],
+         "page_footers": [
+          "CORE RULES | STRATAGEMS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.025816993464052286
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0154",
+         "text": "Section: LEADER\nWhile a Bodyguard unit contains a Leader, it is known as an Attached unit and, with the exception of rules that are triggered when units are destroyed (pg 12), it is treated as a single unit for all rules purposes. Each time an attack targets an Attached unit, until the attacking unit has resolved all of its attacks, you must use the Toughness characteristic of the Bodyguard models in that unit, even if a Leader in that unit has a different Toughness characteristic. Each time an attack sucessfully wounds an Attached unit, that attack cannot be allocated to a Character model in that unit, even if that Character model has lost one or more wounds or has already had attacks allocated to it this phase. As soon as the last Bodyguard model in an Attached unit has been destroyed, any attacks made against that unit that have yet to be allocated can then be allocated to Character models in that unit.\n\n- Before the battle, Character units with the Leader ability can be attached to one of their Bodyguard units to form an Attached unit.\n- Attached units can only contain one Leader.\n- Attacks cannot be allocated to Character models in Attached units.",
+         "pages": [
+          39
+         ],
+         "section": "LEADER",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | DEPLOYMENT ABILITIES"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.02565359477124183
+       }
+      ],
+      "stratagem_names": [
+       "STRATAGEM CATEGORIES",
+       "STRATAGEMS",
+       "INSANE BRAVERY",
+       "HEROIC INTERVENTION",
+       "TANK SHOCK"
+      ],
+      "stratagems": {
+       "columns": [
+        "id",
+        "name",
+        "FactionId",
+        "type",
+        "cpCost",
+        "turn",
+        "phase",
+        "detachment",
+        "description"
+       ],
+       "rows": [
+        [
+         "000008335012",
+         "HEROIC INTERVENTION",
+         "",
+         "Core – Strategic Ploy Stratagem",
+         "1",
+         "Opponent’s turn",
+         "Charge phase",
+         "",
+         "WHEN: Your opponent’s Charge phase, just after an enemy unit ends a Charge move.\nTARGET: One unit from your army that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.\nEFFECT: Your unit now declares a charge that targets only that enemy unit, and you resolve that charge as if it were your Charge phase.\nRESTRICTIONS: You can only select a VEHICLE unit from your army if it is a WALKER. Note that even if this charge is successful, your unit does not receive any Charge bonus this turn."
+        ],
+        [
+         "000010810011",
+         "HEROIC INTERVENTION",
+         "",
+         "Core Stratagem",
+         "1",
+         "Opponent’s turn",
+         "Charge phase",
+         "",
+         "WHEN: End of your opponent’s Charge phase.\nTARGET: One friendly unengaged unit within 12\" of one or more enemy units. You can only select a VEHICLE unit if it is a CHARACTER/WALKER unit.\nEFFECT: Resolve a charge with your unit (11.02). While doing so, before making the charge roll, you must select one of the following modes:Leap to Defend: When selecting charge targets, you can only select enemy units that made a charge move this phase and are within the maximum distance.+1CPInto the Fray:When making the charge roll, if the result is greater than 6 (after modifiers), change it to 6.When selecting charge targets, you can select any enemy units that are within 6\" of your unit and within the maximum distance."
+        ],
+        [
+         "000008335005",
+         "INSANE BRAVERY",
+         "",
+         "Core – Epic Deed Stratagem",
+         "1",
+         "Your turn",
+         "Command phase",
+         "",
+         "WHEN: Battle-shock step of your Command phase, just before you take a Battle-shock test for a unit from your army.\nTARGET: That unit from your army.\nEFFECT: Your unit automatically passes that Battle-shock test.\nRESTRICTIONS: You cannot use this Stratagem more than once per battle."
+        ],
+        [
+         "000009218005",
+         "INSANE BRAVERY",
+         "",
+         "Boarding Actions – Epic Deed Stratagem",
+         "1",
+         "Your turn",
+         "Command phase",
+         "",
+         "WHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army.\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result."
+        ],
+        [
+         "000010810004",
+         "INSANE BRAVERY",
+         "",
+         "Core Stratagem",
+         "1",
+         "Your turn",
+         "Command phase",
+         "",
+         "WHEN: Battle-shock step of your Command phase, just before you make a battle-shock roll for a friendly unit.\nTARGET: That unit.\nEFFECT: That battle-shock roll is automatically successful.\nRESTRICTIONS: You cannot use this stratagem more than once per battle."
+        ],
+        [
+         "000008335007",
+         "TANK SHOCK",
+         "",
+         "Core – Strategic Ploy Stratagem",
+         "1",
+         "Your turn",
+         "Charge phase",
+         "",
+         "WHEN: Your Charge phase, just after a VEHICLE unit from your army ends a Charge move.\nTARGET: That VEHICLE unit.\nEFFECT: Select one enemy unit within Engagement Range of your unit, and select one VEHICLE model in your unit that is within Engagement Range of that enemy unit. Roll a number of D6 equal to the Toughness characteristic of the selected VEHICLE model. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds)."
+        ]
+       ],
+       "truncated": false,
+       "error": null
+      },
+      "related_sections": []
+     },
+     "status": "success"
+    }
+   },
+   {
+    "type": "ai",
+    "data": {
+     "content": [
+      {
+       "type": "text",
+       "text": "### Source and Scope\n* **Source:** Warhammer 40,000 Core Rules (10th Edition) [Core Rules p. 11, 41–42]; database Stratagem records (source publication/edition not recorded) [DB: stratagems].\n* **Scope:** How a unit being Battle-shocked affects the use of Stratagems targeting or affecting that unit.\n\n---\n\n### Rules and Effects\n\n#### 1. Controlling Player Restriction (General Prohibition)\nWhile a unit is Battle-shocked:\n* **\"Its controlling player cannot use Stratagems to affect that unit.\"** [Core Rules p. 11]\n\nAs a result:\n* The controlling player cannot target that unit with their own Stratagems or apply the effects of their Stratagems to it (for example, applying defensive boosts, movement Stratagems, or offensive buffs to that unit) [Core Rules p. 11, 41–42].\n\n#### 2. Opposing Player\n* The prohibition is explicitly restricted to the unit's **controlling player** [Core Rules p. 11].\n* The rules do not prohibit an opponent from using their own Stratagems to affect or target an enemy unit that is Battle-shocked.\n\n#### 3. Exceptions and Interaction with Specific Stratagems\n* **Core Rules (10th Edition) — *Insane Bravery*:**\n  In the printed Core Rules, the Epic Deed Stratagem *Insane Bravery* provided an explicit exception immediately upon failing a test:\n  * **When:** Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army [Core Rules p. 42].\n  * **Target:** *\"The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\"* [Core Rules p. 42]\n  * **Effect:** The unit is treated as having passed the test instead and is not Battle-shocked as a result [Core Rules p. 42].\n* **Database Record — *Insane Bravery* (Core – Epic Deed Stratagem):**\n  In the updated database record, *Insane Bravery* is used preemptively to prevent the state entirely:\n  * **When:** Battle-shock step of your Command phase, *just before* you take a Battle-shock test for a unit from your army [DB: stratagems].\n  * **Target:** That unit [DB: stratagems].\n  * **Effect:** That unit automatically passes that Battle-shock test [DB: stratagems].\n\n---\n\n### Conclusion\n* **For the controlling player:** Supported prohibition. You cannot use Stratagems to affect your own Battle-shocked unit [Core Rules p. 11].\n* **For the opponent:** The rule restricts only the controlling player; there is no general prohibition preventing an opponent from using Stratagems that affect an enemy Battle-shocked unit [Core Rules p. 11].",
+       "index": 0,
+       "extras": {
+        "signature": "EuQWCuEWAWkUfRNk/kRWJLNzY2cFMjQNaBcPgUlGUDnWlB2r74Drf/suiULheYLG0e7WCHmcC2xsbFNPGDf7RNieIG2jZUj0LgVsGzY7IBjthtCdkKVJyQ8CGviAtqlKwRRBG3qLrsf4tfa2DwQXw2lXJAwigLUCaRI1FIsGuS5zRelkbC4GSB/FxYDA9KcyIQG2+p1Ln11o2s1G316O2RNfyROnRZKTVl3xmDcpxtz4LRSEfL2VaYPD4ndbOh7BT21/oHcOPKkup1L+IFL9SiJ7WZ4MtSX9uFgqH0cB+fHpJGTAdLlW9a0ENc5WnmG54Fj4rTQgXFm+dKbo/J/b+APH71B2XBcRy+MwkaVo9J+a4C61B9PEnP27EBBAgLcaatGnFYJAC0JMem4YLkO7utNV1DHjSWfVkyjpV1uK5x3vJ7qLBlga8vBqcdCDcVeFPNrERZyxpXHbyLGpZdcf6ReeQQmqayxRNGLSc6a7/e7rUQK0ZSy7o2uoVoe1Vfnjssoboo8h8cQAIdr+1NXS9He078sZQDGDH7i7eS5/POmCNkrig6zSHWZqU0aMa8Gr0o7Ly/RW+dVJfRFaNpBsVsuZt4rG5p3+TRTYoZrN4EbPFc3pDKlVATYGK0TFH4XOxGbYKc2JCVZJgiTX84zk/vNWVZuJHGnnxjsbKC/Kcvx1Ot/ypHdAr2r9PJ0ukUN+R5UQOxIZ5gwtkTGjjTN4M3j9gLOow36yHRZAg2gLfryrB57kw0k3VGCDp0dq4Krhs9LFgA7HVhdeSQXGurNCUobxhHDQSg9VigMeHykHvqM9yAaPda849wRUWbLZpk09cSXyKD7Yq12/w1o17+V4lRBBSpxSr2AcNViy4cJ9VyyHpL7OQIiJ9HPZGKAOlZEKC4QM5+mHDwMPNPtJTJbpbeVHBqCca6oInNbOicjAKejB7XBvNPrNM6YXviZsRqhbknZe06ljIB4i//ziMym4jFzMmm4HUT0m8rx+QOYD4D6X2ee0H3MQCr6s2NOypsfp25HAJihcRln6spD1d0j3jxCcF8077mpu/Payk7IP8w5iYFWDSaJq7DBbAh5U7C18O3q+ReiuTUtucxjDTRvrCzdE+cEQloRJy3nySV6EyNVVuw6eAOTh/wOBx8r0rGiDnPAzaxNofoFYopKFP1rQRIVSYmbV8eNb3pI8SgSWeKwAAHeS2bG1IbhZvLXvlaRHs3zetUn1SizXVvhZqcn/l5LWfnJwx7LuqNKnGdeY/tB4GPOSIThfwkFIkhfqkejioT7/HB3Ph2vjSDAE7CmqpPuTR4/KXePsL5o+uAMfsMy7CIXvMymlLaVvgVjsZZu3SbZNQUNotmHlftgCGsaN6QMQTEnsWXFmJg6Qj4zCOgYIdM/ibyqh8A/iN+b+CW80N0+32+aOP9+zawESPzcWGmTynwJ7Ep/Tf9gty0VFewWG4D3C1meMw6Z7/9T5btnOWuqiydYfXGQ2/vVoOCMrV3ZFt49B91fJMgL2fB2YihL8aysJgcCg4VdU2Z0tDAptHp6vnqwbB1Rxjk5OiQrg9tG+SVBydDMlZqbPTzlqPLecy7TtIWwNzGG/tiAPscIX0uuPgyZkqJOxBLztPHWSHVmZm+vY1T6hjDaGZ+H+7w8QASnFOnP0ggPTuoZZqFL6rz4cBW0oVWvWqwqx0XxLriWZFdodi7F7VfFAYKtQbiMoo8BP8mJcCFmrLJfgpMu3PwEmPhxHPywbwTK0dXeEznl299ATkNXwV8WcIMCwkzWf31VHP9TgysvI2/udFY0Dsipcf5kDRB61DkC8aQayzqoJ7q2Dq4fBVZcrSlntVeLeh5dMeI++awTVJLfNVqIjn4NRi2GxaHvWW7VCVvUZN6rTDun/zGouxsyrbXk+jfkGJZzjI90ugdqP2F9vF1239gNF32bxiulOLoUkLzyqFRqQ33boXdu5HgY/Lvm3G5gCwJLeRJqknDcHOZdEKWoWuuw60vB3/G4dFTQynXISK8zIehjsSB8Js2wG28SPAwFPtDwTYVb7rGHuqjIiNkwGz+R5rTO6zPLlrvNIvgQKKGTJf8RqlU0xG3IA+PSif/oza8BiS0cc1Xud2oWOzpjtCtPl1OsphDfqtNzcw4PjAAozgwJBzCrzn9ezz97ovuLzgax3i58J8E11Nk74zBFhKYzknFLwKkXrRijFOruwrSK/6C44mEczigWCxuxbaQF7eZjco515PHrBh06zGLOt0Y9Z4hgaMqVNzjnzCNZDlSS2Om1Zebva9MfHtAnSEPFVJf6P84yToFJd2qLB6k0bESESa9TOXLyNR3ZH6+mitjlGl+iSVh/sgDVWoNH1Y5UsQ19FDwY6F5QBZU5sXCU+FNza0fHtGvBvzapYJMmnYtlMoYeneNBeYQvWdU0Ch2bsB1lNGOjgTE3oM/fnx8FaKwC9utv5xj0PTd79lsV0JygXskUri2ysNBRAicDC6Qlknt7mEOWlKYMVnbwm6QM1lD1wEgmbkpduQy0jYBKlpTlL+0oPw9SmWT1X8INXlIQaaSXFbmXKUPGe/F1MHzq6Cx7gvL773lwLDGY165J6u3mu0Er069KMtSsvJ82IvO+EXEP7Exk4u9ibxIhIJUfVZ+GWZy600WqNh5n6XyDett7DnxE9SDiDLLtav7Lk883Fq5ceeQAVm431a1kuuwYgEiiIBYRgm4QQJXnYatJl6GkaIsbxqdbCNntmKIKQlH7l41D//f7nyLq2cvA/NYx1QwCHkkviGgjjv4ZcAjZoKrAEh6G1GSblZZwvpUa/DEYi1Jv1VwANIw2hIZawhessSvls+TTUR3qvyF3clIfU5YL6E4h7odiuLkGGif4K39uO1w/Gox6VDqmaodfuy8bVL7lqONzp8w6scMGUbRTtojiYAg+EevJdHr0MJBzH6OUtpf9b0sb0Ak9DaNenoRdU79Nu16UzOFflzsPPTpjhxWx4NiBuFoYM7QzyX/1+xA890Xet90UaeDS1R/D5PiC2QmHIcPe2r0RYUSuamrjahf56pC3XJTgHq4dtfdu8VDO0TJYA/5/kpkCp1GfhKMJNVR8h0KTaPaaM25UYV9ESYbfqfTLTO0S70KjNk/kLZPHl3xGOj0+uwlMZKHhafc4rKa5WF5e79vNDnBKO3Q7/5QuVnN8YuWakZRWVi+Lb9QIqLuyZNiop5OMeoH4YEQqoG3bDk5VAD9NRWpwwMZ2CUyq93OGmAMBlfx31YCKG92TCxfV8DmynYGTL1j7PxV/YO24/4uLXspdfRY7c+C39sqQgpQlp28H/3B27pkbxZBBvxmNWjG3YrQVf9XOm+3l24Kei+W/G4M143QqbQwpYNyzbW+TAIWC6SN3OAEHg3s/Wju2L2J9pNY9XsqRawuvwHRypXZI6W5InSqP66fyKIi/H4aU2n2XDDjUk3lQRSvHJA6gbS5MYy31Y2dqvxCuVyHJhAb34xFY31HUS+j4ENQBvWvY90+7HSNCU81pfd76sEXm7N/Gck5ypaKLTIu/qH6rj79waBrFJ1ceu1gAcutdBp6+ed1sMrDSq/WNt/oSp5BQvPGQcfHe/U8LtE1F8JeivBa9MGs0xP+bZ39o68LVRxxL7a/SIKhi2YyhGaJdEeJeavCBf6t5UV0JWhnmhgOjdAED04khn9Xkbz0phl9CPB5OoXLad5Bi+OuEjFHbr1oZjljUQoRhZSs9pXcdGQzD+74Jw7YuOChr3EraA7e3gNe+ni4YrCVKZl4AuOoy5K9eL9rdFdvBi4H1n72qtSLvLSmw1dUrIwv7TfaukVNPUAz0vrayQLb1uygBhDiNDvgNGUbE8ARlPcL11wmK/FNcOnsZe5b/JFkolkmV0mNnT9AIvcuxWkj2WiPBwvOOL6iAmAtt9"
+       }
+      }
+     ],
+     "additional_kwargs": {},
+     "response_metadata": {
+      "safety_ratings": [],
+      "finish_reason": "STOP",
+      "model_name": "gemini-3.8-flash",
+      "model_provider": "google_genai"
+     },
+     "type": "ai",
+     "name": null,
+     "id": "lc_run--01a16f8a-e097-7380-bd56-79685b666969",
+     "tool_calls": [],
+     "invalid_tool_calls": [],
+     "usage_metadata": {
+      "input_tokens": 11960,
+      "output_tokens": 1258,
+      "total_tokens": 13218,
+      "input_token_details": {
+       "cache_read": 0
+      },
+      "output_token_details": {
+       "reasoning": 592
+      }
+     }
+    }
+   }
+  ],
+  "model_calls": [
+   {
+    "node": "agent",
+    "input_count": 1,
+    "tool_choice": "validated",
+    "context": null
+   },
+   {
+    "node": "agent",
+    "input_count": 3,
+    "tool_choice": "validated",
+    "context": null
+   },
+   {
+    "node": "agent",
+    "input_count": 5,
+    "tool_choice": "validated",
+    "context": null
+   }
+  ]
+ },
+ "chat_attempts": [
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  }
+ ],
+ "embedding_attempts": [
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  }
+ ],
+ "source_notes": [
+  "This turn: DB stratagems: publication and edition are not recorded."
+ ],
+ "context_policy": "conversation-tool-outputs-v1"
+}

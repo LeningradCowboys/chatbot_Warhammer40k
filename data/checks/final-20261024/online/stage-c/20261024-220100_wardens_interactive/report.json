@@ -1,0 +1,481 @@
+{
+  "question_id": "wardens",
+  "question": "For Wardens of Ultramar, give every model profile's Toughness and the recorded publication and edition.",
+  "mode": "interactive",
+  "started": "20261024-220100",
+  "chat_budget": 4,
+  "turn_budgets": [
+    4
+  ],
+  "embedding_budget": 4,
+  "follow_ups": [],
+  "inputs": {
+    "D:/0-Labs/Broadening 1/chatbot/data/index/rules_chunks.jsonl": "045634d490ae8d9e6767c31e7ee5f22e5271443c8678ff03e6a8688a303dc3c0",
+    "D:/0-Labs/Broadening 1/chatbot/data/index/rules_embeddings.npz": "0f5acaf9b1b576b3fece7fb472128d506863cadbf8214a4c58861550cd76dca2",
+    "D:/0-Labs/Broadening 1/chatbot/data/processed/wahadb_clean.sqlite": "d4a8e00528fa0d796e0bac95752da27348c084bbdb6f6affacfe203f708cf63a",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/storage/sql_schema.md": "605c2fb17ffa1c2dbae32e72ed9e6ecc79fda3b005c72d6d05cb9b4e790f55c1",
+    "D:/0-Labs/Broadening 1/chatbot/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/chatbot/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/chatbot/agent.py": "8145ed6b4e4cdccc71d02070fb922bca18136300f5ee91e08d08408f2fc86568",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/chatbot/prompts.py": "de166ea7fb79f8a0b542b2749b7b704e5bd9a4ec11e281aa327256112969391d",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/chunker/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/chunker/markdown_chunker.py": "562bf4986852d2841012bc1b71a32c2103d727b557915a3124a9f8258a9d9548",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/config.py": "4bac4f2332e1226efce7fc298ab8e6e03fb4822bce8d014a17caa5bd7682d4f1",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/evaluation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/evaluation/ragas_adapters.py": "649065942bb21b5914380c5b55d9d0c2bf3f977076539a6d550ab5b74c01f81d",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/evaluation/scoring.py": "ffdd5ffc7a8452f9b1bffc839d39de717ff49b3c5f8d716c8afeef9b223cf038",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/evaluation/testset.py": "0482fa8929378c86e2ef0da427ae3464e1006e416194aca082623b0219460062",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/llm/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/llm/budget.py": "ba8c1dfab2d3d9cce385bd0928932cdc5b5047c87efa17480ea5cd216f806c25",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/llm/gemini.py": "e82b73e64b24616984ea79b57406b4d3907dbff421c98996cd92da98733ee1ef",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/parser/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/parser/docling_parser.py": "0edaa1ce2dbc1f46883575441c9924c2eac6e89967287248927fc464c9564381",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/retriever/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/retriever/rules_retriever.py": "f7b86a5ed1c3ba11d58db6610c25c1661f3d280ffd6602719668122c22476b11",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/retriever/sql_retriever.py": "1281ff62639dc1346a0d0443f827d5ce0f72de8bb7a3da24aa2ee7fa1fc41cb5",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/storage/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/storage/clean_db.py": "74233b80188c0e5569e77dcbaf5cced2c2ad2f7864eeccf86494253fe41755f1",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/storage/evaluation_runs.py": "e76d3477ae786c6c3c4bc2242ad4b7eb29def70919138f4a11812acd9588761d",
+    "D:/0-Labs/Broadening 1/chatbot/src/rag/storage/rules_index.py": "59075dc13a6638db0c834d9cffc61fd64cff34e8cb483d6d2029d598c9db2ca5",
+    "D:/0-Labs/Broadening 1/chatbot/src/scripts/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:/0-Labs/Broadening 1/chatbot/src/scripts/build_index.py": "b4a92336ad7ac8c2c8dcb14b79dc40ad58a4a7dcf66a52d10fa8facbe9d90694",
+    "D:/0-Labs/Broadening 1/chatbot/src/scripts/chat.py": "234ea0f2c5d22c6d2811d71b613e61056d94b851bac5db3f6e5968478603f7f5",
+    "D:/0-Labs/Broadening 1/chatbot/src/scripts/chunk.py": "0d531eb5ea766f530d40119f9f3b454ed9f3c3a64abdefada0c241c96cadaaa5",
+    "D:/0-Labs/Broadening 1/chatbot/src/scripts/evaluate.py": "83cecad7befec5701f31dd0a892dd90592ddca9ca971498d509eba7c85c634b4",
+    "D:/0-Labs/Broadening 1/chatbot/src/scripts/generate_testset.py": "913ca350d02031398f0be42a1b69c27663aa8f571571d1697f6f454381b910b6",
+    "D:/0-Labs/Broadening 1/chatbot/src/scripts/outputs.py": "e2b2ab197d81ced230aaba6b77e5d85471acb3d8179e46b5ec1ab7a837485ab9",
+    "D:/0-Labs/Broadening 1/chatbot/src/scripts/parse.py": "ead0eec007d4cb50bac66a1c37a2175b691e6faa233216af04d8fdfe1bd2ca01",
+    "D:/0-Labs/Broadening 1/chatbot/src/scripts/prepare_db.py": "022e0784a2dcf78da900eb9a667f93e669b79f246214179fe128a1df9d9ce498"
+  },
+  "turns": [
+    {
+      "question": "For Wardens of Ultramar, give every model profile's Toughness and the recorded publication and edition.",
+      "budget": 4,
+      "status": "complete",
+      "answer": {
+        "text": "### Source, Version, and Scope\n- **User-supplied facts:** Unit name \"Wardens of Ultramar\".\n- **Tool-established facts:** Datasheet lookup joining the unit's datasheet [DB: datasheets], model profiles [DB: datasheets_models], and publication source [DB: source].\n- **Recorded publication & edition:** \n  - **Publication (Source):** Space Marines [DB: source]\n  - **Edition:** 11 [DB: source]\n\n---\n\n### Model Profiles and Toughness\n\nThe unit **Wardens of Ultramar** (Space Marines, Datasheet ID `000004188`) contains two distinct model profiles [DB: datasheets, datasheets_models]:\n\n1. **Ancient Gadriel, Veteran Sergeant Metaurus** (line 1)\n   - **Toughness (T):** 4 [DB: datasheets_models]\n2. **Gaius Silva, Aemelia Minervas, Dainal Kornelius, Lucia Vestha** (line 2)\n   - **Toughness (T):** 3 [DB: datasheets_models]\n\n---\n\n### Conclusion\n- **Publication:** Space Marines [DB: source]\n- **Edition:** 11 [DB: source]\n- **Toughness by Profile:**\n  - Ancient Gadriel, Veteran Sergeant Metaurus: **T4** [DB: datasheets_models]\n  - Gaius Silva, Aemelia Minervas, Dainal Kornelius, Lucia Vestha: **T3** [DB: datasheets_models]\n- **Evidence Gap:** None; all requested profile characteristics and publication fields are fully recorded.",
+        "source_notes": [
+          "This turn: Database publication for Wardens of Ultramar (ID 000004188): Space Marines; edition 11."
+        ],
+        "database_statistics": [],
+        "answered": true,
+        "finish_reason": "STOP",
+        "tool_calls": [
+          {
+            "name": "run_sql",
+            "arguments": {
+              "sql": "SELECT d.Id, d.name, f.name AS faction, m.name AS model, m.line, m.t,\n       s.name AS source, s.edition\nFROM datasheets d\nJOIN factions f ON f.Id = d.factionId\nJOIN datasheets_models m ON m.DatasheetId = d.Id\nLEFT JOIN source s ON s.Id = d.sourceId\nWHERE d.name LIKE '%Wardens of Ultramar%'\nORDER BY CAST(m.line AS INTEGER);"
+            },
+            "pages": [],
+            "error": null,
+            "output": "{\"columns\": [\"Id\", \"name\", \"faction\", \"model\", \"line\", \"t\", \"source\", \"edition\"], \"rows\": [[\"000004188\", \"Wardens of Ultramar\", \"Space Marines\", \"Ancient Gadriel, Veteran Sergeant Metaurus\", \"1\", \"4\", \"Space Marines\", \"11\"], [\"000004188\", \"Wardens of Ultramar\", \"Space Marines\", \"Gaius Silva, Aemelia Minervas, Dainal Kornelius, Lucia Vestha\", \"2\", \"3\", \"Space Marines\", \"11\"]], \"truncated\": false, \"error\": null}"
+          }
+        ],
+        "model_calls": [
+          [
+            "agent",
+            1,
+            "validated"
+          ],
+          [
+            "agent",
+            3,
+            "validated"
+          ]
+        ]
+      }
+    }
+  ],
+  "exit_code": null,
+  "chat_attempts": [
+    {
+      "status": 200,
+      "error": null,
+      "diagnostic": {
+        "request": {
+          "path": "/v1beta/models/gemini-3.8-flash:streamGenerateContent",
+          "tools": [
+            {
+              "functionDeclarations": [
+                {
+                  "description": "Search the Core Rules: how the game works (phases, actions, keywords, terrain). Retrieved Stratagem sections also include exact-name core database records when found.",
+                  "name": "search_rules",
+                  "parameters": {
+                    "properties": {
+                      "query": {
+                        "description": "In English, with the rulebook's terms, whatever the question's language.",
+                        "type": "STRING"
+                      }
+                    },
+                    "required": [
+                      "query"
+                    ],
+                    "type": "OBJECT"
+                  }
+                },
+                {
+                  "description": "Query units, weapons, abilities, stratagems, detachments and factions with read-only SQL.",
+                  "name": "run_sql",
+                  "parameters": {
+                    "properties": {
+                      "sql": {
+                        "description": "One SQLite SELECT or WITH query that follows the database schema.",
+                        "type": "STRING"
+                      }
+                    },
+                    "required": [
+                      "sql"
+                    ],
+                    "type": "OBJECT"
+                  }
+                }
+              ]
+            }
+          ],
+          "tool_config": {
+            "functionCallingConfig": {
+              "mode": "VALIDATED"
+            }
+          },
+          "generation_config": {
+            "candidateCount": 1
+          },
+          "contents": [
+            {
+              "role": "user",
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 103
+                }
+              ]
+            }
+          ]
+        },
+        "response": {
+          "candidates": [
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "functionCall",
+                  "name": "run_sql",
+                  "args": {
+                    "sql": "SELECT d.Id, d.name, f.name AS faction, m.name AS model, m.line, m.t,\n       s.name AS source, s.edition\nFROM datasheets d\nJOIN factions f ON f.Id = d.factionId\nJOIN datasheets_models m ON m.DatasheetId = d.Id\nLEFT JOIN source s ON s.Id = d.sourceId\nWHERE d.name LIKE '%Wardens of Ultramar%'\nORDER BY CAST(m.line AS INTEGER);"
+                  }
+                }
+              ]
+            },
+            {
+              "finish_reason": "STOP",
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 0
+                }
+              ]
+            }
+          ],
+          "errors": [],
+          "prompt_feedback": []
+        }
+      }
+    },
+    {
+      "status": 200,
+      "error": null,
+      "diagnostic": {
+        "request": {
+          "path": "/v1beta/models/gemini-3.8-flash:streamGenerateContent",
+          "tools": [
+            {
+              "functionDeclarations": [
+                {
+                  "description": "Search the Core Rules: how the game works (phases, actions, keywords, terrain). Retrieved Stratagem sections also include exact-name core database records when found.",
+                  "name": "search_rules",
+                  "parameters": {
+                    "properties": {
+                      "query": {
+                        "description": "In English, with the rulebook's terms, whatever the question's language.",
+                        "type": "STRING"
+                      }
+                    },
+                    "required": [
+                      "query"
+                    ],
+                    "type": "OBJECT"
+                  }
+                },
+                {
+                  "description": "Query units, weapons, abilities, stratagems, detachments and factions with read-only SQL.",
+                  "name": "run_sql",
+                  "parameters": {
+                    "properties": {
+                      "sql": {
+                        "description": "One SQLite SELECT or WITH query that follows the database schema.",
+                        "type": "STRING"
+                      }
+                    },
+                    "required": [
+                      "sql"
+                    ],
+                    "type": "OBJECT"
+                  }
+                }
+              ]
+            }
+          ],
+          "tool_config": {
+            "functionCallingConfig": {
+              "mode": "VALIDATED"
+            }
+          },
+          "generation_config": {
+            "candidateCount": 1
+          },
+          "contents": [
+            {
+              "role": "user",
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 103
+                }
+              ]
+            },
+            {
+              "role": "model",
+              "parts": [
+                {
+                  "kind": "functionCall",
+                  "name": "run_sql",
+                  "args": {
+                    "sql": "SELECT d.Id, d.name, f.name AS faction, m.name AS model, m.line, m.t,\n       s.name AS source, s.edition\nFROM datasheets d\nJOIN factions f ON f.Id = d.factionId\nJOIN datasheets_models m ON m.DatasheetId = d.Id\nLEFT JOIN source s ON s.Id = d.sourceId\nWHERE d.name LIKE '%Wardens of Ultramar%'\nORDER BY CAST(m.line AS INTEGER);"
+                  }
+                }
+              ]
+            },
+            {
+              "role": "user",
+              "parts": [
+                {
+                  "kind": "functionResponse",
+                  "name": "run_sql",
+                  "response_keys": [
+                    "columns",
+                    "error",
+                    "rows",
+                    "truncated"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "response": {
+          "candidates": [
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 40
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 105
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 102
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 99
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 85
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 87
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 112
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 59
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 67
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 53
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 93
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 92
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 75
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 76
+                }
+              ]
+            },
+            {
+              "finish_reason": null,
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 82
+                }
+              ]
+            },
+            {
+              "finish_reason": "STOP",
+              "finish_message": null,
+              "parts": [
+                {
+                  "kind": "text",
+                  "characters": 0
+                }
+              ]
+            }
+          ],
+          "errors": [],
+          "prompt_feedback": []
+        }
+      }
+    }
+  ],
+  "embedding_attempts": [],
+  "complete": true,
+  "answer": {
+    "text": "### Source, Version, and Scope\n- **User-supplied facts:** Unit name \"Wardens of Ultramar\".\n- **Tool-established facts:** Datasheet lookup joining the unit's datasheet [DB: datasheets], model profiles [DB: datasheets_models], and publication source [DB: source].\n- **Recorded publication & edition:** \n  - **Publication (Source):** Space Marines [DB: source]\n  - **Edition:** 11 [DB: source]\n\n---\n\n### Model Profiles and Toughness\n\nThe unit **Wardens of Ultramar** (Space Marines, Datasheet ID `000004188`) contains two distinct model profiles [DB: datasheets, datasheets_models]:\n\n1. **Ancient Gadriel, Veteran Sergeant Metaurus** (line 1)\n   - **Toughness (T):** 4 [DB: datasheets_models]\n2. **Gaius Silva, Aemelia Minervas, Dainal Kornelius, Lucia Vestha** (line 2)\n   - **Toughness (T):** 3 [DB: datasheets_models]\n\n---\n\n### Conclusion\n- **Publication:** Space Marines [DB: source]\n- **Edition:** 11 [DB: source]\n- **Toughness by Profile:**\n  - Ancient Gadriel, Veteran Sergeant Metaurus: **T4** [DB: datasheets_models]\n  - Gaius Silva, Aemelia Minervas, Dainal Kornelius, Lucia Vestha: **T3** [DB: datasheets_models]\n- **Evidence Gap:** None; all requested profile characteristics and publication fields are fully recorded.",
+    "source_notes": [
+      "This turn: Database publication for Wardens of Ultramar (ID 000004188): Space Marines; edition 11."
+    ],
+    "database_statistics": [],
+    "answered": true,
+    "finish_reason": "STOP",
+    "tool_calls": [
+      {
+        "name": "run_sql",
+        "arguments": {
+          "sql": "SELECT d.Id, d.name, f.name AS faction, m.name AS model, m.line, m.t,\n       s.name AS source, s.edition\nFROM datasheets d\nJOIN factions f ON f.Id = d.factionId\nJOIN datasheets_models m ON m.DatasheetId = d.Id\nLEFT JOIN source s ON s.Id = d.sourceId\nWHERE d.name LIKE '%Wardens of Ultramar%'\nORDER BY CAST(m.line AS INTEGER);"
+        },
+        "pages": [],
+        "error": null,
+        "output": "{\"columns\": [\"Id\", \"name\", \"faction\", \"model\", \"line\", \"t\", \"source\", \"edition\"], \"rows\": [[\"000004188\", \"Wardens of Ultramar\", \"Space Marines\", \"Ancient Gadriel, Veteran Sergeant Metaurus\", \"1\", \"4\", \"Space Marines\", \"11\"], [\"000004188\", \"Wardens of Ultramar\", \"Space Marines\", \"Gaius Silva, Aemelia Minervas, Dainal Kornelius, Lucia Vestha\", \"2\", \"3\", \"Space Marines\", \"11\"]], \"truncated\": false, \"error\": null}"
+      }
+    ],
+    "model_calls": [
+      [
+        "agent",
+        1,
+        "validated"
+      ],
+      [
+        "agent",
+        3,
+        "validated"
+      ]
+    ]
+  }
+}

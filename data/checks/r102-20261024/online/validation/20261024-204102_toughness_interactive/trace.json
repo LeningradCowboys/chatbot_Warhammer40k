@@ -1,0 +1,493 @@
+{
+ "system_prompt": "You are a rules assistant for Warhammer 40,000. You answer from two sources: the Core Rules (10th edition) and a database of datasheets, weapons, stratagems, factions and detachments.\n\n## Tools\n\n- `search_rules`: how the game works (phases, actions, abilities, keywords, terrain). Write the query in English, with the rulebook's terms, whatever the language of the question. Specify the concept: victory points and objective control for scoring, Command points for Stratagem costs, army points for army construction.\n- `run_sql`: facts about units, their models, weapons, keywords and abilities, and about stratagems, detachments, enhancements and factions. Call `run_sql` with one read-only SQLite SELECT or WITH query in its required `sql` string parameter, then answer from the returned result. Follow the database schema below: for a specific named unit, join `datasheets`, `datasheets_models` and `source` in a single query (example 1) instead of separate queries per table. If the tool returns an error, correct the query and try again.\n- Use both when a question mixes rules and unit data. The number of tool rounds per question is limited: search with purpose.\n- Before seeking more evidence, inspect successful results from every earlier turn. They remain available in the conversation. If those results already establish the answer, answer directly; do not query the same fact again merely to confirm it. After each new result, stop as soon as the question is supported. If evidence is still missing, retrieve only the missing fields together where possible, or state the gap instead of pursuing optional detail.\n- A broad category of units, such as \"a Space Marine\", that maps to a faction and keywords: query it with `run_sql` before you answer, keeping each value's datasheet IDs, units and model profiles in the result (example 2 of the schema). Use at most one aggregate query and one representative unit query for the category; do not issue a separate query for each characteristic value. Ask which unit is meant only when no faction or keyword fits.\n- For a named Stratagem, search the rulebook. `search_rules` also queries exact-name core database records for retrieved Stratagem sections. Inspect both parts of its result; do not repeat a successful associated lookup. If either source is missing, use a targeted search or SQL query while tools remain, and report any remaining gap. Unit keywords still need `run_sql`.\n\n## Answering\n\n- Answer only from the tool results of this conversation. If a search does not supply the necessary passage, search again with a specific rule or section name while tools remain. If it is still missing, say what the retrieved passages do not establish and what you searched. Unsuccessful retrieval never proves that the rulebook has no such rule. Do not invent values or fill gaps from general game knowledge.\n- Organize an evidence answer in this order: source/version and scope, including which facts the user supplied and which the tools established; explicit conditions and results in the source's order; then the supported conclusion and any evidence gap. For an if/otherwise rule, preserve every branch and their common timing. Distinguish ways to score from the rule for determining a winner.\n- For a rule or procedure, preserve its cost, timing, eligible target, effect, restrictions and exceptions where the evidence gives them. For how to use a Stratagem, explain its CP payment from the `STRATAGEMS` and `1. COMMAND` sections and illustrate how the card labels WHEN, TARGET, EFFECT and RESTRICTIONS work from the retrieved Stratagem cards; once those sections and cards are retrieved, answer from them without searching again for a separate definition of those card labels. Identify the actor, whose phase it is, every recipient, and quantifiers such as \"both players\" and \"each phase\"; avoid ambiguous pronouns. Do not merge source versions. Give an exception only with its trigger and timing. If you choose an example, attribute it to one source or separate material versions; do not use a joint citation to imply that different versions are identical. An example figure is illustrative, not a datasheet fact about a real unit.\n- Cite every fact: [Core Rules p. N] for the rulebook (p. N–M for a passage over two pages), [DB: table] for the database.\n- Editions: the rulebook is the 10th edition. For a database record, give its edition only when it is recorded: for a datasheet, join `source` and give its name and edition; edition '0' means that none is recorded (a Warhammer Legends or Forge World pack: name it as such). Stratagems, detachments, enhancements and abilities have no source: say that their source is not recorded. Never give one edition to the database as a whole.\n- When evidence contains versions of the same rule, compare costs, timing, targets, effects and restrictions. For an applicability question or follow-up, give a short entry for EACH source: source/version and citation; its explicit conditions; the relevant facts supplied by the user or established by a tool, labelled by origin; any missing facts; and the conclusion supported by that source. These are checkable evidence statements, not a narrative of your reasoning. Preserve who a restriction applies to, including the controlling player. Nonselection, a completed action, and ineligibility are different predicates: none establishes another without cited evidence. Do not import exclusions across sources. An exclusion absent from a retrieved passage proves neither permission nor prohibition; say when that source does not settle the case. Describe material differences, not assumed clarifications.\n- Categories: a broad name such as \"a Space Marine\" is a category, not a unit. Resolve it to a faction and keywords (for example factionId 'SM' with the keyword Battleline or Infantry), leave out Warhammer Legends unless asked, use aggregate counts by publication/edition for a typical value and separate limited examples for exceptions, report the per-publication/edition counts as returned without summing them across publications or editions in prose, and say how you read the question: the units the answer covers and what it leaves out. Do not answer with a question when the results let you answer this way. Name the counting unit (datasheets or model profiles). A truncated example list cannot support an overall distribution.\n- Profiles: a characteristic belongs to a model profile, not to a unit. When a unit you give as an exception has profiles of different values, state every profile/value variant of that exception; never give one profile's characteristic as the value of the whole unit. Cite the table name, not a record ID as though it were a table.\n- Missions: use the page footer to name the mission for both scoring and winner rules. A question about ways to score needs concrete award conditions, amounts and timing; an introduction or a winner rule does not supply them. Search again for victory points and objective control only if no mission scoring rule has been retrieved yet; once a mission's scoring rule is present, answer from it without further searches for generic examples. Keep mission-specific scoring separate from generic examples and winner conditions. Preserve the source's shared timing and all ordered winner branches, including the destroyed-army condition, otherwise VP comparison and tie. State any remaining evidence gap.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.\n\n## Database schema\n\n# The datasheet database (`wahadb_clean.sqlite`)\n\nA SQLite copy of Wahapedia's Warhammer 40,000 data: units (datasheets), their models, weapons, keywords and\nabilities, and stratagems, detachments and enhancements. Text encoding is already repaired. Last update of the\ndata: 2026-09-01.\n\n## Rules for writing SQL\n\n- Every column is `TEXT`, numbers included: compare and sort numbers with `CAST(t AS INTEGER)`. Some stat values are\n  not numbers (`D3`, `D6`, `N/A`, `Melee`, `-`).\n- There are no declared keys: join on the columns listed under Joins, with their exact case (`Id` vs `id`,\n  `FactionId` vs `factionId`, `DatasheetId`).\n- `=` compares text exactly and is case-sensitive; `LIKE` ignores the case of ASCII letters. Keywords are written\n  like `Infantry`, `Battleline`, `Grenades`; stratagem names in capitals, like `GRENADE`.\n- One `SELECT` (or `WITH ... SELECT`) per call. Select the columns you need and filter; results are cut after 50 rows.\n- Booleans are the text `'true'` or `'false'`.\n\n## Tables\n\n| Table | One row is | Main columns |\n|---|---|---|\n| `factions` | a faction (25) | `Id` (`SM` = Space Marines, `CSM` = Chaos Space Marines, `TAU`, `TYR`, …), `name` |\n| `datasheets` | a unit's datasheet (1 680) | `Id`, `name`, `factionId`, `sourceId`, `role`, `loadout`, `transport`, `legend` (lore text, not Warhammer Legends), `virtual`, `link` |\n| `datasheets_models` | a model profile of a datasheet (a unit can have several, one per `line`) | `DatasheetId`, `line`, `name`, `m` (Move), `t` (Toughness), `sv` (Save), `invSv` (invulnerable save, `-` if none), `w` (Wounds), `ld` (Leadership), `oc` (Objective Control), `baseSize` |\n| `datasheets_wargear` | a weapon profile of a datasheet | `DatasheetId`, `name`, `range` (inches, or `Melee`), `type` (`Ranged`/`Melee`), `a` (Attacks), `bsWs` (BS or WS: `3` means 3+), `s` (Strength), `ap` (`0`, `-1`, …), `d` (Damage), `description` (weapon abilities) |\n| `datasheets_keywords` | a keyword of a datasheet | `DatasheetId`, `keyword`, `model` (the models it applies to; empty = the unit), `isFactionKeyword` |\n| `datasheets_abilities` | an ability on a datasheet | `DatasheetId`, `line`, `abilityId`, `name`, `description`, `type` (`Core`, `Faction`, `Datasheet`, `Wargear`, …), `parameter` |\n| `abilities` | a Core or Faction ability's text | `Id`, `name`, `factionId`, `description` |\n| `datasheets_unit_composition` | a line of unit composition | `DatasheetId`, `line`, `description` |\n| `datasheets_options` | a wargear option | `DatasheetId`, `line`, `description` |\n| `datasheets_models_cost` | a points cost | `DatasheetId`, `line`, `description` (unit size), `cost` (points) |\n| `datasheets_leader` | a leader-to-unit link | `LeaderId` (the leader's datasheet), `attachedId` (a unit it can lead) |\n| `stratagems` | a stratagem | `id`, `name`, `FactionId`, `type`, `cpCost`, `turn`, `phase`, `detachment`, `detachmentId`, `description` (lines `WHEN:`, `TARGET:`, `EFFECT:`, `RESTRICTIONS:`) |\n| `datasheets_stratagems` | a datasheet-to-stratagem link | `DatasheetId`, `stratagemId` |\n| `detachments` | a detachment | `Id`, `factionId`, `name`, `type` |\n| `detachment_abilities` | a detachment rule | `Id`, `detachmentId`, `name`, `description` |\n| `enhancements` | an enhancement | `id`, `FactionId`, `name`, `cost`, `detachmentId`, `description` |\n| `source` | a publication | `Id`, `name`, `type`, `edition`, `version`, `errataDate` |\n\n## Joins\n\n- `datasheets.Id` = `DatasheetId` of every `datasheets_*` table; `datasheets.factionId` = `factions.Id`;\n  `datasheets.sourceId` = `source.Id`.\n- `datasheets_abilities.abilityId` = `abilities.Id`: see the abilities trap below.\n- `datasheets_stratagems.stratagemId` = `stratagems.id`; `stratagems.FactionId` = `factions.Id`.\n- `detachments.Id` = `detachment_abilities.detachmentId` = `stratagems.detachmentId` = `enhancements.detachmentId`.\n- `datasheets_leader.LeaderId` and `.attachedId` = `datasheets.Id`.\n\n## Traps\n\n- **Unit names are not unique** (1 680 datasheets, 1 291 names): the same name can exist in several factions or\n  sources. Filter by `factionId` when it matters, and say which one you used.\n- **A broad name is a category, not a unit.** \"A Space Marine\" is not a datasheet name: `name LIKE '%Space Marine%'`\n  finds only odd units. Use the faction (`factionId = 'SM'`) and keywords from `datasheets_keywords` (`Battleline`,\n  `Infantry`, `Vehicle`, …), then give the typical value and the notable exceptions (example 2).\n- **A characteristic belongs to a model profile, not to a unit.** A datasheet can have profiles of different values\n  (a sergeant and a heavier veteran, for example): keep each profile's name in a category result, so that a unit\n  that is an exception for one profile is not given that value as a whole (example 2).\n- **Warhammer Legends and Forge World.** A datasheet's source tells where it comes from: `source.name` ends with\n  `(Warhammer Legends)` for Legends units (retired from standard play) and with `(Forge World)` for Forge World\n  units. Exclude Legends unless the question asks for them: `source.name NOT LIKE '%(Warhammer Legends)%'`. Do not\n  use `datasheets.legend` for this: it is lore text.\n- **Editions are per record.** `source.edition` is `'11'`, `'10'`, or `'0'` (no edition recorded: Legends and Forge\n  World packs). Two datasheets have no source (`sourceId` empty). `stratagems`, `detachments`, `enhancements` and\n  `abilities` have no source column: their edition is not recorded. The Core Rules rulebook is 10th edition.\n- **Abilities are in two places.** Core and Faction abilities have an `abilityId` and their text in `abilities`; the\n  others (`Datasheet`, `Wargear`, …) have an empty `abilityId` and their text in `datasheets_abilities.description`.\n  `abilities` repeats each ability once per faction (91 rows, 71 `Id`s), so join it through\n  `(SELECT DISTINCT Id, name, description FROM abilities)`, never on `Id` alone (example 4).\n- **Core stratagems** have an empty `FactionId` and come in two forms. Rows of `type` `Core Stratagem` are linked to\n  datasheets in `datasheets_stratagems`; rows whose `type` reads like the rulebook's labels (`Core – Wargear\n  Stratagem`, `Core – Strategic Ploy Stratagem`, …) are linked to no datasheet. A name can have both forms\n  (`COMMAND RE-ROLL`) or only one (`GRENADE` exists only as `Core – Wargear Stratagem`), and their texts can differ;\n  their source is not recorded. Which units can use a core stratagem is written in its `TARGET:` line (for\n  `GRENADE`, a unit with the `Grenades` keyword). Other rows with an empty `FactionId` belong to other game modes\n  (`Boarding Actions`, `Challenger`) or describe core actions (`Movement Ability`, `Shooting Ability`).\n- **Game modes of detachments.** `detachments.type` is empty for the standard game and `Boarding Actions` for that\n  game mode (59 of 327 detachments); a faction's stratagems include those of its Boarding Actions detachments (for\n  Space Marines, `Boarding Strike`). For a question about the standard game, leave those out. A stratagem whose\n  `detachmentId` matches no row of `detachments` (six Aeldari `Army Rules` stratagems) has an unknown game mode,\n  not the standard one.\n- **Rows can repeat.** `datasheets_keywords` holds 16 358 rows but 12 172 different ones, and a datasheet's points\n  rows can appear twice, between header rows such as `YOUR UNIT COSTS` with an empty `cost`. Use `DISTINCT` when you\n  list or count.\n- **Model profiles.** A datasheet can have several rows in `datasheets_models` (one per kind of model, by `line`);\n  keep all profiles of a unit together when they differ. Filter units by their keywords or an `EXISTS` condition,\n  then return all profiles of those units; filtering model rows to one characteristic hides mixed-profile units.\n- Some `datasheets_abilities.type` values are leftovers of the export in Russian (for example\n  `Special (правая колонка)`); treat them as other datasheet abilities. The datasheet `Example Wargear` is a\n  placeholder (`virtual = 'true'`).\n\n## Examples\n\nAll examples run as written; replace the names and IDs.\n\n1. A unit's model profiles, with its faction and source:\n\n```sql\nSELECT d.name, f.name AS faction, m.name AS model, m.m, m.t, m.sv, m.invSv, m.w, m.ld, m.oc,\n       s.name AS source, s.edition\nFROM datasheets d\nJOIN factions f ON f.Id = d.factionId\nJOIN datasheets_models m ON m.DatasheetId = d.Id\nLEFT JOIN source s ON s.Id = d.sourceId\nWHERE d.name = 'Intercessor Squad' AND d.factionId = 'SM'\nORDER BY CAST(m.line AS INTEGER);\n```\n\n2. A category: Space Marine Battleline units, Legends excluded. Use one query for representative units across\n   the observed Toughness values. It ranks units with mixed profiles first, chooses at most two representatives\n   per value, then returns every profile of each chosen unit. This is a sample even if `truncated` is false.\n   Keep `source` and `edition` as the publication column names:\n\n```sql\nWITH category_profiles AS (\n  SELECT DISTINCT d.Id, d.name, s.name AS source, s.edition,\n                  m.line, m.name AS model, m.t\n  FROM datasheets d\n  JOIN datasheets_models m ON m.DatasheetId = d.Id\n  LEFT JOIN source s ON s.Id = d.sourceId\n  WHERE d.factionId = 'SM'\n    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Battleline')\n    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')\n),\nunit_variants AS (\n  SELECT Id, COUNT(DISTINCT t) AS toughness_values\n  FROM category_profiles\n  GROUP BY Id\n),\nranked AS (\n  SELECT p.Id, p.name, p.source, p.edition, p.t,\n         ROW_NUMBER() OVER (\n           PARTITION BY p.t\n           ORDER BY v.toughness_values DESC, p.name, p.Id\n         ) AS representative\n  FROM (\n    SELECT DISTINCT Id, name, source, edition, t FROM category_profiles\n  ) p\n  JOIN unit_variants v ON v.Id = p.Id\n),\nselected AS (\n  SELECT DISTINCT Id, name, source, edition\n  FROM ranked\n  WHERE representative <= 2\n)\nSELECT s.Id, s.name, s.source, s.edition,\n       GROUP_CONCAT(p.model || ': T' || p.t, '; ') AS profiles\nFROM selected s\nJOIN category_profiles p ON p.Id = s.Id\nGROUP BY s.Id, s.name, s.source, s.edition\nORDER BY s.name, s.Id;\n```\n\nFor an overall distribution, query the complete category separately, grouping by publication and edition.\n`model_profiles` counts distinct datasheet/model-line profiles, not individual miniatures; `datasheets` counts\ndistinct units having that Toughness. A mixed-profile unit can appear in multiple Toughness groups, so do not\nsum these unit counts to obtain a total. No LIMIT is applied before this aggregation. A truncated aggregate\nresult is still incomplete; narrow its publication/category scope before making overall claims:\n\n```sql\nWITH profiles AS (\n  SELECT DISTINCT d.Id, m.line, m.t, s.Id AS source_id, s.name AS source, s.edition\n  FROM datasheets d\n  JOIN datasheets_models m ON m.DatasheetId = d.Id\n  LEFT JOIN source s ON s.Id = d.sourceId\n  WHERE d.factionId = 'SM'\n    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Battleline')\n    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')\n)\nSELECT source_id, source, edition, t, COUNT(*) AS model_profiles, COUNT(DISTINCT Id) AS datasheets\nFROM profiles\nGROUP BY source_id, source, edition, t\nORDER BY source, edition, CAST(t AS INTEGER), t;\n```\n\n3. A unit's weapons:\n\n```sql\nSELECT w.name, w.range, w.type, w.a, w.bsWs, w.s, w.ap, w.d, w.description\nFROM datasheets_wargear w\nWHERE w.DatasheetId = '000001157'  -- Intercessor Squad (SM)\nORDER BY CAST(w.line AS INTEGER), CAST(w.lineInWargear AS INTEGER);\n```\n\n4. A unit's abilities, from both places, one row per ability:\n\n```sql\nSELECT da.type,\n       COALESCE(a.name, da.name)               AS ability_name,\n       COALESCE(a.description, da.description) AS ability_text\nFROM datasheets_abilities da\nLEFT JOIN (SELECT DISTINCT Id, name, description FROM abilities) a ON a.Id = da.abilityId\nWHERE da.DatasheetId = '000000070'  -- Tactical Squad (SM)\nORDER BY CAST(da.line AS INTEGER);\n```\n\n5. A core stratagem's text, in every form, and the units that have the keyword its target needs:\n\n```sql\nSELECT name, type, cpCost, turn, phase, description\nFROM stratagems\nWHERE name = 'GRENADE' AND FactionId = '';\n```\n\n```sql\nSELECT DISTINCT d.name\nFROM datasheets d\nJOIN datasheets_keywords k ON k.DatasheetId = d.Id AND k.keyword = 'Grenades'\nWHERE d.factionId = 'SM'\nORDER BY d.name;\n```\n\n6. The stratagems of a unit's own faction, with their detachment and game mode (`game_mode`: empty = the standard\n   game, `Boarding Actions`, or `NULL` when the detachment is not in `detachments`):\n\n```sql\nSELECT s.name, s.FactionId AS faction, s.type, s.detachment, dt.type AS game_mode, s.cpCost, s.phase\nFROM datasheets d\nJOIN datasheets_stratagems ds ON ds.DatasheetId = d.Id\nJOIN stratagems s ON s.id = ds.stratagemId AND s.FactionId = d.factionId\nLEFT JOIN detachments dt ON dt.Id = s.detachmentId\nWHERE d.Id = '000001157'  -- Intercessor Squad (SM)\nORDER BY dt.type, s.detachment, s.name;\n```\n\n7. A unit's keywords:\n\n```sql\nSELECT DISTINCT keyword, model, isFactionKeyword\nFROM datasheets_keywords\nWHERE DatasheetId = '000000070'  -- Tactical Squad (SM)\nORDER BY isFactionKeyword DESC, keyword;\n```\n\n8. A faction's detachments, with their rules:\n\n```sql\nSELECT dt.name AS detachment, da.name AS rule, da.description\nFROM detachments dt\nLEFT JOIN detachment_abilities da ON da.detachmentId = dt.Id\nWHERE dt.factionId = 'SM'\nORDER BY dt.name;\n```\n\n9. The units a leader can lead:\n\n```sql\nSELECT attached.name\nFROM datasheets leader\nJOIN datasheets_leader l ON l.LeaderId = leader.Id\nJOIN datasheets attached ON attached.Id = l.attachedId\nWHERE leader.Id = '000000073'  -- Captain (SM)\nORDER BY attached.name;\n```\n\n10. A unit's points:\n\n```sql\nSELECT DISTINCT description AS unit_size, cost\nFROM datasheets_models_cost\nWHERE DatasheetId = '000001157' AND cost != ''  -- Intercessor Squad (SM)\nORDER BY CAST(cost AS INTEGER);\n```\n",
+ "final_prompt": "You are a rules assistant for Warhammer 40,000. You answer from two sources: the Core Rules (10th edition) and a database of datasheets, weapons, stratagems, factions and detachments.\n\n## Tools are spent\n\nThe tool budget for this question is spent: no tool can be called any more. Answer now, from the tool results above. Where they are not enough, give what they show and say what is missing.\n\n## Answering\n\n- Answer only from the tool results of this conversation. If a search does not supply the necessary passage, search again with a specific rule or section name while tools remain. If it is still missing, say what the retrieved passages do not establish and what you searched. Unsuccessful retrieval never proves that the rulebook has no such rule. Do not invent values or fill gaps from general game knowledge.\n- Organize an evidence answer in this order: source/version and scope, including which facts the user supplied and which the tools established; explicit conditions and results in the source's order; then the supported conclusion and any evidence gap. For an if/otherwise rule, preserve every branch and their common timing. Distinguish ways to score from the rule for determining a winner.\n- For a rule or procedure, preserve its cost, timing, eligible target, effect, restrictions and exceptions where the evidence gives them. For how to use a Stratagem, explain its CP payment from the `STRATAGEMS` and `1. COMMAND` sections and illustrate how the card labels WHEN, TARGET, EFFECT and RESTRICTIONS work from the retrieved Stratagem cards; once those sections and cards are retrieved, answer from them without searching again for a separate definition of those card labels. Identify the actor, whose phase it is, every recipient, and quantifiers such as \"both players\" and \"each phase\"; avoid ambiguous pronouns. Do not merge source versions. Give an exception only with its trigger and timing. If you choose an example, attribute it to one source or separate material versions; do not use a joint citation to imply that different versions are identical. An example figure is illustrative, not a datasheet fact about a real unit.\n- Cite every fact: [Core Rules p. N] for the rulebook (p. N–M for a passage over two pages), [DB: table] for the database.\n- Editions: the rulebook is the 10th edition. For a database record, give its edition only when it is recorded: for a datasheet, join `source` and give its name and edition; edition '0' means that none is recorded (a Warhammer Legends or Forge World pack: name it as such). Stratagems, detachments, enhancements and abilities have no source: say that their source is not recorded. Never give one edition to the database as a whole.\n- When evidence contains versions of the same rule, compare costs, timing, targets, effects and restrictions. For an applicability question or follow-up, give a short entry for EACH source: source/version and citation; its explicit conditions; the relevant facts supplied by the user or established by a tool, labelled by origin; any missing facts; and the conclusion supported by that source. These are checkable evidence statements, not a narrative of your reasoning. Preserve who a restriction applies to, including the controlling player. Nonselection, a completed action, and ineligibility are different predicates: none establishes another without cited evidence. Do not import exclusions across sources. An exclusion absent from a retrieved passage proves neither permission nor prohibition; say when that source does not settle the case. Describe material differences, not assumed clarifications.\n- Categories: a broad name such as \"a Space Marine\" is a category, not a unit. Resolve it to a faction and keywords (for example factionId 'SM' with the keyword Battleline or Infantry), leave out Warhammer Legends unless asked, use aggregate counts by publication/edition for a typical value and separate limited examples for exceptions, report the per-publication/edition counts as returned without summing them across publications or editions in prose, and say how you read the question: the units the answer covers and what it leaves out. Do not answer with a question when the results let you answer this way. Name the counting unit (datasheets or model profiles). A truncated example list cannot support an overall distribution.\n- Profiles: a characteristic belongs to a model profile, not to a unit. When a unit you give as an exception has profiles of different values, state every profile/value variant of that exception; never give one profile's characteristic as the value of the whole unit. Cite the table name, not a record ID as though it were a table.\n- Missions: use the page footer to name the mission for both scoring and winner rules. A question about ways to score needs concrete award conditions, amounts and timing; an introduction or a winner rule does not supply them. Search again for victory points and objective control only if no mission scoring rule has been retrieved yet; once a mission's scoring rule is present, answer from it without further searches for generic examples. Keep mission-specific scoring separate from generic examples and winner conditions. Preserve the source's shared timing and all ordered winner branches, including the destroyed-army condition, otherwise VP comparison and tie. State any remaining evidence gap.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+ "final_instruction": "Tools are no longer available. Answer now in text, from the tool results above; if they are not enough, say what is missing.",
+ "model_settings": {
+  "model": "gemini-3.8-flash",
+  "temperature": null,
+  "frequency_penalty": null,
+  "presence_penalty": null,
+  "top_p": null,
+  "top_k": null,
+  "max_output_tokens": null,
+  "n": 1,
+  "safety_settings": null,
+  "response_modalities": null,
+  "media_resolution": null,
+  "thinking_budget": null,
+  "include_thoughts": null,
+  "thinking_level": null,
+  "thinking_config": null,
+  "image_config": null
+ },
+ "tools": [
+  {
+   "type": "function",
+   "function": {
+    "name": "search_rules",
+    "description": "Search the Core Rules: how the game works (phases, actions, keywords, terrain). Retrieved Stratagem sections also include exact-name core database records when found.",
+    "parameters": {
+     "properties": {
+      "query": {
+       "description": "In English, with the rulebook's terms, whatever the question's language.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "query"
+     ],
+     "type": "object"
+    }
+   }
+  },
+  {
+   "type": "function",
+   "function": {
+    "name": "run_sql",
+    "description": "Query units, weapons, abilities, stratagems, detachments and factions with read-only SQL.",
+    "parameters": {
+     "properties": {
+      "sql": {
+       "description": "One SQLite SELECT or WITH query that follows the database schema.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "sql"
+     ],
+     "type": "object"
+    }
+   }
+  }
+ ],
+ "messages": [
+  {
+   "type": "human",
+   "data": {
+    "content": "What is the toughness of a space marine?",
+    "additional_kwargs": {},
+    "response_metadata": {},
+    "type": "human",
+    "name": null,
+    "id": "5c45642a-430a-40b0-be79-d0c8a7f2a1c0"
+   }
+  },
+  {
+   "type": "ai",
+   "data": {
+    "content": [],
+    "additional_kwargs": {
+     "function_call": {
+      "name": "run_sql",
+      "arguments": "{\"sql\": \"WITH profiles AS (\\n  SELECT DISTINCT d.Id, m.line, m.t, s.Id AS source_id, s.name AS source, s.edition\\n  FROM datasheets d\\n  JOIN datasheets_models m ON m.DatasheetId = d.Id\\n  LEFT JOIN source s ON s.Id = d.sourceId\\n  WHERE d.factionId = 'SM'\\n    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Infantry')\\n    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')\\n)\\nSELECT source_id, source, edition, t, COUNT(*) AS model_profiles, COUNT(DISTINCT Id) AS datasheets\\nFROM profiles\\nGROUP BY source_id, source, edition, t\\nORDER BY source, edition, CAST(t AS INTEGER), t;\"}"
+     },
+     "__gemini_function_call_thought_signatures__": {
+      "call_1023170": "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"
+     }
+    },
+    "response_metadata": {
+     "safety_ratings": [],
+     "finish_reason": "STOP",
+     "model_name": "gemini-3.8-flash",
+     "model_provider": "google_genai"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a16f37-62ec-7e12-b1b3-f985b7a477cb",
+    "tool_calls": [
+     {
+      "name": "run_sql",
+      "args": {
+       "sql": "WITH profiles AS (\n  SELECT DISTINCT d.Id, m.line, m.t, s.Id AS source_id, s.name AS source, s.edition\n  FROM datasheets d\n  JOIN datasheets_models m ON m.DatasheetId = d.Id\n  LEFT JOIN source s ON s.Id = d.sourceId\n  WHERE d.factionId = 'SM'\n    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Infantry')\n    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')\n)\nSELECT source_id, source, edition, t, COUNT(*) AS model_profiles, COUNT(DISTINCT Id) AS datasheets\nFROM profiles\nGROUP BY source_id, source, edition, t\nORDER BY source, edition, CAST(t AS INTEGER), t;"
+      },
+      "id": "call_1023170",
+      "type": "tool_call"
+     }
+    ],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 6005,
+     "output_tokens": 1014,
+     "total_tokens": 7019,
+     "input_token_details": {
+      "cache_read": 0
+     },
+     "output_token_details": {
+      "reasoning": 806
+     }
+    }
+   }
+  },
+  {
+   "type": "tool",
+   "data": {
+    "content": "{\"columns\": [\"source_id\", \"source\", \"edition\", \"t\", \"model_profiles\", \"datasheets\"], \"rows\": [[\"000000162\", \"Black Templars\", \"11\", \"4\", 12, 10], [\"000000162\", \"Black Templars\", \"11\", \"5\", 1, 1], [\"000000021\", \"Blood Angels\", \"11\", \"4\", 12, 12], [\"000000021\", \"Blood Angels\", \"11\", \"5\", 1, 1], [\"000000023\", \"Dark Angels\", \"11\", \"4\", 5, 5], [\"000000023\", \"Dark Angels\", \"11\", \"5\", 3, 3], [\"000000035\", \"Deathwatch\", \"10\", \"4\", 7, 7], [\"000000035\", \"Deathwatch\", \"10\", \"5\", 1, 1], [\"000000035\", \"Deathwatch\", \"10\", \"6\", 3, 3], [\"000000139\", \"Space Marines\", \"11\", \"3\", 1, 1], [\"000000139\", \"Space Marines\", \"11\", \"4\", 46, 46], [\"000000139\", \"Space Marines\", \"11\", \"5\", 8, 8], [\"000000139\", \"Space Marines\", \"11\", \"6\", 10, 10], [\"000000139\", \"Space Marines\", \"11\", \"7\", 2, 2], [\"000000036\", \"Space Wolves\", \"11\", \"4\", 12, 10], [\"000000036\", \"Space Wolves\", \"11\", \"5\", 3, 3], [\"000000036\", \"Space Wolves\", \"11\", \"6\", 2, 2]], \"truncated\": false, \"error\": null}",
+    "additional_kwargs": {},
+    "response_metadata": {},
+    "type": "tool",
+    "name": "run_sql",
+    "id": "b06d4203-858b-41ea-83ee-7e29671cea04",
+    "tool_call_id": "call_1023170",
+    "artifact": {
+     "columns": [
+      "source_id",
+      "source",
+      "edition",
+      "t",
+      "model_profiles",
+      "datasheets"
+     ],
+     "rows": [
+      [
+       "000000162",
+       "Black Templars",
+       "11",
+       "4",
+       12,
+       10
+      ],
+      [
+       "000000162",
+       "Black Templars",
+       "11",
+       "5",
+       1,
+       1
+      ],
+      [
+       "000000021",
+       "Blood Angels",
+       "11",
+       "4",
+       12,
+       12
+      ],
+      [
+       "000000021",
+       "Blood Angels",
+       "11",
+       "5",
+       1,
+       1
+      ],
+      [
+       "000000023",
+       "Dark Angels",
+       "11",
+       "4",
+       5,
+       5
+      ],
+      [
+       "000000023",
+       "Dark Angels",
+       "11",
+       "5",
+       3,
+       3
+      ],
+      [
+       "000000035",
+       "Deathwatch",
+       "10",
+       "4",
+       7,
+       7
+      ],
+      [
+       "000000035",
+       "Deathwatch",
+       "10",
+       "5",
+       1,
+       1
+      ],
+      [
+       "000000035",
+       "Deathwatch",
+       "10",
+       "6",
+       3,
+       3
+      ],
+      [
+       "000000139",
+       "Space Marines",
+       "11",
+       "3",
+       1,
+       1
+      ],
+      [
+       "000000139",
+       "Space Marines",
+       "11",
+       "4",
+       46,
+       46
+      ],
+      [
+       "000000139",
+       "Space Marines",
+       "11",
+       "5",
+       8,
+       8
+      ],
+      [
+       "000000139",
+       "Space Marines",
+       "11",
+       "6",
+       10,
+       10
+      ],
+      [
+       "000000139",
+       "Space Marines",
+       "11",
+       "7",
+       2,
+       2
+      ],
+      [
+       "000000036",
+       "Space Wolves",
+       "11",
+       "4",
+       12,
+       10
+      ],
+      [
+       "000000036",
+       "Space Wolves",
+       "11",
+       "5",
+       3,
+       3
+      ],
+      [
+       "000000036",
+       "Space Wolves",
+       "11",
+       "6",
+       2,
+       2
+      ]
+     ],
+     "truncated": false,
+     "error": null
+    },
+    "status": "success"
+   }
+  },
+  {
+   "type": "ai",
+   "data": {
+    "content": [],
+    "additional_kwargs": {
+     "function_call": {
+      "name": "run_sql",
+      "arguments": "{\"sql\": \"WITH category_profiles AS (\\n  SELECT DISTINCT d.Id, d.name, s.name AS source, s.edition,\\n                  m.line, m.name AS model, m.t\\n  FROM datasheets d\\n  JOIN datasheets_models m ON m.DatasheetId = d.Id\\n  LEFT JOIN source s ON s.Id = d.sourceId\\n  WHERE d.factionId = 'SM'\\n    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Infantry')\\n    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')\\n),\\nunit_variants AS (\\n  SELECT Id, COUNT(DISTINCT t) AS toughness_values\\n  FROM category_profiles\\n  GROUP BY Id\\n),\\nranked AS (\\n  SELECT p.Id, p.name, p.source, p.edition, p.t,\\n         ROW_NUMBER() OVER (\\n           PARTITION BY p.t\\n           ORDER BY v.toughness_values DESC, p.name, p.Id\\n         ) AS representative\\n  FROM (\\n    SELECT DISTINCT Id, name, source, edition, t FROM category_profiles\\n  ) p\\n  JOIN unit_variants v ON v.Id = p.Id\\n),\\nselected AS (\\n  SELECT DISTINCT Id, name, source, edition\\n  FROM ranked\\n  WHERE representative <= 2\\n)\\nSELECT s.Id, s.name, s.source, s.edition,\\n       GROUP_CONCAT(p.model || ': T' || p.t, '; ') AS profiles\\nFROM selected s\\nJOIN category_profiles p ON p.Id = s.Id\\nGROUP BY s.Id, s.name, s.source, s.edition\\nORDER BY s.name, s.Id;\"}"
+     },
+     "__gemini_function_call_thought_signatures__": {
+      "call_1356251": "EscBCsQBAWkUfRMNZbm7bxZPyVRCGwilIzi3Avuofgx5218FLxPhe+XwVgYzrlRgbX19rHFa/xUW44EuJUWFn7nwTMcyX8Ws+9ZoKXfltHs6kbBMUZ9inCCzAxqmBz7vHLLLCkvh++bG29VIj67iSkQxLu7J8PLwW3hu0zLEYBoqAcLSKKmgeboPwzB4ul2304DTPtWpicF3G2yWTnjG7pTZu48fKRW/1UacVvsoT5rO9Arw5jcHii+3gI9S5VhiPGykfYHcZyMbPw=="
+     }
+    },
+    "response_metadata": {
+     "safety_ratings": [],
+     "finish_reason": "STOP",
+     "model_name": "gemini-3.8-flash",
+     "model_provider": "google_genai"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a16f37-83e3-7a22-b3f2-cb7c7b37cb53",
+    "tool_calls": [
+     {
+      "name": "run_sql",
+      "args": {
+       "sql": "WITH category_profiles AS (\n  SELECT DISTINCT d.Id, d.name, s.name AS source, s.edition,\n                  m.line, m.name AS model, m.t\n  FROM datasheets d\n  JOIN datasheets_models m ON m.DatasheetId = d.Id\n  LEFT JOIN source s ON s.Id = d.sourceId\n  WHERE d.factionId = 'SM'\n    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Infantry')\n    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')\n),\nunit_variants AS (\n  SELECT Id, COUNT(DISTINCT t) AS toughness_values\n  FROM category_profiles\n  GROUP BY Id\n),\nranked AS (\n  SELECT p.Id, p.name, p.source, p.edition, p.t,\n         ROW_NUMBER() OVER (\n           PARTITION BY p.t\n           ORDER BY v.toughness_values DESC, p.name, p.Id\n         ) AS representative\n  FROM (\n    SELECT DISTINCT Id, name, source, edition, t FROM category_profiles\n  ) p\n  JOIN unit_variants v ON v.Id = p.Id\n),\nselected AS (\n  SELECT DISTINCT Id, name, source, edition\n  FROM ranked\n  WHERE representative <= 2\n)\nSELECT s.Id, s.name, s.source, s.edition,\n       GROUP_CONCAT(p.model || ': T' || p.t, '; ') AS profiles\nFROM selected s\nJOIN category_profiles p ON p.Id = s.Id\nGROUP BY s.Id, s.name, s.source, s.edition\nORDER BY s.name, s.Id;"
+      },
+      "id": "call_1356251",
+      "type": "tool_call"
+     }
+    ],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 7587,
+     "output_tokens": 432,
+     "total_tokens": 8019,
+     "input_token_details": {
+      "cache_read": 0
+     },
+     "output_token_details": {
+      "reasoning": 17
+     }
+    }
+   }
+  },
+  {
+   "type": "tool",
+   "data": {
+    "content": "{\"columns\": [\"Id\", \"name\", \"source\", \"edition\", \"profiles\"], \"rows\": [[\"000002677\", \"Ancient In Terminator Armour\", \"Space Marines\", \"11\", \"Ancient In Terminator Armour: T5\"], [\"000000317\", \"Arjac Rockfist\", \"Space Wolves\", \"11\", \"Arjac Rockfist: T5\"], [\"000002703\", \"Centurion Assault Squad\", \"Space Marines\", \"11\", \"Centurion Assault Squad: T7\"], [\"000001193\", \"Centurion Devastator Squad\", \"Space Marines\", \"11\", \"Centurion Devastator Squad: T7\"], [\"000004175\", \"Decimus Kill Team\", \"Deathwatch\", \"10\", \"GRAVIS VETERAN: T6; KILL TEAM SERGEANT, DEATHWATCH VETERAN: T4\"], [\"000003874\", \"Talonstrike Kill Team\", \"Deathwatch\", \"10\", \"KILL TEAM HEAVY INTERCESSORS WITH JUMP PACKS: T6; KILL TEAM SERGEANT WITH JUMP PACK AND KILL TEAM INTERCESSORS WITH JUMP PACKS: T4\"], [\"000004188\", \"Wardens of Ultramar\", \"Space Marines\", \"11\", \"Ancient Gadriel, Veteran Sergeant Metaurus: T4; Gaius Silva, Aemelia Minervas, Dainal Kornelius, Lucia Vestha: T3\"]], \"truncated\": false, \"error\": null}",
+    "additional_kwargs": {},
+    "response_metadata": {},
+    "type": "tool",
+    "name": "run_sql",
+    "id": "e85b05b5-0acb-46e7-affc-4b27394aa9bd",
+    "tool_call_id": "call_1356251",
+    "artifact": {
+     "columns": [
+      "Id",
+      "name",
+      "source",
+      "edition",
+      "profiles"
+     ],
+     "rows": [
+      [
+       "000002677",
+       "Ancient In Terminator Armour",
+       "Space Marines",
+       "11",
+       "Ancient In Terminator Armour: T5"
+      ],
+      [
+       "000000317",
+       "Arjac Rockfist",
+       "Space Wolves",
+       "11",
+       "Arjac Rockfist: T5"
+      ],
+      [
+       "000002703",
+       "Centurion Assault Squad",
+       "Space Marines",
+       "11",
+       "Centurion Assault Squad: T7"
+      ],
+      [
+       "000001193",
+       "Centurion Devastator Squad",
+       "Space Marines",
+       "11",
+       "Centurion Devastator Squad: T7"
+      ],
+      [
+       "000004175",
+       "Decimus Kill Team",
+       "Deathwatch",
+       "10",
+       "GRAVIS VETERAN: T6; KILL TEAM SERGEANT, DEATHWATCH VETERAN: T4"
+      ],
+      [
+       "000003874",
+       "Talonstrike Kill Team",
+       "Deathwatch",
+       "10",
+       "KILL TEAM HEAVY INTERCESSORS WITH JUMP PACKS: T6; KILL TEAM SERGEANT WITH JUMP PACK AND KILL TEAM INTERCESSORS WITH JUMP PACKS: T4"
+      ],
+      [
+       "000004188",
+       "Wardens of Ultramar",
+       "Space Marines",
+       "11",
+       "Ancient Gadriel, Veteran Sergeant Metaurus: T4; Gaius Silva, Aemelia Minervas, Dainal Kornelius, Lucia Vestha: T3"
+      ]
+     ],
+     "truncated": false,
+     "error": null
+    },
+    "status": "success"
+   }
+  },
+  {
+   "type": "ai",
+   "data": {
+    "content": [
+     {
+      "type": "text",
+      "text": "### Source/Version and Scope\n\n* **User-Supplied Terms:** \"A Space Marine\".\n* **Scope Definition:** \"A Space Marine\" is a category rather than a specific unit. It is resolved to datasheets with faction ID `SM` and the keyword `Infantry` [DB: datasheets, datasheets_keywords]. Warhammer Legends publications are excluded. This covers all Chapter publications for non-Legends Space Marine Infantry and leaves out non-Infantry models (such as Mounted, Monsters, and Vehicles) and non-`SM` Space Marine factions (such as Chaos Space Marines, Grey Knights, Thousand Sons, Death Guard, and World Eaters).\n* **Counting Units:** Model profiles and datasheets. A Toughness characteristic belongs to a model profile rather than an entire unit [DB: datasheets_models].\n\n---\n\n### Distribution by Publication and Toughness Value\n\nThe retrieved non-Legends `SM` Infantry profiles report the following counts per publication and edition [DB: datasheets, datasheets_models, source]:\n\n* **Black Templars (edition 11):**\n  * Toughness 4: 12 model profiles (10 datasheets)\n  * Toughness 5: 1 model profile (1 datasheet)\n* **Blood Angels (edition 11):**\n  * Toughness 4: 12 model profiles (12 datasheets)\n  * Toughness 5: 1 model profile (1 datasheet)\n* **Dark Angels (edition 11):**\n  * Toughness 4: 5 model profiles (5 datasheets)\n  * Toughness 5: 3 model profiles (3 datasheets)\n* **Deathwatch (edition 10):**\n  * Toughness 4: 7 model profiles (7 datasheets)\n  * Toughness 5: 1 model profile (1 datasheet)\n  * Toughness 6: 3 model profiles (3 datasheets)\n* **Space Marines (edition 11):**\n  * Toughness 3: 1 model profile (1 datasheet)\n  * Toughness 4: 46 model profiles (46 datasheets)\n  * Toughness 5: 8 model profiles (8 datasheets)\n  * Toughness 6: 10 model profiles (10 datasheets)\n  * Toughness 7: 2 model profiles (2 datasheets)\n* **Space Wolves (edition 11):**\n  * Toughness 4: 12 model profiles (10 datasheets)\n  * Toughness 5: 3 model profiles (3 datasheets)\n  * Toughness 6: 2 model profiles (2 datasheets)\n\n---\n\n### Typical Value and Exceptions\n\n* **Typical Value:** The standard Toughness for a Space Marine Infantry model profile is **4**, representing the vast majority of profiles and datasheets across every publication.\n* **Exceptions by Model Profile:**\n  * **Toughness 3:**\n    * *Wardens of Ultramar* (Space Marines, edition 11) [DB: datasheets, datasheets_models, source]: Ancient Gadriel and Veteran Sergeant Metaurus have Toughness 4; Gaius Silva, Aemelia Minervas, Dainal Kornelius, and Lucia Vestha have Toughness 3.\n  * **Toughness 5:**\n    * *Ancient In Terminator Armour* (Space Marines, edition 11) [DB: datasheets, datasheets_models, source]: Ancient In Terminator Armour profile has Toughness 5.\n    * *Arjac Rockfist* (Space Wolves, edition 11) [DB: datasheets, datasheets_models, source]: Arjac Rockfist profile has Toughness 5.\n  * **Toughness 6:**\n    * *Decimus Kill Team* (Deathwatch, edition 10) [DB: datasheets, datasheets_models, source]: GRAVIS VETERAN profile has Toughness 6; KILL TEAM SERGEANT and DEATHWATCH VETERAN profiles have Toughness 4.\n    * *Talonstrike Kill Team* (Deathwatch, edition 10) [DB: datasheets, datasheets_models, source]: KILL TEAM HEAVY INTERCESSORS WITH JUMP PACKS profile has Toughness 6; KILL TEAM SERGEANT WITH JUMP PACK AND KILL TEAM INTERCESSORS WITH JUMP PACKS profiles have Toughness 4.\n  * **Toughness 7:**\n    * *Centurion Assault Squad* (Space Marines, edition 11) [DB: datasheets, datasheets_models, source]: Centurion Assault Squad profile has Toughness 7.\n    * *Centurion Devastator Squad* (Space Marines, edition 11) [DB: datasheets, datasheets_models, source]: Centurion Devastator Squad profile has Toughness 7.\n\n---\n\n### Supported Conclusion and Evidence Gap\n\n* **Conclusion:** Across non-Legends Space Marine Infantry, the baseline model Toughness is 4. Variations exist depending on unit role and armor: auxiliary models within mixed datasheets reach Toughness 3, heavier armor variants (such as Terminator, Gravis, and Centurion suits) range from Toughness 5 to Toughness 7.\n* **Evidence Gap:** No evidence gaps remain for the defined non-Legends faction `SM` Infantry category in the database.",
+      "index": 0,
+      "extras": {
+       "signature": "Et03Cto3AWkUfRPk1tBKTvBa/N5IsEq1lGVmfmpNRMBdiifHKodadTAgpeZ8biNKwFTVQp3nm4ah5H6piUXS2VPHqwLbFc97KqTN0ea/GYUKdZUpIT2dBm3rg+XNc6/e68DBu3hRUrA9HsOrSRJsLeLq6LDJKg1oNJ0Ew40PXRH9C+RftiT4R47rm18EvHUk/eD1TCMgeHqCNyuBRlDfHvcmUc4RDu6zcuq+odiB/4oMTD2NV60SQHYYA3u2MoBPJd6M3g2pD46Kabm/i3OoWQ7Z2RjG2Sd5jnJShMuZ9UFUe6GlI7nPb3Z9mYWtvVD9WxUSXBOlXco4VvyBFzpcmfLcBVqiFuYJgJB9fWYdt8KkOK8dfCCsgXy3y3lDpT37i0a6d1ClMgExG+Q9z6qdLaZ/UtXew3JUpX0tgNjTSNoPgtPOYwy41vCxYUSsdOQiosXkiYvIrD5R3I0hKfrVKrQXGiJVBTjdwqAFkGb53KyEVVFe4FhRwdbYVh8rGTD54jFdltoT6uR8NLRflwY+h7YhMPLdd2f+JJUJbjDJNeRhdQyd5+JExuGfz8SlifnnwCqma9JDbl1KBNC4kxbM7MKlqIyKZTovGZKnuCMhAGw4ev014TmlOXO0VNwamOUG3gh24ohi8eQMl6LTe5rCK6f13CDoVbd3ZADBX6+ZDIxByKxwItNj/MGtbmO6BI/Tt4e4jehLZe524SNf31L0V16QL22wqyesHt02oKYLO0CFpnsGqbls/PAqBTOibTX3L3gDymlVM4vdPFNxeRHTi8u0W5yZHngpQ1xsId6hETrNMhsYttfQCWrin8G2F8sZq8D77iJtXBw65VOE5S6qCC+TIOmI4w9xyObgU8eMXgSQziu1Bs4Bja/IhTMzhDn2EHmjIns7Il5H1Qr10gXek9s+EYA2fpDci6CPX5yFu/6+KXuzlbky0L1nlHcvkerZsEs9uihwHD4uZTwAQM4B3+qtYAUWM2Fn2Qk9gkQCqfZS1Qw+1ngWvg5IPwBxBrKmvLoqDT/LxeN6oq/LIKPCgArZL6fRCgCFKXIts3BYlI2nBE2lSztUbP8UAYg27IptI5Du13pzlFIe5TBwybTzHG5i4rtGchGw2wTbx1U9uKi/DA3jNs5y9S4jY6p0nZAsCCBVI+xofeByY9n//ls1XC0BT756cKEm/BpaAguTFDgqma4B9Wzt6LjoKJLuStIoFAS/YQEm8H9A+k4K9yQpFdVV9Rk1HMwPz4HgscFTbGl+T3KbwjtHQdC3YjQ321sT5FiCAx4L+5DzWLNZ7MZ7jHjZxFx5UOhOeHynrd/I+JfcCRN2TKpoidmP7P3fUlhCSqGuWOkBuPIU2ivOowdA1JlBNSEGZVPaJODXX1qhqBfNOb8UjnSvgj5kpX1eEf1dEmy2VxDmK7K87fzotro8Q+TabAtqbPAMx97ZSudcJZFMGZ59opmNP5Uij6x2e6HpvBbTDgHXy6XSFASji/HXBPnQlpgY4TzHTZtVggtpavTsW9iTAGG2zq5hzeHCHJyDKhGb5h1dL1KtpQgCUBzBU82psEbOVebGNL8NzxqqhDPfGNx74WWyjHAO5zILlGirutI6wNYvfwb1Tpqdk/RuoXwh3AxpbwW1Yv9kRUXAc1Ou2hQD2z/Xxk1flORHJ8PDTiVudsCr2JhBqjnmEIr32OVnJcLNzQY5tcmBVW03g1zYEp9StXFh+7s+VapJvAG3qEQJiKP6cRUM5GQkVRJNKGJDg8fQiIlSPN8l1tSEpB85xKOK+JWcQWXs8ybhg/9ITr0xLTmGMQq4PnwI04dHeLUjGTwLBEcYVBdrEKRJM7C/0Upi7CRhCt6yhkBMo5cwceyilei0dGZYo+Tdg7F98xwJd7SZrn/p0dVPtjK8eTagPcy+vE827Jv0U/DGxtgDzoGpg7i6Ph/Yi4SqmldjP0fqJ8RjfPd3m9dye9TCgU2YDV6DGIVVujcl0nStZjTdq7Ysu2xQBIxKCgJIzRPJpN88odL2wzCM55sTuFOGqFTWoauUdt64GRDIvcLtbHB4TdLXQAXpars1TfUYGyG4fcYMy5ErNXRxM9NUdlCfoAycWx3LjKbOfPso9RDOng5hSbHZw69geeFdc5/P1/ESXL7HZ1PRtilGDev+rUC1fd1+0y/HzsBI9G80CZFG2OkMAIPhCFXPF4rj4EvD9ElZzdXLt+ZySUFTJI3+xa8IOXaMDImzBFSlhjh66tiAKXPek+n0gVtPjKtQiQ1KZifnFhr8yX15FK/s1EHD2qcbe9WWaGBUqMkmaGs+YtAqjHmZofwdv8+/g8PuzxmoY91DqbfvS8t6zCDkQotdD5/Szf7UV4wpmPhMQa/dhwYGbWzDyaCirMZc4sIzoydENfNMj+eJbx9IpTiers6ZXhV98j1epucr70rBU87JLCkP1aDwMe/G1ecC0LLn97V5FNQkw5dh05hURfaYpwKOJ96QsOdOvEvxNhfPf1oZuqjWCtyVr7JrKy1J9wiOl3VSZm06Sr/+RHxgFzaqnPd9YfClSVlJKktaxkPTTAKmASbmCSDwA/iMlXqqRtFc1lbtum1MKcp+IEsbmmpqHq6j1ydKZw0u/XDzI9XE6ehMaoEU/Mpb2P8YKo+irEM7U2460B8YYLjRTUGii1+S/BjXkzYHPNmTHLvSlsbYk6danO/65aZP84bQhZp+ozzWfurldA1iKP960wCQ0BFHlUdaiGGu/FbJCISuK+MSysLYk/x2CZ5XRqrhVkmNsViJQwc3umQ1OyGsaS23/GAU2TlQpXQ/WMBJSTx0JaWIv9Sv2xFwCSMFUAUxWQt0Pq3bz8qn0OEnuQVhlRnVbhVBhKY6s5FXQ3dgt0Pa2XJlycMOH/5cCe3wiThaQ0it6oDR7Rn8aXNe7eHA/INp+7hEZZC+4/E3GW2GKyXnjahLhxEkiO30qim7Dwjd+LFWoAjcbssplGDhVlsyzLZAbSSk2wu8PaQhGxtexg5L6xWb9wrKRuJoGIgXl9WPuyOjcI8n2NKfGVcFdLdCnmpUiANrQ5hpD5gInA/HS+x2FnJ5kUdwugtijvb4sm3rc5J8yln/TbJpr+u3eYPeu3GvJAI/oZfyHXGte7g+i9ucaLABRFW0DXSKBQ7zZrCoKkXFAI+Hg0sZ5kLZsTnvWvpkcvNufI0RqWG87m5DTE1h6fv3Ye/lNVyWxcGUTEXIDQ5sbwso8mxGEjJGkJu4XYds1frLuckdPxjdYiHCQSaYiwXZUOOUbf7SCgWi50GHrzt0ax6oBiVgqqrNpbdOUKu8eNoOyFuz7ZQHKej70NFeTcK2tGZM2osrkQfYzBTIYTPmWLdLJikgoiv2uur2NJTnQOWQJmNrZFIJ92VVJkt7COOa8+rnaiUw00cjpSMZucjxsQSivjaOrS3HotqxhTA/ij0TUkp4e+eBVJDs98gLNWnMRXjyIDM0Ryu5w+45QT7eQ/Jtbl3WHTJkgcDY9sxVFOykooCbOvMU0lQqWbuAdu0TKnNpUP8b2rv5NPjYAs9NoR6Bail/gVeppXQgXg8oZyO2Tcbjm9BT+KcWcB1dFD20dQwKNTjTbfO2JA9HoH3Pm/30tC+xL7fK/7C1zUG7xXQEN1Sh3cyUWWCoCKV+CNBsnd6aYVP3OtFP7ZnIYcDXWJko16qIDf7i3izeqRSDepYpGrmp+k4oDYXIQwGYRYDHfUgmkp3Y8UcdlwbxS8y2cFALu6t5mkoLtn/pGJv+Zga/Dvbhi/agw46sw6eWxG8LNV3kJ1Xq3o4b1N+d/ld/vqQltAa4JZG0jQoU9MPEj0HsXxiaVQVAFc5cFNykikFt7QovaRqhZamKDNZqr7tRX6dlHUAMaSlD7CNYhfoTtdyApgGP1ARBb2yxVM+K7gtxhCXgHM215JnyLYr1820RvljEMsI2/tW+bNbhWTAhw5dhCfHb+TNIrSIFobM4fOG1cV40MDTdHoE+GMYgePI7IDoqs99Zd+akuPGfRfa+9gfnoFPn7bov//yifpYkWZ8YxVoX3i7axqOUi44tU9QgeA698SL4OWYs6jPEGVhbmSYGAFTslWRzy3rjuZyXbHERMbkB/WLPUwtJ7lJnFzZeQ/HC2IXtbb2huuczZA6tQkOsXn7IKp9c6ZqYZlZCLcGs2qQs/sKCHSDYCRehb0pp2AaweJCga7i5Gs4AIWTtQ3Uh/P20v8e4KtctLKD7jvn1zV8ECYySIj81lMtOB5qy6Nw1YvY8w/5OBA6KbSrb/1UEiA0pHlX/tgFW9tcuV+Ci2Z6yAy6tId+40esvvjju09rPaxZYFE+sn+eSQ19Y2Rm+O3nN3cYMlD8QxO3QHhQy69OCKDqtzggF5bjjh9vDeHpHwhVffT993fMLtGRd87kbXYxfbpJrLBSKpSOzmNCMVLaR+RIGsoChRVzbHkl8eRhYyJ+N46F1VAQjsYl4E5aalZWllA4zD8kCKVS8u85JQZ6tDCHaYvY5kvadzC9R+cd3F5rzJm2zGyaapkKvPUo0GMgVaS8y+LlFzP7Y2wsDMC6ZZgYJglBo2G6n8U9+5NHFXl4m+8U0xDmEfUiVQ1GLRdhrEPUbKyfF2NChqCrhwRAnLCDM0/C1cmylr1sV32JQ8I82bqQ5U4SWnDkUNv7qVfFDXc9yVjQi3GL/K1xZb9qRxL7ZNBgQw40bECG/Tjh4raLPg9wOfvILoWylQ8i7kaV+diZUkQi0s0TtpIO3l+SyUUszvgNSxCbDG5qrgq6+rKAcetl3tKwE/tvHj3G4Zlxx2zdtaiyDsBlYpEUpgmD0ZtD+aHBMipYwivunZdVsJnHJUBjTuNx/U3tTW4h4m4Uu+oseSxesAnpDM03Y8rhGUY7XKbssOQJ8AwtF2xyj7eav5kL4A06wS47fquuzYDrxHr8T0yZcjicjzYnDHSYIQhwa60gI43S91Nx2jK2GiCd/TnRJKkq6ifv1/KPbRoB6W5p5yaDqWaTo8kBlL29/Pn1OJEXQHFnpd86HfMHwyoXWcjAaLQ+GKq8AVGEZrg2Ecv6uz3xY8lRYCWuOvcw70E/+2JXGTdxXCj4jOvbaKk1sgHjHrpZ+v4GZFAeREw6FB2+0XuJLgivtVM7/vjEKL66QfdyDmQRJ+dO+FHoi9TQBWP9IAL/qYEdMbf24MAkxMN/OUIiXpKxz1gYBfm2V3DEHNR0X6n5SJk0o+u4h1rN19/wPYzJybibBM1jyXA8DuvhmJRsY4sDg03erTd+3hqPHBBRGaDmqfftZEtVg9zuSGoOA5Ee+wjgjU3ga5muznMYJbxlH1bz1GWIfkKQBThJ6EbFmPAt9sYv8pZ0NTulHyeBgXd2g4IJCExDmlkI2V52yLo/U7F4wgUEm7AaW+zJPU4I6j1JUug6BiyDWYdE8ZzB8betBOGF1i7oyudKYC1ydYlPgTOESINCq+QUtSVU7W3SeP+KMsoUAXYoVNQgNv9q9V4lWgt4iPfe0omW9Zol3e3qtg2kjEI4P64JIUkPkAWjveVdokN85KdJ6c+KXrXSS7yx6wrt9l8pRd3DZR/aBNYSk7EhE7Gn8/e8zWil7k8PSRPqAu789X6I/0NKYObMQuzythmRfyTFQWpVDyNuvU9G6KCQPcsZ85ncEP25GiZ5B1CKmJChgNSKQGz9q0j90XGqu5qfwUWrzJmP3HN/B0VdRpXAeDRQMFggEWri3NlT5g/tmZkovPU1T/0vORjqSyJIczEmwO+dN1mODwY/R+EpqjnvFkio0/rxOkeNJQFrUWyIkarhiZaUkEo408BJdUDLqd+zIWxNqoUBnuTakCKvZAqQfun1iOMYVrSrmFV8vjUtxO1cRQE2OYLbez6+X+Oz8cOExGrkJovvsaE6e+d5ImeL3oDsdQzCqaiM3T3tX1EDvgyea543tjQ+0u6V07w1FsyScmqqDdfmE3OXwf2EKeNRQMeN1GJVKF8hpLZ7Ppvqha7nw9LTW1xoXjD5c2eWsxU3U9tH/UGicLXzZxPduSZrKicsL1KLaR40l4xUal9ZSdx0ZjDpss1DX43eEm32XtntOKNul5NjBUc1iTAqJFCp5WrlP72/t1BZXb3/caMJSM+utO9sebtgciQQs03widKP9h0JiXQYxSQUDMamcUik8pEvBhrvMaGKRL2DpOAR61PCz1Ef5AU0PQJV5zgMYl3zpJALufagBT9T48BCWid1uroAv992IUQnFJUj39wCs6Nct52rMc3SXCJfSTlr/dEj3qTR4omuTznrfoh7k5WysMGwIHkedPZgV2SgC1D/IpuRZJ2VtBgy6dBzyRgO+rCR3EAbIJPw1puwuOKp5UmGd3yJnR0pK6Ts5kLuB8DrxDl8c0iD8WUvbupCSTa4NVn8U2YQfd/ffi5idFHAqyQg38wr2frw8EvNJVCkBqx4IS6bXRIyYBet3CAz/EbEtwexEf66DW72rDFxuqpwfO8kqHFw+lMZso1RhwyhCltaEcem94hGojyu/m2odKxtbE6rCFV1q6wGkLOeeyPFPMmBimGlCw+d7Ixh2xD/JSIogRryRzci/SzPmF83U8hD07PiAyNhb9NrVOBb1cKRm4VX1jDG6RZdSFbpIL1zyaiKfmIv3173Ur+Q5bMLfQQj2CoUap0hmvVwYRuR8kl+R6I7ZGHHXldXkJcn6AgUUx/5H7icsJ7tudHeHWeK8VIvtUei/GpLgjk+gqtYTHp8x4YR46rXZd1u3241MRwaNh3lVOzJ9iC2UyRi2DR5Ag7h7oVzInP8Znxygj88jNe06D8jV4gHhEGQl3jcA8ZTVwaGH7kR8ZTPNgG/x8pHq1C+LkIiYnoW9a8hGXZKrm3fJxuGcZejCr23dDBtHFSFv/ucx1REuBt9oXPSgxKTP2k7LPUnkkpDg82PgWeyf0Rl78AISgX2/+EeJNyrSnls3D7D4JLqKSiSusABN3YEIJ+qKwUaoM28updNEp0oHktpRo2+N+I78+goWZ6GnmqqrbppVJGVdJWae3sJEXMvTHKKLYoaU4gqG4Ea9B7YR1UswueGwaxZ1U+1Kot034FMBEZWI3KGuH2A1viXfuGEcAooPPWRNHZdjozh0i+Bc2u2/RFFoEBuaZXGsw7VpinbCRI+PQPWhF26Jn/VfDIyW/V8r0qFyk87vdR21kSppXzqX3lvaZ9gn6qydd2FwxNCVxntR6fStvtsq8KzWwgxBelXVtrsH6QmB8Lh9gLasz93HtFBx6ZOLRT0CSovnExCfhjr1CJB50bPEtvqMigwrN8PcozXOEs2ju8yE1qRkOsQdPo8jC8dZcYVXxI0+fU71agJdwS7nyEM5k+D97tNWbGm8/iWG7eapJQA6iKgfE+SmjKDDkXzn18MEUdNTCy0tFISP2FiOoWW6fQhd8rwEXAKt9LU1m2LOL9RSHrfU87aKJ9zZM9d3lnbtDckwg6A7AWMYQJBzjnvtHQES0Azad8gAG77bLSngiSnnE4c0235ipxuACmXdemDT+xdMJNgL2Ss/L0Aif8VFljUFOJaBX6nR+mH3jlCdTUf8tPwTrHK2JfNf6aujxLFujvuD7AptQT8OWuiuat1uyJt6udE3gMHX2qo7txWwde4ZRmqya2sUjVJlxBbGE4Sn37Tlhsx1w3FFvnR9RB9jKrLvPz7TNoMGgLD1ixkIHr52JuNkdYhjvdp8DNhZrm5RUxqoGaG2Zz1jnT5GYzWXpwi9TbvEFeK7LF2NkWgCvH135N8wHozeeLaBtczJmWHQpHRGrPQwX8pvbrZE3aIsJhbxLgN7KfVN4WWGlGKpqXBqNasH3WrqBoezd6bePa6OMku/4qXobsDogg5c6CX+sXy/PJh0f0D7dNjZxCX3uWvNvRZK+3RPv0E1jAZyBqowlx8fzZ6rONCUUtzqUMHcPPH9kAeQ0gn7il8is/nMcotglX2OX/IfcM4+4KsDrvq4Xm4TpSsTDnbhcVLSF8447ELIAYwnimQ6frxgyB2dj0/IdcIiWvcOjJCkKb5iwuMdpPxJn0dyHD1u9+nQnIBRRMi9j1LyiLtg/7av2MdrSBwato8rDsws+SqhbLudNoEdB875d8va3gB18B5tZ1qQ15dXqRAz4doWkhObEq9sXO9E08c9P4Z+UOt7fkn4L9JpkxJHoOoQW+3M6vUmqTe0dTgnedtgEI+1Jr3Qy8BTaPaFqbQNOKiq/Q+Ql52VBEo0IE5907cFDYNYUFGhoQjVkg1mozfedIeCsBa5BjUUAP6WlTxuWR/Xz/6HW9E3wW5MJqEZlfpfNnMGMUjGE2oloNvYsIAlsI1bqlYGE3XpltXIJTEm0AXAi5ZvtUcHrWjthxHJvYp51ZNWRNN6MdWVL/ZfdIcYuTqjU/cUPt8Mdm7nDMpwDmEGyGIfi3I4fS1VV+Gxtm7zYxjw/EL0RxYg/l58PaIZ2ZN5CDjPcm6CScD7UsM2W6QN1N7PnPMjgZcSOd09N+VgCsHk23+dbjohoirPzpMN9mO+4Q6Qhbd1piW1bmxidc1hT1anVjbk/YHiFm7p34hkm2N+PmsL5Sp/Si6FxOksUA8wcpvpRTYrZtp3Xs1bYOUOYBDstP42Cqw3Fh01G1xeZXIp4fBCS8nf+522RFK9mjeNjfBD/eMITEkNgVQ+x5A8eXKJWbOHuYU8D5fUNVZcHmu4AOsT3mabkiPEQ2ZRqEFlyNqbAk+NYFny3cV78y3408EVGh0/qHCNyKFRoDmEEjPSfrgkJ1j3vEft/tgolVlDbrBVTWo4065y9Z2XfZ0MwWOhQ2zmlwItBK0SjGAsMqdXgsGM1iBUHtTVpHmhEF9tWJ91bbS9xZ8ehNEnLoWTxOWji3dVS/RH6mYOJxWK4UW3pmXZ/GYBECWsRY/SVvrHwmp4RsJWWF1uFkGgB5aLvB2PS8Yov5JIQzS+0TraeqrM2rXZ5cSPdyeF5qyLj6QnKjWAoLKiILKUz6ixkOjlI+zOAqLxlKbI81tBX2/ZneYe4xhDEKfoeaGLTUmyRL3WhydU+66viO4Hq01jkdV3kMNqN4gM9C4DJpFEWy4QP8gLzBNGjSTdhLEHyJwwSBKNXnD0GvWHO/8WLyJZzs02wuh7cwaqwvADT6Ikn5wl2lZlGTtrWkHYbnHrNNYbqImLmrj5sNiJs/Rm9lBiXSEAzVTN7YuRyMw+mRlFy8dkhyGoTujqYIQnOuFU3XePUzsKF8VBJI/oDSFs1MWeP4x4lCvlWWnoeMotHfxwCK9/YNi/VkWnC9Npz6Q99E7nPhiFBTfnlidWrgHA9sU8jyYPFhOt9V9UUmySCD6adnEMuqI9KTrr81iGz/0xN3t4pcwE9aw59mUArK0yL6w53Q8b9IcATaWrCyUJfUO1VkW84sjPC4vxY5Vpd3Z5OU4FNc7sCX0OqJlskv3CIBOQ51cjZQ0bG/BIJijlIV/ezqP4E6IWHibtoaExHnftdq0j648G+3fbdS5iGsfMNqb0m7runy/Pz94ODsPjD4qyq7jQDN3puuKWL3baDAEeHEwxiwktAExyKs2wONnEj2akuaU="
+      }
+     }
+    ],
+    "additional_kwargs": {},
+    "response_metadata": {
+     "safety_ratings": [],
+     "finish_reason": "STOP",
+     "model_name": "gemini-3.8-flash",
+     "model_provider": "google_genai"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a16f37-a171-7183-8ac8-e898983fd1cd",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 3817,
+     "output_tokens": 2735,
+     "total_tokens": 6552,
+     "input_token_details": {
+      "cache_read": 0
+     },
+     "output_token_details": {
+      "reasoning": 1571
+     }
+    }
+   }
+  },
+  {
+   "type": "human",
+   "data": {
+    "content": "What about Wardens of Ultramar?",
+    "additional_kwargs": {},
+    "response_metadata": {},
+    "type": "human",
+    "name": null,
+    "id": "d9ce3634-48e5-4742-acbc-11a1618b4033"
+   }
+  },
+  {
+   "type": "ai",
+   "data": {
+    "content": "### Wardens of Ultramar [DB: datasheets]\n\n- Toughness: Ancient Gadriel, Veteran Sergeant Metaurus: T4; Gaius Silva, Aemelia Minervas, Dainal Kornelius, Lucia Vestha: T3. [DB: datasheets_models]\n\n- Recorded publication: Space Marines. [DB: source]\n- Recorded edition: 11. [DB: source]",
+    "additional_kwargs": {
+     "answer_format": "structured_database_fields"
+    },
+    "response_metadata": {
+     "finish_reason": "STOP"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "32345a9c-6b13-4e36-b9de-a15995ce25a9",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": null
+   }
+  }
+ ],
+ "model_calls": [
+  {
+   "node": "agent",
+   "input_count": 1,
+   "tool_choice": "validated",
+   "context": null
+  },
+  {
+   "node": "agent",
+   "input_count": 3,
+   "tool_choice": "validated",
+   "context": null
+  },
+  {
+   "node": "final",
+   "input_count": 5,
+   "tool_choice": "none",
+   "context": null
+  }
+ ]
+}

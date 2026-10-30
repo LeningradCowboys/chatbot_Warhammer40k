@@ -1,0 +1,53 @@
+{
+  "label": "Round 4 / Final",
+  "started": "2026-10-24",
+  "updated": "2026-10-25",
+  "commit": "2f3d3529533528501a35a3950128bf38d4a27f40",
+  "model": "gemini-3.8-flash",
+  "embedding_model": "gemini-embedding-001",
+  "stages": [
+    {
+      "name": "Stage C",
+      "cap": {"chat": 32, "embedding": 40},
+      "actual": {"chat": 17, "embedding": 6},
+      "completed_scenarios": 6,
+      "semantic_passes": 6,
+      "status": "PASS"
+    },
+    {
+      "name": "Round 4 answers",
+      "cap": {"chat": 60, "embedding": 60},
+      "actual": {"chat": 32, "embedding": 32},
+      "completed_answers": 10,
+      "status": "PASS"
+    },
+    {
+      "name": "Round 4 RAGAS scoring",
+      "cap": {"chat": 240, "embedding": 30},
+      "actual": {"chat": 192, "embedding": 20},
+      "successful_chat": 182,
+      "failed_chat": 10,
+      "successful_embedding": 20,
+      "saved_scores": 50,
+      "expected_scores": 50,
+      "missing": [],
+      "status": "PASS",
+      "resume_history": "The first process and two safe resume attempts stopped on three HTTP 402 responses from the original key. After a new .env key was verified, the final resume used 20 chat requests: all three missing q011 scores were appended while the original 47 fingerprinted scores were skipped. Across scoring, seven temporary HTTP 503 responses were retried within the cap."
+    },
+    {
+      "name": "new key verification",
+      "actual": {"chat": 2, "embedding": 0, "metadata_get": 1},
+      "status": "PASS",
+      "detail": "The effective Settings key matched .env with no process-environment override. Two bounded generation probes timed out without an HTTP response; a no-generation model metadata request returned HTTP 200 and the formal resume then returned successful generation responses. No key value was logged."
+    }
+  ],
+  "total_actual": {"chat": 243, "embedding": 58, "metadata_get": 1},
+  "total_cap": {"chat": 332, "embedding": 130},
+  "ragas_partial": false,
+  "valid_scores": 50,
+  "failed_scores": 0,
+  "missing_scores": 0,
+  "indexes_regenerated": false,
+  "code_modified_during_evaluation": false,
+  "historical_artifacts_overwritten": false
+}

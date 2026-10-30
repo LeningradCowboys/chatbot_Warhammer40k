@@ -1,0 +1,365 @@
+{
+ "system_prompt": "You are a rules assistant for Warhammer 40,000. You answer from two sources: the Core Rules (10th edition) and a database of datasheets, weapons, stratagems, factions and detachments.\n\n## Tools\n\n- `search_rules`: how the game works (phases, actions, abilities, keywords, terrain). Write the query in English, with the rulebook's terms, whatever the language of the question. Specify the concept: victory points and objective control for scoring, Command points for Stratagem costs, army points for army construction.\n- `run_sql`: facts about units, their models, weapons, keywords and abilities, and about stratagems, detachments, enhancements and factions. Call `run_sql` with one read-only SQLite SELECT or WITH query in its required `sql` string parameter, then answer from the returned result. Follow the database schema below: for a specific named unit, join `datasheets`, `datasheets_models` and `source` in a single query (example 1) instead of separate queries per table. If the tool returns an error, correct the query and try again.\n- Use both when a question mixes rules and unit data. The number of tool rounds per question is limited: search with purpose.\n- Before seeking more evidence, inspect successful results from every earlier turn. They remain available in the conversation. If those results already establish the answer, answer directly; do not query the same fact again merely to confirm it. After each new result, stop as soon as the question is supported. If evidence is still missing, retrieve only the missing fields together where possible, or state the gap instead of pursuing optional detail.\n- A broad category of units, such as \"a Space Marine\", that maps to a faction and keywords: query it with `run_sql` before you answer, keeping each value's datasheet IDs, units and model profiles in the result (example 2 of the schema). Use at most one aggregate query and one representative unit query for the category; do not issue a separate query for each characteristic value. Ask which unit is meant only when no faction or keyword fits.\n- For a named Stratagem, search the rulebook. `search_rules` also queries exact-name core database records for retrieved Stratagem sections. Inspect both parts of its result; do not repeat a successful associated lookup. If either source is missing, use a targeted search or SQL query while tools remain, and report any remaining gap. Unit keywords still need `run_sql`.\n\n## Answering\n\n- Answer only from the tool results of this conversation. If a search does not supply the necessary passage, search again with a specific rule or section name while tools remain. If it is still missing, say what the retrieved passages do not establish and what you searched. Unsuccessful retrieval never proves that the rulebook has no such rule. Do not invent values or fill gaps from general game knowledge.\n- Organize an evidence answer in this order: source/version and scope, including which facts the user supplied and which the tools established; explicit conditions and results in the source's order; then the supported conclusion and any evidence gap. For an if/otherwise rule, preserve every branch and their common timing. Distinguish ways to score from the rule for determining a winner.\n- For a rule or procedure, preserve its cost, timing, eligible target, effect, restrictions and exceptions where the evidence gives them. For how to use a Stratagem, explain its CP payment from the `STRATAGEMS` and `1. COMMAND` sections and illustrate how the card labels WHEN, TARGET, EFFECT and RESTRICTIONS work from the retrieved Stratagem cards; once those sections and cards are retrieved, answer from them without searching again for a separate definition of those card labels. Identify the actor, whose phase it is, every recipient, and quantifiers such as \"both players\" and \"each phase\"; avoid ambiguous pronouns. Do not merge source versions. Give an exception only with its trigger and timing. If you choose an example, attribute it to one source or separate material versions; do not use a joint citation to imply that different versions are identical. An example figure is illustrative, not a datasheet fact about a real unit.\n- Cite every fact: [Core Rules p. N] for the rulebook (p. N–M for a passage over two pages), [DB: table] for the database.\n- Editions: the rulebook is the 10th edition. For a database record, give its edition only when it is recorded: for a datasheet, join `source` and give its name and edition; edition '0' means that none is recorded (a Warhammer Legends or Forge World pack: name it as such). Stratagems, detachments, enhancements and abilities have no source: say that their source is not recorded. Never give one edition to the database as a whole.\n- When evidence contains versions of the same rule, compare costs, timing, targets, effects and restrictions. For an applicability question or follow-up, give a short entry for EACH source: source/version and citation; its explicit conditions; the relevant facts supplied by the user or established by a tool, labelled by origin; any missing facts; and the conclusion supported by that source. These are checkable evidence statements, not a narrative of your reasoning. Preserve who a restriction applies to, including the controlling player. Nonselection, a completed action, and ineligibility are different predicates: none establishes another without cited evidence. Do not import exclusions across sources. An exclusion absent from a retrieved passage proves neither permission nor prohibition; say when that source does not settle the case. Describe material differences, not assumed clarifications.\n- Categories: a broad name such as \"a Space Marine\" is a category, not a unit. Resolve it to a faction and keywords (for example factionId 'SM' with the keyword Battleline or Infantry), leave out Warhammer Legends unless asked, use aggregate counts by publication/edition for a typical value and separate limited examples for exceptions, report the per-publication/edition counts as returned without summing them across publications or editions in prose, and say how you read the question: the units the answer covers and what it leaves out. Do not answer with a question when the results let you answer this way. Name the counting unit (datasheets or model profiles). A truncated example list cannot support an overall distribution.\n- Profiles: a characteristic belongs to a model profile, not to a unit. When a unit you give as an exception has profiles of different values, state every profile/value variant of that exception; never give one profile's characteristic as the value of the whole unit. Cite the table name, not a record ID as though it were a table.\n- Missions: use the page footer to name the mission for both scoring and winner rules. A question about ways to score needs concrete award conditions, amounts and timing; an introduction or a winner rule does not supply them. Search again for victory points and objective control only if no mission scoring rule has been retrieved yet; once a mission's scoring rule is present, answer from it without further searches for generic examples. Keep mission-specific scoring separate from generic examples and winner conditions. Preserve the source's shared timing and all ordered winner branches, including the destroyed-army condition, otherwise VP comparison and tie. State any remaining evidence gap.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.\n\n## Database schema\n\n# The datasheet database (`wahadb_clean.sqlite`)\n\nA SQLite copy of Wahapedia's Warhammer 40,000 data: units (datasheets), their models, weapons, keywords and\nabilities, and stratagems, detachments and enhancements. Text encoding is already repaired. Last update of the\ndata: 2026-09-01.\n\n## Rules for writing SQL\n\n- Every column is `TEXT`, numbers included: compare and sort numbers with `CAST(t AS INTEGER)`. Some stat values are\n  not numbers (`D3`, `D6`, `N/A`, `Melee`, `-`).\n- There are no declared keys: join on the columns listed under Joins, with their exact case (`Id` vs `id`,\n  `FactionId` vs `factionId`, `DatasheetId`).\n- `=` compares text exactly and is case-sensitive; `LIKE` ignores the case of ASCII letters. Keywords are written\n  like `Infantry`, `Battleline`, `Grenades`; stratagem names in capitals, like `GRENADE`.\n- One `SELECT` (or `WITH ... SELECT`) per call. Select the columns you need and filter; results are cut after 50 rows.\n- Booleans are the text `'true'` or `'false'`.\n\n## Tables\n\n| Table | One row is | Main columns |\n|---|---|---|\n| `factions` | a faction (25) | `Id` (`SM` = Space Marines, `CSM` = Chaos Space Marines, `TAU`, `TYR`, …), `name` |\n| `datasheets` | a unit's datasheet (1 680) | `Id`, `name`, `factionId`, `sourceId`, `role`, `loadout`, `transport`, `legend` (lore text, not Warhammer Legends), `virtual`, `link` |\n| `datasheets_models` | a model profile of a datasheet (a unit can have several, one per `line`) | `DatasheetId`, `line`, `name`, `m` (Move), `t` (Toughness), `sv` (Save), `invSv` (invulnerable save, `-` if none), `w` (Wounds), `ld` (Leadership), `oc` (Objective Control), `baseSize` |\n| `datasheets_wargear` | a weapon profile of a datasheet | `DatasheetId`, `name`, `range` (inches, or `Melee`), `type` (`Ranged`/`Melee`), `a` (Attacks), `bsWs` (BS or WS: `3` means 3+), `s` (Strength), `ap` (`0`, `-1`, …), `d` (Damage), `description` (weapon abilities) |\n| `datasheets_keywords` | a keyword of a datasheet | `DatasheetId`, `keyword`, `model` (the models it applies to; empty = the unit), `isFactionKeyword` |\n| `datasheets_abilities` | an ability on a datasheet | `DatasheetId`, `line`, `abilityId`, `name`, `description`, `type` (`Core`, `Faction`, `Datasheet`, `Wargear`, …), `parameter` |\n| `abilities` | a Core or Faction ability's text | `Id`, `name`, `factionId`, `description` |\n| `datasheets_unit_composition` | a line of unit composition | `DatasheetId`, `line`, `description` |\n| `datasheets_options` | a wargear option | `DatasheetId`, `line`, `description` |\n| `datasheets_models_cost` | a points cost | `DatasheetId`, `line`, `description` (unit size), `cost` (points) |\n| `datasheets_leader` | a leader-to-unit link | `LeaderId` (the leader's datasheet), `attachedId` (a unit it can lead) |\n| `stratagems` | a stratagem | `id`, `name`, `FactionId`, `type`, `cpCost`, `turn`, `phase`, `detachment`, `detachmentId`, `description` (lines `WHEN:`, `TARGET:`, `EFFECT:`, `RESTRICTIONS:`) |\n| `datasheets_stratagems` | a datasheet-to-stratagem link | `DatasheetId`, `stratagemId` |\n| `detachments` | a detachment | `Id`, `factionId`, `name`, `type` |\n| `detachment_abilities` | a detachment rule | `Id`, `detachmentId`, `name`, `description` |\n| `enhancements` | an enhancement | `id`, `FactionId`, `name`, `cost`, `detachmentId`, `description` |\n| `source` | a publication | `Id`, `name`, `type`, `edition`, `version`, `errataDate` |\n\n## Joins\n\n- `datasheets.Id` = `DatasheetId` of every `datasheets_*` table; `datasheets.factionId` = `factions.Id`;\n  `datasheets.sourceId` = `source.Id`.\n- `datasheets_abilities.abilityId` = `abilities.Id`: see the abilities trap below.\n- `datasheets_stratagems.stratagemId` = `stratagems.id`; `stratagems.FactionId` = `factions.Id`.\n- `detachments.Id` = `detachment_abilities.detachmentId` = `stratagems.detachmentId` = `enhancements.detachmentId`.\n- `datasheets_leader.LeaderId` and `.attachedId` = `datasheets.Id`.\n\n## Traps\n\n- **Unit names are not unique** (1 680 datasheets, 1 291 names): the same name can exist in several factions or\n  sources. Filter by `factionId` when it matters, and say which one you used.\n- **A broad name is a category, not a unit.** \"A Space Marine\" is not a datasheet name: `name LIKE '%Space Marine%'`\n  finds only odd units. Use the faction (`factionId = 'SM'`) and keywords from `datasheets_keywords` (`Battleline`,\n  `Infantry`, `Vehicle`, …), then give the typical value and the notable exceptions (example 2).\n- **A characteristic belongs to a model profile, not to a unit.** A datasheet can have profiles of different values\n  (a sergeant and a heavier veteran, for example): keep each profile's name in a category result, so that a unit\n  that is an exception for one profile is not given that value as a whole (example 2).\n- **Warhammer Legends and Forge World.** A datasheet's source tells where it comes from: `source.name` ends with\n  `(Warhammer Legends)` for Legends units (retired from standard play) and with `(Forge World)` for Forge World\n  units. Exclude Legends unless the question asks for them: `source.name NOT LIKE '%(Warhammer Legends)%'`. Do not\n  use `datasheets.legend` for this: it is lore text.\n- **Editions are per record.** `source.edition` is `'11'`, `'10'`, or `'0'` (no edition recorded: Legends and Forge\n  World packs). Two datasheets have no source (`sourceId` empty). `stratagems`, `detachments`, `enhancements` and\n  `abilities` have no source column: their edition is not recorded. The Core Rules rulebook is 10th edition.\n- **Abilities are in two places.** Core and Faction abilities have an `abilityId` and their text in `abilities`; the\n  others (`Datasheet`, `Wargear`, …) have an empty `abilityId` and their text in `datasheets_abilities.description`.\n  `abilities` repeats each ability once per faction (91 rows, 71 `Id`s), so join it through\n  `(SELECT DISTINCT Id, name, description FROM abilities)`, never on `Id` alone (example 4).\n- **Core stratagems** have an empty `FactionId` and come in two forms. Rows of `type` `Core Stratagem` are linked to\n  datasheets in `datasheets_stratagems`; rows whose `type` reads like the rulebook's labels (`Core – Wargear\n  Stratagem`, `Core – Strategic Ploy Stratagem`, …) are linked to no datasheet. A name can have both forms\n  (`COMMAND RE-ROLL`) or only one (`GRENADE` exists only as `Core – Wargear Stratagem`), and their texts can differ;\n  their source is not recorded. Which units can use a core stratagem is written in its `TARGET:` line (for\n  `GRENADE`, a unit with the `Grenades` keyword). Other rows with an empty `FactionId` belong to other game modes\n  (`Boarding Actions`, `Challenger`) or describe core actions (`Movement Ability`, `Shooting Ability`).\n- **Game modes of detachments.** `detachments.type` is empty for the standard game and `Boarding Actions` for that\n  game mode (59 of 327 detachments); a faction's stratagems include those of its Boarding Actions detachments (for\n  Space Marines, `Boarding Strike`). For a question about the standard game, leave those out. A stratagem whose\n  `detachmentId` matches no row of `detachments` (six Aeldari `Army Rules` stratagems) has an unknown game mode,\n  not the standard one.\n- **Rows can repeat.** `datasheets_keywords` holds 16 358 rows but 12 172 different ones, and a datasheet's points\n  rows can appear twice, between header rows such as `YOUR UNIT COSTS` with an empty `cost`. Use `DISTINCT` when you\n  list or count.\n- **Model profiles.** A datasheet can have several rows in `datasheets_models` (one per kind of model, by `line`);\n  keep all profiles of a unit together when they differ. Filter units by their keywords or an `EXISTS` condition,\n  then return all profiles of those units; filtering model rows to one characteristic hides mixed-profile units.\n- Some `datasheets_abilities.type` values are leftovers of the export in Russian (for example\n  `Special (правая колонка)`); treat them as other datasheet abilities. The datasheet `Example Wargear` is a\n  placeholder (`virtual = 'true'`).\n\n## Examples\n\nAll examples run as written; replace the names and IDs.\n\n1. A unit's model profiles, with its faction and source:\n\n```sql\nSELECT d.name, f.name AS faction, m.name AS model, m.m, m.t, m.sv, m.invSv, m.w, m.ld, m.oc,\n       s.name AS source, s.edition\nFROM datasheets d\nJOIN factions f ON f.Id = d.factionId\nJOIN datasheets_models m ON m.DatasheetId = d.Id\nLEFT JOIN source s ON s.Id = d.sourceId\nWHERE d.name = 'Intercessor Squad' AND d.factionId = 'SM'\nORDER BY CAST(m.line AS INTEGER);\n```\n\n2. A category: Space Marine Battleline units, Legends excluded. Use one query for representative units across\n   the observed Toughness values. It ranks units with mixed profiles first, chooses at most two representatives\n   per value, then returns every profile of each chosen unit. This is a sample even if `truncated` is false.\n   Keep `source` and `edition` as the publication column names:\n\n```sql\nWITH category_profiles AS (\n  SELECT DISTINCT d.Id, d.name, s.name AS source, s.edition,\n                  m.line, m.name AS model, m.t\n  FROM datasheets d\n  JOIN datasheets_models m ON m.DatasheetId = d.Id\n  LEFT JOIN source s ON s.Id = d.sourceId\n  WHERE d.factionId = 'SM'\n    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Battleline')\n    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')\n),\nunit_variants AS (\n  SELECT Id, COUNT(DISTINCT t) AS toughness_values\n  FROM category_profiles\n  GROUP BY Id\n),\nranked AS (\n  SELECT p.Id, p.name, p.source, p.edition, p.t,\n         ROW_NUMBER() OVER (\n           PARTITION BY p.t\n           ORDER BY v.toughness_values DESC, p.name, p.Id\n         ) AS representative\n  FROM (\n    SELECT DISTINCT Id, name, source, edition, t FROM category_profiles\n  ) p\n  JOIN unit_variants v ON v.Id = p.Id\n),\nselected AS (\n  SELECT DISTINCT Id, name, source, edition\n  FROM ranked\n  WHERE representative <= 2\n)\nSELECT s.Id, s.name, s.source, s.edition,\n       GROUP_CONCAT(p.model || ': T' || p.t, '; ') AS profiles\nFROM selected s\nJOIN category_profiles p ON p.Id = s.Id\nGROUP BY s.Id, s.name, s.source, s.edition\nORDER BY s.name, s.Id;\n```\n\nFor an overall distribution, query the complete category separately, grouping by publication and edition.\n`model_profiles` counts distinct datasheet/model-line profiles, not individual miniatures; `datasheets` counts\ndistinct units having that Toughness. A mixed-profile unit can appear in multiple Toughness groups, so do not\nsum these unit counts to obtain a total. No LIMIT is applied before this aggregation. A truncated aggregate\nresult is still incomplete; narrow its publication/category scope before making overall claims:\n\n```sql\nWITH profiles AS (\n  SELECT DISTINCT d.Id, m.line, m.t, s.Id AS source_id, s.name AS source, s.edition\n  FROM datasheets d\n  JOIN datasheets_models m ON m.DatasheetId = d.Id\n  LEFT JOIN source s ON s.Id = d.sourceId\n  WHERE d.factionId = 'SM'\n    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Battleline')\n    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')\n)\nSELECT source_id, source, edition, t, COUNT(*) AS model_profiles, COUNT(DISTINCT Id) AS datasheets\nFROM profiles\nGROUP BY source_id, source, edition, t\nORDER BY source, edition, CAST(t AS INTEGER), t;\n```\n\n3. A unit's weapons:\n\n```sql\nSELECT w.name, w.range, w.type, w.a, w.bsWs, w.s, w.ap, w.d, w.description\nFROM datasheets_wargear w\nWHERE w.DatasheetId = '000001157'  -- Intercessor Squad (SM)\nORDER BY CAST(w.line AS INTEGER), CAST(w.lineInWargear AS INTEGER);\n```\n\n4. A unit's abilities, from both places, one row per ability:\n\n```sql\nSELECT da.type,\n       COALESCE(a.name, da.name)               AS ability_name,\n       COALESCE(a.description, da.description) AS ability_text\nFROM datasheets_abilities da\nLEFT JOIN (SELECT DISTINCT Id, name, description FROM abilities) a ON a.Id = da.abilityId\nWHERE da.DatasheetId = '000000070'  -- Tactical Squad (SM)\nORDER BY CAST(da.line AS INTEGER);\n```\n\n5. A core stratagem's text, in every form, and the units that have the keyword its target needs:\n\n```sql\nSELECT name, type, cpCost, turn, phase, description\nFROM stratagems\nWHERE name = 'GRENADE' AND FactionId = '';\n```\n\n```sql\nSELECT DISTINCT d.name\nFROM datasheets d\nJOIN datasheets_keywords k ON k.DatasheetId = d.Id AND k.keyword = 'Grenades'\nWHERE d.factionId = 'SM'\nORDER BY d.name;\n```\n\n6. The stratagems of a unit's own faction, with their detachment and game mode (`game_mode`: empty = the standard\n   game, `Boarding Actions`, or `NULL` when the detachment is not in `detachments`):\n\n```sql\nSELECT s.name, s.FactionId AS faction, s.type, s.detachment, dt.type AS game_mode, s.cpCost, s.phase\nFROM datasheets d\nJOIN datasheets_stratagems ds ON ds.DatasheetId = d.Id\nJOIN stratagems s ON s.id = ds.stratagemId AND s.FactionId = d.factionId\nLEFT JOIN detachments dt ON dt.Id = s.detachmentId\nWHERE d.Id = '000001157'  -- Intercessor Squad (SM)\nORDER BY dt.type, s.detachment, s.name;\n```\n\n7. A unit's keywords:\n\n```sql\nSELECT DISTINCT keyword, model, isFactionKeyword\nFROM datasheets_keywords\nWHERE DatasheetId = '000000070'  -- Tactical Squad (SM)\nORDER BY isFactionKeyword DESC, keyword;\n```\n\n8. A faction's detachments, with their rules:\n\n```sql\nSELECT dt.name AS detachment, da.name AS rule, da.description\nFROM detachments dt\nLEFT JOIN detachment_abilities da ON da.detachmentId = dt.Id\nWHERE dt.factionId = 'SM'\nORDER BY dt.name;\n```\n\n9. The units a leader can lead:\n\n```sql\nSELECT attached.name\nFROM datasheets leader\nJOIN datasheets_leader l ON l.LeaderId = leader.Id\nJOIN datasheets attached ON attached.Id = l.attachedId\nWHERE leader.Id = '000000073'  -- Captain (SM)\nORDER BY attached.name;\n```\n\n10. A unit's points:\n\n```sql\nSELECT DISTINCT description AS unit_size, cost\nFROM datasheets_models_cost\nWHERE DatasheetId = '000001157' AND cost != ''  -- Intercessor Squad (SM)\nORDER BY CAST(cost AS INTEGER);\n```\n",
+ "final_prompt": "You are a rules assistant for Warhammer 40,000. You answer from two sources: the Core Rules (10th edition) and a database of datasheets, weapons, stratagems, factions and detachments.\n\n## Tools are spent\n\nThe tool budget for this question is spent: no tool can be called any more. Answer now, from the tool results above. Where they are not enough, give what they show and say what is missing.\n\n## Answering\n\n- Answer only from the tool results of this conversation. If a search does not supply the necessary passage, search again with a specific rule or section name while tools remain. If it is still missing, say what the retrieved passages do not establish and what you searched. Unsuccessful retrieval never proves that the rulebook has no such rule. Do not invent values or fill gaps from general game knowledge.\n- Organize an evidence answer in this order: source/version and scope, including which facts the user supplied and which the tools established; explicit conditions and results in the source's order; then the supported conclusion and any evidence gap. For an if/otherwise rule, preserve every branch and their common timing. Distinguish ways to score from the rule for determining a winner.\n- For a rule or procedure, preserve its cost, timing, eligible target, effect, restrictions and exceptions where the evidence gives them. For how to use a Stratagem, explain its CP payment from the `STRATAGEMS` and `1. COMMAND` sections and illustrate how the card labels WHEN, TARGET, EFFECT and RESTRICTIONS work from the retrieved Stratagem cards; once those sections and cards are retrieved, answer from them without searching again for a separate definition of those card labels. Identify the actor, whose phase it is, every recipient, and quantifiers such as \"both players\" and \"each phase\"; avoid ambiguous pronouns. Do not merge source versions. Give an exception only with its trigger and timing. If you choose an example, attribute it to one source or separate material versions; do not use a joint citation to imply that different versions are identical. An example figure is illustrative, not a datasheet fact about a real unit.\n- Cite every fact: [Core Rules p. N] for the rulebook (p. N–M for a passage over two pages), [DB: table] for the database.\n- Editions: the rulebook is the 10th edition. For a database record, give its edition only when it is recorded: for a datasheet, join `source` and give its name and edition; edition '0' means that none is recorded (a Warhammer Legends or Forge World pack: name it as such). Stratagems, detachments, enhancements and abilities have no source: say that their source is not recorded. Never give one edition to the database as a whole.\n- When evidence contains versions of the same rule, compare costs, timing, targets, effects and restrictions. For an applicability question or follow-up, give a short entry for EACH source: source/version and citation; its explicit conditions; the relevant facts supplied by the user or established by a tool, labelled by origin; any missing facts; and the conclusion supported by that source. These are checkable evidence statements, not a narrative of your reasoning. Preserve who a restriction applies to, including the controlling player. Nonselection, a completed action, and ineligibility are different predicates: none establishes another without cited evidence. Do not import exclusions across sources. An exclusion absent from a retrieved passage proves neither permission nor prohibition; say when that source does not settle the case. Describe material differences, not assumed clarifications.\n- Categories: a broad name such as \"a Space Marine\" is a category, not a unit. Resolve it to a faction and keywords (for example factionId 'SM' with the keyword Battleline or Infantry), leave out Warhammer Legends unless asked, use aggregate counts by publication/edition for a typical value and separate limited examples for exceptions, report the per-publication/edition counts as returned without summing them across publications or editions in prose, and say how you read the question: the units the answer covers and what it leaves out. Do not answer with a question when the results let you answer this way. Name the counting unit (datasheets or model profiles). A truncated example list cannot support an overall distribution.\n- Profiles: a characteristic belongs to a model profile, not to a unit. When a unit you give as an exception has profiles of different values, state every profile/value variant of that exception; never give one profile's characteristic as the value of the whole unit. Cite the table name, not a record ID as though it were a table.\n- Missions: use the page footer to name the mission for both scoring and winner rules. A question about ways to score needs concrete award conditions, amounts and timing; an introduction or a winner rule does not supply them. Search again for victory points and objective control only if no mission scoring rule has been retrieved yet; once a mission's scoring rule is present, answer from it without further searches for generic examples. Keep mission-specific scoring separate from generic examples and winner conditions. Preserve the source's shared timing and all ordered winner branches, including the destroyed-army condition, otherwise VP comparison and tie. State any remaining evidence gap.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+ "final_instruction": "Tools are no longer available. Answer now in text, from the tool results above; if they are not enough, say what is missing.",
+ "model_settings": {
+  "model": "gemini-3.8-flash",
+  "temperature": null,
+  "frequency_penalty": null,
+  "presence_penalty": null,
+  "top_p": null,
+  "top_k": null,
+  "max_output_tokens": null,
+  "n": 1,
+  "safety_settings": null,
+  "response_modalities": null,
+  "media_resolution": null,
+  "thinking_budget": null,
+  "include_thoughts": null,
+  "thinking_level": null,
+  "thinking_config": null,
+  "image_config": null
+ },
+ "tools": [
+  {
+   "type": "function",
+   "function": {
+    "name": "search_rules",
+    "description": "Search the Core Rules: how the game works (phases, actions, keywords, terrain). Retrieved Stratagem sections also include exact-name core database records when found.",
+    "parameters": {
+     "properties": {
+      "query": {
+       "description": "In English, with the rulebook's terms, whatever the question's language.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "query"
+     ],
+     "type": "object"
+    }
+   }
+  },
+  {
+   "type": "function",
+   "function": {
+    "name": "run_sql",
+    "description": "Query units, weapons, abilities, stratagems, detachments and factions with read-only SQL.",
+    "parameters": {
+     "properties": {
+      "sql": {
+       "description": "One SQLite SELECT or WITH query that follows the database schema.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "sql"
+     ],
+     "type": "object"
+    }
+   }
+  }
+ ],
+ "messages": [
+  {
+   "type": "human",
+   "data": {
+    "content": "What is the rule for grenades?",
+    "additional_kwargs": {},
+    "response_metadata": {},
+    "type": "human",
+    "name": null,
+    "id": "7e1fc26e-54a9-4c90-92b3-edc5de5d1605"
+   }
+  },
+  {
+   "type": "ai",
+   "data": {
+    "content": [],
+    "additional_kwargs": {
+     "function_call": {
+      "name": "search_rules",
+      "arguments": "{\"query\": \"Grenade\"}"
+     },
+     "__gemini_function_call_thought_signatures__": {
+      "call_1023107": "Ep8ECpwEAWkUfRMfWD8vN0bGA1OWGLCRNftkFrAB/725OPfudrB9m2Ui8OUSn8NVMGNkML1WrKeWy0OvD6GeO2i4ZMVNyjCYecmfsPIaXQQeD2HpBf8D7Raq5VPjEWKVlw4wn97013MjB7e2kuII6SjQwS4v3n2OaCIovhFMu9zztZNA45RBtamEgrkvIL/NpHisCdFxSrt3WcFaH+tKFzCgWSLcC7qZJK0nIG1buvKgrG4+mvvlugz8bHr38I0ZDTnpJ9cy5e7FVneCGPB4nv6K9TdySsSYqIP1IfTiJGxoUI59NE8cmyU4dgAY5aD34CjV4N10sR1trzZ8KZdEgEkjj3AbTOr/k3sCWSOJeEBBZErN544h4FDwOr0knMGQiizrlUIR+0xJAUTDEvWgozt0LpOFg7MhCS8DbgL7VLW5ZdTjJz8SrM/OfzjVhYqs23H+NVTEf40RREKbHxFYovFKiRtXlPPzCgMPRH/kr9FHSxTk7xmyXUnBVlR78a1z1wRwluEIaP7kmO+TaCnIOyWuRz5b1KFlnRJE0pYJ0yptUainGDdPDavYJZtLHqGCMArpTu26Ma4QFJEiXhkjGsy78ugjwvei5F50Ca4+jcNneWmSXWHZiWfci0Os84/llOdKQ3JNo0sL9pFJrDP4Dy8GEYDP29XEC1KlWr+lzALXSGO5wft3G44OiybFFq17iWWeUoVGL3PseYkTOl+zMPCD"
+     }
+    },
+    "response_metadata": {
+     "safety_ratings": [],
+     "finish_reason": "STOP",
+     "model_name": "gemini-3.8-flash",
+     "model_provider": "google_genai"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a16f83-5904-7860-bf85-0b9519b14fe5",
+    "tool_calls": [
+     {
+      "name": "search_rules",
+      "args": {
+       "query": "Grenade"
+      },
+      "id": "call_1023107",
+      "type": "tool_call"
+     }
+    ],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 6003,
+     "output_tokens": 124,
+     "total_tokens": 6127,
+     "input_token_details": {
+      "cache_read": 0
+     },
+     "output_token_details": {
+      "reasoning": 107
+     }
+    }
+   }
+  },
+  {
+   "type": "tool",
+   "data": {
+    "content": "[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: GRENADE\n1CP\n\nCORE - WARGEAR STRATAGEM\n\nPriming their hand-held projectiles, these warriors draw back and hurl death into the enemy's midst.\n\nWHEN: Your Shooting phase.\n\nTARGET: One Grenades unit from your army that is not within Engagement Range of any enemy units and has not been selected to shoot this phase.\n\nEFFECT: Select one enemy unit that is not within Engagement Range of any units from your army and is within 8\" of and visible to your Grenades unit. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound.\n\n[Core Rules p. 45] (page footer p. 45: CORE RULES | TERRAIN FEATURES)\nSection: CRATERS AND RUBBLE\nMany battlefields bear the scars of heavy and sustained bombardment.\n\n[Core Rules p. 10] (page footer p. 10: CORE RULES | THE BATTLE ROUND)\nFigure label: COMMAND PHASE\nSection: THE BATTLE ROUND > SHOOTING PHASE\nYour units fire their ranged weapons at the foe.\n\n[Core Rules p. 26] (page footer p. 26: CORE RULES | WEAPON ABILITIES)\nSection: BLAST\nHigh-explosives can fell several warriors in a single blast, but firing them where your comrades will get caught in the ensuing detonation is simply unwise.\n\nWeapons with [BLAST] in their profile are known as Blast weapons, and they make a random number of attacks. Each time you determine how many attacks are made with a Blast weapon, add 1 to the result for every five models that were in the target unit when you selected it as the target (rounding down). Blast weapons can never be used to make attacks against a unit that is within Engagement Range of one or more units from the attacking model's army (including its own unit).\n\nExample: If a weapon with the [BLAST] ability and an Attacks characteristic of 2D6 targets a unit that contains 11 models, and the roll to determine how many attacks are made is a 9, a total of 11 attacks would be made against that unit.\n\n- Add 1 to the Attacks characteristic for every five models in the target unit (rounding down).\n- Can never be used against a target that is within Engagement Range of any units from the attacking model's army (including its own).\n\n[Core Rules p. 45] (page footer p. 45: CORE RULES | TERRAIN FEATURES)\nSection: CRATERS AND RUBBLE > BENEFIT OF COVER\nEach time a ranged attack is allocated to an Infantry model that is wholly on top of this terrain feature, that model has the Benefit of Cover against that attack.\n\nKEYWORDS: Area Terrain, Crater\n\n[Core Rules p. 55]\nSection: STRIKE FORCE\n| Points per Army   | 2000          |\n|-------------------|---------------|\n| Duration          | Up to 3 hours |\n\n[Core Rules p. 45] (page footer p. 45: CORE RULES | TERRAIN FEATURES)\nSection: CRATERS AND RUBBLE > VISIBILITY\nNormal visibility rules apply.\n\n[Core Rules p. 46] (page footer p. 46: CORE RULES | TERRAIN FEATURES)\nSection: BATTLEFIELD DEBRIS AND STATUARY > VISIBILITY\nNormal visibility rules apply.\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"GRENADE\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335006\", \"GRENADE\", \"\", \"Core – Wargear Stratagem\", \"1\", \"Your turn\", \"Shooting phase\", \"\", \"WHEN: Your Shooting phase.\\nTARGET: One GRENADES unit from your army (excluding units that Advanced, Fell Back or have shot this turn) that is not within Engagement Range of one or more enemy units.\\nEFFECT: Select one GRENADES model in your unit and one enemy unit that is not within Engagement Range of any units from your army and is within 8\\\" of and visible to your GRENADES model. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound.\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+    "additional_kwargs": {},
+    "response_metadata": {},
+    "type": "tool",
+    "name": "search_rules",
+    "id": "6eb9c2cd-3f17-4f8c-9706-ea2614121e8b",
+    "tool_call_id": "call_1023107",
+    "artifact": {
+     "chunks": [
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0161",
+        "text": "Section: GRENADE\n1CP\n\nCORE - WARGEAR STRATAGEM\n\nPriming their hand-held projectiles, these warriors draw back and hurl death into the enemy's midst.\n\nWHEN: Your Shooting phase.\n\nTARGET: One Grenades unit from your army that is not within Engagement Range of any enemy units and has not been selected to shoot this phase.\n\nEFFECT: Select one enemy unit that is not within Engagement Range of any units from your army and is within 8\" of and visible to your Grenades unit. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound.",
+        "pages": [
+         42
+        ],
+        "section": "GRENADE",
+        "content_type": "text",
+        "pictures": [
+         "#/pictures/97"
+        ],
+        "page_footers": [
+         "CORE RULES | STRATAGEMS"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.03278688524590164
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0176",
+        "text": "Section: CRATERS AND RUBBLE\nMany battlefields bear the scars of heavy and sustained bombardment.",
+        "pages": [
+         45
+        ],
+        "section": "CRATERS AND RUBBLE",
+        "content_type": "text",
+        "pictures": [],
+        "page_footers": [
+         "CORE RULES | TERRAIN FEATURES"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.016129032258064516
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0031",
+        "text": "Figure label: COMMAND PHASE\nSection: THE BATTLE ROUND > SHOOTING PHASE\nYour units fire their ranged weapons at the foe.",
+        "pages": [
+         10
+        ],
+        "section": "THE BATTLE ROUND > SHOOTING PHASE",
+        "content_type": "text",
+        "pictures": [
+         "#/pictures/20"
+        ],
+        "page_footers": [
+         "CORE RULES | THE BATTLE ROUND"
+        ],
+        "picture_labels": [
+         "COMMAND PHASE"
+        ]
+       },
+       "score": 0.015873015873015872
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0103",
+        "text": "Section: BLAST\nHigh-explosives can fell several warriors in a single blast, but firing them where your comrades will get caught in the ensuing detonation is simply unwise.\n\nWeapons with [BLAST] in their profile are known as Blast weapons, and they make a random number of attacks. Each time you determine how many attacks are made with a Blast weapon, add 1 to the result for every five models that were in the target unit when you selected it as the target (rounding down). Blast weapons can never be used to make attacks against a unit that is within Engagement Range of one or more units from the attacking model's army (including its own unit).\n\nExample: If a weapon with the [BLAST] ability and an Attacks characteristic of 2D6 targets a unit that contains 11 models, and the roll to determine how many attacks are made is a 9, a total of 11 attacks would be made against that unit.\n\n- Add 1 to the Attacks characteristic for every five models in the target unit (rounding down).\n- Can never be used against a target that is within Engagement Range of any units from the attacking model's army (including its own).",
+        "pages": [
+         26
+        ],
+        "section": "BLAST",
+        "content_type": "text",
+        "pictures": [],
+        "page_footers": [
+         "CORE RULES | WEAPON ABILITIES"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.015625
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0179",
+        "text": "Section: CRATERS AND RUBBLE > BENEFIT OF COVER\nEach time a ranged attack is allocated to an Infantry model that is wholly on top of this terrain feature, that model has the Benefit of Cover against that attack.\n\nKEYWORDS: Area Terrain, Crater",
+        "pages": [
+         45
+        ],
+        "section": "CRATERS AND RUBBLE > BENEFIT OF COVER",
+        "content_type": "text",
+        "pictures": [],
+        "page_footers": [
+         "CORE RULES | TERRAIN FEATURES"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.015384615384615385
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0218",
+        "text": "Section: STRIKE FORCE\n| Points per Army   | 2000          |\n|-------------------|---------------|\n| Duration          | Up to 3 hours |",
+        "pages": [
+         55
+        ],
+        "section": "STRIKE FORCE",
+        "content_type": "table",
+        "pictures": [],
+        "page_footers": [
+         ""
+        ],
+        "picture_labels": []
+       },
+       "score": 0.015151515151515152
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0178",
+        "text": "Section: CRATERS AND RUBBLE > VISIBILITY\nNormal visibility rules apply.",
+        "pages": [
+         45
+        ],
+        "section": "CRATERS AND RUBBLE > VISIBILITY",
+        "content_type": "text",
+        "pictures": [],
+        "page_footers": [
+         "CORE RULES | TERRAIN FEATURES"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.014925373134328358
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0187",
+        "text": "Section: BATTLEFIELD DEBRIS AND STATUARY > VISIBILITY\nNormal visibility rules apply.",
+        "pages": [
+         46
+        ],
+        "section": "BATTLEFIELD DEBRIS AND STATUARY > VISIBILITY",
+        "content_type": "text",
+        "pictures": [],
+        "page_footers": [
+         "CORE RULES | TERRAIN FEATURES"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.014705882352941176
+      }
+     ],
+     "stratagem_names": [
+      "GRENADE"
+     ],
+     "stratagems": {
+      "columns": [
+       "id",
+       "name",
+       "FactionId",
+       "type",
+       "cpCost",
+       "turn",
+       "phase",
+       "detachment",
+       "description"
+      ],
+      "rows": [
+       [
+        "000008335006",
+        "GRENADE",
+        "",
+        "Core – Wargear Stratagem",
+        "1",
+        "Your turn",
+        "Shooting phase",
+        "",
+        "WHEN: Your Shooting phase.\nTARGET: One GRENADES unit from your army (excluding units that Advanced, Fell Back or have shot this turn) that is not within Engagement Range of one or more enemy units.\nEFFECT: Select one GRENADES model in your unit and one enemy unit that is not within Engagement Range of any units from your army and is within 8\" of and visible to your GRENADES model. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound."
+       ]
+      ],
+      "truncated": false,
+      "error": null
+     },
+     "related_sections": []
+    },
+    "status": "success"
+   }
+  },
+  {
+   "type": "ai",
+   "data": {
+    "content": [
+     {
+      "type": "text",
+      "text": "### Source, Version, and Scope\n\n* **User-supplied facts:** The query asks for the rule for grenades.\n* **Established in tools:** The rules for the Stratagem **GRENADE** retrieved from two sources:\n  1. **Core Rules (10th Edition)** [Core Rules p. 42]\n  2. **Database record** [DB: stratagems] (publication and edition are not recorded)\n\n---\n\n### 1. Core Rules (10th Edition)\n\n**Citation:** [Core Rules p. 42]  \n**Category:** Core – Wargear Stratagem  \n**Cost:** 1 CP  \n\n* **WHEN:** Your Shooting phase.\n* **TARGET:** One Grenades unit from your army that is not within Engagement Range of any enemy units and has not been selected to shoot this phase.\n* **EFFECT:** Select one enemy unit that is not within Engagement Range of any units from your army and is within 8\" of and visible to your Grenades unit. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound.\n\n---\n\n### 2. Database Record\n\n**Citation:** [DB: stratagems]  \n**Publication and Edition:** Not recorded  \n**Category:** Core – Wargear Stratagem  \n**Cost:** 1 CP  \n\n* **WHEN:** Your Shooting phase.\n* **TARGET:** One GRENADES unit from your army (excluding units that Advanced, Fell Back or have shot this turn) that is not within Engagement Range of one or more enemy units.\n* **EFFECT:** Select one GRENADES model in your unit and one enemy unit that is not within Engagement Range of any units from your army and is within 8\" of and visible to your GRENADES model. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound.\n\n---\n\n### Material Comparison of Sources\n\n* **Cost & Timing:** Both sources require 1 CP and have identical timing (`WHEN: Your Shooting phase`).\n* **Target Restrictions:**\n  * *[Core Rules p. 42]* restricts the target to a Grenades unit from your army that is not within Engagement Range of any enemy units and has not been selected to shoot this phase.\n  * *[DB: stratagems]* explicitly excludes units that Advanced, Fell Back, or have shot this turn, in addition to requiring that the unit is not within Engagement Range of one or more enemy units.\n* **Effect Determination (Measurement and Visibility):**\n  * *[Core Rules p. 42]* measures distance and visibility from the **Grenades unit** (the selected enemy unit must be within 8\" of and visible to your Grenades unit).\n  * *[DB: stratagems]* requires selecting one **GRENADES model** in your unit, measuring distance and line of sight from that specific model (the enemy unit must be within 8\" of and visible to your GRENADES model).\n* **Mortal Wounds:** Both sources resolve the damage identically: roll six D6; for each 4+, the chosen enemy unit suffers 1 mortal wound.\n\n---\n\n### Supported Conclusion and Evidence Gap\n\n* **Conclusion:** Using the Grenade Stratagem costs 1 CP in your Shooting phase to target an eligible friendly unit with the Grenades keyword not in Engagement Range. An eligible enemy unit within 8\" and line of sight (not in Engagement Range of any friendly units) suffers 1 mortal wound per roll of 4+ on six D6.\n* **Evidence Gap:** The publication name, update document, and edition for the database record [DB: stratagems] are not recorded in the database, so the exact publication context that modified the unit-versus-model targeting and Advance/Fall Back exclusions cannot be identified from these records alone.",
+      "index": 0,
+      "extras": {
+       "signature": "EvEiCu4iAWkUfRMr+SKLlJ49K9WpVVzSsAqX9hxTCl0T6+ktZEtZ8/N6yNGpy5Rgw/Ks+H6V0jrIWEtAb9EmKy7cvL01uN/NSzQ1G1i6Qf0tfMdA1SsPKLT+CZghiTTKDa1kUgORONPkKgNmSpF04Zp24tcLEO+VbhboXPxmXzveBPMnwnMilvDMU4fbKY4wAk0tuyXXvnDCExlc4CqUuL7zqVvFATHcPN0M6j9ZdS0VKCagcQmEwaJ7CoP+iNmHLftt5sPN4Qf3o4mNIcpRa2yaMg2VEN510SN1JoR49sScdrCJqRbxmZ/SoiUPfkrgGdw5M6+7yVr1AhT3AmgTkVUeEyYLJrhxaTmvbjl3UvkKqCE+5tXRHm3DwLs2WyHQpOf+cFTeR/NGjK7wXV7kuNV1xFkx24a54Y0iy0aR15rAjfmlgBOWclrazRU+b43z1QerNDJ7TIv5eoNtRlyI2aTB3DEBMeeJv+lFvPQynlSilSP9gbViY8VWBP+HB9FseCzBiOwnE1SyMI4INSaQMZxV6cvdU2ql/BsKJCMeOGD66fDt05vzFTgvA+qwgrSXaK+SLh8+ZHcV2n/YVuguHbhDLO9f3IXKqP6NCjIAF1YcZsIx/gV433vYLqvPEs14ygxVvauUaeR0Cot9ijjEhJVg1v2+TP9q1EIGj6fZSowlB5Q6OKID0nNIwKjoQirxNS1Ky4hqrOHgM48coXohYhbD/4S6P6439aKmZbLnulw9MpU6PJNMDxp0ti2MVRuT1dq2B+q3TdXi+JtYZm9WYVzWGlytKhp/kWJfpe5S+WyQW3lUWAYXxqvXmgNzjdTNelPKpOJFhSnHqcz6Q1/7LQgZ26RZK5GI6krvkmi8E3khT5C5sp56b1RXRwFsZDDMyAE/8/zyzCEqv4M9efbjXvm4+XPWAqbMdXrmeo4BUVn2AKHYdcQA6cEe3CloDMR+LR4hO9MDo/oyjKbEl5AkXapofzwYqq5LqffwL9gYWCfASLaBtDyo5ylSF6j0yWKqQ0PLvJdHQ/7VwpbyR4w52uSzd6yS4WFFmKkaQeECnln6CMS7GNs2G4/SQXlVMZUSt29k4Gb7kEM5THlyapSvZd1nxhoTpzUuxy7xcpzdAxbW7mk6gNpi4yXg3H4uOYH/jHdXuvt/7RsGeNXoMscU3xx6Fz9DA4kccJjhJAJxef9QtUghCprRXPArHvDjpccadKOZ0uobaQlUzc5v1TWEPmmpleq0KE5Nxc3q1k6xFWlqwrFaVxbpnWQUetSKXZga6jq/o3b/KrGVHp4ipoVghg6utqgzAWt4+svX02uQhLfqX9GbfkvhB3EeEohFIUmuwMjOBdoVUFgcelKkPwoWMk08ePmhjwLGu9qIqzubn7xL7KP5PFheyDZjpD5d/HbMjWV5GUSfjhL0TuiXSrjrq2O6zgN+ueR5VpsOCESKFf301XG1kFyIMeWPicuY0XHKEUolNNtLAh4dW4cLM6bEGX56INAY2DNbwh63EQ6pMeNFXCmZ7rhKNFsWRmk/mSDgVHHejjBpvffEVAZam/FQ6ND2R8SvA+Q51kxyILi8E7aqByCCKb8gprK9spDNaBl6o41d41YW5DVAJ3nmQbOXFGdvvMWHu+qNRAVnX0PCl0Jl6/rc/Y+z/9xQdx/DJW9xtxRf8Rj2JeGWUibO4qHmjVyH8eLBKJkQmTNi4edJCyo5YLV5uxRZZdEmZNXZTB7j/roAiXKX2cvSu0m5afIc5hqVtBhy/eTwFrSC0UDTeEzzQR3ynQq6yoCRV++n0D/4DcI4eyszTk1eeQHQA9AsKSMpTRVA073DQGpce/4nyGlLu7ybV30osZhlvqI3xeXFn31VQ9yRbvL3SxIV+53pDn6N1a3hHXm6mC9L0kF7CPe92hdFRBYvMhOd4pfWaAoYByUqiFfflmDDMd2TqEGWiiMaiYZJr90RtJVSEvbvMBDpV6LhW+wDTbuODxtK/4O/uTb9A/DA5X1rcjGh38S7y35rnVheLl19TJobd6+M5bmXxypPmQIZbd+Vp0CeBy7q1DAVgt0d28suqN9SZdViSts7BNHE3FtDA89dLAtIHrOGwRsfhGH6RoqyYaP7Dna2L7Yde2jYU2+gdhncoMFZhgyGajESHo6v56e4haNOaqSW0lM/fGLCvUYGEijxnyMzUWjD326g98rNnld37UpJ7x5FiwrNyevsIcAvudMfrcUiDBHev0wPuBKmQv8xzzDd+jlktFYLtt2rWFtUtXkQsbh87WKOe2XdBLmPJ0j1lOqN0uQPiUZFiX0/4XzxBuoL/svAtmGCFQ86LXjA9D9OvTlxkNtONEMkxUc43eu6w0oNULXP+MyySv9y8Psf+c7DvazsR3SDlli7F8J2fWbuYVzK33mEhFF6v8lsjH2EI8clBw04ZdTNwPg61RsSzD1xfDf0RU1UqxwcwO7V0LI+EBxc5+QSsLAR5PYxRET0rq2efsL1J964bx5Mlw3iS1dGDDZw97/p9H3nOCyip+t2evDnjz1aNuurgDOOhPaEdKjrs1hpYIo4Iancj93cK8vILGMBSyWR4gp8LZlXg7Sz7/niBXxSTbjjXSW5xMR8xenXzc7hTWD6YjZsTFNTVZcX8YhVNgeyePRYWCkMzx4pxcdEO8nGm066pQISdfHq1RkT7jkd86petsuCs0YhAXcT40tsuV7W/ho+h9ntVL6MM7vJ7u6DH4PYB6/eD4ajR3tuHIiFhy3O7U7ykiUcXKXT3nqsbw1a+0AZq/vZtMyQUbkBvr5saW9Uw4m+f8GTi4BIOXRFZo82sYpslVcF8r73P/0ErcYRhOuvK2qgBzn8ShqV61j9uNhYi6WNfXL7ctxWZb0LJr8gxbE+x3nmJe/hB1xI4tMRia/LQYQKVkg8+e0USZAY9+M75cdNTrDmXuO8LTpNGFoJd5dwfj6ACtWxWzXWzh+beKetDLwKg+0WLjpc9kDhMeT9xZV9TM3Jnh72K1/wb8tCUkoEIu8m9+R6V+tyIjNT//4oN54xcBxRZe+XdTzqNQH4Dy3uRdwDEsqT0mnI7kYVX6hxSD4XrgAkUlBvgovdrW33gQa82zI3SWDK8Hv3f+dVgCSb/Mj226eIrAoClqZAiKXfPyboBi63gj7jyJiR0dPFeypLE+BtJ7e50gsOilGaSTdGfREvc2pv6qztRRV1pjRkZgT00H3vb04ceLXJljfVTQnkZm/10MwGhk3r/8tpHV20R6qcS3ZsazxA9qAOMnW/zqDgfAd8E7BVfx7RySwtQCqolNn5RZ9WwyL3HcjNIC54Jvahpb6lkDooaNgzU+xUyM5zPKJYopjtl5xuB6HSD1ae1mtZDxWmC6EFHOvmWrCd9veOQEGF1hZSu+QSO30pYVX12m+p60/0mJ9ApzHV0V9CKBuhkON0Sm8VcEsLzqGl0QGW6xj6on+WHWjTitYxcQrZsrts43qELI7x4NB4sOPaGhZxhgxP3tfYdUiFKbOwy3DNkqRlvGaOAUCiOm7H9KMJbqox65CWfqlLIel+pJb34bU/puN0PbexBtt3Wi/cC4Lh4eBifC2rO3quPVznU28cjAHO1wKo6c6FHs4FHAYWREF4sHTcMV14wxXnupWnhYqJ3ROx9EfI6RImMk9fg2oH4AxJWJNNKhyQ11QnWG1UpRK7wOoDCWR6aTT9dRYVkfEgqWkBdx89/Ytr6xY52XSp8Tc1MmC13juDKgAIj2TxHMoQn3uz5Bp+MgsAPh/qGpFAvQJQyRyygn5Ha9abMACVw7xkMCL+ZR+rgJqYjAgyMgxFmrkDYqGQU+X/5aXvDKxvgTjRa+U+hGGGPZ3Q2EsqKZGMkzmO5vU0tixvr3dZ5cNFhw7Mb8CxvfxH/pAxqXe1fst8WMqjNLH5SrRD8ZuV8iJ/NHzCMhGvsZ6O7vEXk91yN2VlBejvccjMMJiQc8qwn7N/x/mJ6pfHjqPDJYZPYId8X0+JoSH+ItRNJ6Qz7XPvXgTlsJQ2kwWf8F8SbCJ3lXaj1ih6NMphE43WoZNYrCvk7xOHa3nA7w1Yl0VSklsvSyKMIH04/pNmUDuwZDxk+CLgca6b3HPSzlctYTQGARkRSbyKJ9V+Jht0fPG4TiFrMEb9zj7BOUO5szX6Sa69aciQG0RbJGxkMgwdqDMxxd6lZ+azkZckZXhEe7Hcek5N2WMxlJ+mS18W+4/wHVE0duXt3vfYZqbzuoeJRpiRXEhQInyFLVd3jEHW3kM+z16FbPIS9Oz8KHd60PxUya3PcFxbnlfzG71BNQb7WISD74XLoheeePPiXAu0lnJbvI8PXd0QULlANZZBb5358Amfa5rZ2JeaKs7/BO6lOXMQMYBHL6QB+wAawATwjeVc27TUtqxo/3sxUDcUIGyeVscgPITuwbqLvGrxbu7S4IKA37XkFsjG2C706yUgGeYjitqr7Rjmr4IWopM/J1f15BGkKPPVbYQt9bGhxMoAPtfYeWI/+EnMrcENo5ePT/FZ+gJXCjTf04n5RZEp+YTuHq/iqms5HOiul48UPQNRxGv9sB8LLJUuNbb7YqrjIbMTjWNy7mWhNpLwyrDYd2BBXlDUd279nD2vOUPRXil3hmwzeAKdNWkEk77mzyoZWZ1wO1a/lsc5pHDZYjCa61e27yvN68P+Sf5oBNvwYRqWmU7qI6UToui2XncXlXHGjcqkwQd0Yx2CZNOOc4KGczt7vBspt1YLwgHf6/HTcLr8QCeeoLIregXOa+ckLpBT6YKETEYj9SYBcgtO1XUuJx75yNCfen0Ex1877FEjSjUJbtDQe0nS7T+wXFPKGDty5vWOOzUTfzNy8t5a/rZdZk83Ryc24oXazfpfDp02x8s/JQ0kwCIbhxEquw59K3lY3zrMxxDIy+Lur+Y2mGASYfhumpAqZ5kxEZCutXk/d4e6hNZpYNC4g1ekzqymGdDrZVV49dO9j9hd7YcjqWy3Eby9fnKUxngmKQ/6G+CO9l4JtyQpDtP5Bae+iNV4lHWTIU+4Ia1dviMAV3FELkYki8oge1YpqPIbHHX89sQRAc2+0GwmqRcqjnU4JQSVmreks5p49RaIidCJaOLiiVc0+cUF7+cSy8RQYDZUGqhxP5vu8DyoVqR0RHaP9/RjrymmQzl4bxw8d0bOYxI4qQeni02W/sdH/gwgvCFlArX0lnaKePRraujZwIOXqibi69+ahOsoMTzPQkcm3qzvqMdj590iW6SH0BB53tv8k+oe+p7sLAraMZGh2P8z9JmNSugqatouC/QhW27a9I/7g4UVVrLhWKOnHJtYq3umtpXCkKMUlI5Rzu+2KiHZ6FICrAKLop1r8N5xhEPVSy/mD8lPJlNT0nRUUUF911pLWbFsByoWgG9ZoQVRamaAvyNOFdMOMqfPrzBeD7Wx7zleEqIYmXmLszEUTyc+DM5SHXsst6QVVrVs0lDIHNNz6zDJ2SUhiGNXH51Pf+rc6BBSD2lhishPZkz5UERHYIpPHJ2n8460Wqb2O385b3A/SGnXagvDABW58ktB3FkOUX+6DVYaa+fEYYLSZZifT9lHDarX54ROqovJ2JCHDeEVQS0kl2lRFQddemZiKR8n094Tvcp591DF07S4jzOC782nHejLwvPf3vdGpA0DGgswh4NlmrVuQhn3gORxYHOVdBPHmXnuyu2RizbVHmbl31lidci/VjMMpG6PMcizLclWOcUCbYqn7r8fTBzskPrEuWlZdbnVzwenkaOGFHZEgkWtasQlGGs7o5azIdyFb/mxv1TTmbC6bt0+6nWb9RODijA4SYyISi3ya79HWEwySB6YlWcHppMh+k81Si2jrHTSWYBcr4g7DESAMy6oeaZsJzr7m3lO3u4uBGKGIq5SDmERCSco7dyv+NZKzFLiCJskdoK8WCWa0CMz4WYMw7/IN+4vESNoSbOXWxjs5M+2k0X4CkloOBA7BZ5H9o8xSJ+jow=="
+      }
+     }
+    ],
+    "additional_kwargs": {},
+    "response_metadata": {
+     "safety_ratings": [],
+     "finish_reason": "STOP",
+     "model_name": "gemini-3.8-flash",
+     "model_provider": "google_genai"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a16f83-66fb-73b0-95bb-bf7cfdf4568b",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1927,
+     "output_tokens": 1711,
+     "total_tokens": 3638,
+     "input_token_details": {
+      "cache_read": 0
+     },
+     "output_token_details": {
+      "reasoning": 896
+     }
+    }
+   }
+  }
+ ],
+ "model_calls": [
+  {
+   "node": "agent",
+   "input_count": 1,
+   "tool_choice": "validated",
+   "context": null
+  },
+  {
+   "node": "final",
+   "input_count": 3,
+   "tool_choice": "none",
+   "context": "## Complete named Stratagem evidence\n\nThe application verified that the current question asks only for one named Stratagem, and that the evidence below contains one complete matching Core Rules card and one complete, exact, error-free and untruncated core database record.\n\n{\"question\": \"What is the rule for grenades?\", \"identity\": \"GRENADE\", \"rulebook\": {\"citation\": \"[Core Rules p. 42]\", \"section\": \"GRENADE\", \"text\": \"Section: GRENADE\\n1CP\\n\\nCORE - WARGEAR STRATAGEM\\n\\nPriming their hand-held projectiles, these warriors draw back and hurl death into the enemy's midst.\\n\\nWHEN: Your Shooting phase.\\n\\nTARGET: One Grenades unit from your army that is not within Engagement Range of any enemy units and has not been selected to shoot this phase.\\n\\nEFFECT: Select one enemy unit that is not within Engagement Range of any units from your army and is within 8\\\" of and visible to your Grenades unit. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound.\"}, \"database\": {\"citation\": \"[DB: stratagems]\", \"publication_and_edition\": \"not recorded\", \"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"row\": [\"000008335006\", \"GRENADE\", \"\", \"Core – Wargear Stratagem\", \"1\", \"Your turn\", \"Shooting phase\", \"\", \"WHEN: Your Shooting phase.\\nTARGET: One GRENADES unit from your army (excluding units that Advanced, Fell Back or have shot this turn) that is not within Engagement Range of one or more enemy units.\\nEFFECT: Select one GRENADES model in your unit and one enemy unit that is not within Engagement Range of any units from your army and is within 8\\\" of and visible to your GRENADES model. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound.\"]}}\n\nAnswer from these two sources only. Attribute and compare them separately, preserving their cost, timing, target, effect and any stated restrictions. The Core Rules citation and database citation are supplied above; the database publication and edition are not recorded. Do not add classifications, relationships or other rules that are absent from this evidence."
+  }
+ ]
+}

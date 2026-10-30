@@ -1,0 +1,115 @@
+Scope and Established Facts                                                                         
+
+ • User-supplied facts: The unit inquired about is an Intercessor Squad.                            
+ • Database-established facts: The datasheet Intercessor Squad (faction: Space Marines, source:     
+   Space Marines, edition 11) has the Grenades keyword [DB: datasheets_keywords].                   
+ • Sources retrieved:                                                                               
+    1 Core Rules (10th edition, p. 41–42).                                                          
+    2 Database table stratagems (source publication and edition not recorded) [DB: stratagems].     
+
+----------------------------------------------------------------------------------------------------
+
+GRENADE: Cost, Timing, Targets, and Effect                                                          
+
+1. Core Rules (10th edition) [Core Rules p. 41–42]                                                  
+
+ • Cost: 1 CP [Core Rules p. 41–42] (reduced from the player's CP total; the Stratagem cannot be    
+   used if the player lacks sufficient CP or if it has already been used in the same phase [Core    
+   Rules p. 41]).                                                                                   
+ • Type: CORE – WARGEAR STRATAGEM [Core Rules p. 42].                                               
+ • WHEN (Timing): Your Shooting phase [Core Rules p. 42].                                           
+ • TARGET: One Grenades unit from your army that is not within Engagement Range of any enemy units  
+   and has not been selected to shoot this phase [Core Rules p. 42].                                
+ • EFFECT: Select one enemy unit that is not within Engagement Range of any units from your army and
+   is within 8" of and visible to your Grenades unit. Roll six D6: for each 4+, that enemy unit     
+   suffers 1 mortal wound [Core Rules p. 42].                                                       
+
+2. Database Record (stratagems, ID 000008335006; source and edition not recorded) [DB: stratagems]  
+
+ • Cost: 1 CP [DB: stratagems].                                                                     
+ • Type: Core – Wargear Stratagem [DB: stratagems].                                                 
+ • WHEN (Timing): Your Shooting phase (Turn: Your turn; Phase: Shooting phase) [DB: stratagems].    
+ • TARGET: One GRENADES unit from your army (excluding units that Advanced, Fell Back or have shot  
+   this turn) that is not within Engagement Range of one or more enemy units [DB: stratagems].      
+ • EFFECT: Select one GRENADES model in your unit and one enemy unit that is not within Engagement  
+   Range of any units from your army and is within 8" of and visible to your GRENADES model. Roll   
+   six D6: for each 4+, that enemy unit suffers 1 mortal wound [DB: stratagems].                    
+
+----------------------------------------------------------------------------------------------------
+
+Comparison: Core Rules vs. Database                                                                 
+
+ 1 Target Restrictions:                                                                             
+    • Core Rules (10th edition): Targets one Grenades unit that is not within Engagement Range of   
+      any enemy units and "has not been selected to shoot this phase" [Core Rules p. 42].           
+    • Database record: Targets one GRENADES unit not within Engagement Range of one or more enemy   
+      units, explicitly "(excluding units that Advanced, Fell Back or have shot this turn)" [DB:    
+      stratagems].                                                                                  
+ 2 Effect Measurement and Selection:                                                                
+    • Core Rules (10th edition): The enemy unit must be within 8" of and visible to the Grenades    
+      unit [Core Rules p. 42].                                                                      
+    • Database record: Instructs the player to select one GRENADES model in the unit; the enemy unit
+      must be within 8" of and visible to that selected GRENADES model [DB: stratagems].            
+ 3 Cost, Timing, and Damage:                                                                        
+    • Both sources share the 1 CP cost, the timing of "Your Shooting phase", and the result of      
+      rolling six D6 where each 4+ inflicts 1 mortal wound on an enemy unit that is not within      
+      Engagement Range of any units from your army [Core Rules p. 42, DB: stratagems].              
+
+----------------------------------------------------------------------------------------------------
+
+Applicability Evidence                                                                              
+
+Source 1: Core Rules (10th edition) [Core Rules p. 41–42]                                           
+
+ • Citation: [Core Rules p. 41–42]                                                                  
+ • Explicit Conditions:                                                                             
+    • The controlling player pays 1 CP [Core Rules p. 41–42].                                       
+    • The Stratagem has not been used more than once in the same phase [Core Rules p. 41].          
+    • Timing is the controlling player's Shooting phase [Core Rules p. 42].                         
+    • The target is a friendly unit with the Grenades keyword [Core Rules p. 42].                   
+    • The target is not within Engagement Range of any enemy units [Core Rules p. 42].              
+    • The target has not been selected to shoot this phase [Core Rules p. 42].                      
+ • Relevant Facts:                                                                                  
+    • Intercessor Squad has the Grenades keyword [DB: datasheets_keywords].                         
+    • Missing facts: Whether the controlling player has 1 CP available, whether the Stratagem was   
+      already used this phase, whether it is currently the controlling player's Shooting phase,     
+      whether the Intercessor Squad is engaged, and whether it has already been selected to shoot   
+      this phase.                                                                                   
+ • Outcome: Conditional (the unit has the required keyword, but operational game-state conditions   
+   must be met).                                                                                    
+
+Source 2: Database Record [DB: stratagems]                                                          
+
+ • Citation: [DB: stratagems, ID 000008335006]                                                      
+ • Explicit Conditions:                                                                             
+    • Cost of 1 CP [DB: stratagems].                                                                
+    • Timing is your Shooting phase [DB: stratagems].                                               
+    • Target must be a friendly GRENADES unit [DB: stratagems].                                     
+    • Target must not be within Engagement Range of one or more enemy units [DB: stratagems].       
+    • Target excludes units that Advanced, Fell Back, or have shot this turn [DB: stratagems].      
+ • Relevant Facts:                                                                                  
+    • Intercessor Squad has the Grenades keyword [DB: datasheets_keywords].                         
+    • Missing facts: Current CP total, phase/turn status, engagement status, and whether the unit   
+      Advanced, Fell Back, or shot this turn.                                                       
+ • Outcome: Conditional (the unit has the required keyword, but the situational restrictions must be
+   satisfied).                                                                                      
+
+Source notes (retrieved evidence, not verification of the answer):                                  
+
+ • This turn: DB stratagems: publication and edition are not recorded.                              
+ • This turn: Database publication for Intercessor Squad (ID 000001157): Space Marines; edition 11. 
+ • This turn: Application could not identify publication/edition fields in the returned columns.    
+1. search_rules: GRENADE stratagem
+   pages: 42, 41
+   core stratagem lookup: GRENADE, STRATAGEM CATEGORIES, STRATAGEMS, FIRE OVERWATCH, RAPID INGRESS, 
+SMOKESCREEN, COUNTER-OFFENSIVE, TANK SHOCK
+   database rows returned: 10
+2. run_sql: SELECT d.Id, d.name, f.name AS faction, s.name AS source, s.edition, k.keyword
+FROM datasheets d
+JOIN factions f ON f.Id = d.factionId
+LEFT JOIN source s ON s.Id = d.sourceId
+LEFT JOIN datasheets_keywords k ON k.DatasheetId = d.Id AND k.keyword = 'Grenades'
+WHERE d.name = 'Intercessor Squad' AND d.factionId = 'SM';
+3. run_sql: SELECT id, name, FactionId, type, cpCost, turn, phase, detachment, description
+FROM stratagems
+WHERE name = 'GRENADE';

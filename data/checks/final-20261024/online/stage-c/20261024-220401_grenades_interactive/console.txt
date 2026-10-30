@@ -1,0 +1,78 @@
+Source, Version, and Scope                                                                          
+
+ • User-supplied facts: The query asks for the rule for grenades.                                   
+ • Established in tools: The rules for the Stratagem GRENADE retrieved from two sources:            
+    1 Core Rules (10th Edition) [Core Rules p. 42]                                                  
+    2 Database record [DB: stratagems] (publication and edition are not recorded)                   
+
+----------------------------------------------------------------------------------------------------
+
+1. Core Rules (10th Edition)                                                                        
+
+Citation: [Core Rules p. 42]                                                                        
+Category: Core – Wargear Stratagem                                                                  
+Cost: 1 CP                                                                                          
+
+ • WHEN: Your Shooting phase.                                                                       
+ • TARGET: One Grenades unit from your army that is not within Engagement Range of any enemy units  
+   and has not been selected to shoot this phase.                                                   
+ • EFFECT: Select one enemy unit that is not within Engagement Range of any units from your army and
+   is within 8" of and visible to your Grenades unit. Roll six D6: for each 4+, that enemy unit     
+   suffers 1 mortal wound.                                                                          
+
+----------------------------------------------------------------------------------------------------
+
+2. Database Record                                                                                  
+
+Citation: [DB: stratagems]                                                                          
+Publication and Edition: Not recorded                                                               
+Category: Core – Wargear Stratagem                                                                  
+Cost: 1 CP                                                                                          
+
+ • WHEN: Your Shooting phase.                                                                       
+ • TARGET: One GRENADES unit from your army (excluding units that Advanced, Fell Back or have shot  
+   this turn) that is not within Engagement Range of one or more enemy units.                       
+ • EFFECT: Select one GRENADES model in your unit and one enemy unit that is not within Engagement  
+   Range of any units from your army and is within 8" of and visible to your GRENADES model. Roll   
+   six D6: for each 4+, that enemy unit suffers 1 mortal wound.                                     
+
+----------------------------------------------------------------------------------------------------
+
+Material Comparison of Sources                                                                      
+
+ • Cost & Timing: Both sources require 1 CP and have identical timing (WHEN: Your Shooting phase).  
+ • Target Restrictions:                                                                             
+    • [Core Rules p. 42] restricts the target to a Grenades unit from your army that is not within  
+      Engagement Range of any enemy units and has not been selected to shoot this phase.            
+    • [DB: stratagems] explicitly excludes units that Advanced, Fell Back, or have shot this turn,  
+      in addition to requiring that the unit is not within Engagement Range of one or more enemy    
+      units.                                                                                        
+ • Effect Determination (Measurement and Visibility):                                               
+    • [Core Rules p. 42] measures distance and visibility from the Grenades unit (the selected enemy
+      unit must be within 8" of and visible to your Grenades unit).                                 
+    • [DB: stratagems] requires selecting one GRENADES model in your unit, measuring distance and   
+      line of sight from that specific model (the enemy unit must be within 8" of and visible to    
+      your GRENADES model).                                                                         
+ • Mortal Wounds: Both sources resolve the damage identically: roll six D6; for each 4+, the chosen 
+   enemy unit suffers 1 mortal wound.                                                               
+
+----------------------------------------------------------------------------------------------------
+
+Supported Conclusion and Evidence Gap                                                               
+
+ • Conclusion: Using the Grenade Stratagem costs 1 CP in your Shooting phase to target an eligible  
+   friendly unit with the Grenades keyword not in Engagement Range. An eligible enemy unit within 8"
+   and line of sight (not in Engagement Range of any friendly units) suffers 1 mortal wound per roll
+   of 4+ on six D6.                                                                                 
+ • Evidence Gap: The publication name, update document, and edition for the database record [DB:    
+   stratagems] are not recorded in the database, so the exact publication context that modified the 
+   unit-versus-model targeting and Advance/Fall Back exclusions cannot be identified from these     
+   records alone.                                                                                   
+
+Source notes (retrieved evidence, not verification of the answer):                                  
+
+ • This turn: DB stratagems: publication and edition are not recorded.                              
+1. search_rules: Grenade
+   pages: 42, 45, 10, 26, 55, 46
+   core stratagem lookup: GRENADE
+   database rows returned: 1

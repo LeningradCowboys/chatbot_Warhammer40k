@@ -1,0 +1,72 @@
+Cost to Use                                                                                         
+
+To use GRENADE, the controlling player must pay 1 CP [Core Rules p. 41–42, DB: stratagems].         
+
+ • Under the Core Rules, when using a Stratagem, the player reduces their Command point total by the
+   amount listed on the card (1 CP); if the player does not have enough CP, they cannot use it [Core
+   Rules p. 41].                                                                                    
+ • In the database record, cpCost is 1 [DB: stratagems].                                            
+
+----------------------------------------------------------------------------------------------------
+
+Applicability After Advancing                                                                       
+
+Source 1: Database Record (stratagems, ID 000008335006; source and edition not recorded)            
+
+ • Citation: [DB: stratagems]                                                                       
+ • Explicit Conditions:                                                                             
+    • Cost: 1 CP.                                                                                   
+    • Timing: Your Shooting phase.                                                                  
+    • Target: One GRENADES unit from your army (excluding units that Advanced, Fell Back or have    
+      shot this turn) that is not within Engagement Range of one or more enemy units.               
+ • Relevant Facts:                                                                                  
+    • Fact supplied by user: The unit has Advanced ("after advancing").                             
+    • Fact established by tool: Intercessor Squad has the Grenades keyword [DB:                     
+      datasheets_keywords].                                                                         
+ • Missing Facts: None regarding the advance condition.                                             
+ • Supported Conclusion: Supported prohibition. The database text explicitly excludes units that    
+   Advanced this turn from being targeted.                                                          
+
+----------------------------------------------------------------------------------------------------
+
+Source 2: Core Rules (10th edition)                                                                 
+
+ • Citation: [Core Rules p. 14, 19, 41–42]                                                          
+ • Explicit Conditions:                                                                             
+    • Cost: 1 CP [Core Rules p. 41–42].                                                             
+    • Timing: Your Shooting phase [Core Rules p. 42].                                               
+    • Target: One Grenades unit from your army that is not within Engagement Range of any enemy     
+      units and has not been selected to shoot this phase [Core Rules p. 42].                       
+    • Advancing rule: A unit cannot shoot or declare a charge in the same turn that it Advanced     
+      [Core Rules p. 14], and a unit is not eligible to shoot if it Advanced this turn [Core Rules  
+      p. 19].                                                                                       
+ • Relevant Facts:                                                                                  
+    • Fact supplied by user: The unit has Advanced.                                                 
+    • Fact established by tool: Intercessor Squad has the Grenades keyword [DB:                     
+      datasheets_keywords].                                                                         
+    • Ineligibility to shoot: An Advanced unit is not eligible to shoot [Core Rules p. 19].         
+ • Missing Facts / Evidence Gap:                                                                    
+    • The TARGET condition in the Core Rules requires that the unit "has not been selected to shoot 
+      this phase" rather than requiring the unit to be "eligible to shoot", nor does the Stratagem's
+      card text explicitly mention Advancing [Core Rules p. 42].                                    
+    • Nonselection, a completed action, and ineligibility are distinct predicates. The retrieved    
+      Core Rules passages do not state whether ineligibility to shoot prevents selection under the  
+      wording of GRENADE, nor do they explicitly permit or prohibit an Advanced unit from being     
+      targeted.                                                                                     
+ • Supported Conclusion: Undetermined. The absence of an explicit Advance exclusion in [Core Rules  
+   p. 42] proves neither permission nor prohibition, and the retrieved passages do not settle       
+   whether a unit that cannot be selected to shoot due to Advancing satisfies the predicate "has not
+   been selected to shoot this phase".                                                              
+
+Source notes (retrieved evidence, not verification of the answer):                                  
+
+ • Earlier in this conversation: DB stratagems: publication and edition are not recorded.           
+ • Earlier in this conversation: Database publication for Intercessor Squad (ID 000001157): Space   
+   Marines; edition 11.                                                                             
+ • Earlier in this conversation: Application could not identify publication/edition fields in the   
+   returned columns.                                                                                
+ • This turn: DB stratagems: publication and edition are not recorded.                              
+1. search_rules: Advance move shoot
+   pages: 14, 13, 42, 19, 25, 54
+   core stratagem lookup: FIRE OVERWATCH
+   database rows returned: 2

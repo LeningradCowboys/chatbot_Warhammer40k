@@ -1,0 +1,777 @@
+{
+ "question": {
+  "question_id": "q002",
+  "question": "From the perspective of a wargame strategist aiming to optimize unit performance and maintain tactical control, what is the precise role of a unit's Leadership characteristic during the Battle-shock test, and what are the direct implications for units that fail this test due to their Leadership value?",
+  "reference": "During the Battle-shock test, which is taken for each unit on the battlefield that is Below Half-strength, a unit's Leadership characteristic serves as the critical threshold for determining success or failure. To perform this test, a player rolls 2D6; if the result is greater than or equal to the best Leadership characteristic in that unit, the test is passed. Conversely, if the result is less than the unit's Leadership, the test is failed, and the unit becomes Battle-shocked until the start of its next Command phase. The direct implications for a unit that fails this test and becomes Battle-shocked are that the Objective Control characteristic of all its models becomes 0, its controlling player cannot use Stratagems to affect that unit, and if the unit attempts to Fall Back, a Desperate Escape test must be taken for every model in that unit.",
+  "reference_contexts": [
+   "Section: 2. BATTLE-SHOCK\nIn this step, you must take a Battle-shock test for each of your units on the battlefield that is Below Half-strength (pg 12). To do so, roll 2D6: if the result is greater than or equal to the best Leadership characteristic in that unit, the test is passed; otherwise, the test is failed and, until the start of your next Command phase, that unit is Battle-shocked.\n\nWhile a unit is Battle-shocked:\n\n- The Objective Control characteristic of all of its models is 0.\n- If it Falls Back, you must take a Desperate Escape test for every model in that unit (pg 14).\n- Its controlling player cannot use Stratagems to affect that unit.\n\nOnce you have taken Battle-shock tests for all of your units that require them, your Command phase ends and you progress to your Movement phase.\n\n- Take a Battle-shock test for each unit from your army on the battlefield that is Below Half-strength.\n- Roll 2D6: if the result is greater than or equal to the unit's Leadership, the test is passed. Otherwise, the unit is Battle-shocked until the start of your next Command phase.\n- Battle-shocked units have an OC of 0 and their controlling player cannot use Stratagems to affect them.\n- Battle-shocked units must take Desperate Escape tests if they Fall Back.\n\nYour Command phase is split into two steps. In the first, both players gain 1 Command point (CP) and you resolve any other Command phase rules; in the second, you test to see if any of your units are Battle-shocked."
+  ],
+  "synthesizer": "single_hop_specific_query_synthesizer"
+ },
+ "answer": "Based on the **Core Rules (10th edition)**, here is the role of the Leadership characteristic during a Battle-shock test and the direct consequences of failing it:\n\n---\n\n### 1. The Precise Role of Leadership in a Battle-Shock Test\n\n* **Characteristic Nature:** Leadership ($\\text{Ld}$) reflects how courageous, determined, or self-controlled a model is; the lower the numerical value, the better the Leadership [Core Rules p. 38].\n* **Target Number for the Test:** When a unit must take a Battle-shock test (such as during step 2 of the Command phase when it is Below Half-strength), the controlling player rolls **2D6** [Core Rules p. 11].\n* **Best Characteristic Used:** The rolled total is compared against the **best** (lowest) Leadership characteristic present among the models in that unit [Core Rules p. 11, 38].\n* **Pass / Fail Determination:** \n  * If the 2D6 total is **greater than or equal to** that best Leadership value, the test is **passed** [Core Rules p. 11].\n  * If the 2D6 total is **less than** that value, the test is **failed**, and the unit immediately becomes **Battle-shocked** [Core Rules p. 11].\n\nThus, a model's Leadership value serves as the exact numerical threshold on 2D6 that the roll must match or beat.\n\n---\n\n### 2. Direct Implications of Failing the Test (Becoming Battle-Shocked)\n\nWhen a unit fails its Battle-shock test, it remains **Battle-shocked until the start of its controlling player's next Command phase** [Core Rules p. 11]. While Battle-shocked, the unit suffers three direct operational penalties:\n\n1. **Objective Control Negated:**\n   * The Objective Control ($\\text{OC}$) characteristic of all models in the unit becomes **0** [Core Rules p. 11]. The unit cannot contest or hold objective markers against any enemy presence with an $\\text{OC} > 0$.\n2. **Stratagem Lockout:**\n   * The controlling player **cannot use Stratagems to affect that unit** [Core Rules p. 11] (barring specific exceptions, such as the *Insane Bravery* Stratagem, which specifically targets a unit to reverse the failed test [Core Rules p. 42]).\n3. **Hazardous Fall Back (Desperate Escape Tests):**\n   * If the Battle-shocked unit is selected to **Fall Back**, a **Desperate Escape test** must be taken for **every model** in that unit before any models are moved [Core Rules p. 11, 14].\n   * For each Desperate Escape test, you roll one D6: on a roll of **1–2**, one model from the falling-back unit is destroyed (selected by the controlling player) [Core Rules p. 14].",
+ "agent_contexts": [
+  "[Core Rules p. 11] (page footer p. 11: CORE RULES | COMMAND PHASE)\nSection: 2. BATTLE-SHOCK\nIn this step, you must take a Battle-shock test for each of your units on the battlefield that is Below Half-strength (pg 12). To do so, roll 2D6: if the result is greater than or equal to the best Leadership characteristic in that unit, the test is passed; otherwise, the test is failed and, until the start of your next Command phase, that unit is Battle-shocked.\n\nWhile a unit is Battle-shocked:\n\n- The Objective Control characteristic of all of its models is 0.\n- If it Falls Back, you must take a Desperate Escape test for every model in that unit (pg 14).\n- Its controlling player cannot use Stratagems to affect that unit.\n\nOnce you have taken Battle-shock tests for all of your units that require them, your Command phase ends and you progress to your Movement phase.\n\n- Take a Battle-shock test for each unit from your army on the battlefield that is Below Half-strength.\n- Roll 2D6: if the result is greater than or equal to the unit's Leadership, the test is passed. Otherwise, the unit is Battle-shocked until the start of your next Command phase.\n- Battle-shocked units have an OC of 0 and their controlling player cannot use Stratagems to affect them.\n- Battle-shocked units must take Desperate Escape tests if they Fall Back.\n\nYour Command phase is split into two steps. In the first, both players gain 1 Command point (CP) and you resolve any other Command phase rules; in the second, you test to see if any of your units are Battle-shocked.\n\n[Core Rules p. 38] (page footer p. 38: CORE RULES | DATASHEETS)\nSection: LEADERSHIP TESTS\nIf a rule requires you to take a Leadership test for a unit, roll 2D6: if the total is greater than or equal to the best Leadership characteristic in that unit, that test is passed. Otherwise, it is failed.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: INSANE BRAVERY\n1CP\n\nCORE - EPIC DEED STRATAGEM\n\nIndifferent to their own survival, these warriors hold their ground against seemingly impossible odds.\n\nWHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army (pg 11).\n\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\n\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.\n\n[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nFigure label: B\nSection: Desperate Escape Tests\nUnlike when making other types of move, models can move over enemy models when making a Fall Back move as if those enemy models were not there, but you must take a Desperate Escape test for each model that will do so (excluding models that are Titanic or can Fly) before any models in that unit are moved. In addition, if a unit is Battle-shocked when it is selected to Fall Back, you must take a Desperate Escape test for every model in that unit before any are moved.\n\nEach time you take a Desperate Escape test for a model, roll one D6. For each roll of 1-2, one model from the unit that is Falling Back is destroyed (selected by you). The same model can only ever trigger one Desperate Escape test per phase.\n\n- Fall Back Move: Models move up to M\".\n- Units that Fall Back cannot shoot or declare a charge in the same turn.\n- Models can move over enemy models when Falling Back, but you must take Desperate Escape tests for them before they do so (excluding models that are Titanic or can Fly).\n- If a Battle-shocked unit is selected to Fall Back, take a Desperate Escape test for every model in that unit.\n- Desperate Escape Test: Roll one D6. On a 1-2, one model from that unit is destroyed.\n\nA The Sternguard Veterans are selected to\n\nmake a Fall Back move, but to do so\n\nthey must move through enemy\n\nmodels, so Desperate Escape tests\n\nare required.\n\nB The controlling player rolls one D6 for\n\neach model that moves through an\n\nenemy unit, resulting in a 1, 2, 4, 4 and\n\n[Core Rules p. 10] (page footer p. 10: CORE RULES | THE BATTLE ROUND)\nFigure label: COMMAND PHASE\nSection: THE BATTLE ROUND > COMMAND PHASE\nBoth players muster strategic resources, then you test your units' battle readiness.\n\n[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: COMMAND RE-ROLL\n1CP\n\nCORE - BATTLE TACTIC STRATAGEM\n\nA great commander can bend even the vagaries of fate and fortune to their will, the better to ensure victory.\n\nWHEN: In any phase, just after you have made a Hit roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate Escape test, a Hazardous test, or just after you have rolled the dice to determine the number of attacks made with a weapon, for an attack, model or unit from your army.\n\nEFFECT: You re-roll that roll, test or saving throw.\n\n[Core Rules p. 38] (page footer p. 38: CORE RULES | DATASHEETS)\nSection: 2 PROFILES\nThese contain the following characteristics that tell you how mighty the models in the unit are:\n\nMove (M): This is the speed at which a model moves across the battlefield. If a model has a Move of '-' it is unable to move at all.\n\nToughness (T): This reflects the model's resilience against physical harm.\n\nSave (Sv): This indicates the protection a model's armour gives them.\n\nWounds (W): Wounds represent how much damage a model can sustain before it succumbs to its injuries. If a model's Wounds characteristic is reduced to 0, that model is destroyed.\n\nLeadership (Ld): This reveals how courageous, determined or self-controlled a model is. The lower this number, the better a model's Leadership is.\n\nObjective Control (OC): This shows how effectively a model can exert control over an objective on the battlefield.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: TANK SHOCK\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nRamming the foe with a speeding vehicle may be an unsubtle tactic, but it is a murderously effective one.\n\nWHEN: Your Charge phase.\n\nTARGET: One Vehicle unit from your army.\n\nEFFECT: Until the end of the phase, after your unit ends a Charge move, select one enemy unit within Engagement Range of it, then select one melee weapon your unit is equipped with. Roll a number of D6 equal to that weapon's Strength characteristic. If that Strength characteristic is greater than that enemy unit's Toughness characteristic, roll two additional D6. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"INSANE BRAVERY\", \"COMMAND RE-ROLL\", \"TANK SHOCK\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335002\", \"COMMAND RE-ROLL\", \"\", \"Core – Battle Tactic Stratagem\", \"1\", \"Either player’s turn\", \"Any phase\", \"\", \"WHEN: Any phase, just after you make an Advance roll, a Charge roll, a Desperate Escape test or a Hazardous test for a unit from your army, or a Hit roll, a Wound roll, a Damage roll or a saving throw for a model in that unit, or a roll to determine the number of attacks made with a weapon equipped by a model in that unit. If you are using fast dice rolling, this Stratagem can still be used after rolling multiple rolls or saving throws at once.\\nTARGET: That unit or model from your army.\\nEFFECT: You re-roll that roll, test or saving throw. If you are using fast dice rolling, select one of those rolls or saving throws to re-roll.\"], [\"000009218002\", \"COMMAND RE-ROLL\", \"\", \"Boarding Actions – Epic Deed Stratagem\", \"1\", \"Either player’s turn\", \"Any phase\", \"\", \"WHEN: Any phase, just after you have made a Hit roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate Escape test, a Hazardous test, or just after you have rolled the dice to determine the number of attacks made with a weapon, for an attack, model or unit from your army.\\nTARGET: That unit or model from your army.\\nEFFECT: You re-roll that roll, test or saving throw.\"], [\"000010810002\", \"COMMAND RE-ROLL\", \"\", \"Core Stratagem\", \"1\", \"Either player’s turn\", \"Any phase\", \"\", \"WHEN: Any phase, just after you make one of the following rolls for a friendly unit or model:Advance rollCharge rollDamage rollHazard rollHit rollSave rollWound rollA roll to determine the number of attacks generated with a weapon.\\nTARGET: That unit or model.\\nEFFECT: You re-roll that roll. If you are rolling more than one dice together, select one of those dice to re-roll (excluding charge rolls, which you must re-roll in full).\"], [\"000008335005\", \"INSANE BRAVERY\", \"\", \"Core – Epic Deed Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just before you take a Battle-shock test for a unit from your army.\\nTARGET: That unit from your army.\\nEFFECT: Your unit automatically passes that Battle-shock test.\\nRESTRICTIONS: You cannot use this Stratagem more than once per battle.\"], [\"000009218005\", \"INSANE BRAVERY\", \"\", \"Boarding Actions – Epic Deed Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army.\\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.\"], [\"000010810004\", \"INSANE BRAVERY\", \"\", \"Core Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just before you make a battle-shock roll for a friendly unit.\\nTARGET: That unit.\\nEFFECT: That battle-shock roll is automatically successful.\\nRESTRICTIONS: You cannot use this stratagem more than once per battle.\"], [\"000008335007\", \"TANK SHOCK\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Your turn\", \"Charge phase\", \"\", \"WHEN: Your Charge phase, just after a VEHICLE unit from your army ends a Charge move.\\nTARGET: That VEHICLE unit.\\nEFFECT: Select one enemy unit within Engagement Range of your unit, and select one VEHICLE model in your unit that is within Engagement Range of that enemy unit. Roll a number of D6 equal to the Toughness characteristic of the selected VEHICLE model. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+  "[Core Rules p. 12] (page footer p. 12: CORE RULES | COMMAND PHASE)\nSection: BELOW HALF-STRENGTH\nSome rules will refer to a unit being Below Half-strength.\n\n- If a unit has a Starting Strength of 1, then it is said to be Below Half-strength while its remaining number of wounds is less than half of its Wounds characteristic.\n- For any other unit, while the number of models in that unit is less than half of its Starting Strength, that unit is said to be Below Half-strength.\n\n[Core Rules p. 11] (page footer p. 11: CORE RULES | COMMAND PHASE)\nSection: 2. BATTLE-SHOCK\nIn this step, you must take a Battle-shock test for each of your units on the battlefield that is Below Half-strength (pg 12). To do so, roll 2D6: if the result is greater than or equal to the best Leadership characteristic in that unit, the test is passed; otherwise, the test is failed and, until the start of your next Command phase, that unit is Battle-shocked.\n\nWhile a unit is Battle-shocked:\n\n- The Objective Control characteristic of all of its models is 0.\n- If it Falls Back, you must take a Desperate Escape test for every model in that unit (pg 14).\n- Its controlling player cannot use Stratagems to affect that unit.\n\nOnce you have taken Battle-shock tests for all of your units that require them, your Command phase ends and you progress to your Movement phase.\n\n- Take a Battle-shock test for each unit from your army on the battlefield that is Below Half-strength.\n- Roll 2D6: if the result is greater than or equal to the unit's Leadership, the test is passed. Otherwise, the unit is Battle-shocked until the start of your next Command phase.\n- Battle-shocked units have an OC of 0 and their controlling player cannot use Stratagems to affect them.\n- Battle-shocked units must take Desperate Escape tests if they Fall Back.\n\nYour Command phase is split into two steps. In the first, both players gain 1 Command point (CP) and you resolve any other Command phase rules; in the second, you test to see if any of your units are Battle-shocked.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: INSANE BRAVERY\n1CP\n\nCORE - EPIC DEED STRATAGEM\n\nIndifferent to their own survival, these warriors hold their ground against seemingly impossible odds.\n\nWHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army (pg 11).\n\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\n\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.\n\n[Core Rules p. 21] (page footer p. 21: CORE RULES | MAKING ATTACKS)\nSection: 2. WOUND ROLL\n| WOUND ROLL ATTACK'S STRENGTH VS TARGET'S TOUGHNESS    | D6 RESULT REQUIRED   |\n|-------------------------------------------------------|----------------------|\n| Strength is TWICE (or more than twice) the Toughness. | 2 +                  |\n| Strength is GREATER than the Toughness.               | 3 +                  |\n| Strength is EQUAL to the Toughness.                   | 4 +                  |\n| Strength is LESS than the Toughness.                  | 5 +                  |\n| Strength is HALF (or less than half) the Toughness.   | 6 +                  |\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: TANK SHOCK\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nRamming the foe with a speeding vehicle may be an unsubtle tactic, but it is a murderously effective one.\n\nWHEN: Your Charge phase.\n\nTARGET: One Vehicle unit from your army.\n\nEFFECT: Until the end of the phase, after your unit ends a Charge move, select one enemy unit within Engagement Range of it, then select one melee weapon your unit is equipped with. Roll a number of D6 equal to that weapon's Strength characteristic. If that Strength characteristic is greater than that enemy unit's Toughness characteristic, roll two additional D6. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).\n\n[Core Rules p. 43] (page footer p. 43: CORE RULES | STRATEGIC RESERVES)\nSection: PLACING UNITS INTO STRATEGIC RESERVES\nBefore the battle, when you are instructed to Declare Battle Formations, you can select one or more units from your army to be placed into Strategic Reserves (excluding Fortifications).\n\nThe combined points value of all the units you wish to place into Strategic Reserves before the battle (including those embarked within Transport models that are themselves placed into Strategic Reserves) cannot exceed 25% of your total points limit for your chosen battle size, as shown in the table below.\n\n[Core Rules p. 21] (page footer p. 21: CORE RULES | MAKING ATTACKS)\nSection: 2. WOUND ROLL\nEach time an attack scores a hit against a target unit, make a Wound roll for that attack by rolling one D6 to see if that attack successfully wounds the target unit. The result required is determined by comparing the attack's Strength (S) characteristic with the target's Toughness (T) characteristic, as shown below.\n\n[Core Rules p. 39] (page footer p. 39: CORE RULES | DEPLOYMENT ABILITIES)\nSection: DEPLOYMENT ABILITIES\nSome abilities are used during deployment, or when setting a unit up - either on the battlefield or into Reserves. These are known as Deployment abilities, and some widespread examples of these are presented below.\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"INSANE BRAVERY\", \"TANK SHOCK\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335005\", \"INSANE BRAVERY\", \"\", \"Core – Epic Deed Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just before you take a Battle-shock test for a unit from your army.\\nTARGET: That unit from your army.\\nEFFECT: Your unit automatically passes that Battle-shock test.\\nRESTRICTIONS: You cannot use this Stratagem more than once per battle.\"], [\"000009218005\", \"INSANE BRAVERY\", \"\", \"Boarding Actions – Epic Deed Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army.\\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.\"], [\"000010810004\", \"INSANE BRAVERY\", \"\", \"Core Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just before you make a battle-shock roll for a friendly unit.\\nTARGET: That unit.\\nEFFECT: That battle-shock roll is automatically successful.\\nRESTRICTIONS: You cannot use this stratagem more than once per battle.\"], [\"000008335007\", \"TANK SHOCK\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Your turn\", \"Charge phase\", \"\", \"WHEN: Your Charge phase, just after a VEHICLE unit from your army ends a Charge move.\\nTARGET: That VEHICLE unit.\\nEFFECT: Select one enemy unit within Engagement Range of your unit, and select one VEHICLE model in your unit that is within Engagement Range of that enemy unit. Roll a number of D6 equal to the Toughness characteristic of the selected VEHICLE model. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge."
+ ],
+ "retriever_contexts": [
+  "[Core Rules p. 11] (page footer p. 11: CORE RULES | COMMAND PHASE)\nSection: 2. BATTLE-SHOCK\nIn this step, you must take a Battle-shock test for each of your units on the battlefield that is Below Half-strength (pg 12). To do so, roll 2D6: if the result is greater than or equal to the best Leadership characteristic in that unit, the test is passed; otherwise, the test is failed and, until the start of your next Command phase, that unit is Battle-shocked.\n\nWhile a unit is Battle-shocked:\n\n- The Objective Control characteristic of all of its models is 0.\n- If it Falls Back, you must take a Desperate Escape test for every model in that unit (pg 14).\n- Its controlling player cannot use Stratagems to affect that unit.\n\nOnce you have taken Battle-shock tests for all of your units that require them, your Command phase ends and you progress to your Movement phase.\n\n- Take a Battle-shock test for each unit from your army on the battlefield that is Below Half-strength.\n- Roll 2D6: if the result is greater than or equal to the unit's Leadership, the test is passed. Otherwise, the unit is Battle-shocked until the start of your next Command phase.\n- Battle-shocked units have an OC of 0 and their controlling player cannot use Stratagems to affect them.\n- Battle-shocked units must take Desperate Escape tests if they Fall Back.\n\nYour Command phase is split into two steps. In the first, both players gain 1 Command point (CP) and you resolve any other Command phase rules; in the second, you test to see if any of your units are Battle-shocked.",
+  "[Core Rules p. 38] (page footer p. 38: CORE RULES | DATASHEETS)\nSection: LEADERSHIP TESTS\nIf a rule requires you to take a Leadership test for a unit, roll 2D6: if the total is greater than or equal to the best Leadership characteristic in that unit, that test is passed. Otherwise, it is failed.",
+  "[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: INSANE BRAVERY\n1CP\n\nCORE - EPIC DEED STRATAGEM\n\nIndifferent to their own survival, these warriors hold their ground against seemingly impossible odds.\n\nWHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army (pg 11).\n\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\n\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.",
+  "[Core Rules p. 38] (page footer p. 38: CORE RULES | DATASHEETS)\nSection: 2 PROFILES\nThese contain the following characteristics that tell you how mighty the models in the unit are:\n\nMove (M): This is the speed at which a model moves across the battlefield. If a model has a Move of '-' it is unable to move at all.\n\nToughness (T): This reflects the model's resilience against physical harm.\n\nSave (Sv): This indicates the protection a model's armour gives them.\n\nWounds (W): Wounds represent how much damage a model can sustain before it succumbs to its injuries. If a model's Wounds characteristic is reduced to 0, that model is destroyed.\n\nLeadership (Ld): This reveals how courageous, determined or self-controlled a model is. The lower this number, the better a model's Leadership is.\n\nObjective Control (OC): This shows how effectively a model can exert control over an objective on the battlefield.",
+  "[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nFigure label: B\nSection: Desperate Escape Tests\nUnlike when making other types of move, models can move over enemy models when making a Fall Back move as if those enemy models were not there, but you must take a Desperate Escape test for each model that will do so (excluding models that are Titanic or can Fly) before any models in that unit are moved. In addition, if a unit is Battle-shocked when it is selected to Fall Back, you must take a Desperate Escape test for every model in that unit before any are moved.\n\nEach time you take a Desperate Escape test for a model, roll one D6. For each roll of 1-2, one model from the unit that is Falling Back is destroyed (selected by you). The same model can only ever trigger one Desperate Escape test per phase.\n\n- Fall Back Move: Models move up to M\".\n- Units that Fall Back cannot shoot or declare a charge in the same turn.\n- Models can move over enemy models when Falling Back, but you must take Desperate Escape tests for them before they do so (excluding models that are Titanic or can Fly).\n- If a Battle-shocked unit is selected to Fall Back, take a Desperate Escape test for every model in that unit.\n- Desperate Escape Test: Roll one D6. On a 1-2, one model from that unit is destroyed.\n\nA The Sternguard Veterans are selected to\n\nmake a Fall Back move, but to do so\n\nthey must move through enemy\n\nmodels, so Desperate Escape tests\n\nare required.\n\nB The controlling player rolls one D6 for\n\neach model that moves through an\n\nenemy unit, resulting in a 1, 2, 4, 4 and",
+  "[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: COMMAND RE-ROLL\n1CP\n\nCORE - BATTLE TACTIC STRATAGEM\n\nA great commander can bend even the vagaries of fate and fortune to their will, the better to ensure victory.\n\nWHEN: In any phase, just after you have made a Hit roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate Escape test, a Hazardous test, or just after you have rolled the dice to determine the number of attacks made with a weapon, for an attack, model or unit from your army.\n\nEFFECT: You re-roll that roll, test or saving throw.",
+  "[Core Rules p. 39] (page footer p. 39: CORE RULES | DEPLOYMENT ABILITIES)\nSection: LEADER\nMighty heroes fight at the forefront of battle.\n\nSome Character units have 'Leader' listed on their datasheets. Such Character units are known as Leaders, and the units they can lead - known as their Bodyguard units - are listed on their datasheet.\n\nDuring the Declare Battle Formations step, for each Leader in your army, if your army also includes one or more of that Leader's Bodyguard units, you can select one of those Bodyguard units. That Leader will then attach to that Bodyguard unit for the duration of the battle and is said to be leading that unit. Each Bodyguard unit can only have one Leader attached to it.",
+  "[Core Rules p. 39] (page footer p. 39: CORE RULES | DEPLOYMENT ABILITIES)\nSection: LEADER\nWhile a Bodyguard unit contains a Leader, it is known as an Attached unit and, with the exception of rules that are triggered when units are destroyed (pg 12), it is treated as a single unit for all rules purposes. Each time an attack targets an Attached unit, until the attacking unit has resolved all of its attacks, you must use the Toughness characteristic of the Bodyguard models in that unit, even if a Leader in that unit has a different Toughness characteristic. Each time an attack sucessfully wounds an Attached unit, that attack cannot be allocated to a Character model in that unit, even if that Character model has lost one or more wounds or has already had attacks allocated to it this phase. As soon as the last Bodyguard model in an Attached unit has been destroyed, any attacks made against that unit that have yet to be allocated can then be allocated to Character models in that unit.\n\n- Before the battle, Character units with the Leader ability can be attached to one of their Bodyguard units to form an Attached unit.\n- Attached units can only contain one Leader.\n- Attacks cannot be allocated to Character models in Attached units."
+ ],
+ "retriever_k": 8,
+ "trace": {
+  "system_prompt": "You are a rules assistant for Warhammer 40,000. You answer from two sources: the Core Rules (10th edition) and a database of datasheets, weapons, stratagems, factions and detachments.\n\n## Tools\n\n- `search_rules`: how the game works (phases, actions, abilities, keywords, terrain). Write the query in English, with the rulebook's terms, whatever the language of the question. Specify the concept: victory points and objective control for scoring, Command points for Stratagem costs, army points for army construction.\n- `run_sql`: facts about units, their models, weapons, keywords and abilities, and about stratagems, detachments, enhancements and factions. Call `run_sql` with one read-only SQLite SELECT or WITH query in its required `sql` string parameter, then answer from the returned result. Follow the database schema below: for a specific named unit, join `datasheets`, `datasheets_models` and `source` in a single query (example 1) instead of separate queries per table. If the tool returns an error, correct the query and try again.\n- Use both when a question mixes rules and unit data. The number of tool rounds per question is limited: search with purpose.\n- Before seeking more evidence, inspect successful results from every earlier turn. They remain available in the conversation. If those results already establish the answer, answer directly; do not query the same fact again merely to confirm it. After each new result, stop as soon as the question is supported. If evidence is still missing, retrieve only the missing fields together where possible, or state the gap instead of pursuing optional detail.\n- A broad category of units, such as \"a Space Marine\", that maps to a faction and keywords: query it with `run_sql` before you answer, keeping each value's datasheet IDs, units and model profiles in the result (example 2 of the schema). Use at most one aggregate query and one representative unit query for the category; do not issue a separate query for each characteristic value. Ask which unit is meant only when no faction or keyword fits.\n- For a named Stratagem, search the rulebook. `search_rules` also queries exact-name core database records for retrieved Stratagem sections. Inspect both parts of its result; do not repeat a successful associated lookup. If either source is missing, use a targeted search or SQL query while tools remain, and report any remaining gap. Unit keywords still need `run_sql`.\n\n## Answering\n\n- Answer only from the tool results of this conversation. If a search does not supply the necessary passage, search again with a specific rule or section name while tools remain. If it is still missing, say what the retrieved passages do not establish and what you searched. Unsuccessful retrieval never proves that the rulebook has no such rule. Do not invent values or fill gaps from general game knowledge.\n- Organize an evidence answer in this order: source/version and scope, including which facts the user supplied and which the tools established; explicit conditions and results in the source's order; then the supported conclusion and any evidence gap. For an if/otherwise rule, preserve every branch and their common timing. Distinguish ways to score from the rule for determining a winner.\n- For a rule or procedure, preserve its cost, timing, eligible target, effect, restrictions and exceptions where the evidence gives them. For how to use a Stratagem, explain its CP payment from the `STRATAGEMS` and `1. COMMAND` sections and illustrate how the card labels WHEN, TARGET, EFFECT and RESTRICTIONS work from the retrieved Stratagem cards; once those sections and cards are retrieved, answer from them without searching again for a separate definition of those card labels. Identify the actor, whose phase it is, every recipient, and quantifiers such as \"both players\" and \"each phase\"; avoid ambiguous pronouns. Do not merge source versions. Give an exception only with its trigger and timing. If you choose an example, attribute it to one source or separate material versions; do not use a joint citation to imply that different versions are identical. An example figure is illustrative, not a datasheet fact about a real unit.\n- Cite every fact: [Core Rules p. N] for the rulebook (p. N–M for a passage over two pages), [DB: table] for the database.\n- Editions: the rulebook is the 10th edition. For a database record, give its edition only when it is recorded: for a datasheet, join `source` and give its name and edition; edition '0' means that none is recorded (a Warhammer Legends or Forge World pack: name it as such). Stratagems, detachments, enhancements and abilities have no source: say that their source is not recorded. Never give one edition to the database as a whole.\n- When evidence contains versions of the same rule, compare costs, timing, targets, effects and restrictions. For an applicability question or follow-up, give a short entry for EACH source: source/version and citation; its explicit conditions; the relevant facts supplied by the user or established by a tool, labelled by origin; any missing facts; and the conclusion supported by that source. These are checkable evidence statements, not a narrative of your reasoning. Preserve who a restriction applies to, including the controlling player. Nonselection, a completed action, and ineligibility are different predicates: none establishes another without cited evidence. Do not import exclusions across sources. An exclusion absent from a retrieved passage proves neither permission nor prohibition; say when that source does not settle the case. Describe material differences, not assumed clarifications.\n- Categories: a broad name such as \"a Space Marine\" is a category, not a unit. Resolve it to a faction and keywords (for example factionId 'SM' with the keyword Battleline or Infantry), leave out Warhammer Legends unless asked, use aggregate counts by publication/edition for a typical value and separate limited examples for exceptions, report the per-publication/edition counts as returned without summing them across publications or editions in prose, and say how you read the question: the units the answer covers and what it leaves out. Do not answer with a question when the results let you answer this way. Name the counting unit (datasheets or model profiles). A truncated example list cannot support an overall distribution.\n- Profiles: a characteristic belongs to a model profile, not to a unit. When a unit you give as an exception has profiles of different values, state every profile/value variant of that exception; never give one profile's characteristic as the value of the whole unit. Cite the table name, not a record ID as though it were a table.\n- Missions: use the page footer to name the mission for both scoring and winner rules. A question about ways to score needs concrete award conditions, amounts and timing; an introduction or a winner rule does not supply them. Search again for victory points and objective control only if no mission scoring rule has been retrieved yet; once a mission's scoring rule is present, answer from it without further searches for generic examples. Keep mission-specific scoring separate from generic examples and winner conditions. Preserve the source's shared timing and all ordered winner branches, including the destroyed-army condition, otherwise VP comparison and tie. State any remaining evidence gap.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.\n\n## Database schema\n\n# The datasheet database (`wahadb_clean.sqlite`)\n\nA SQLite copy of Wahapedia's Warhammer 40,000 data: units (datasheets), their models, weapons, keywords and\nabilities, and stratagems, detachments and enhancements. Text encoding is already repaired. Last update of the\ndata: 2026-09-01.\n\n## Rules for writing SQL\n\n- Every column is `TEXT`, numbers included: compare and sort numbers with `CAST(t AS INTEGER)`. Some stat values are\n  not numbers (`D3`, `D6`, `N/A`, `Melee`, `-`).\n- There are no declared keys: join on the columns listed under Joins, with their exact case (`Id` vs `id`,\n  `FactionId` vs `factionId`, `DatasheetId`).\n- `=` compares text exactly and is case-sensitive; `LIKE` ignores the case of ASCII letters. Keywords are written\n  like `Infantry`, `Battleline`, `Grenades`; stratagem names in capitals, like `GRENADE`.\n- One `SELECT` (or `WITH ... SELECT`) per call. Select the columns you need and filter; results are cut after 50 rows.\n- Booleans are the text `'true'` or `'false'`.\n\n## Tables\n\n| Table | One row is | Main columns |\n|---|---|---|\n| `factions` | a faction (25) | `Id` (`SM` = Space Marines, `CSM` = Chaos Space Marines, `TAU`, `TYR`, …), `name` |\n| `datasheets` | a unit's datasheet (1 680) | `Id`, `name`, `factionId`, `sourceId`, `role`, `loadout`, `transport`, `legend` (lore text, not Warhammer Legends), `virtual`, `link` |\n| `datasheets_models` | a model profile of a datasheet (a unit can have several, one per `line`) | `DatasheetId`, `line`, `name`, `m` (Move), `t` (Toughness), `sv` (Save), `invSv` (invulnerable save, `-` if none), `w` (Wounds), `ld` (Leadership), `oc` (Objective Control), `baseSize` |\n| `datasheets_wargear` | a weapon profile of a datasheet | `DatasheetId`, `name`, `range` (inches, or `Melee`), `type` (`Ranged`/`Melee`), `a` (Attacks), `bsWs` (BS or WS: `3` means 3+), `s` (Strength), `ap` (`0`, `-1`, …), `d` (Damage), `description` (weapon abilities) |\n| `datasheets_keywords` | a keyword of a datasheet | `DatasheetId`, `keyword`, `model` (the models it applies to; empty = the unit), `isFactionKeyword` |\n| `datasheets_abilities` | an ability on a datasheet | `DatasheetId`, `line`, `abilityId`, `name`, `description`, `type` (`Core`, `Faction`, `Datasheet`, `Wargear`, …), `parameter` |\n| `abilities` | a Core or Faction ability's text | `Id`, `name`, `factionId`, `description` |\n| `datasheets_unit_composition` | a line of unit composition | `DatasheetId`, `line`, `description` |\n| `datasheets_options` | a wargear option | `DatasheetId`, `line`, `description` |\n| `datasheets_models_cost` | a points cost | `DatasheetId`, `line`, `description` (unit size), `cost` (points) |\n| `datasheets_leader` | a leader-to-unit link | `LeaderId` (the leader's datasheet), `attachedId` (a unit it can lead) |\n| `stratagems` | a stratagem | `id`, `name`, `FactionId`, `type`, `cpCost`, `turn`, `phase`, `detachment`, `detachmentId`, `description` (lines `WHEN:`, `TARGET:`, `EFFECT:`, `RESTRICTIONS:`) |\n| `datasheets_stratagems` | a datasheet-to-stratagem link | `DatasheetId`, `stratagemId` |\n| `detachments` | a detachment | `Id`, `factionId`, `name`, `type` |\n| `detachment_abilities` | a detachment rule | `Id`, `detachmentId`, `name`, `description` |\n| `enhancements` | an enhancement | `id`, `FactionId`, `name`, `cost`, `detachmentId`, `description` |\n| `source` | a publication | `Id`, `name`, `type`, `edition`, `version`, `errataDate` |\n\n## Joins\n\n- `datasheets.Id` = `DatasheetId` of every `datasheets_*` table; `datasheets.factionId` = `factions.Id`;\n  `datasheets.sourceId` = `source.Id`.\n- `datasheets_abilities.abilityId` = `abilities.Id`: see the abilities trap below.\n- `datasheets_stratagems.stratagemId` = `stratagems.id`; `stratagems.FactionId` = `factions.Id`.\n- `detachments.Id` = `detachment_abilities.detachmentId` = `stratagems.detachmentId` = `enhancements.detachmentId`.\n- `datasheets_leader.LeaderId` and `.attachedId` = `datasheets.Id`.\n\n## Traps\n\n- **Unit names are not unique** (1 680 datasheets, 1 291 names): the same name can exist in several factions or\n  sources. Filter by `factionId` when it matters, and say which one you used.\n- **A broad name is a category, not a unit.** \"A Space Marine\" is not a datasheet name: `name LIKE '%Space Marine%'`\n  finds only odd units. Use the faction (`factionId = 'SM'`) and keywords from `datasheets_keywords` (`Battleline`,\n  `Infantry`, `Vehicle`, …), then give the typical value and the notable exceptions (example 2).\n- **A characteristic belongs to a model profile, not to a unit.** A datasheet can have profiles of different values\n  (a sergeant and a heavier veteran, for example): keep each profile's name in a category result, so that a unit\n  that is an exception for one profile is not given that value as a whole (example 2).\n- **Warhammer Legends and Forge World.** A datasheet's source tells where it comes from: `source.name` ends with\n  `(Warhammer Legends)` for Legends units (retired from standard play) and with `(Forge World)` for Forge World\n  units. Exclude Legends unless the question asks for them: `source.name NOT LIKE '%(Warhammer Legends)%'`. Do not\n  use `datasheets.legend` for this: it is lore text.\n- **Editions are per record.** `source.edition` is `'11'`, `'10'`, or `'0'` (no edition recorded: Legends and Forge\n  World packs). Two datasheets have no source (`sourceId` empty). `stratagems`, `detachments`, `enhancements` and\n  `abilities` have no source column: their edition is not recorded. The Core Rules rulebook is 10th edition.\n- **Abilities are in two places.** Core and Faction abilities have an `abilityId` and their text in `abilities`; the\n  others (`Datasheet`, `Wargear`, …) have an empty `abilityId` and their text in `datasheets_abilities.description`.\n  `abilities` repeats each ability once per faction (91 rows, 71 `Id`s), so join it through\n  `(SELECT DISTINCT Id, name, description FROM abilities)`, never on `Id` alone (example 4).\n- **Core stratagems** have an empty `FactionId` and come in two forms. Rows of `type` `Core Stratagem` are linked to\n  datasheets in `datasheets_stratagems`; rows whose `type` reads like the rulebook's labels (`Core – Wargear\n  Stratagem`, `Core – Strategic Ploy Stratagem`, …) are linked to no datasheet. A name can have both forms\n  (`COMMAND RE-ROLL`) or only one (`GRENADE` exists only as `Core – Wargear Stratagem`), and their texts can differ;\n  their source is not recorded. Which units can use a core stratagem is written in its `TARGET:` line (for\n  `GRENADE`, a unit with the `Grenades` keyword). Other rows with an empty `FactionId` belong to other game modes\n  (`Boarding Actions`, `Challenger`) or describe core actions (`Movement Ability`, `Shooting Ability`).\n- **Game modes of detachments.** `detachments.type` is empty for the standard game and `Boarding Actions` for that\n  game mode (59 of 327 detachments); a faction's stratagems include those of its Boarding Actions detachments (for\n  Space Marines, `Boarding Strike`). For a question about the standard game, leave those out. A stratagem whose\n  `detachmentId` matches no row of `detachments` (six Aeldari `Army Rules` stratagems) has an unknown game mode,\n  not the standard one.\n- **Rows can repeat.** `datasheets_keywords` holds 16 358 rows but 12 172 different ones, and a datasheet's points\n  rows can appear twice, between header rows such as `YOUR UNIT COSTS` with an empty `cost`. Use `DISTINCT` when you\n  list or count.\n- **Model profiles.** A datasheet can have several rows in `datasheets_models` (one per kind of model, by `line`);\n  keep all profiles of a unit together when they differ. Filter units by their keywords or an `EXISTS` condition,\n  then return all profiles of those units; filtering model rows to one characteristic hides mixed-profile units.\n- Some `datasheets_abilities.type` values are leftovers of the export in Russian (for example\n  `Special (правая колонка)`); treat them as other datasheet abilities. The datasheet `Example Wargear` is a\n  placeholder (`virtual = 'true'`).\n\n## Examples\n\nAll examples run as written; replace the names and IDs.\n\n1. A unit's model profiles, with its faction and source:\n\n```sql\nSELECT d.name, f.name AS faction, m.name AS model, m.m, m.t, m.sv, m.invSv, m.w, m.ld, m.oc,\n       s.name AS source, s.edition\nFROM datasheets d\nJOIN factions f ON f.Id = d.factionId\nJOIN datasheets_models m ON m.DatasheetId = d.Id\nLEFT JOIN source s ON s.Id = d.sourceId\nWHERE d.name = 'Intercessor Squad' AND d.factionId = 'SM'\nORDER BY CAST(m.line AS INTEGER);\n```\n\n2. A category: Space Marine Battleline units, Legends excluded. Use one query for representative units across\n   the observed Toughness values. It ranks units with mixed profiles first, chooses at most two representatives\n   per value, then returns every profile of each chosen unit. This is a sample even if `truncated` is false.\n   Keep `source` and `edition` as the publication column names:\n\n```sql\nWITH category_profiles AS (\n  SELECT DISTINCT d.Id, d.name, s.name AS source, s.edition,\n                  m.line, m.name AS model, m.t\n  FROM datasheets d\n  JOIN datasheets_models m ON m.DatasheetId = d.Id\n  LEFT JOIN source s ON s.Id = d.sourceId\n  WHERE d.factionId = 'SM'\n    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Battleline')\n    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')\n),\nunit_variants AS (\n  SELECT Id, COUNT(DISTINCT t) AS toughness_values\n  FROM category_profiles\n  GROUP BY Id\n),\nranked AS (\n  SELECT p.Id, p.name, p.source, p.edition, p.t,\n         ROW_NUMBER() OVER (\n           PARTITION BY p.t\n           ORDER BY v.toughness_values DESC, p.name, p.Id\n         ) AS representative\n  FROM (\n    SELECT DISTINCT Id, name, source, edition, t FROM category_profiles\n  ) p\n  JOIN unit_variants v ON v.Id = p.Id\n),\nselected AS (\n  SELECT DISTINCT Id, name, source, edition\n  FROM ranked\n  WHERE representative <= 2\n)\nSELECT s.Id, s.name, s.source, s.edition,\n       GROUP_CONCAT(p.model || ': T' || p.t, '; ') AS profiles\nFROM selected s\nJOIN category_profiles p ON p.Id = s.Id\nGROUP BY s.Id, s.name, s.source, s.edition\nORDER BY s.name, s.Id;\n```\n\nFor an overall distribution, query the complete category separately, grouping by publication and edition.\n`model_profiles` counts distinct datasheet/model-line profiles, not individual miniatures; `datasheets` counts\ndistinct units having that Toughness. A mixed-profile unit can appear in multiple Toughness groups, so do not\nsum these unit counts to obtain a total. No LIMIT is applied before this aggregation. A truncated aggregate\nresult is still incomplete; narrow its publication/category scope before making overall claims:\n\n```sql\nWITH profiles AS (\n  SELECT DISTINCT d.Id, m.line, m.t, s.Id AS source_id, s.name AS source, s.edition\n  FROM datasheets d\n  JOIN datasheets_models m ON m.DatasheetId = d.Id\n  LEFT JOIN source s ON s.Id = d.sourceId\n  WHERE d.factionId = 'SM'\n    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Battleline')\n    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')\n)\nSELECT source_id, source, edition, t, COUNT(*) AS model_profiles, COUNT(DISTINCT Id) AS datasheets\nFROM profiles\nGROUP BY source_id, source, edition, t\nORDER BY source, edition, CAST(t AS INTEGER), t;\n```\n\n3. A unit's weapons:\n\n```sql\nSELECT w.name, w.range, w.type, w.a, w.bsWs, w.s, w.ap, w.d, w.description\nFROM datasheets_wargear w\nWHERE w.DatasheetId = '000001157'  -- Intercessor Squad (SM)\nORDER BY CAST(w.line AS INTEGER), CAST(w.lineInWargear AS INTEGER);\n```\n\n4. A unit's abilities, from both places, one row per ability:\n\n```sql\nSELECT da.type,\n       COALESCE(a.name, da.name)               AS ability_name,\n       COALESCE(a.description, da.description) AS ability_text\nFROM datasheets_abilities da\nLEFT JOIN (SELECT DISTINCT Id, name, description FROM abilities) a ON a.Id = da.abilityId\nWHERE da.DatasheetId = '000000070'  -- Tactical Squad (SM)\nORDER BY CAST(da.line AS INTEGER);\n```\n\n5. A core stratagem's text, in every form, and the units that have the keyword its target needs:\n\n```sql\nSELECT name, type, cpCost, turn, phase, description\nFROM stratagems\nWHERE name = 'GRENADE' AND FactionId = '';\n```\n\n```sql\nSELECT DISTINCT d.name\nFROM datasheets d\nJOIN datasheets_keywords k ON k.DatasheetId = d.Id AND k.keyword = 'Grenades'\nWHERE d.factionId = 'SM'\nORDER BY d.name;\n```\n\n6. The stratagems of a unit's own faction, with their detachment and game mode (`game_mode`: empty = the standard\n   game, `Boarding Actions`, or `NULL` when the detachment is not in `detachments`):\n\n```sql\nSELECT s.name, s.FactionId AS faction, s.type, s.detachment, dt.type AS game_mode, s.cpCost, s.phase\nFROM datasheets d\nJOIN datasheets_stratagems ds ON ds.DatasheetId = d.Id\nJOIN stratagems s ON s.id = ds.stratagemId AND s.FactionId = d.factionId\nLEFT JOIN detachments dt ON dt.Id = s.detachmentId\nWHERE d.Id = '000001157'  -- Intercessor Squad (SM)\nORDER BY dt.type, s.detachment, s.name;\n```\n\n7. A unit's keywords:\n\n```sql\nSELECT DISTINCT keyword, model, isFactionKeyword\nFROM datasheets_keywords\nWHERE DatasheetId = '000000070'  -- Tactical Squad (SM)\nORDER BY isFactionKeyword DESC, keyword;\n```\n\n8. A faction's detachments, with their rules:\n\n```sql\nSELECT dt.name AS detachment, da.name AS rule, da.description\nFROM detachments dt\nLEFT JOIN detachment_abilities da ON da.detachmentId = dt.Id\nWHERE dt.factionId = 'SM'\nORDER BY dt.name;\n```\n\n9. The units a leader can lead:\n\n```sql\nSELECT attached.name\nFROM datasheets leader\nJOIN datasheets_leader l ON l.LeaderId = leader.Id\nJOIN datasheets attached ON attached.Id = l.attachedId\nWHERE leader.Id = '000000073'  -- Captain (SM)\nORDER BY attached.name;\n```\n\n10. A unit's points:\n\n```sql\nSELECT DISTINCT description AS unit_size, cost\nFROM datasheets_models_cost\nWHERE DatasheetId = '000001157' AND cost != ''  -- Intercessor Squad (SM)\nORDER BY CAST(cost AS INTEGER);\n```\n",
+  "final_prompt": "You are a rules assistant for Warhammer 40,000. You answer from two sources: the Core Rules (10th edition) and a database of datasheets, weapons, stratagems, factions and detachments.\n\n## Tools are spent\n\nThe tool budget for this question is spent: no tool can be called any more. Answer now, from the tool results above. Where they are not enough, give what they show and say what is missing.\n\n## Answering\n\n- Answer only from the tool results of this conversation. If a search does not supply the necessary passage, search again with a specific rule or section name while tools remain. If it is still missing, say what the retrieved passages do not establish and what you searched. Unsuccessful retrieval never proves that the rulebook has no such rule. Do not invent values or fill gaps from general game knowledge.\n- Organize an evidence answer in this order: source/version and scope, including which facts the user supplied and which the tools established; explicit conditions and results in the source's order; then the supported conclusion and any evidence gap. For an if/otherwise rule, preserve every branch and their common timing. Distinguish ways to score from the rule for determining a winner.\n- For a rule or procedure, preserve its cost, timing, eligible target, effect, restrictions and exceptions where the evidence gives them. For how to use a Stratagem, explain its CP payment from the `STRATAGEMS` and `1. COMMAND` sections and illustrate how the card labels WHEN, TARGET, EFFECT and RESTRICTIONS work from the retrieved Stratagem cards; once those sections and cards are retrieved, answer from them without searching again for a separate definition of those card labels. Identify the actor, whose phase it is, every recipient, and quantifiers such as \"both players\" and \"each phase\"; avoid ambiguous pronouns. Do not merge source versions. Give an exception only with its trigger and timing. If you choose an example, attribute it to one source or separate material versions; do not use a joint citation to imply that different versions are identical. An example figure is illustrative, not a datasheet fact about a real unit.\n- Cite every fact: [Core Rules p. N] for the rulebook (p. N–M for a passage over two pages), [DB: table] for the database.\n- Editions: the rulebook is the 10th edition. For a database record, give its edition only when it is recorded: for a datasheet, join `source` and give its name and edition; edition '0' means that none is recorded (a Warhammer Legends or Forge World pack: name it as such). Stratagems, detachments, enhancements and abilities have no source: say that their source is not recorded. Never give one edition to the database as a whole.\n- When evidence contains versions of the same rule, compare costs, timing, targets, effects and restrictions. For an applicability question or follow-up, give a short entry for EACH source: source/version and citation; its explicit conditions; the relevant facts supplied by the user or established by a tool, labelled by origin; any missing facts; and the conclusion supported by that source. These are checkable evidence statements, not a narrative of your reasoning. Preserve who a restriction applies to, including the controlling player. Nonselection, a completed action, and ineligibility are different predicates: none establishes another without cited evidence. Do not import exclusions across sources. An exclusion absent from a retrieved passage proves neither permission nor prohibition; say when that source does not settle the case. Describe material differences, not assumed clarifications.\n- Categories: a broad name such as \"a Space Marine\" is a category, not a unit. Resolve it to a faction and keywords (for example factionId 'SM' with the keyword Battleline or Infantry), leave out Warhammer Legends unless asked, use aggregate counts by publication/edition for a typical value and separate limited examples for exceptions, report the per-publication/edition counts as returned without summing them across publications or editions in prose, and say how you read the question: the units the answer covers and what it leaves out. Do not answer with a question when the results let you answer this way. Name the counting unit (datasheets or model profiles). A truncated example list cannot support an overall distribution.\n- Profiles: a characteristic belongs to a model profile, not to a unit. When a unit you give as an exception has profiles of different values, state every profile/value variant of that exception; never give one profile's characteristic as the value of the whole unit. Cite the table name, not a record ID as though it were a table.\n- Missions: use the page footer to name the mission for both scoring and winner rules. A question about ways to score needs concrete award conditions, amounts and timing; an introduction or a winner rule does not supply them. Search again for victory points and objective control only if no mission scoring rule has been retrieved yet; once a mission's scoring rule is present, answer from it without further searches for generic examples. Keep mission-specific scoring separate from generic examples and winner conditions. Preserve the source's shared timing and all ordered winner branches, including the destroyed-army condition, otherwise VP comparison and tie. State any remaining evidence gap.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+  "final_instruction": "Tools are no longer available. Answer now in text, from the tool results above; if they are not enough, say what is missing.",
+  "model_settings": {
+   "model": "gemini-3.8-flash",
+   "temperature": null,
+   "frequency_penalty": null,
+   "presence_penalty": null,
+   "top_p": null,
+   "top_k": null,
+   "max_output_tokens": null,
+   "n": 1,
+   "safety_settings": null,
+   "response_modalities": null,
+   "media_resolution": null,
+   "thinking_budget": null,
+   "include_thoughts": null,
+   "thinking_level": null,
+   "thinking_config": null,
+   "image_config": null
+  },
+  "tools": [
+   {
+    "type": "function",
+    "function": {
+     "name": "search_rules",
+     "description": "Search the Core Rules: how the game works (phases, actions, keywords, terrain). Retrieved Stratagem sections also include exact-name core database records when found.",
+     "parameters": {
+      "properties": {
+       "query": {
+        "description": "In English, with the rulebook's terms, whatever the question's language.",
+        "type": "string"
+       }
+      },
+      "required": [
+       "query"
+      ],
+      "type": "object"
+     }
+    }
+   },
+   {
+    "type": "function",
+    "function": {
+     "name": "run_sql",
+     "description": "Query units, weapons, abilities, stratagems, detachments and factions with read-only SQL.",
+     "parameters": {
+      "properties": {
+       "sql": {
+        "description": "One SQLite SELECT or WITH query that follows the database schema.",
+        "type": "string"
+       }
+      },
+      "required": [
+       "sql"
+      ],
+      "type": "object"
+     }
+    }
+   }
+  ],
+  "messages": [
+   {
+    "type": "human",
+    "data": {
+     "content": "From the perspective of a wargame strategist aiming to optimize unit performance and maintain tactical control, what is the precise role of a unit's Leadership characteristic during the Battle-shock test, and what are the direct implications for units that fail this test due to their Leadership value?",
+     "additional_kwargs": {},
+     "response_metadata": {},
+     "type": "human",
+     "name": null,
+     "id": "22a071bc-3dc2-4f45-9cde-6c664cd24502"
+    }
+   },
+   {
+    "type": "ai",
+    "data": {
+     "content": [],
+     "additional_kwargs": {
+      "function_call": {
+       "name": "search_rules",
+       "arguments": "{\"query\": \"Battle-shock test Leadership\"}"
+      },
+      "__gemini_function_call_thought_signatures__": {
+       "call_1172347": "ErYECrMEAWkUfROp79hZUhUXHf8tAj7tSJ24S1lZQVDhdAU2ZtkvDPa4SDrUQG34149EyPoyIn75ovkq3iNnfaeWne316H0zRVY9/4Ppy8jWrJxCuxX1wAR/taC2davVDRLUUsMWnlpCb2BwBysz675tCRMdCMQUIUTQKqs4OkHbthViouyV1p7ZjX861ggcX5pVFeYQYklo86q4H+uPTzG/AFcWrQ1ELaBocHYzLlWKpG4aNjxUI4P/NNWVUzjZYC0gkF9XktUGB+NL9DbEskoasZtYGphsFIaa67huQTAa8ZUNvYSmUn+oCMQxUt19veCQUTcwkOk9M826uSnKJKAKQY/yx9ZHABuU5ZCQ5gsJyfIHWVlUDrIvYarTmJlm6FtfoWJQBTdgk3LVp2aOn1Jsjr0/ABu4wYPSN800AZRk/tJ1viUNKhrGbYVHP2gwL3DfXBY/gA5+QvKBfsv93CRR6Ns/VZrGyol8RMyMyQLwrlSJp3etvE+yRYtglLUtDnUgMzTSiAYUsNiiuDlN5URpEPp2+pzrmS/wVcPD+XV1xLOd+i2Rvhg2IwmmbZ+nv8+R7t26u4322PzzNUfFigMvvZGxI9ymzfOl9JFSHxTNqzmc6lUg7xhUZtfelh5KOdCFfBZkJwbrnQogoxKym52TIyMW7N3kfKsGMdUt6/PNN9eAyhLxLJuNPchz2qrNkRPowEEKYM3LBlleF6DNN94iyBoQeqOZ+FuGldPv/TLhZYT0Xj5Zq0I="
+      }
+     },
+     "response_metadata": {
+      "safety_ratings": [],
+      "finish_reason": "STOP",
+      "model_name": "gemini-3.8-flash",
+      "model_provider": "google_genai"
+     },
+     "type": "ai",
+     "name": null,
+     "id": "lc_run--01a16f86-980a-7050-acfc-02304e1819f0",
+     "tool_calls": [
+      {
+       "name": "search_rules",
+       "args": {
+        "query": "Battle-shock test Leadership"
+       },
+       "id": "call_1172347",
+       "type": "tool_call"
+      }
+     ],
+     "invalid_tool_calls": [],
+     "usage_metadata": {
+      "input_tokens": 6052,
+      "output_tokens": 105,
+      "total_tokens": 6157,
+      "input_token_details": {
+       "cache_read": 0
+      },
+      "output_token_details": {
+       "reasoning": 85
+      }
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "data": {
+     "content": "[Core Rules p. 11] (page footer p. 11: CORE RULES | COMMAND PHASE)\nSection: 2. BATTLE-SHOCK\nIn this step, you must take a Battle-shock test for each of your units on the battlefield that is Below Half-strength (pg 12). To do so, roll 2D6: if the result is greater than or equal to the best Leadership characteristic in that unit, the test is passed; otherwise, the test is failed and, until the start of your next Command phase, that unit is Battle-shocked.\n\nWhile a unit is Battle-shocked:\n\n- The Objective Control characteristic of all of its models is 0.\n- If it Falls Back, you must take a Desperate Escape test for every model in that unit (pg 14).\n- Its controlling player cannot use Stratagems to affect that unit.\n\nOnce you have taken Battle-shock tests for all of your units that require them, your Command phase ends and you progress to your Movement phase.\n\n- Take a Battle-shock test for each unit from your army on the battlefield that is Below Half-strength.\n- Roll 2D6: if the result is greater than or equal to the unit's Leadership, the test is passed. Otherwise, the unit is Battle-shocked until the start of your next Command phase.\n- Battle-shocked units have an OC of 0 and their controlling player cannot use Stratagems to affect them.\n- Battle-shocked units must take Desperate Escape tests if they Fall Back.\n\nYour Command phase is split into two steps. In the first, both players gain 1 Command point (CP) and you resolve any other Command phase rules; in the second, you test to see if any of your units are Battle-shocked.\n\n[Core Rules p. 38] (page footer p. 38: CORE RULES | DATASHEETS)\nSection: LEADERSHIP TESTS\nIf a rule requires you to take a Leadership test for a unit, roll 2D6: if the total is greater than or equal to the best Leadership characteristic in that unit, that test is passed. Otherwise, it is failed.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: INSANE BRAVERY\n1CP\n\nCORE - EPIC DEED STRATAGEM\n\nIndifferent to their own survival, these warriors hold their ground against seemingly impossible odds.\n\nWHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army (pg 11).\n\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\n\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.\n\n[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nFigure label: B\nSection: Desperate Escape Tests\nUnlike when making other types of move, models can move over enemy models when making a Fall Back move as if those enemy models were not there, but you must take a Desperate Escape test for each model that will do so (excluding models that are Titanic or can Fly) before any models in that unit are moved. In addition, if a unit is Battle-shocked when it is selected to Fall Back, you must take a Desperate Escape test for every model in that unit before any are moved.\n\nEach time you take a Desperate Escape test for a model, roll one D6. For each roll of 1-2, one model from the unit that is Falling Back is destroyed (selected by you). The same model can only ever trigger one Desperate Escape test per phase.\n\n- Fall Back Move: Models move up to M\".\n- Units that Fall Back cannot shoot or declare a charge in the same turn.\n- Models can move over enemy models when Falling Back, but you must take Desperate Escape tests for them before they do so (excluding models that are Titanic or can Fly).\n- If a Battle-shocked unit is selected to Fall Back, take a Desperate Escape test for every model in that unit.\n- Desperate Escape Test: Roll one D6. On a 1-2, one model from that unit is destroyed.\n\nA The Sternguard Veterans are selected to\n\nmake a Fall Back move, but to do so\n\nthey must move through enemy\n\nmodels, so Desperate Escape tests\n\nare required.\n\nB The controlling player rolls one D6 for\n\neach model that moves through an\n\nenemy unit, resulting in a 1, 2, 4, 4 and\n\n[Core Rules p. 10] (page footer p. 10: CORE RULES | THE BATTLE ROUND)\nFigure label: COMMAND PHASE\nSection: THE BATTLE ROUND > COMMAND PHASE\nBoth players muster strategic resources, then you test your units' battle readiness.\n\n[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: COMMAND RE-ROLL\n1CP\n\nCORE - BATTLE TACTIC STRATAGEM\n\nA great commander can bend even the vagaries of fate and fortune to their will, the better to ensure victory.\n\nWHEN: In any phase, just after you have made a Hit roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate Escape test, a Hazardous test, or just after you have rolled the dice to determine the number of attacks made with a weapon, for an attack, model or unit from your army.\n\nEFFECT: You re-roll that roll, test or saving throw.\n\n[Core Rules p. 38] (page footer p. 38: CORE RULES | DATASHEETS)\nSection: 2 PROFILES\nThese contain the following characteristics that tell you how mighty the models in the unit are:\n\nMove (M): This is the speed at which a model moves across the battlefield. If a model has a Move of '-' it is unable to move at all.\n\nToughness (T): This reflects the model's resilience against physical harm.\n\nSave (Sv): This indicates the protection a model's armour gives them.\n\nWounds (W): Wounds represent how much damage a model can sustain before it succumbs to its injuries. If a model's Wounds characteristic is reduced to 0, that model is destroyed.\n\nLeadership (Ld): This reveals how courageous, determined or self-controlled a model is. The lower this number, the better a model's Leadership is.\n\nObjective Control (OC): This shows how effectively a model can exert control over an objective on the battlefield.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: TANK SHOCK\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nRamming the foe with a speeding vehicle may be an unsubtle tactic, but it is a murderously effective one.\n\nWHEN: Your Charge phase.\n\nTARGET: One Vehicle unit from your army.\n\nEFFECT: Until the end of the phase, after your unit ends a Charge move, select one enemy unit within Engagement Range of it, then select one melee weapon your unit is equipped with. Roll a number of D6 equal to that weapon's Strength characteristic. If that Strength characteristic is greater than that enemy unit's Toughness characteristic, roll two additional D6. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"INSANE BRAVERY\", \"COMMAND RE-ROLL\", \"TANK SHOCK\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335002\", \"COMMAND RE-ROLL\", \"\", \"Core – Battle Tactic Stratagem\", \"1\", \"Either player’s turn\", \"Any phase\", \"\", \"WHEN: Any phase, just after you make an Advance roll, a Charge roll, a Desperate Escape test or a Hazardous test for a unit from your army, or a Hit roll, a Wound roll, a Damage roll or a saving throw for a model in that unit, or a roll to determine the number of attacks made with a weapon equipped by a model in that unit. If you are using fast dice rolling, this Stratagem can still be used after rolling multiple rolls or saving throws at once.\\nTARGET: That unit or model from your army.\\nEFFECT: You re-roll that roll, test or saving throw. If you are using fast dice rolling, select one of those rolls or saving throws to re-roll.\"], [\"000009218002\", \"COMMAND RE-ROLL\", \"\", \"Boarding Actions – Epic Deed Stratagem\", \"1\", \"Either player’s turn\", \"Any phase\", \"\", \"WHEN: Any phase, just after you have made a Hit roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate Escape test, a Hazardous test, or just after you have rolled the dice to determine the number of attacks made with a weapon, for an attack, model or unit from your army.\\nTARGET: That unit or model from your army.\\nEFFECT: You re-roll that roll, test or saving throw.\"], [\"000010810002\", \"COMMAND RE-ROLL\", \"\", \"Core Stratagem\", \"1\", \"Either player’s turn\", \"Any phase\", \"\", \"WHEN: Any phase, just after you make one of the following rolls for a friendly unit or model:Advance rollCharge rollDamage rollHazard rollHit rollSave rollWound rollA roll to determine the number of attacks generated with a weapon.\\nTARGET: That unit or model.\\nEFFECT: You re-roll that roll. If you are rolling more than one dice together, select one of those dice to re-roll (excluding charge rolls, which you must re-roll in full).\"], [\"000008335005\", \"INSANE BRAVERY\", \"\", \"Core – Epic Deed Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just before you take a Battle-shock test for a unit from your army.\\nTARGET: That unit from your army.\\nEFFECT: Your unit automatically passes that Battle-shock test.\\nRESTRICTIONS: You cannot use this Stratagem more than once per battle.\"], [\"000009218005\", \"INSANE BRAVERY\", \"\", \"Boarding Actions – Epic Deed Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army.\\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.\"], [\"000010810004\", \"INSANE BRAVERY\", \"\", \"Core Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just before you make a battle-shock roll for a friendly unit.\\nTARGET: That unit.\\nEFFECT: That battle-shock roll is automatically successful.\\nRESTRICTIONS: You cannot use this stratagem more than once per battle.\"], [\"000008335007\", \"TANK SHOCK\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Your turn\", \"Charge phase\", \"\", \"WHEN: Your Charge phase, just after a VEHICLE unit from your army ends a Charge move.\\nTARGET: That VEHICLE unit.\\nEFFECT: Select one enemy unit within Engagement Range of your unit, and select one VEHICLE model in your unit that is within Engagement Range of that enemy unit. Roll a number of D6 equal to the Toughness characteristic of the selected VEHICLE model. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+     "additional_kwargs": {},
+     "response_metadata": {},
+     "type": "tool",
+     "name": "search_rules",
+     "id": "194b4286-a44c-4409-8c2c-66c610a3f2d2",
+     "tool_call_id": "call_1172347",
+     "artifact": {
+      "chunks": [
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0036",
+         "text": "Section: 2. BATTLE-SHOCK\nIn this step, you must take a Battle-shock test for each of your units on the battlefield that is Below Half-strength (pg 12). To do so, roll 2D6: if the result is greater than or equal to the best Leadership characteristic in that unit, the test is passed; otherwise, the test is failed and, until the start of your next Command phase, that unit is Battle-shocked.\n\nWhile a unit is Battle-shocked:\n\n- The Objective Control characteristic of all of its models is 0.\n- If it Falls Back, you must take a Desperate Escape test for every model in that unit (pg 14).\n- Its controlling player cannot use Stratagems to affect that unit.\n\nOnce you have taken Battle-shock tests for all of your units that require them, your Command phase ends and you progress to your Movement phase.\n\n- Take a Battle-shock test for each unit from your army on the battlefield that is Below Half-strength.\n- Roll 2D6: if the result is greater than or equal to the unit's Leadership, the test is passed. Otherwise, the unit is Battle-shocked until the start of your next Command phase.\n- Battle-shocked units have an OC of 0 and their controlling player cannot use Stratagems to affect them.\n- Battle-shocked units must take Desperate Escape tests if they Fall Back.\n\nYour Command phase is split into two steps. In the first, both players gain 1 Command point (CP) and you resolve any other Command phase rules; in the second, you test to see if any of your units are Battle-shocked.",
+         "pages": [
+          11
+         ],
+         "section": "2. BATTLE-SHOCK",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | COMMAND PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03278688524590164
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0145",
+         "text": "Section: LEADERSHIP TESTS\nIf a rule requires you to take a Leadership test for a unit, roll 2D6: if the total is greater than or equal to the best Leadership characteristic in that unit, that test is passed. Otherwise, it is failed.",
+         "pages": [
+          38
+         ],
+         "section": "LEADERSHIP TESTS",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | DATASHEETS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03200204813108039
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0160",
+         "text": "Section: INSANE BRAVERY\n1CP\n\nCORE - EPIC DEED STRATAGEM\n\nIndifferent to their own survival, these warriors hold their ground against seemingly impossible odds.\n\nWHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army (pg 11).\n\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\n\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.",
+         "pages": [
+          42
+         ],
+         "section": "INSANE BRAVERY",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/96"
+         ],
+         "page_footers": [
+          "CORE RULES | STRATAGEMS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03200204813108039
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0050",
+         "text": "Figure label: B\nSection: Desperate Escape Tests\nUnlike when making other types of move, models can move over enemy models when making a Fall Back move as if those enemy models were not there, but you must take a Desperate Escape test for each model that will do so (excluding models that are Titanic or can Fly) before any models in that unit are moved. In addition, if a unit is Battle-shocked when it is selected to Fall Back, you must take a Desperate Escape test for every model in that unit before any are moved.\n\nEach time you take a Desperate Escape test for a model, roll one D6. For each roll of 1-2, one model from the unit that is Falling Back is destroyed (selected by you). The same model can only ever trigger one Desperate Escape test per phase.\n\n- Fall Back Move: Models move up to M\".\n- Units that Fall Back cannot shoot or declare a charge in the same turn.\n- Models can move over enemy models when Falling Back, but you must take Desperate Escape tests for them before they do so (excluding models that are Titanic or can Fly).\n- If a Battle-shocked unit is selected to Fall Back, take a Desperate Escape test for every model in that unit.\n- Desperate Escape Test: Roll one D6. On a 1-2, one model from that unit is destroyed.\n\nA The Sternguard Veterans are selected to\n\nmake a Fall Back move, but to do so\n\nthey must move through enemy\n\nmodels, so Desperate Escape tests\n\nare required.\n\nB The controlling player rolls one D6 for\n\neach model that moves through an\n\nenemy unit, resulting in a 1, 2, 4, 4 and",
+         "pages": [
+          14
+         ],
+         "section": "Desperate Escape Tests",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/30"
+         ],
+         "page_footers": [
+          "CORE RULES | MOVEMENT PHASE"
+         ],
+         "picture_labels": [
+          "B"
+         ]
+        },
+        "score": 0.030776515151515152
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0029",
+         "text": "Figure label: COMMAND PHASE\nSection: THE BATTLE ROUND > COMMAND PHASE\nBoth players muster strategic resources, then you test your units' battle readiness.",
+         "pages": [
+          10
+         ],
+         "section": "THE BATTLE ROUND > COMMAND PHASE",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/20"
+         ],
+         "page_footers": [
+          "CORE RULES | THE BATTLE ROUND"
+         ],
+         "picture_labels": [
+          "COMMAND PHASE"
+         ]
+        },
+        "score": 0.029910714285714284
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0157",
+         "text": "Section: COMMAND RE-ROLL\n1CP\n\nCORE - BATTLE TACTIC STRATAGEM\n\nA great commander can bend even the vagaries of fate and fortune to their will, the better to ensure victory.\n\nWHEN: In any phase, just after you have made a Hit roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate Escape test, a Hazardous test, or just after you have rolled the dice to determine the number of attacks made with a weapon, for an attack, model or unit from your army.\n\nEFFECT: You re-roll that roll, test or saving throw.",
+         "pages": [
+          41
+         ],
+         "section": "COMMAND RE-ROLL",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/93"
+         ],
+         "page_footers": [
+          "CORE RULES | STRATAGEMS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.029877369007803793
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0139",
+         "text": "Section: 2 PROFILES\nThese contain the following characteristics that tell you how mighty the models in the unit are:\n\nMove (M): This is the speed at which a model moves across the battlefield. If a model has a Move of '-' it is unable to move at all.\n\nToughness (T): This reflects the model's resilience against physical harm.\n\nSave (Sv): This indicates the protection a model's armour gives them.\n\nWounds (W): Wounds represent how much damage a model can sustain before it succumbs to its injuries. If a model's Wounds characteristic is reduced to 0, that model is destroyed.\n\nLeadership (Ld): This reveals how courageous, determined or self-controlled a model is. The lower this number, the better a model's Leadership is.\n\nObjective Control (OC): This shows how effectively a model can exert control over an objective on the battlefield.",
+         "pages": [
+          38
+         ],
+         "section": "2 PROFILES",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/79"
+         ],
+         "page_footers": [
+          "CORE RULES | DATASHEETS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.029857397504456328
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0162",
+         "text": "Section: TANK SHOCK\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nRamming the foe with a speeding vehicle may be an unsubtle tactic, but it is a murderously effective one.\n\nWHEN: Your Charge phase.\n\nTARGET: One Vehicle unit from your army.\n\nEFFECT: Until the end of the phase, after your unit ends a Charge move, select one enemy unit within Engagement Range of it, then select one melee weapon your unit is equipped with. Roll a number of D6 equal to that weapon's Strength characteristic. If that Strength characteristic is greater than that enemy unit's Toughness characteristic, roll two additional D6. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).",
+         "pages": [
+          42
+         ],
+         "section": "TANK SHOCK",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/98"
+         ],
+         "page_footers": [
+          "CORE RULES | STRATAGEMS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.02817460317460317
+       }
+      ],
+      "stratagem_names": [
+       "INSANE BRAVERY",
+       "COMMAND RE-ROLL",
+       "TANK SHOCK"
+      ],
+      "stratagems": {
+       "columns": [
+        "id",
+        "name",
+        "FactionId",
+        "type",
+        "cpCost",
+        "turn",
+        "phase",
+        "detachment",
+        "description"
+       ],
+       "rows": [
+        [
+         "000008335002",
+         "COMMAND RE-ROLL",
+         "",
+         "Core – Battle Tactic Stratagem",
+         "1",
+         "Either player’s turn",
+         "Any phase",
+         "",
+         "WHEN: Any phase, just after you make an Advance roll, a Charge roll, a Desperate Escape test or a Hazardous test for a unit from your army, or a Hit roll, a Wound roll, a Damage roll or a saving throw for a model in that unit, or a roll to determine the number of attacks made with a weapon equipped by a model in that unit. If you are using fast dice rolling, this Stratagem can still be used after rolling multiple rolls or saving throws at once.\nTARGET: That unit or model from your army.\nEFFECT: You re-roll that roll, test or saving throw. If you are using fast dice rolling, select one of those rolls or saving throws to re-roll."
+        ],
+        [
+         "000009218002",
+         "COMMAND RE-ROLL",
+         "",
+         "Boarding Actions – Epic Deed Stratagem",
+         "1",
+         "Either player’s turn",
+         "Any phase",
+         "",
+         "WHEN: Any phase, just after you have made a Hit roll, a Wound roll, a Damage roll, a saving throw, an Advance roll, a Charge roll, a Desperate Escape test, a Hazardous test, or just after you have rolled the dice to determine the number of attacks made with a weapon, for an attack, model or unit from your army.\nTARGET: That unit or model from your army.\nEFFECT: You re-roll that roll, test or saving throw."
+        ],
+        [
+         "000010810002",
+         "COMMAND RE-ROLL",
+         "",
+         "Core Stratagem",
+         "1",
+         "Either player’s turn",
+         "Any phase",
+         "",
+         "WHEN: Any phase, just after you make one of the following rolls for a friendly unit or model:Advance rollCharge rollDamage rollHazard rollHit rollSave rollWound rollA roll to determine the number of attacks generated with a weapon.\nTARGET: That unit or model.\nEFFECT: You re-roll that roll. If you are rolling more than one dice together, select one of those dice to re-roll (excluding charge rolls, which you must re-roll in full)."
+        ],
+        [
+         "000008335005",
+         "INSANE BRAVERY",
+         "",
+         "Core – Epic Deed Stratagem",
+         "1",
+         "Your turn",
+         "Command phase",
+         "",
+         "WHEN: Battle-shock step of your Command phase, just before you take a Battle-shock test for a unit from your army.\nTARGET: That unit from your army.\nEFFECT: Your unit automatically passes that Battle-shock test.\nRESTRICTIONS: You cannot use this Stratagem more than once per battle."
+        ],
+        [
+         "000009218005",
+         "INSANE BRAVERY",
+         "",
+         "Boarding Actions – Epic Deed Stratagem",
+         "1",
+         "Your turn",
+         "Command phase",
+         "",
+         "WHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army.\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result."
+        ],
+        [
+         "000010810004",
+         "INSANE BRAVERY",
+         "",
+         "Core Stratagem",
+         "1",
+         "Your turn",
+         "Command phase",
+         "",
+         "WHEN: Battle-shock step of your Command phase, just before you make a battle-shock roll for a friendly unit.\nTARGET: That unit.\nEFFECT: That battle-shock roll is automatically successful.\nRESTRICTIONS: You cannot use this stratagem more than once per battle."
+        ],
+        [
+         "000008335007",
+         "TANK SHOCK",
+         "",
+         "Core – Strategic Ploy Stratagem",
+         "1",
+         "Your turn",
+         "Charge phase",
+         "",
+         "WHEN: Your Charge phase, just after a VEHICLE unit from your army ends a Charge move.\nTARGET: That VEHICLE unit.\nEFFECT: Select one enemy unit within Engagement Range of your unit, and select one VEHICLE model in your unit that is within Engagement Range of that enemy unit. Roll a number of D6 equal to the Toughness characteristic of the selected VEHICLE model. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds)."
+        ]
+       ],
+       "truncated": false,
+       "error": null
+      },
+      "related_sections": []
+     },
+     "status": "success"
+    }
+   },
+   {
+    "type": "ai",
+    "data": {
+     "content": [],
+     "additional_kwargs": {
+      "function_call": {
+       "name": "search_rules",
+       "arguments": "{\"query\": \"Below Half-strength Battle-shock\"}"
+      },
+      "__gemini_function_call_thought_signatures__": {
+       "call_807451": "EogCCoUCAWkUfRPemB0P7762fESQ/YHn75Jtm2Eho3egymmYxegb7egg6eHv9YKeZVecH0moCivXBRq/kDtrTy8M1yXzRAA7B9zSaaKSm4Dx4p7ayNzNjS6MoLPFFdXq2sSoUOnHf80Haa/JW8S4o3JR/Ld4udWB3m1LAiVtoZXh/+TR5zjsZHs2mhOqFYQ7HPzGv4Jaq91+7ccvNQ7rNqVOUEoZgbBQesah+eGJ5rbnSx5HPWlDSx6WkmXRPuZp93MEVqZMnqIpdZGn9vTJUstPe7BHJyLzPhh76KG87LwUlHLeIaZhejGdimyKMxHH7oJ1agKosEryI8mYKFXIeNHnhfVdcdVNj0tU"
+      }
+     },
+     "response_metadata": {
+      "safety_ratings": [],
+      "finish_reason": "STOP",
+      "model_name": "gemini-3.8-flash",
+      "model_provider": "google_genai"
+     },
+     "type": "ai",
+     "name": null,
+     "id": "lc_run--01a16f86-b01c-7a71-8713-293706b03108",
+     "tool_calls": [
+      {
+       "name": "search_rules",
+       "args": {
+        "query": "Below Half-strength Battle-shock"
+       },
+       "id": "call_807451",
+       "type": "tool_call"
+      }
+     ],
+     "invalid_tool_calls": [],
+     "usage_metadata": {
+      "input_tokens": 8995,
+      "output_tokens": 51,
+      "total_tokens": 9046,
+      "input_token_details": {
+       "cache_read": 0
+      },
+      "output_token_details": {
+       "reasoning": 29
+      }
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "data": {
+     "content": "[Core Rules p. 12] (page footer p. 12: CORE RULES | COMMAND PHASE)\nSection: BELOW HALF-STRENGTH\nSome rules will refer to a unit being Below Half-strength.\n\n- If a unit has a Starting Strength of 1, then it is said to be Below Half-strength while its remaining number of wounds is less than half of its Wounds characteristic.\n- For any other unit, while the number of models in that unit is less than half of its Starting Strength, that unit is said to be Below Half-strength.\n\n[Core Rules p. 11] (page footer p. 11: CORE RULES | COMMAND PHASE)\nSection: 2. BATTLE-SHOCK\nIn this step, you must take a Battle-shock test for each of your units on the battlefield that is Below Half-strength (pg 12). To do so, roll 2D6: if the result is greater than or equal to the best Leadership characteristic in that unit, the test is passed; otherwise, the test is failed and, until the start of your next Command phase, that unit is Battle-shocked.\n\nWhile a unit is Battle-shocked:\n\n- The Objective Control characteristic of all of its models is 0.\n- If it Falls Back, you must take a Desperate Escape test for every model in that unit (pg 14).\n- Its controlling player cannot use Stratagems to affect that unit.\n\nOnce you have taken Battle-shock tests for all of your units that require them, your Command phase ends and you progress to your Movement phase.\n\n- Take a Battle-shock test for each unit from your army on the battlefield that is Below Half-strength.\n- Roll 2D6: if the result is greater than or equal to the unit's Leadership, the test is passed. Otherwise, the unit is Battle-shocked until the start of your next Command phase.\n- Battle-shocked units have an OC of 0 and their controlling player cannot use Stratagems to affect them.\n- Battle-shocked units must take Desperate Escape tests if they Fall Back.\n\nYour Command phase is split into two steps. In the first, both players gain 1 Command point (CP) and you resolve any other Command phase rules; in the second, you test to see if any of your units are Battle-shocked.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: INSANE BRAVERY\n1CP\n\nCORE - EPIC DEED STRATAGEM\n\nIndifferent to their own survival, these warriors hold their ground against seemingly impossible odds.\n\nWHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army (pg 11).\n\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\n\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.\n\n[Core Rules p. 21] (page footer p. 21: CORE RULES | MAKING ATTACKS)\nSection: 2. WOUND ROLL\n| WOUND ROLL ATTACK'S STRENGTH VS TARGET'S TOUGHNESS    | D6 RESULT REQUIRED   |\n|-------------------------------------------------------|----------------------|\n| Strength is TWICE (or more than twice) the Toughness. | 2 +                  |\n| Strength is GREATER than the Toughness.               | 3 +                  |\n| Strength is EQUAL to the Toughness.                   | 4 +                  |\n| Strength is LESS than the Toughness.                  | 5 +                  |\n| Strength is HALF (or less than half) the Toughness.   | 6 +                  |\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: TANK SHOCK\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nRamming the foe with a speeding vehicle may be an unsubtle tactic, but it is a murderously effective one.\n\nWHEN: Your Charge phase.\n\nTARGET: One Vehicle unit from your army.\n\nEFFECT: Until the end of the phase, after your unit ends a Charge move, select one enemy unit within Engagement Range of it, then select one melee weapon your unit is equipped with. Roll a number of D6 equal to that weapon's Strength characteristic. If that Strength characteristic is greater than that enemy unit's Toughness characteristic, roll two additional D6. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).\n\n[Core Rules p. 43] (page footer p. 43: CORE RULES | STRATEGIC RESERVES)\nSection: PLACING UNITS INTO STRATEGIC RESERVES\nBefore the battle, when you are instructed to Declare Battle Formations, you can select one or more units from your army to be placed into Strategic Reserves (excluding Fortifications).\n\nThe combined points value of all the units you wish to place into Strategic Reserves before the battle (including those embarked within Transport models that are themselves placed into Strategic Reserves) cannot exceed 25% of your total points limit for your chosen battle size, as shown in the table below.\n\n[Core Rules p. 21] (page footer p. 21: CORE RULES | MAKING ATTACKS)\nSection: 2. WOUND ROLL\nEach time an attack scores a hit against a target unit, make a Wound roll for that attack by rolling one D6 to see if that attack successfully wounds the target unit. The result required is determined by comparing the attack's Strength (S) characteristic with the target's Toughness (T) characteristic, as shown below.\n\n[Core Rules p. 39] (page footer p. 39: CORE RULES | DEPLOYMENT ABILITIES)\nSection: DEPLOYMENT ABILITIES\nSome abilities are used during deployment, or when setting a unit up - either on the battlefield or into Reserves. These are known as Deployment abilities, and some widespread examples of these are presented below.\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"INSANE BRAVERY\", \"TANK SHOCK\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335005\", \"INSANE BRAVERY\", \"\", \"Core – Epic Deed Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just before you take a Battle-shock test for a unit from your army.\\nTARGET: That unit from your army.\\nEFFECT: Your unit automatically passes that Battle-shock test.\\nRESTRICTIONS: You cannot use this Stratagem more than once per battle.\"], [\"000009218005\", \"INSANE BRAVERY\", \"\", \"Boarding Actions – Epic Deed Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army.\\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.\"], [\"000010810004\", \"INSANE BRAVERY\", \"\", \"Core Stratagem\", \"1\", \"Your turn\", \"Command phase\", \"\", \"WHEN: Battle-shock step of your Command phase, just before you make a battle-shock roll for a friendly unit.\\nTARGET: That unit.\\nEFFECT: That battle-shock roll is automatically successful.\\nRESTRICTIONS: You cannot use this stratagem more than once per battle.\"], [\"000008335007\", \"TANK SHOCK\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Your turn\", \"Charge phase\", \"\", \"WHEN: Your Charge phase, just after a VEHICLE unit from your army ends a Charge move.\\nTARGET: That VEHICLE unit.\\nEFFECT: Select one enemy unit within Engagement Range of your unit, and select one VEHICLE model in your unit that is within Engagement Range of that enemy unit. Roll a number of D6 equal to the Toughness characteristic of the selected VEHICLE model. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+     "additional_kwargs": {},
+     "response_metadata": {},
+     "type": "tool",
+     "name": "search_rules",
+     "id": "7a600087-d052-44e5-abaf-56f613d87b9f",
+     "tool_call_id": "call_807451",
+     "artifact": {
+      "chunks": [
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0039",
+         "text": "Section: BELOW HALF-STRENGTH\nSome rules will refer to a unit being Below Half-strength.\n\n- If a unit has a Starting Strength of 1, then it is said to be Below Half-strength while its remaining number of wounds is less than half of its Wounds characteristic.\n- For any other unit, while the number of models in that unit is less than half of its Starting Strength, that unit is said to be Below Half-strength.",
+         "pages": [
+          12
+         ],
+         "section": "BELOW HALF-STRENGTH",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | COMMAND PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03278688524590164
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0036",
+         "text": "Section: 2. BATTLE-SHOCK\nIn this step, you must take a Battle-shock test for each of your units on the battlefield that is Below Half-strength (pg 12). To do so, roll 2D6: if the result is greater than or equal to the best Leadership characteristic in that unit, the test is passed; otherwise, the test is failed and, until the start of your next Command phase, that unit is Battle-shocked.\n\nWhile a unit is Battle-shocked:\n\n- The Objective Control characteristic of all of its models is 0.\n- If it Falls Back, you must take a Desperate Escape test for every model in that unit (pg 14).\n- Its controlling player cannot use Stratagems to affect that unit.\n\nOnce you have taken Battle-shock tests for all of your units that require them, your Command phase ends and you progress to your Movement phase.\n\n- Take a Battle-shock test for each unit from your army on the battlefield that is Below Half-strength.\n- Roll 2D6: if the result is greater than or equal to the unit's Leadership, the test is passed. Otherwise, the unit is Battle-shocked until the start of your next Command phase.\n- Battle-shocked units have an OC of 0 and their controlling player cannot use Stratagems to affect them.\n- Battle-shocked units must take Desperate Escape tests if they Fall Back.\n\nYour Command phase is split into two steps. In the first, both players gain 1 Command point (CP) and you resolve any other Command phase rules; in the second, you test to see if any of your units are Battle-shocked.",
+         "pages": [
+          11
+         ],
+         "section": "2. BATTLE-SHOCK",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | COMMAND PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03225806451612903
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0160",
+         "text": "Section: INSANE BRAVERY\n1CP\n\nCORE - EPIC DEED STRATAGEM\n\nIndifferent to their own survival, these warriors hold their ground against seemingly impossible odds.\n\nWHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army (pg 11).\n\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\n\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result.",
+         "pages": [
+          42
+         ],
+         "section": "INSANE BRAVERY",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/96"
+         ],
+         "page_footers": [
+          "CORE RULES | STRATAGEMS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03149801587301587
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0079",
+         "text": "Section: 2. WOUND ROLL\n| WOUND ROLL ATTACK'S STRENGTH VS TARGET'S TOUGHNESS    | D6 RESULT REQUIRED   |\n|-------------------------------------------------------|----------------------|\n| Strength is TWICE (or more than twice) the Toughness. | 2 +                  |\n| Strength is GREATER than the Toughness.               | 3 +                  |\n| Strength is EQUAL to the Toughness.                   | 4 +                  |\n| Strength is LESS than the Toughness.                  | 5 +                  |\n| Strength is HALF (or less than half) the Toughness.   | 6 +                  |",
+         "pages": [
+          21
+         ],
+         "section": "2. WOUND ROLL",
+         "content_type": "table",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | MAKING ATTACKS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03057889822595705
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0162",
+         "text": "Section: TANK SHOCK\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nRamming the foe with a speeding vehicle may be an unsubtle tactic, but it is a murderously effective one.\n\nWHEN: Your Charge phase.\n\nTARGET: One Vehicle unit from your army.\n\nEFFECT: Until the end of the phase, after your unit ends a Charge move, select one enemy unit within Engagement Range of it, then select one melee weapon your unit is equipped with. Roll a number of D6 equal to that weapon's Strength characteristic. If that Strength characteristic is greater than that enemy unit's Toughness characteristic, roll two additional D6. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).",
+         "pages": [
+          42
+         ],
+         "section": "TANK SHOCK",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/98"
+         ],
+         "page_footers": [
+          "CORE RULES | STRATAGEMS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.030309988518943745
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0169",
+         "text": "Section: PLACING UNITS INTO STRATEGIC RESERVES\nBefore the battle, when you are instructed to Declare Battle Formations, you can select one or more units from your army to be placed into Strategic Reserves (excluding Fortifications).\n\nThe combined points value of all the units you wish to place into Strategic Reserves before the battle (including those embarked within Transport models that are themselves placed into Strategic Reserves) cannot exceed 25% of your total points limit for your chosen battle size, as shown in the table below.",
+         "pages": [
+          43
+         ],
+         "section": "PLACING UNITS INTO STRATEGIC RESERVES",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | STRATEGIC RESERVES"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.02519288301054952
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0078",
+         "text": "Section: 2. WOUND ROLL\nEach time an attack scores a hit against a target unit, make a Wound roll for that attack by rolling one D6 to see if that attack successfully wounds the target unit. The result required is determined by comparing the attack's Strength (S) characteristic with the target's Toughness (T) characteristic, as shown below.",
+         "pages": [
+          21
+         ],
+         "section": "2. WOUND ROLL",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | MAKING ATTACKS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.024766899766899768
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0149",
+         "text": "Section: DEPLOYMENT ABILITIES\nSome abilities are used during deployment, or when setting a unit up - either on the battlefield or into Reserves. These are known as Deployment abilities, and some widespread examples of these are presented below.",
+         "pages": [
+          39
+         ],
+         "section": "DEPLOYMENT ABILITIES",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | DEPLOYMENT ABILITIES"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.02426470588235294
+       }
+      ],
+      "stratagem_names": [
+       "INSANE BRAVERY",
+       "TANK SHOCK"
+      ],
+      "stratagems": {
+       "columns": [
+        "id",
+        "name",
+        "FactionId",
+        "type",
+        "cpCost",
+        "turn",
+        "phase",
+        "detachment",
+        "description"
+       ],
+       "rows": [
+        [
+         "000008335005",
+         "INSANE BRAVERY",
+         "",
+         "Core – Epic Deed Stratagem",
+         "1",
+         "Your turn",
+         "Command phase",
+         "",
+         "WHEN: Battle-shock step of your Command phase, just before you take a Battle-shock test for a unit from your army.\nTARGET: That unit from your army.\nEFFECT: Your unit automatically passes that Battle-shock test.\nRESTRICTIONS: You cannot use this Stratagem more than once per battle."
+        ],
+        [
+         "000009218005",
+         "INSANE BRAVERY",
+         "",
+         "Boarding Actions – Epic Deed Stratagem",
+         "1",
+         "Your turn",
+         "Command phase",
+         "",
+         "WHEN: Battle-shock step of your Command phase, just after you have failed a Battle-shock test taken for a unit from your army.\nTARGET: The unit from your army that Battle-shock test was just taken for (even though your Battle-shocked units cannot normally be affected by your Stratagems).\nEFFECT: Your unit is treated as having passed that test instead, and is not Battle-shocked as a result."
+        ],
+        [
+         "000010810004",
+         "INSANE BRAVERY",
+         "",
+         "Core Stratagem",
+         "1",
+         "Your turn",
+         "Command phase",
+         "",
+         "WHEN: Battle-shock step of your Command phase, just before you make a battle-shock roll for a friendly unit.\nTARGET: That unit.\nEFFECT: That battle-shock roll is automatically successful.\nRESTRICTIONS: You cannot use this stratagem more than once per battle."
+        ],
+        [
+         "000008335007",
+         "TANK SHOCK",
+         "",
+         "Core – Strategic Ploy Stratagem",
+         "1",
+         "Your turn",
+         "Charge phase",
+         "",
+         "WHEN: Your Charge phase, just after a VEHICLE unit from your army ends a Charge move.\nTARGET: That VEHICLE unit.\nEFFECT: Select one enemy unit within Engagement Range of your unit, and select one VEHICLE model in your unit that is within Engagement Range of that enemy unit. Roll a number of D6 equal to the Toughness characteristic of the selected VEHICLE model. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds)."
+        ]
+       ],
+       "truncated": false,
+       "error": null
+      },
+      "related_sections": []
+     },
+     "status": "success"
+    }
+   },
+   {
+    "type": "ai",
+    "data": {
+     "content": [
+      {
+       "type": "text",
+       "text": "Based on the **Core Rules (10th edition)**, here is the role of the Leadership characteristic during a Battle-shock test and the direct consequences of failing it:\n\n---\n\n### 1. The Precise Role of Leadership in a Battle-Shock Test\n\n* **Characteristic Nature:** Leadership ($\\text{Ld}$) reflects how courageous, determined, or self-controlled a model is; the lower the numerical value, the better the Leadership [Core Rules p. 38].\n* **Target Number for the Test:** When a unit must take a Battle-shock test (such as during step 2 of the Command phase when it is Below Half-strength), the controlling player rolls **2D6** [Core Rules p. 11].\n* **Best Characteristic Used:** The rolled total is compared against the **best** (lowest) Leadership characteristic present among the models in that unit [Core Rules p. 11, 38].\n* **Pass / Fail Determination:** \n  * If the 2D6 total is **greater than or equal to** that best Leadership value, the test is **passed** [Core Rules p. 11].\n  * If the 2D6 total is **less than** that value, the test is **failed**, and the unit immediately becomes **Battle-shocked** [Core Rules p. 11].\n\nThus, a model's Leadership value serves as the exact numerical threshold on 2D6 that the roll must match or beat.\n\n---\n\n### 2. Direct Implications of Failing the Test (Becoming Battle-Shocked)\n\nWhen a unit fails its Battle-shock test, it remains **Battle-shocked until the start of its controlling player's next Command phase** [Core Rules p. 11]. While Battle-shocked, the unit suffers three direct operational penalties:\n\n1. **Objective Control Negated:**\n   * The Objective Control ($\\text{OC}$) characteristic of all models in the unit becomes **0** [Core Rules p. 11]. The unit cannot contest or hold objective markers against any enemy presence with an $\\text{OC} > 0$.\n2. **Stratagem Lockout:**\n   * The controlling player **cannot use Stratagems to affect that unit** [Core Rules p. 11] (barring specific exceptions, such as the *Insane Bravery* Stratagem, which specifically targets a unit to reverse the failed test [Core Rules p. 42]).\n3. **Hazardous Fall Back (Desperate Escape Tests):**\n   * If the Battle-shocked unit is selected to **Fall Back**, a **Desperate Escape test** must be taken for **every model** in that unit before any models are moved [Core Rules p. 11, 14].\n   * For each Desperate Escape test, you roll one D6: on a roll of **1–2**, one model from the falling-back unit is destroyed (selected by the controlling player) [Core Rules p. 14].",
+       "index": 0,
+       "extras": {
+        "signature": "EtcTCtQTAWkUfROayzRlJLbl2WH6V/TmDso7GvTqXoQAUwld3rmyL4ISh6e+q6IDw+T3LGTDtTHBEzxeJRcZG5K13/7Qaz3Wf62AdQGEPLWIA3Pyu04GN6TATZaQJn+FzkGwrE8dNKlgMdhyxERq/c2zmT8UbQ8LeGlB72SUtNgY9L/0fySPQJLVoOwRRQxRI/XdBwxTLIK6VluKG6qk14GfLbQW4VE79XSIUorLFmk8vvISJU9meXDd9kqFXQTFt3aVJbnvvY4oKjDo9EpoO023dEZMW+OPjLTDCSPDu+vIZaLDIipFycQGaHZQDrDLhxEvNpJTYj0TxmADt29hDgJUVvW+SYmzI7n8b90W5uUEdurn/O5Yf3xdAORulgUK1az8ZSgwWztCrjGfecEJDJ1dvbkZfvWKxQnTqsquMZzxNCSz/RBhD0XA3BW/bJYyfO5rxmKOrCpGLXaaEuOoGy3UnphHJgWWOnLFYiybIecAmFvTyQx17RuNPe0Vx3T4rBo+GYzySZ/75pVc9/cWg8kVnIIVRRmmYn+HPbqEp0Ja6BOB1y5CNqhrjr9Fcq7ngfnAFfQ5Og/rx48sPf1go+zUlYEC07vzxY++O+Ed2ZVACGnEGvsrhG2QiFURlZO2GvD9/E4UHTpS7tzEutU0jdBzYx2EegQWCSp8Jpv8MNQzS8dMATz+3qVfMNnQJj2P+dbUMMqhqnW1YiY0cUH2lrEqRYnAmWe33bPQT5yeiazJDTfLCevA5e1pYj1behABiJ6uol9Eq1ID/lqvPsXZvGR/MoePcuu9NV2CB2nBJpoFD2CC8RfL4XCAcVplAzYxoRH6m/UMhpKsXqTKe98JtaYK6kqffQqP4UU0qhjGCupl4BBSLhN5PG/K9D8vXh3uif+Gd6G+EEiYfvK43QOpmYYoImrxzkxwZu4VqJFxf3OLlSNct/VRUrl64id9aXfKFVtu/ZE3YEpT7ZaXsHLxwUz6zTqGsYm08QESt7B61R6yQ65o8KFdqOCFwAbmtf7mnViQDCnZMf632oKAlEaC2XMV7/63c3RlPU0XlhJE1DmNy+avig8ANMcw+vINHB3JB41eLr+M2xsdQdYKf5o/vZI/Llv/7KirNVTUJFS970+GXEut+ko+NW7hQe34JcE/n+FvU6I7F3YIWT0dkHe3gAzZUYdc8i3dBPGzX6ckz5xzPd+vkBz8YLZ/mBuSDE3UxoM3RgUVVBkWAVLLdTaTDZRC4nnoRsDfetbid1FgMTVk4+MLBPM6m1U3ahjH+BOa8jk6ygJl5aMJAImOLi1qY3ABMV0SMwpJUu4v2OcNnKhiijho8NOSvwiZGz5Fe2BAdNz6xWimxhvVNZ3aCukhsZ2OR/ih441YEhvNMOrIfOacN9SIxWw20kpnQ30PNUId6u8BY4Xgf8ag4BQfRN1L1asBfKvy+jR5VO5gKU/F3Lwqg3/CC7haLCv1lDy/zOGZ/+QjyfqgLngjmCVE/3Jp2WUKcvEMy9XEuMVeFGhWetweGAyssX3TbnY2bYX1UVNFyl1KfE/AbPMUvA93dsYKXBjF8Bl0I+aTd4ifT9M/eDsd2GeEWtaY0KAJTzGZtQb1yeE7g1afD6L8giQ8m0GM/Wp1rhU5Pbx+k462h7WtnuXv3oxLn6VZNG4CUo5fq5UJ4ejwIjay9spbo28tRBaxGq2sUcv5Ze7noL8BOQGeaPksoSGLju80NBeGLP3i8bn2ki+DjtcdHfnem7eKxl6qusOp/BEb+PaudsT0ySX7Vr/g74wNwGJurI4URxAV1JLg4m7GY1KRvx5JzNxIDkbK76fEewChIulxdfq4P0JqTzftsrebBRELTmDR6yYGSt3qubP+JGsAmRtZPOECSSDoJBbtr383/4+wyluTUfsuRpSc51TS3e3wrcSsFfq00EyzCAYgjC0GRIL7kXw5gt9FNYNkpq+dZl1EsHwKV5q/VAVD32r+SwThIyfl5yq1oVOcm5qpr7epkW1XoRhMwwwZ0vzW3vsZWPtHA+TapcHHW19suiIzVxXmW8Oqy8QtguLoRSXJgQqQI3qFnLq7h63s9spvJXvOO8dOQMvjiHcrenfJaRu0QEu6kP7cVY48sWFYNj960m1Je43W8rWvRC80/7RFxzMMBvYC7AV4OVDUqLxWfDLk9bnefEeFWNGJMlEcYfsONORnpq6Xa/ALHs1eZqa5GTuHMvSohoLNxuiuQd8sq871FpQRNsZ2iYkZRwTaC6NeqSSYwRbplljtovPTRU9OKril+wpdfXHF0QnmMQWlcGbaZgzXNObAPFDLlU7PLfHxf39Tk5FlyGFgRwt0nGHYyRWCXN0YURNWsFJ0fFGVvkgjDSUuJ/qcFzaGXf1uStzo+AWAgPi3fLaU580QYaAFXTZbkWbavO9fga6TBRAKh+Niv41lR4BZmcI+I6fVJWukGwmPb/qWdmXXjXl/sK8r0JZBSCo9sHLV++zpL9SZHN9IB+d2r+VFIxF54k90BRZVNoimrORC07zP09oj4VIeVAG7lYVHBl1mcZNPX/oXvjUosyviNCEiX0VimBd5PRAjnjli7dR5GJ05NpczA4jDdMFj3uqvU0DSwnXmHGxqmJGEvmOk3YvN6qfGxuzXIj5AmlPM9ash9rIm6IBo1bZ7UdKYfST16Vtdv6Os5mHhT3yNJDNOGn+Zuqn/9MbMqYli28IR4vVv2LKUYkYm8nY0VWCilWjI+n5eI29ugJqy8ax5DhTkEyaLKZWy7XUYVncFstJXRAWrXRcAduLzBd/f5z6jcMRZI3Ml8vtlE32N6ljaLlyr4qkNLzlZ7IdSHk8Fp1hZyFN1Y+5sWmTgQ+AxTRk/08BbcyupN8WeteTd1eOT+KQzEPy3vP1+XSKbb1MZRu08pyAKTNfcnYu768Io0xYXrxLvJdtTda1glm4+qnUcAreTuE6GbFNAWE6peFWH3dYmTaQ6Gi6QJjHsoGsHgU/p424DqEW+HgdBLVqEj/q9ye/vt3zJC6nTp0G0QNh4fgGL3fhju0rubGNe5kaEAttkapDALCP0qxnG165MOAnb50ltD4i9AHDJv09jv8+zsbU8Rzg6VMhnl+BbdZ38/EdT83fgwhc/QsDv4P01xR7BJO+Rx36T0bD8b05mit+zkCYvmfrsK6SX/aKB6FgewrYnsCW6huyM4dbmJV0HjGEab/EXxqopusPsx+gjjTA2eafjAoAFPrXZzxr1LUY1SeiKbXfMrXHtmyytbasD3L3G9C3vRNM3SQZKoGRrMNF9oyJkUYpH1/KEN+JjsQxWnNKUUufLhAhb7EbFuk+YJLxLIq6X7NRgRS7Nov0SOAc31sTmWC9qRpLRTE3h0jluSdQCHwOfLKo="
+       }
+      }
+     ],
+     "additional_kwargs": {},
+     "response_metadata": {
+      "safety_ratings": [],
+      "finish_reason": "STOP",
+      "model_name": "gemini-3.8-flash",
+      "model_provider": "google_genai"
+     },
+     "type": "ai",
+     "name": null,
+     "id": "lc_run--01a16f86-dfcc-7cc1-935a-c72d3ab136b9",
+     "tool_calls": [],
+     "invalid_tool_calls": [],
+     "usage_metadata": {
+      "input_tokens": 11074,
+      "output_tokens": 1156,
+      "total_tokens": 12230,
+      "input_token_details": {
+       "cache_read": 0
+      },
+      "output_token_details": {
+       "reasoning": 512
+      }
+     }
+    }
+   }
+  ],
+  "model_calls": [
+   {
+    "node": "agent",
+    "input_count": 1,
+    "tool_choice": "validated",
+    "context": null
+   },
+   {
+    "node": "agent",
+    "input_count": 3,
+    "tool_choice": "validated",
+    "context": null
+   },
+   {
+    "node": "agent",
+    "input_count": 5,
+    "tool_choice": "validated",
+    "context": null
+   }
+  ]
+ },
+ "chat_attempts": [
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  }
+ ],
+ "embedding_attempts": [
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  }
+ ],
+ "source_notes": [
+  "This turn: DB stratagems: publication and edition are not recorded."
+ ],
+ "context_policy": "conversation-tool-outputs-v1"
+}

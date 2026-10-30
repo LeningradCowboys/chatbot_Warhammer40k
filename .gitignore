@@ -1,0 +1,41 @@
+# python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info/
+.pytest_cache/
+.tmp/
+
+# virtual environment
+.venv/
+
+# your API key and model names (.env.example is the committed template)
+.env
+
+# data: commit only the final delivery allowlist documented in README.md
+/data/*
+!/data/processed/
+/data/processed/*
+!/data/processed/core_rules.md
+!/data/processed/core_rules.json
+!/data/index/
+/data/index/*
+!/data/index/rules_chunks.jsonl
+!/data/index/rules_embeddings.npz
+!/data/eval/
+/data/eval/*
+!/data/eval/testset.jsonl
+!/data/eval/runs/
+/data/eval/runs/*
+!/data/eval/runs/round4-final/
+!/data/checks/
+/data/checks/*
+
+
+!/data/checks/final-20261024/
+!/data/checks/r102-20261024/
+!/data/delivery/
+/data/delivery/*
+!/data/delivery/evaluation-attachments-v2.zip

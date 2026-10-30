@@ -1,0 +1,36 @@
+{
+  "round": "R102",
+  "date": "2026-10-24",
+  "scenario": "toughness + Wardens of Ultramar follow-up",
+  "policy": "Run the scenario once with a maximum of 8 chat and 6 embedding requests; stop on failure; do not retry, run RAGAS, rebuild the index, or run the six-scenario suite.",
+  "cap": {
+    "chat": 8,
+    "embedding": 6
+  },
+  "turn_caps": [
+    5,
+    3
+  ],
+  "actual": {
+    "chat": 3,
+    "embedding": 0,
+    "first_turn_chat": 3,
+    "follow_up_chat": 0
+  },
+  "http_statuses": [
+    200,
+    200,
+    200
+  ],
+  "retries": 0,
+  "first_turn_sql_calls": 2,
+  "follow_up_sql_calls": 0,
+  "follow_up_answer_format": "structured_database_fields",
+  "run": "validation/20261024-204102_toughness_interactive",
+  "status": "PASS",
+  "ragas_run": false,
+  "index_regenerated": false,
+  "full_stage_c_run": false,
+  "code_modified_during_validation": false,
+  "historical_artifacts_modified": false
+}

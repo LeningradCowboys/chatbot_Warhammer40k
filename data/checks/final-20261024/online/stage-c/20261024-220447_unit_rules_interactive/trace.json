@@ -1,0 +1,918 @@
+{
+ "system_prompt": "You are a rules assistant for Warhammer 40,000. You answer from two sources: the Core Rules (10th edition) and a database of datasheets, weapons, stratagems, factions and detachments.\n\n## Tools\n\n- `search_rules`: how the game works (phases, actions, abilities, keywords, terrain). Write the query in English, with the rulebook's terms, whatever the language of the question. Specify the concept: victory points and objective control for scoring, Command points for Stratagem costs, army points for army construction.\n- `run_sql`: facts about units, their models, weapons, keywords and abilities, and about stratagems, detachments, enhancements and factions. Call `run_sql` with one read-only SQLite SELECT or WITH query in its required `sql` string parameter, then answer from the returned result. Follow the database schema below: for a specific named unit, join `datasheets`, `datasheets_models` and `source` in a single query (example 1) instead of separate queries per table. If the tool returns an error, correct the query and try again.\n- Use both when a question mixes rules and unit data. The number of tool rounds per question is limited: search with purpose.\n- Before seeking more evidence, inspect successful results from every earlier turn. They remain available in the conversation. If those results already establish the answer, answer directly; do not query the same fact again merely to confirm it. After each new result, stop as soon as the question is supported. If evidence is still missing, retrieve only the missing fields together where possible, or state the gap instead of pursuing optional detail.\n- A broad category of units, such as \"a Space Marine\", that maps to a faction and keywords: query it with `run_sql` before you answer, keeping each value's datasheet IDs, units and model profiles in the result (example 2 of the schema). Use at most one aggregate query and one representative unit query for the category; do not issue a separate query for each characteristic value. Ask which unit is meant only when no faction or keyword fits.\n- For a named Stratagem, search the rulebook. `search_rules` also queries exact-name core database records for retrieved Stratagem sections. Inspect both parts of its result; do not repeat a successful associated lookup. If either source is missing, use a targeted search or SQL query while tools remain, and report any remaining gap. Unit keywords still need `run_sql`.\n\n## Answering\n\n- Answer only from the tool results of this conversation. If a search does not supply the necessary passage, search again with a specific rule or section name while tools remain. If it is still missing, say what the retrieved passages do not establish and what you searched. Unsuccessful retrieval never proves that the rulebook has no such rule. Do not invent values or fill gaps from general game knowledge.\n- Organize an evidence answer in this order: source/version and scope, including which facts the user supplied and which the tools established; explicit conditions and results in the source's order; then the supported conclusion and any evidence gap. For an if/otherwise rule, preserve every branch and their common timing. Distinguish ways to score from the rule for determining a winner.\n- For a rule or procedure, preserve its cost, timing, eligible target, effect, restrictions and exceptions where the evidence gives them. For how to use a Stratagem, explain its CP payment from the `STRATAGEMS` and `1. COMMAND` sections and illustrate how the card labels WHEN, TARGET, EFFECT and RESTRICTIONS work from the retrieved Stratagem cards; once those sections and cards are retrieved, answer from them without searching again for a separate definition of those card labels. Identify the actor, whose phase it is, every recipient, and quantifiers such as \"both players\" and \"each phase\"; avoid ambiguous pronouns. Do not merge source versions. Give an exception only with its trigger and timing. If you choose an example, attribute it to one source or separate material versions; do not use a joint citation to imply that different versions are identical. An example figure is illustrative, not a datasheet fact about a real unit.\n- Cite every fact: [Core Rules p. N] for the rulebook (p. N–M for a passage over two pages), [DB: table] for the database.\n- Editions: the rulebook is the 10th edition. For a database record, give its edition only when it is recorded: for a datasheet, join `source` and give its name and edition; edition '0' means that none is recorded (a Warhammer Legends or Forge World pack: name it as such). Stratagems, detachments, enhancements and abilities have no source: say that their source is not recorded. Never give one edition to the database as a whole.\n- When evidence contains versions of the same rule, compare costs, timing, targets, effects and restrictions. For an applicability question or follow-up, give a short entry for EACH source: source/version and citation; its explicit conditions; the relevant facts supplied by the user or established by a tool, labelled by origin; any missing facts; and the conclusion supported by that source. These are checkable evidence statements, not a narrative of your reasoning. Preserve who a restriction applies to, including the controlling player. Nonselection, a completed action, and ineligibility are different predicates: none establishes another without cited evidence. Do not import exclusions across sources. An exclusion absent from a retrieved passage proves neither permission nor prohibition; say when that source does not settle the case. Describe material differences, not assumed clarifications.\n- Categories: a broad name such as \"a Space Marine\" is a category, not a unit. Resolve it to a faction and keywords (for example factionId 'SM' with the keyword Battleline or Infantry), leave out Warhammer Legends unless asked, use aggregate counts by publication/edition for a typical value and separate limited examples for exceptions, report the per-publication/edition counts as returned without summing them across publications or editions in prose, and say how you read the question: the units the answer covers and what it leaves out. Do not answer with a question when the results let you answer this way. Name the counting unit (datasheets or model profiles). A truncated example list cannot support an overall distribution.\n- Profiles: a characteristic belongs to a model profile, not to a unit. When a unit you give as an exception has profiles of different values, state every profile/value variant of that exception; never give one profile's characteristic as the value of the whole unit. Cite the table name, not a record ID as though it were a table.\n- Missions: use the page footer to name the mission for both scoring and winner rules. A question about ways to score needs concrete award conditions, amounts and timing; an introduction or a winner rule does not supply them. Search again for victory points and objective control only if no mission scoring rule has been retrieved yet; once a mission's scoring rule is present, answer from it without further searches for generic examples. Keep mission-specific scoring separate from generic examples and winner conditions. Preserve the source's shared timing and all ordered winner branches, including the destroyed-army condition, otherwise VP comparison and tie. State any remaining evidence gap.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.\n\n## Database schema\n\n# The datasheet database (`wahadb_clean.sqlite`)\n\nA SQLite copy of Wahapedia's Warhammer 40,000 data: units (datasheets), their models, weapons, keywords and\nabilities, and stratagems, detachments and enhancements. Text encoding is already repaired. Last update of the\ndata: 2026-09-01.\n\n## Rules for writing SQL\n\n- Every column is `TEXT`, numbers included: compare and sort numbers with `CAST(t AS INTEGER)`. Some stat values are\n  not numbers (`D3`, `D6`, `N/A`, `Melee`, `-`).\n- There are no declared keys: join on the columns listed under Joins, with their exact case (`Id` vs `id`,\n  `FactionId` vs `factionId`, `DatasheetId`).\n- `=` compares text exactly and is case-sensitive; `LIKE` ignores the case of ASCII letters. Keywords are written\n  like `Infantry`, `Battleline`, `Grenades`; stratagem names in capitals, like `GRENADE`.\n- One `SELECT` (or `WITH ... SELECT`) per call. Select the columns you need and filter; results are cut after 50 rows.\n- Booleans are the text `'true'` or `'false'`.\n\n## Tables\n\n| Table | One row is | Main columns |\n|---|---|---|\n| `factions` | a faction (25) | `Id` (`SM` = Space Marines, `CSM` = Chaos Space Marines, `TAU`, `TYR`, …), `name` |\n| `datasheets` | a unit's datasheet (1 680) | `Id`, `name`, `factionId`, `sourceId`, `role`, `loadout`, `transport`, `legend` (lore text, not Warhammer Legends), `virtual`, `link` |\n| `datasheets_models` | a model profile of a datasheet (a unit can have several, one per `line`) | `DatasheetId`, `line`, `name`, `m` (Move), `t` (Toughness), `sv` (Save), `invSv` (invulnerable save, `-` if none), `w` (Wounds), `ld` (Leadership), `oc` (Objective Control), `baseSize` |\n| `datasheets_wargear` | a weapon profile of a datasheet | `DatasheetId`, `name`, `range` (inches, or `Melee`), `type` (`Ranged`/`Melee`), `a` (Attacks), `bsWs` (BS or WS: `3` means 3+), `s` (Strength), `ap` (`0`, `-1`, …), `d` (Damage), `description` (weapon abilities) |\n| `datasheets_keywords` | a keyword of a datasheet | `DatasheetId`, `keyword`, `model` (the models it applies to; empty = the unit), `isFactionKeyword` |\n| `datasheets_abilities` | an ability on a datasheet | `DatasheetId`, `line`, `abilityId`, `name`, `description`, `type` (`Core`, `Faction`, `Datasheet`, `Wargear`, …), `parameter` |\n| `abilities` | a Core or Faction ability's text | `Id`, `name`, `factionId`, `description` |\n| `datasheets_unit_composition` | a line of unit composition | `DatasheetId`, `line`, `description` |\n| `datasheets_options` | a wargear option | `DatasheetId`, `line`, `description` |\n| `datasheets_models_cost` | a points cost | `DatasheetId`, `line`, `description` (unit size), `cost` (points) |\n| `datasheets_leader` | a leader-to-unit link | `LeaderId` (the leader's datasheet), `attachedId` (a unit it can lead) |\n| `stratagems` | a stratagem | `id`, `name`, `FactionId`, `type`, `cpCost`, `turn`, `phase`, `detachment`, `detachmentId`, `description` (lines `WHEN:`, `TARGET:`, `EFFECT:`, `RESTRICTIONS:`) |\n| `datasheets_stratagems` | a datasheet-to-stratagem link | `DatasheetId`, `stratagemId` |\n| `detachments` | a detachment | `Id`, `factionId`, `name`, `type` |\n| `detachment_abilities` | a detachment rule | `Id`, `detachmentId`, `name`, `description` |\n| `enhancements` | an enhancement | `id`, `FactionId`, `name`, `cost`, `detachmentId`, `description` |\n| `source` | a publication | `Id`, `name`, `type`, `edition`, `version`, `errataDate` |\n\n## Joins\n\n- `datasheets.Id` = `DatasheetId` of every `datasheets_*` table; `datasheets.factionId` = `factions.Id`;\n  `datasheets.sourceId` = `source.Id`.\n- `datasheets_abilities.abilityId` = `abilities.Id`: see the abilities trap below.\n- `datasheets_stratagems.stratagemId` = `stratagems.id`; `stratagems.FactionId` = `factions.Id`.\n- `detachments.Id` = `detachment_abilities.detachmentId` = `stratagems.detachmentId` = `enhancements.detachmentId`.\n- `datasheets_leader.LeaderId` and `.attachedId` = `datasheets.Id`.\n\n## Traps\n\n- **Unit names are not unique** (1 680 datasheets, 1 291 names): the same name can exist in several factions or\n  sources. Filter by `factionId` when it matters, and say which one you used.\n- **A broad name is a category, not a unit.** \"A Space Marine\" is not a datasheet name: `name LIKE '%Space Marine%'`\n  finds only odd units. Use the faction (`factionId = 'SM'`) and keywords from `datasheets_keywords` (`Battleline`,\n  `Infantry`, `Vehicle`, …), then give the typical value and the notable exceptions (example 2).\n- **A characteristic belongs to a model profile, not to a unit.** A datasheet can have profiles of different values\n  (a sergeant and a heavier veteran, for example): keep each profile's name in a category result, so that a unit\n  that is an exception for one profile is not given that value as a whole (example 2).\n- **Warhammer Legends and Forge World.** A datasheet's source tells where it comes from: `source.name` ends with\n  `(Warhammer Legends)` for Legends units (retired from standard play) and with `(Forge World)` for Forge World\n  units. Exclude Legends unless the question asks for them: `source.name NOT LIKE '%(Warhammer Legends)%'`. Do not\n  use `datasheets.legend` for this: it is lore text.\n- **Editions are per record.** `source.edition` is `'11'`, `'10'`, or `'0'` (no edition recorded: Legends and Forge\n  World packs). Two datasheets have no source (`sourceId` empty). `stratagems`, `detachments`, `enhancements` and\n  `abilities` have no source column: their edition is not recorded. The Core Rules rulebook is 10th edition.\n- **Abilities are in two places.** Core and Faction abilities have an `abilityId` and their text in `abilities`; the\n  others (`Datasheet`, `Wargear`, …) have an empty `abilityId` and their text in `datasheets_abilities.description`.\n  `abilities` repeats each ability once per faction (91 rows, 71 `Id`s), so join it through\n  `(SELECT DISTINCT Id, name, description FROM abilities)`, never on `Id` alone (example 4).\n- **Core stratagems** have an empty `FactionId` and come in two forms. Rows of `type` `Core Stratagem` are linked to\n  datasheets in `datasheets_stratagems`; rows whose `type` reads like the rulebook's labels (`Core – Wargear\n  Stratagem`, `Core – Strategic Ploy Stratagem`, …) are linked to no datasheet. A name can have both forms\n  (`COMMAND RE-ROLL`) or only one (`GRENADE` exists only as `Core – Wargear Stratagem`), and their texts can differ;\n  their source is not recorded. Which units can use a core stratagem is written in its `TARGET:` line (for\n  `GRENADE`, a unit with the `Grenades` keyword). Other rows with an empty `FactionId` belong to other game modes\n  (`Boarding Actions`, `Challenger`) or describe core actions (`Movement Ability`, `Shooting Ability`).\n- **Game modes of detachments.** `detachments.type` is empty for the standard game and `Boarding Actions` for that\n  game mode (59 of 327 detachments); a faction's stratagems include those of its Boarding Actions detachments (for\n  Space Marines, `Boarding Strike`). For a question about the standard game, leave those out. A stratagem whose\n  `detachmentId` matches no row of `detachments` (six Aeldari `Army Rules` stratagems) has an unknown game mode,\n  not the standard one.\n- **Rows can repeat.** `datasheets_keywords` holds 16 358 rows but 12 172 different ones, and a datasheet's points\n  rows can appear twice, between header rows such as `YOUR UNIT COSTS` with an empty `cost`. Use `DISTINCT` when you\n  list or count.\n- **Model profiles.** A datasheet can have several rows in `datasheets_models` (one per kind of model, by `line`);\n  keep all profiles of a unit together when they differ. Filter units by their keywords or an `EXISTS` condition,\n  then return all profiles of those units; filtering model rows to one characteristic hides mixed-profile units.\n- Some `datasheets_abilities.type` values are leftovers of the export in Russian (for example\n  `Special (правая колонка)`); treat them as other datasheet abilities. The datasheet `Example Wargear` is a\n  placeholder (`virtual = 'true'`).\n\n## Examples\n\nAll examples run as written; replace the names and IDs.\n\n1. A unit's model profiles, with its faction and source:\n\n```sql\nSELECT d.name, f.name AS faction, m.name AS model, m.m, m.t, m.sv, m.invSv, m.w, m.ld, m.oc,\n       s.name AS source, s.edition\nFROM datasheets d\nJOIN factions f ON f.Id = d.factionId\nJOIN datasheets_models m ON m.DatasheetId = d.Id\nLEFT JOIN source s ON s.Id = d.sourceId\nWHERE d.name = 'Intercessor Squad' AND d.factionId = 'SM'\nORDER BY CAST(m.line AS INTEGER);\n```\n\n2. A category: Space Marine Battleline units, Legends excluded. Use one query for representative units across\n   the observed Toughness values. It ranks units with mixed profiles first, chooses at most two representatives\n   per value, then returns every profile of each chosen unit. This is a sample even if `truncated` is false.\n   Keep `source` and `edition` as the publication column names:\n\n```sql\nWITH category_profiles AS (\n  SELECT DISTINCT d.Id, d.name, s.name AS source, s.edition,\n                  m.line, m.name AS model, m.t\n  FROM datasheets d\n  JOIN datasheets_models m ON m.DatasheetId = d.Id\n  LEFT JOIN source s ON s.Id = d.sourceId\n  WHERE d.factionId = 'SM'\n    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Battleline')\n    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')\n),\nunit_variants AS (\n  SELECT Id, COUNT(DISTINCT t) AS toughness_values\n  FROM category_profiles\n  GROUP BY Id\n),\nranked AS (\n  SELECT p.Id, p.name, p.source, p.edition, p.t,\n         ROW_NUMBER() OVER (\n           PARTITION BY p.t\n           ORDER BY v.toughness_values DESC, p.name, p.Id\n         ) AS representative\n  FROM (\n    SELECT DISTINCT Id, name, source, edition, t FROM category_profiles\n  ) p\n  JOIN unit_variants v ON v.Id = p.Id\n),\nselected AS (\n  SELECT DISTINCT Id, name, source, edition\n  FROM ranked\n  WHERE representative <= 2\n)\nSELECT s.Id, s.name, s.source, s.edition,\n       GROUP_CONCAT(p.model || ': T' || p.t, '; ') AS profiles\nFROM selected s\nJOIN category_profiles p ON p.Id = s.Id\nGROUP BY s.Id, s.name, s.source, s.edition\nORDER BY s.name, s.Id;\n```\n\nFor an overall distribution, query the complete category separately, grouping by publication and edition.\n`model_profiles` counts distinct datasheet/model-line profiles, not individual miniatures; `datasheets` counts\ndistinct units having that Toughness. A mixed-profile unit can appear in multiple Toughness groups, so do not\nsum these unit counts to obtain a total. No LIMIT is applied before this aggregation. A truncated aggregate\nresult is still incomplete; narrow its publication/category scope before making overall claims:\n\n```sql\nWITH profiles AS (\n  SELECT DISTINCT d.Id, m.line, m.t, s.Id AS source_id, s.name AS source, s.edition\n  FROM datasheets d\n  JOIN datasheets_models m ON m.DatasheetId = d.Id\n  LEFT JOIN source s ON s.Id = d.sourceId\n  WHERE d.factionId = 'SM'\n    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Battleline')\n    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')\n)\nSELECT source_id, source, edition, t, COUNT(*) AS model_profiles, COUNT(DISTINCT Id) AS datasheets\nFROM profiles\nGROUP BY source_id, source, edition, t\nORDER BY source, edition, CAST(t AS INTEGER), t;\n```\n\n3. A unit's weapons:\n\n```sql\nSELECT w.name, w.range, w.type, w.a, w.bsWs, w.s, w.ap, w.d, w.description\nFROM datasheets_wargear w\nWHERE w.DatasheetId = '000001157'  -- Intercessor Squad (SM)\nORDER BY CAST(w.line AS INTEGER), CAST(w.lineInWargear AS INTEGER);\n```\n\n4. A unit's abilities, from both places, one row per ability:\n\n```sql\nSELECT da.type,\n       COALESCE(a.name, da.name)               AS ability_name,\n       COALESCE(a.description, da.description) AS ability_text\nFROM datasheets_abilities da\nLEFT JOIN (SELECT DISTINCT Id, name, description FROM abilities) a ON a.Id = da.abilityId\nWHERE da.DatasheetId = '000000070'  -- Tactical Squad (SM)\nORDER BY CAST(da.line AS INTEGER);\n```\n\n5. A core stratagem's text, in every form, and the units that have the keyword its target needs:\n\n```sql\nSELECT name, type, cpCost, turn, phase, description\nFROM stratagems\nWHERE name = 'GRENADE' AND FactionId = '';\n```\n\n```sql\nSELECT DISTINCT d.name\nFROM datasheets d\nJOIN datasheets_keywords k ON k.DatasheetId = d.Id AND k.keyword = 'Grenades'\nWHERE d.factionId = 'SM'\nORDER BY d.name;\n```\n\n6. The stratagems of a unit's own faction, with their detachment and game mode (`game_mode`: empty = the standard\n   game, `Boarding Actions`, or `NULL` when the detachment is not in `detachments`):\n\n```sql\nSELECT s.name, s.FactionId AS faction, s.type, s.detachment, dt.type AS game_mode, s.cpCost, s.phase\nFROM datasheets d\nJOIN datasheets_stratagems ds ON ds.DatasheetId = d.Id\nJOIN stratagems s ON s.id = ds.stratagemId AND s.FactionId = d.factionId\nLEFT JOIN detachments dt ON dt.Id = s.detachmentId\nWHERE d.Id = '000001157'  -- Intercessor Squad (SM)\nORDER BY dt.type, s.detachment, s.name;\n```\n\n7. A unit's keywords:\n\n```sql\nSELECT DISTINCT keyword, model, isFactionKeyword\nFROM datasheets_keywords\nWHERE DatasheetId = '000000070'  -- Tactical Squad (SM)\nORDER BY isFactionKeyword DESC, keyword;\n```\n\n8. A faction's detachments, with their rules:\n\n```sql\nSELECT dt.name AS detachment, da.name AS rule, da.description\nFROM detachments dt\nLEFT JOIN detachment_abilities da ON da.detachmentId = dt.Id\nWHERE dt.factionId = 'SM'\nORDER BY dt.name;\n```\n\n9. The units a leader can lead:\n\n```sql\nSELECT attached.name\nFROM datasheets leader\nJOIN datasheets_leader l ON l.LeaderId = leader.Id\nJOIN datasheets attached ON attached.Id = l.attachedId\nWHERE leader.Id = '000000073'  -- Captain (SM)\nORDER BY attached.name;\n```\n\n10. A unit's points:\n\n```sql\nSELECT DISTINCT description AS unit_size, cost\nFROM datasheets_models_cost\nWHERE DatasheetId = '000001157' AND cost != ''  -- Intercessor Squad (SM)\nORDER BY CAST(cost AS INTEGER);\n```\n",
+ "final_prompt": "You are a rules assistant for Warhammer 40,000. You answer from two sources: the Core Rules (10th edition) and a database of datasheets, weapons, stratagems, factions and detachments.\n\n## Tools are spent\n\nThe tool budget for this question is spent: no tool can be called any more. Answer now, from the tool results above. Where they are not enough, give what they show and say what is missing.\n\n## Answering\n\n- Answer only from the tool results of this conversation. If a search does not supply the necessary passage, search again with a specific rule or section name while tools remain. If it is still missing, say what the retrieved passages do not establish and what you searched. Unsuccessful retrieval never proves that the rulebook has no such rule. Do not invent values or fill gaps from general game knowledge.\n- Organize an evidence answer in this order: source/version and scope, including which facts the user supplied and which the tools established; explicit conditions and results in the source's order; then the supported conclusion and any evidence gap. For an if/otherwise rule, preserve every branch and their common timing. Distinguish ways to score from the rule for determining a winner.\n- For a rule or procedure, preserve its cost, timing, eligible target, effect, restrictions and exceptions where the evidence gives them. For how to use a Stratagem, explain its CP payment from the `STRATAGEMS` and `1. COMMAND` sections and illustrate how the card labels WHEN, TARGET, EFFECT and RESTRICTIONS work from the retrieved Stratagem cards; once those sections and cards are retrieved, answer from them without searching again for a separate definition of those card labels. Identify the actor, whose phase it is, every recipient, and quantifiers such as \"both players\" and \"each phase\"; avoid ambiguous pronouns. Do not merge source versions. Give an exception only with its trigger and timing. If you choose an example, attribute it to one source or separate material versions; do not use a joint citation to imply that different versions are identical. An example figure is illustrative, not a datasheet fact about a real unit.\n- Cite every fact: [Core Rules p. N] for the rulebook (p. N–M for a passage over two pages), [DB: table] for the database.\n- Editions: the rulebook is the 10th edition. For a database record, give its edition only when it is recorded: for a datasheet, join `source` and give its name and edition; edition '0' means that none is recorded (a Warhammer Legends or Forge World pack: name it as such). Stratagems, detachments, enhancements and abilities have no source: say that their source is not recorded. Never give one edition to the database as a whole.\n- When evidence contains versions of the same rule, compare costs, timing, targets, effects and restrictions. For an applicability question or follow-up, give a short entry for EACH source: source/version and citation; its explicit conditions; the relevant facts supplied by the user or established by a tool, labelled by origin; any missing facts; and the conclusion supported by that source. These are checkable evidence statements, not a narrative of your reasoning. Preserve who a restriction applies to, including the controlling player. Nonselection, a completed action, and ineligibility are different predicates: none establishes another without cited evidence. Do not import exclusions across sources. An exclusion absent from a retrieved passage proves neither permission nor prohibition; say when that source does not settle the case. Describe material differences, not assumed clarifications.\n- Categories: a broad name such as \"a Space Marine\" is a category, not a unit. Resolve it to a faction and keywords (for example factionId 'SM' with the keyword Battleline or Infantry), leave out Warhammer Legends unless asked, use aggregate counts by publication/edition for a typical value and separate limited examples for exceptions, report the per-publication/edition counts as returned without summing them across publications or editions in prose, and say how you read the question: the units the answer covers and what it leaves out. Do not answer with a question when the results let you answer this way. Name the counting unit (datasheets or model profiles). A truncated example list cannot support an overall distribution.\n- Profiles: a characteristic belongs to a model profile, not to a unit. When a unit you give as an exception has profiles of different values, state every profile/value variant of that exception; never give one profile's characteristic as the value of the whole unit. Cite the table name, not a record ID as though it were a table.\n- Missions: use the page footer to name the mission for both scoring and winner rules. A question about ways to score needs concrete award conditions, amounts and timing; an introduction or a winner rule does not supply them. Search again for victory points and objective control only if no mission scoring rule has been retrieved yet; once a mission's scoring rule is present, answer from it without further searches for generic examples. Keep mission-specific scoring separate from generic examples and winner conditions. Preserve the source's shared timing and all ordered winner branches, including the destroyed-army condition, otherwise VP comparison and tie. State any remaining evidence gap.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+ "final_instruction": "Tools are no longer available. Answer now in text, from the tool results above; if they are not enough, say what is missing.",
+ "model_settings": {
+  "model": "gemini-3.8-flash",
+  "temperature": null,
+  "frequency_penalty": null,
+  "presence_penalty": null,
+  "top_p": null,
+  "top_k": null,
+  "max_output_tokens": null,
+  "n": 1,
+  "safety_settings": null,
+  "response_modalities": null,
+  "media_resolution": null,
+  "thinking_budget": null,
+  "include_thoughts": null,
+  "thinking_level": null,
+  "thinking_config": null,
+  "image_config": null
+ },
+ "tools": [
+  {
+   "type": "function",
+   "function": {
+    "name": "search_rules",
+    "description": "Search the Core Rules: how the game works (phases, actions, keywords, terrain). Retrieved Stratagem sections also include exact-name core database records when found.",
+    "parameters": {
+     "properties": {
+      "query": {
+       "description": "In English, with the rulebook's terms, whatever the question's language.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "query"
+     ],
+     "type": "object"
+    }
+   }
+  },
+  {
+   "type": "function",
+   "function": {
+    "name": "run_sql",
+    "description": "Query units, weapons, abilities, stratagems, detachments and factions with read-only SQL.",
+    "parameters": {
+     "properties": {
+      "sql": {
+       "description": "One SQLite SELECT or WITH query that follows the database schema.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "sql"
+     ],
+     "type": "object"
+    }
+   }
+  }
+ ],
+ "messages": [
+  {
+   "type": "human",
+   "data": {
+    "content": "Can an Intercessor Squad use GRENADE, and what are its cost, timing, targets and effect? Compare the Core Rules with the database where they differ.",
+    "additional_kwargs": {},
+    "response_metadata": {},
+    "type": "human",
+    "name": null,
+    "id": "f5be9638-4e8a-4a1c-841c-ca6bee7a1e38"
+   }
+  },
+  {
+   "type": "ai",
+   "data": {
+    "content": [],
+    "additional_kwargs": {
+     "function_call": {
+      "name": "search_rulesrun_sql",
+      "arguments": "{\"query\": \"GRENADE stratagem\"}{\"sql\": \"SELECT d.Id, d.name, f.name AS faction, s.name AS source, s.edition, k.keyword\\nFROM datasheets d\\nJOIN factions f ON f.Id = d.factionId\\nLEFT JOIN source s ON s.Id = d.sourceId\\nLEFT JOIN datasheets_keywords k ON k.DatasheetId = d.Id AND k.keyword = 'Grenades'\\nWHERE d.name = 'Intercessor Squad' AND d.factionId = 'SM';\"}"
+     },
+     "__gemini_function_call_thought_signatures__": {
+      "call_1055716": "EqkFCqYFAWkUfRM67Mm25YSsLbESLgXMak2t+JY3PUC6VXJ/Jopi3JXLMfHyfNXRf3v6GpZ0wk7nUhay512UQlCtS009TNEtNRcR9XdDplOQrhkyRxQ1GPy9cFIhrFC6h+CVJRLlIbvE61wt8RfB6xbx9BvH+tM3AcW1y49Zjt9A1itZqd+T26FVj7NOAZt4Ca2g7M4fmrHux0pTbEmLsvURx/VfFe3xk7LscY1c0m8Y6bREB5YHFjx5L/mYA5E/ykXjonJ6Km+Ri/H14bAn4AIOuXbwiVmSz6UfRm9WFSVy8d2bQ+qeNJYnJVkkL7rcZ6CJtApIFce74E3NqhI1IksZxRh/X7z/VDUbxEcUbsNga97feZv5bPruDHOayYlwiXupezyQvkIW9z3cW7nwvgBcRYniHmngtQhcWBgbayOuTyB07cL2IrGpccw0lMAPaqcy3hmYgkEj1UnSh6RxDRUyCrFMI6PZ5FIZSLSEfsoxTP1d2YamS27gh/mG1tQ9HdJtUxMj+7m2QLS4r6hTGvjglZR6jYHtCGrBgr6v2y2y/wbvZka9yJ4qIgAsrEJULlT94bP0kIg43I2MjqMRu3ux+lPnp9lDKo6fDzWKRji4aL7PW8vzXLRcSmmbi4Ie+V5Hu8grM2jqZXhqWXQfzfoBaBf5aMoGry+aniAwGS5v68aS0LiNL948ZyKPQSWc7OEk8DL+h8AYoaQxsYPTfibNAFiIPZrm9zpb+6vkhtwRaY2ET/0EVS4eaGLdjzDqeRg+iqjqR/RDdfrJYSIb6DBgVS85XJrw5fRpf+TpuxtmOi+BLGlJGewXraCu0ZGjO7x/UZFIO2tXCgdZqjOlB6zVrFxYxyFT7WV9ffHAYvbgZovc6Pfw9/kE+hS4va8uiaUso4ELmxwnIn++"
+     }
+    },
+    "response_metadata": {
+     "safety_ratings": [],
+     "finish_reason": "STOP",
+     "model_name": "gemini-3.8-flash",
+     "model_provider": "google_genai"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a16f84-0f0d-7143-a5e0-fc6878108f5e",
+    "tool_calls": [
+     {
+      "name": "search_rules",
+      "args": {
+       "query": "GRENADE stratagem"
+      },
+      "id": "call_1055716",
+      "type": "tool_call"
+     },
+     {
+      "name": "run_sql",
+      "args": {
+       "sql": "SELECT d.Id, d.name, f.name AS faction, s.name AS source, s.edition, k.keyword\nFROM datasheets d\nJOIN factions f ON f.Id = d.factionId\nLEFT JOIN source s ON s.Id = d.sourceId\nLEFT JOIN datasheets_keywords k ON k.DatasheetId = d.Id AND k.keyword = 'Grenades'\nWHERE d.name = 'Intercessor Squad' AND d.factionId = 'SM';"
+      },
+      "id": "call_1055727",
+      "type": "tool_call"
+     }
+    ],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 6029,
+     "output_tokens": 279,
+     "total_tokens": 6308,
+     "input_token_details": {
+      "cache_read": 0
+     },
+     "output_token_details": {
+      "reasoning": 137
+     }
+    }
+   }
+  },
+  {
+   "type": "tool",
+   "data": {
+    "content": "[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: GRENADE\n1CP\n\nCORE - WARGEAR STRATAGEM\n\nPriming their hand-held projectiles, these warriors draw back and hurl death into the enemy's midst.\n\nWHEN: Your Shooting phase.\n\nTARGET: One Grenades unit from your army that is not within Engagement Range of any enemy units and has not been selected to shoot this phase.\n\nEFFECT: Select one enemy unit that is not within Engagement Range of any units from your army and is within 8\" of and visible to your Grenades unit. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound.\n\n[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: STRATAGEM CATEGORIES\nEach Stratagem belongs to one of four categories, as described below. There are some rules (especially in Crusade games) that interact with Stratagems of a particular category.\n\nBATTLE TACTIC: These Stratagems bolster a unit's efficacy in battle, boosting their attacks or defensive capabilities at a critical moment.\n\nEPIC DEED: These Stratagems are used by individual models or units to perform mighty feats of heroism.\n\nSTRATEGIC PLOY: These Stratagems enable units to gain new strategic insights, granting them a small but valuable window of opportunity.\n\nWARGEAR: These Stratagems represent the effects of using specialised items of equipment in battle.\n\n[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: STRATAGEMS\nCommand points can be spent during the battle to use Stratagems. All players can use the Core Stratagems presented here. Additional Stratagems can be found in Codexes and other publications.\n\nWhen you use a Stratagem, reduce your CP total by the amount listed on that Stratagem. If you do not have enough CP for a specific Stratagem, you cannot use it. You can use the same Stratagem multiple times during a battle, but you cannot use the same Stratagem more than once in the same phase.\n\n- To use a Stratagem you must pay the CP specified.\n- The same Stratagem cannot be used more than once in the same phase.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: FIRE OVERWATCH\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nA hail of wildfire can drive back advancing foes.\n\nWHEN: Your opponent's Movement or Charge phase, just after an enemy unit is set up or when an enemy unit starts or ends a Normal, Advance, Fall Back or Charge move.\n\nTARGET: One unit from your army that is within 24\" of that enemy unit and that would be eligible to shoot if it were your Shooting phase.\n\nEFFECT: Your unit can shoot that enemy unit as if it were your Shooting phase.\n\nRESTRICTIONS: Until the end of the phase, each time a model in your unit makes a ranged attack, an unmodified Hit roll of 6 is required to score a hit, irrespective of the attacking weapon's Ballistic Skill or any modifiers. You can only use this Stratagem once per turn.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: RAPID INGRESS\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nBe it cunning strategy, potent technology or supernatural ritual, there are many means by which a commander may hasten their warriors' onset.\n\nWHEN: End of your opponent's Movement phase.\n\nTARGET: One unit from your army that is in Reserves.\n\nEFFECT: Your unit can arrive on the battlefield as if it were the Reinforcements step of your Movement phase.\n\nRESTRICTIONS: You cannot use this Stratagem to enable a unit to arrive on the battlefield during a battle round it would not normally be able to do so in.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: SMOKESCREEN\n1CP\n\nCORE - WARGEAR STRATAGEM\n\nEven the most skilled marksmen struggle to hit targets veiled by billowing screens of smoke.\n\nWHEN: Your opponent's Shooting phase, just after an enemy unit has selected its targets.\n\nTARGET: One Smoke unit from your army that was selected as the target of one or more of the attacking unit's attacks.\n\nEFFECT: Until the end of the phase, all models in your unit have the Benefit of Cover (pg 44) and the Stealth ability (pg 20).\n\n[Core Rules p. 41] (page footer p. 41: CORE RULES | STRATAGEMS)\nSection: COUNTER-OFFENSIVE\n2CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nIn close-quarters combat, the slightest hesitation can leave an opening for a swift foe to exploit.\n\nWHEN: Fight phase, just after an enemy unit has fought.\n\nTARGET: One unit from your army that is within Engagement Range of one or more enemy units and that has not already been selected to fight this phase.\n\nEFFECT: Your unit fights next.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: TANK SHOCK\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nRamming the foe with a speeding vehicle may be an unsubtle tactic, but it is a murderously effective one.\n\nWHEN: Your Charge phase.\n\nTARGET: One Vehicle unit from your army.\n\nEFFECT: Until the end of the phase, after your unit ends a Charge move, select one enemy unit within Engagement Range of it, then select one melee weapon your unit is equipped with. Roll a number of D6 equal to that weapon's Strength characteristic. If that Strength characteristic is greater than that enemy unit's Toughness characteristic, roll two additional D6. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"GRENADE\", \"STRATAGEM CATEGORIES\", \"STRATAGEMS\", \"FIRE OVERWATCH\", \"RAPID INGRESS\", \"SMOKESCREEN\", \"COUNTER-OFFENSIVE\", \"TANK SHOCK\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335003\", \"COUNTER-OFFENSIVE\", \"\", \"Core – Strategic Ploy Stratagem\", \"2\", \"Either player’s turn\", \"Fight phase\", \"\", \"WHEN: Fight phase, just after an enemy unit has fought.\\nTARGET: One unit from your army that is within Engagement Range of one or more enemy units and that has not already been selected to fight this phase.\\nEFFECT: Your unit fights next.\"], [\"000009218004\", \"COUNTER-OFFENSIVE\", \"\", \"Boarding Actions – Strategic Ploy Stratagem\", \"2\", \"Either player’s turn\", \"Fight phase\", \"\", \"WHEN: Fight phase, just after an enemy unit has fought.\\nTARGET: One unit from your army that is within Engagement Range of one or more enemy units and that has not already been selected to fight this phase.\\nEFFECT: Your unit fights next.\"], [\"000008335009\", \"FIRE OVERWATCH\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Opponent’s turn\", \"Movement or Charge phase\", \"\", \"WHEN: Your opponent’s Movement or Charge phase, just after an enemy unit is set up or when an enemy unit starts or ends a Normal, Advance or Fall Back move, or declares a charge.\\nTARGET: One unit from your army that is within 24\\\" of that enemy unit and that would be eligible to shoot if it were your Shooting phase.\\nEFFECT: If that enemy unit is visible to your unit, your unit can shoot that enemy unit as if it were your Shooting phase.\\nRESTRICTIONS: You cannot target a TITANIC unit with this Stratagem. Until the end of the phase, each time a model in your unit makes a ranged attack, an unmodified Hit roll of 6 is required to score a hit, irrespective of the attacking weapon’s Ballistic Skill or any modifiers. You can only use this Stratagem once per turn.\"], [\"000010810008\", \"FIRE OVERWATCH\", \"\", \"Core Stratagem\", \"1\", \"Opponent’s turn\", \"Movement phase\", \"\", \"WHEN: End of your opponent’s Movement phase.\\nTARGET: One friendly unengaged unit (excluding TITANIC units).\\nEFFECT: Your unit shoots using snap shooting.\"], [\"000008335006\", \"GRENADE\", \"\", \"Core – Wargear Stratagem\", \"1\", \"Your turn\", \"Shooting phase\", \"\", \"WHEN: Your Shooting phase.\\nTARGET: One GRENADES unit from your army (excluding units that Advanced, Fell Back or have shot this turn) that is not within Engagement Range of one or more enemy units.\\nEFFECT: Select one GRENADES model in your unit and one enemy unit that is not within Engagement Range of any units from your army and is within 8\\\" of and visible to your GRENADES model. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound.\"], [\"000008335008\", \"RAPID INGRESS\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Opponent’s turn\", \"Movement phase\", \"\", \"WHEN: End of your opponent’s Movement phase.\\nTARGET: One unit from your army that is in Reserves.\\nEFFECT: Your unit can arrive on the battlefield as if it were the Reinforcements step of your Movement phase, and if every model in that unit has the Deep Strike ability, you can set that unit up as described in the Deep Strike ability (even though it is not your Movement phase).\\nRESTRICTIONS: You cannot use this Stratagem to enable a unit to arrive on the battlefield during a battle round it would not normally be able to do so in.\"], [\"000010810007\", \"RAPID INGRESS\", \"\", \"Core Stratagem\", \"1\", \"Opponent’s turn\", \"Movement phase\", \"\", \"WHEN: End of your opponent’s Movement phase.\\nTARGET: One friendly unit that is in strategic reserves (excluding AIRCRAFT).\\nEFFECT: Your unit makes an ingress move (20.04).\\nRESTRICTIONS: You cannot use this stratagem during the first battle round.\"], [\"000008335011\", \"SMOKESCREEN\", \"\", \"Core – Wargear Stratagem\", \"1\", \"Opponent’s turn\", \"Shooting phase\", \"\", \"WHEN: Your opponent’s Shooting phase, just after an enemy unit has selected its targets.\\nTARGET: One SMOKE unit from your army that was selected as the target of one or more of the attacking unit’s attacks.\\nEFFECT: Until the end of the phase, all models in your unit have the Benefit of Cover and the Stealth ability.\"], [\"000010810010\", \"SMOKESCREEN\", \"\", \"Core Stratagem\", \"1\", \"Opponent’s turn\", \"Shooting phase\", \"\", \"WHEN: Start of your opponent’s Shooting phase.\\nTARGET: One friendly SMOKE unit.\\nEFFECT: Until the end of the phase, each time an attack targets either your SMOKE unit, or a unit that is not fully visible to the attacking model because of one or more models in your SMOKE unit, the target has the benefit of cover against that attack (13.08).\"], [\"000008335007\", \"TANK SHOCK\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Your turn\", \"Charge phase\", \"\", \"WHEN: Your Charge phase, just after a VEHICLE unit from your army ends a Charge move.\\nTARGET: That VEHICLE unit.\\nEFFECT: Select one enemy unit within Engagement Range of your unit, and select one VEHICLE model in your unit that is within Engagement Range of that enemy unit. Roll a number of D6 equal to the Toughness characteristic of the selected VEHICLE model. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+    "additional_kwargs": {},
+    "response_metadata": {},
+    "type": "tool",
+    "name": "search_rules",
+    "id": "6a6c44b1-5493-438e-8fdc-f6727088dd80",
+    "tool_call_id": "call_1055716",
+    "artifact": {
+     "chunks": [
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0161",
+        "text": "Section: GRENADE\n1CP\n\nCORE - WARGEAR STRATAGEM\n\nPriming their hand-held projectiles, these warriors draw back and hurl death into the enemy's midst.\n\nWHEN: Your Shooting phase.\n\nTARGET: One Grenades unit from your army that is not within Engagement Range of any enemy units and has not been selected to shoot this phase.\n\nEFFECT: Select one enemy unit that is not within Engagement Range of any units from your army and is within 8\" of and visible to your Grenades unit. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound.",
+        "pages": [
+         42
+        ],
+        "section": "GRENADE",
+        "content_type": "text",
+        "pictures": [
+         "#/pictures/97"
+        ],
+        "page_footers": [
+         "CORE RULES | STRATAGEMS"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.03278688524590164
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0156",
+        "text": "Section: STRATAGEM CATEGORIES\nEach Stratagem belongs to one of four categories, as described below. There are some rules (especially in Crusade games) that interact with Stratagems of a particular category.\n\nBATTLE TACTIC: These Stratagems bolster a unit's efficacy in battle, boosting their attacks or defensive capabilities at a critical moment.\n\nEPIC DEED: These Stratagems are used by individual models or units to perform mighty feats of heroism.\n\nSTRATEGIC PLOY: These Stratagems enable units to gain new strategic insights, granting them a small but valuable window of opportunity.\n\nWARGEAR: These Stratagems represent the effects of using specialised items of equipment in battle.",
+        "pages": [
+         41
+        ],
+        "section": "STRATAGEM CATEGORIES",
+        "content_type": "text",
+        "pictures": [],
+        "page_footers": [
+         "CORE RULES | STRATAGEMS"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.031754032258064516
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0155",
+        "text": "Section: STRATAGEMS\nCommand points can be spent during the battle to use Stratagems. All players can use the Core Stratagems presented here. Additional Stratagems can be found in Codexes and other publications.\n\nWhen you use a Stratagem, reduce your CP total by the amount listed on that Stratagem. If you do not have enough CP for a specific Stratagem, you cannot use it. You can use the same Stratagem multiple times during a battle, but you cannot use the same Stratagem more than once in the same phase.\n\n- To use a Stratagem you must pay the CP specified.\n- The same Stratagem cannot be used more than once in the same phase.",
+        "pages": [
+         41
+        ],
+        "section": "STRATAGEMS",
+        "content_type": "text",
+        "pictures": [],
+        "page_footers": [
+         "CORE RULES | STRATAGEMS"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.0315136476426799
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0164",
+        "text": "Section: FIRE OVERWATCH\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nA hail of wildfire can drive back advancing foes.\n\nWHEN: Your opponent's Movement or Charge phase, just after an enemy unit is set up or when an enemy unit starts or ends a Normal, Advance, Fall Back or Charge move.\n\nTARGET: One unit from your army that is within 24\" of that enemy unit and that would be eligible to shoot if it were your Shooting phase.\n\nEFFECT: Your unit can shoot that enemy unit as if it were your Shooting phase.\n\nRESTRICTIONS: Until the end of the phase, each time a model in your unit makes a ranged attack, an unmodified Hit roll of 6 is required to score a hit, irrespective of the attacking weapon's Ballistic Skill or any modifiers. You can only use this Stratagem once per turn.",
+        "pages": [
+         42
+        ],
+        "section": "FIRE OVERWATCH",
+        "content_type": "text",
+        "pictures": [],
+        "page_footers": [
+         "CORE RULES | STRATAGEMS"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.03125763125763126
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0163",
+        "text": "Section: RAPID INGRESS\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nBe it cunning strategy, potent technology or supernatural ritual, there are many means by which a commander may hasten their warriors' onset.\n\nWHEN: End of your opponent's Movement phase.\n\nTARGET: One unit from your army that is in Reserves.\n\nEFFECT: Your unit can arrive on the battlefield as if it were the Reinforcements step of your Movement phase.\n\nRESTRICTIONS: You cannot use this Stratagem to enable a unit to arrive on the battlefield during a battle round it would not normally be able to do so in.",
+        "pages": [
+         42
+        ],
+        "section": "RAPID INGRESS",
+        "content_type": "text",
+        "pictures": [
+         "#/pictures/99"
+        ],
+        "page_footers": [
+         "CORE RULES | STRATAGEMS"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.030798389007344232
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0166",
+        "text": "Section: SMOKESCREEN\n1CP\n\nCORE - WARGEAR STRATAGEM\n\nEven the most skilled marksmen struggle to hit targets veiled by billowing screens of smoke.\n\nWHEN: Your opponent's Shooting phase, just after an enemy unit has selected its targets.\n\nTARGET: One Smoke unit from your army that was selected as the target of one or more of the attacking unit's attacks.\n\nEFFECT: Until the end of the phase, all models in your unit have the Benefit of Cover (pg 44) and the Stealth ability (pg 20).",
+        "pages": [
+         42
+        ],
+        "section": "SMOKESCREEN",
+        "content_type": "text",
+        "pictures": [
+         "#/pictures/101"
+        ],
+        "page_footers": [
+         "CORE RULES | STRATAGEMS"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.030330882352941176
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0158",
+        "text": "Section: COUNTER-OFFENSIVE\n2CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nIn close-quarters combat, the slightest hesitation can leave an opening for a swift foe to exploit.\n\nWHEN: Fight phase, just after an enemy unit has fought.\n\nTARGET: One unit from your army that is within Engagement Range of one or more enemy units and that has not already been selected to fight this phase.\n\nEFFECT: Your unit fights next.",
+        "pages": [
+         41
+        ],
+        "section": "COUNTER-OFFENSIVE",
+        "content_type": "text",
+        "pictures": [
+         "#/pictures/94"
+        ],
+        "page_footers": [
+         "CORE RULES | STRATAGEMS"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.030303030303030304
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0162",
+        "text": "Section: TANK SHOCK\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nRamming the foe with a speeding vehicle may be an unsubtle tactic, but it is a murderously effective one.\n\nWHEN: Your Charge phase.\n\nTARGET: One Vehicle unit from your army.\n\nEFFECT: Until the end of the phase, after your unit ends a Charge move, select one enemy unit within Engagement Range of it, then select one melee weapon your unit is equipped with. Roll a number of D6 equal to that weapon's Strength characteristic. If that Strength characteristic is greater than that enemy unit's Toughness characteristic, roll two additional D6. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).",
+        "pages": [
+         42
+        ],
+        "section": "TANK SHOCK",
+        "content_type": "text",
+        "pictures": [
+         "#/pictures/98"
+        ],
+        "page_footers": [
+         "CORE RULES | STRATAGEMS"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.028594771241830064
+      }
+     ],
+     "stratagem_names": [
+      "GRENADE",
+      "STRATAGEM CATEGORIES",
+      "STRATAGEMS",
+      "FIRE OVERWATCH",
+      "RAPID INGRESS",
+      "SMOKESCREEN",
+      "COUNTER-OFFENSIVE",
+      "TANK SHOCK"
+     ],
+     "stratagems": {
+      "columns": [
+       "id",
+       "name",
+       "FactionId",
+       "type",
+       "cpCost",
+       "turn",
+       "phase",
+       "detachment",
+       "description"
+      ],
+      "rows": [
+       [
+        "000008335003",
+        "COUNTER-OFFENSIVE",
+        "",
+        "Core – Strategic Ploy Stratagem",
+        "2",
+        "Either player’s turn",
+        "Fight phase",
+        "",
+        "WHEN: Fight phase, just after an enemy unit has fought.\nTARGET: One unit from your army that is within Engagement Range of one or more enemy units and that has not already been selected to fight this phase.\nEFFECT: Your unit fights next."
+       ],
+       [
+        "000009218004",
+        "COUNTER-OFFENSIVE",
+        "",
+        "Boarding Actions – Strategic Ploy Stratagem",
+        "2",
+        "Either player’s turn",
+        "Fight phase",
+        "",
+        "WHEN: Fight phase, just after an enemy unit has fought.\nTARGET: One unit from your army that is within Engagement Range of one or more enemy units and that has not already been selected to fight this phase.\nEFFECT: Your unit fights next."
+       ],
+       [
+        "000008335009",
+        "FIRE OVERWATCH",
+        "",
+        "Core – Strategic Ploy Stratagem",
+        "1",
+        "Opponent’s turn",
+        "Movement or Charge phase",
+        "",
+        "WHEN: Your opponent’s Movement or Charge phase, just after an enemy unit is set up or when an enemy unit starts or ends a Normal, Advance or Fall Back move, or declares a charge.\nTARGET: One unit from your army that is within 24\" of that enemy unit and that would be eligible to shoot if it were your Shooting phase.\nEFFECT: If that enemy unit is visible to your unit, your unit can shoot that enemy unit as if it were your Shooting phase.\nRESTRICTIONS: You cannot target a TITANIC unit with this Stratagem. Until the end of the phase, each time a model in your unit makes a ranged attack, an unmodified Hit roll of 6 is required to score a hit, irrespective of the attacking weapon’s Ballistic Skill or any modifiers. You can only use this Stratagem once per turn."
+       ],
+       [
+        "000010810008",
+        "FIRE OVERWATCH",
+        "",
+        "Core Stratagem",
+        "1",
+        "Opponent’s turn",
+        "Movement phase",
+        "",
+        "WHEN: End of your opponent’s Movement phase.\nTARGET: One friendly unengaged unit (excluding TITANIC units).\nEFFECT: Your unit shoots using snap shooting."
+       ],
+       [
+        "000008335006",
+        "GRENADE",
+        "",
+        "Core – Wargear Stratagem",
+        "1",
+        "Your turn",
+        "Shooting phase",
+        "",
+        "WHEN: Your Shooting phase.\nTARGET: One GRENADES unit from your army (excluding units that Advanced, Fell Back or have shot this turn) that is not within Engagement Range of one or more enemy units.\nEFFECT: Select one GRENADES model in your unit and one enemy unit that is not within Engagement Range of any units from your army and is within 8\" of and visible to your GRENADES model. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound."
+       ],
+       [
+        "000008335008",
+        "RAPID INGRESS",
+        "",
+        "Core – Strategic Ploy Stratagem",
+        "1",
+        "Opponent’s turn",
+        "Movement phase",
+        "",
+        "WHEN: End of your opponent’s Movement phase.\nTARGET: One unit from your army that is in Reserves.\nEFFECT: Your unit can arrive on the battlefield as if it were the Reinforcements step of your Movement phase, and if every model in that unit has the Deep Strike ability, you can set that unit up as described in the Deep Strike ability (even though it is not your Movement phase).\nRESTRICTIONS: You cannot use this Stratagem to enable a unit to arrive on the battlefield during a battle round it would not normally be able to do so in."
+       ],
+       [
+        "000010810007",
+        "RAPID INGRESS",
+        "",
+        "Core Stratagem",
+        "1",
+        "Opponent’s turn",
+        "Movement phase",
+        "",
+        "WHEN: End of your opponent’s Movement phase.\nTARGET: One friendly unit that is in strategic reserves (excluding AIRCRAFT).\nEFFECT: Your unit makes an ingress move (20.04).\nRESTRICTIONS: You cannot use this stratagem during the first battle round."
+       ],
+       [
+        "000008335011",
+        "SMOKESCREEN",
+        "",
+        "Core – Wargear Stratagem",
+        "1",
+        "Opponent’s turn",
+        "Shooting phase",
+        "",
+        "WHEN: Your opponent’s Shooting phase, just after an enemy unit has selected its targets.\nTARGET: One SMOKE unit from your army that was selected as the target of one or more of the attacking unit’s attacks.\nEFFECT: Until the end of the phase, all models in your unit have the Benefit of Cover and the Stealth ability."
+       ],
+       [
+        "000010810010",
+        "SMOKESCREEN",
+        "",
+        "Core Stratagem",
+        "1",
+        "Opponent’s turn",
+        "Shooting phase",
+        "",
+        "WHEN: Start of your opponent’s Shooting phase.\nTARGET: One friendly SMOKE unit.\nEFFECT: Until the end of the phase, each time an attack targets either your SMOKE unit, or a unit that is not fully visible to the attacking model because of one or more models in your SMOKE unit, the target has the benefit of cover against that attack (13.08)."
+       ],
+       [
+        "000008335007",
+        "TANK SHOCK",
+        "",
+        "Core – Strategic Ploy Stratagem",
+        "1",
+        "Your turn",
+        "Charge phase",
+        "",
+        "WHEN: Your Charge phase, just after a VEHICLE unit from your army ends a Charge move.\nTARGET: That VEHICLE unit.\nEFFECT: Select one enemy unit within Engagement Range of your unit, and select one VEHICLE model in your unit that is within Engagement Range of that enemy unit. Roll a number of D6 equal to the Toughness characteristic of the selected VEHICLE model. For each 5+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds)."
+       ]
+      ],
+      "truncated": false,
+      "error": null
+     },
+     "related_sections": []
+    },
+    "status": "success"
+   }
+  },
+  {
+   "type": "tool",
+   "data": {
+    "content": "{\"columns\": [\"Id\", \"name\", \"faction\", \"source\", \"edition\", \"keyword\"], \"rows\": [[\"000001157\", \"Intercessor Squad\", \"Space Marines\", \"Space Marines\", \"11\", \"Grenades\"]], \"truncated\": false, \"error\": null}",
+    "additional_kwargs": {},
+    "response_metadata": {},
+    "type": "tool",
+    "name": "run_sql",
+    "id": "beab8daf-0191-4889-b840-314b81acbc40",
+    "tool_call_id": "call_1055727",
+    "artifact": {
+     "columns": [
+      "Id",
+      "name",
+      "faction",
+      "source",
+      "edition",
+      "keyword"
+     ],
+     "rows": [
+      [
+       "000001157",
+       "Intercessor Squad",
+       "Space Marines",
+       "Space Marines",
+       "11",
+       "Grenades"
+      ]
+     ],
+     "truncated": false,
+     "error": null
+    },
+    "status": "success"
+   }
+  },
+  {
+   "type": "ai",
+   "data": {
+    "content": [],
+    "additional_kwargs": {
+     "function_call": {
+      "name": "run_sql",
+      "arguments": "{\"sql\": \"SELECT id, name, FactionId, type, cpCost, turn, phase, detachment, description\\nFROM stratagems\\nWHERE name = 'GRENADE';\"}"
+     },
+     "__gemini_function_call_thought_signatures__": {
+      "call_1207910": "EpsICpgIAWkUfRNfbNWqSYivGybPg7wFc8mWFI6w7csulTSoTxgJmtewv07oh0jHFiGFQR9odVJE+dt43QaTIa8R2wwzZvXoadq4VY1WUhTKHVs5Ao/dmM8oKXw68eByBm+1gRh5FGOfn8YduDuEa1KcThc+pfW41+x4WOfbpI4Nwz29MOK2udIG0XVKEE99xlW0TjG1adovcrsUtrW5Ti17IGawduND/i/q954VFoVripi1XQH6lTRnJbDp8ZS0W+hOhkDbaxQFFjbzqUIMbeJZvQvw+pEFBOCvKXukwBoX+iJmg0nC9+Lueem+IQYHpInff/XxTVQBCepPg/QFAh3mVigjmgydOZ299G9Tv7PM9k6gO4m7P+S/O8U+GsOZt313UbnnCrCpt4KYI5eCgbK2Rag16H/I4A/9sAscmGBd1x3kvxB9Q/23Ueb6lDLMgU+Kw2+s8SEKev9i9l5dTe3fnynUeA7qJgUp0/UbvBADMy1X+DoLPZ8S64mZ6pOWDAsXH9R5HACNh0Imma/S9qcvDm31u8y3G5nGwqwELhkaCbjhqyhkAlAhjIQD8QLjw/oEevKkwpKXU/K/n/3pL2runcd9LLuEsw14nI0hwMEQ7gkeUbIqoycLeCB5pnfoIjFDJkIa8vxoKBcHaLz62W8SeSAcCYc0or5bh3o0GkO3caV6px51HgFudgJy0c69JGgzIYyNF7ySM3vFnCu/zgcyisTpJ1e/MYitE1YVj+J2CndrqqHy69h0vfvGjyWIM1GPtrWK+HVFkkJxtdLc96IaAA/YUMX36vhcjghdMR92wypfiX6DfPQf/wA462ivPjaMNsAK/TAgToFIvu8S89XJDyJoTKFfGvl/GY0fVldCyMM9+rKGlGqElRozTHHWdB3T6XC/hOG6FBuXF7TI3r27IV2Ru2wKGIonrOrrhy80YBtvhIoYSKZNHC0CWyCTWKRflvH47I320VL+g76OHpTNXSqu0IBPxtjZ9ZV071v7lL5nfF77T8hsgOp5zrU8vipdcvUQvJ96RD+9p5HRTOXH9m495wQe6I3MlOBMbdwr7nga0q/Aw0Jygp6DV2e1k/Ihr6c23mwyHOgNb5XJ3sJmmvQZg292mOvbwJLMougsy+KlW+lBAyh3HsJuuxt23cLeC1Vjx6cWiZrm6ed1hw4lnEJans8EAHH+0z+ivq61acYCIdrqCP7768QC933BDF/UXWbTTyZ4UsCmj9J2xo3SJQTpZT6uWBJSo/KgxP9dBY8qs6XmP3sxGwr5OUy4oyLgtX64aNgTrn42Ic0jxEp/vWZ18AztrBSAEzobNJs49WmWDbO/zg99dtIswsmbKgJEI2bj948Cu/9LPsm2DFfPDAmPeaW04nLTMDcs+NmUaKT+ha9lIAuF/XU+2A=="
+     }
+    },
+    "response_metadata": {
+     "safety_ratings": [],
+     "finish_reason": "STOP",
+     "model_name": "gemini-3.8-flash",
+     "model_provider": "google_genai"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a16f84-204b-74a3-a959-ff79bb20d617",
+    "tool_calls": [
+     {
+      "name": "run_sql",
+      "args": {
+       "sql": "SELECT id, name, FactionId, type, cpCost, turn, phase, detachment, description\nFROM stratagems\nWHERE name = 'GRENADE';"
+      },
+      "id": "call_1207910",
+      "type": "tool_call"
+     }
+    ],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 9276,
+     "output_tokens": 271,
+     "total_tokens": 9547,
+     "input_token_details": {
+      "cache_read": 0
+     },
+     "output_token_details": {
+      "reasoning": 221
+     }
+    }
+   }
+  },
+  {
+   "type": "tool",
+   "data": {
+    "content": "{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335006\", \"GRENADE\", \"\", \"Core – Wargear Stratagem\", \"1\", \"Your turn\", \"Shooting phase\", \"\", \"WHEN: Your Shooting phase.\\nTARGET: One GRENADES unit from your army (excluding units that Advanced, Fell Back or have shot this turn) that is not within Engagement Range of one or more enemy units.\\nEFFECT: Select one GRENADES model in your unit and one enemy unit that is not within Engagement Range of any units from your army and is within 8\\\" of and visible to your GRENADES model. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound.\"]], \"truncated\": false, \"error\": null}",
+    "additional_kwargs": {},
+    "response_metadata": {},
+    "type": "tool",
+    "name": "run_sql",
+    "id": "d26f2fb0-b3fe-4086-9a98-45a911efb35f",
+    "tool_call_id": "call_1207910",
+    "artifact": {
+     "columns": [
+      "id",
+      "name",
+      "FactionId",
+      "type",
+      "cpCost",
+      "turn",
+      "phase",
+      "detachment",
+      "description"
+     ],
+     "rows": [
+      [
+       "000008335006",
+       "GRENADE",
+       "",
+       "Core – Wargear Stratagem",
+       "1",
+       "Your turn",
+       "Shooting phase",
+       "",
+       "WHEN: Your Shooting phase.\nTARGET: One GRENADES unit from your army (excluding units that Advanced, Fell Back or have shot this turn) that is not within Engagement Range of one or more enemy units.\nEFFECT: Select one GRENADES model in your unit and one enemy unit that is not within Engagement Range of any units from your army and is within 8\" of and visible to your GRENADES model. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound."
+      ]
+     ],
+     "truncated": false,
+     "error": null
+    },
+    "status": "success"
+   }
+  },
+  {
+   "type": "ai",
+   "data": {
+    "content": [
+     {
+      "type": "text",
+      "text": "### Scope and Established Facts\n\n- **User-supplied facts:** The unit inquired about is an Intercessor Squad.\n- **Database-established facts:** The datasheet `Intercessor Squad` (faction: Space Marines, source: Space Marines, edition 11) has the **Grenades** keyword [DB: datasheets_keywords].\n- **Sources retrieved:** \n  1. *Core Rules* (10th edition, p. 41–42).\n  2. Database table `stratagems` (source publication and edition not recorded) [DB: stratagems].\n\n---\n\n### GRENADE: Cost, Timing, Targets, and Effect\n\n#### 1. Core Rules (10th edition) [Core Rules p. 41–42]\n- **Cost:** 1 CP [Core Rules p. 41–42] (reduced from the player's CP total; the Stratagem cannot be used if the player lacks sufficient CP or if it has already been used in the same phase [Core Rules p. 41]).\n- **Type:** CORE – WARGEAR STRATAGEM [Core Rules p. 42].\n- **WHEN (Timing):** Your Shooting phase [Core Rules p. 42].\n- **TARGET:** One **Grenades** unit from your army that is not within Engagement Range of any enemy units and has not been selected to shoot this phase [Core Rules p. 42].\n- **EFFECT:** Select one enemy unit that is not within Engagement Range of any units from your army and is within 8\" of and visible to your **Grenades** unit. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound [Core Rules p. 42].\n\n#### 2. Database Record (`stratagems`, ID `000008335006`; source and edition not recorded) [DB: stratagems]\n- **Cost:** 1 CP [DB: stratagems].\n- **Type:** Core – Wargear Stratagem [DB: stratagems].\n- **WHEN (Timing):** Your Shooting phase (Turn: Your turn; Phase: Shooting phase) [DB: stratagems].\n- **TARGET:** One **GRENADES** unit from your army (excluding units that Advanced, Fell Back or have shot this turn) that is not within Engagement Range of one or more enemy units [DB: stratagems].\n- **EFFECT:** Select one **GRENADES** model in your unit and one enemy unit that is not within Engagement Range of any units from your army and is within 8\" of and visible to your **GRENADES** model. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound [DB: stratagems].\n\n---\n\n### Comparison: Core Rules vs. Database\n\n1. **Target Restrictions:**\n   - *Core Rules (10th edition):* Targets one **Grenades** unit that is not within Engagement Range of any enemy units and \"has not been selected to shoot this phase\" [Core Rules p. 42].\n   - *Database record:* Targets one **GRENADES** unit not within Engagement Range of one or more enemy units, explicitly \"(excluding units that Advanced, Fell Back or have shot this turn)\" [DB: stratagems].\n2. **Effect Measurement and Selection:**\n   - *Core Rules (10th edition):* The enemy unit must be within 8\" of and visible to the **Grenades unit** [Core Rules p. 42].\n   - *Database record:* Instructs the player to select one **GRENADES model** in the unit; the enemy unit must be within 8\" of and visible to that selected **GRENADES model** [DB: stratagems].\n3. **Cost, Timing, and Damage:**\n   - Both sources share the 1 CP cost, the timing of \"Your Shooting phase\", and the result of rolling six D6 where each 4+ inflicts 1 mortal wound on an enemy unit that is not within Engagement Range of any units from your army [Core Rules p. 42, DB: stratagems].\n\n---\n\n### Applicability Evidence\n\n#### Source 1: Core Rules (10th edition) [Core Rules p. 41–42]\n- **Citation:** [Core Rules p. 41–42]\n- **Explicit Conditions:**\n  - The controlling player pays 1 CP [Core Rules p. 41–42].\n  - The Stratagem has not been used more than once in the same phase [Core Rules p. 41].\n  - Timing is the controlling player's Shooting phase [Core Rules p. 42].\n  - The target is a friendly unit with the **Grenades** keyword [Core Rules p. 42].\n  - The target is not within Engagement Range of any enemy units [Core Rules p. 42].\n  - The target has not been selected to shoot this phase [Core Rules p. 42].\n- **Relevant Facts:**\n  - *Intercessor Squad* has the **Grenades** keyword [DB: datasheets_keywords].\n  - Missing facts: Whether the controlling player has 1 CP available, whether the Stratagem was already used this phase, whether it is currently the controlling player's Shooting phase, whether the Intercessor Squad is engaged, and whether it has already been selected to shoot this phase.\n- **Outcome:** **Conditional** (the unit has the required keyword, but operational game-state conditions must be met).\n\n#### Source 2: Database Record [DB: stratagems]\n- **Citation:** [DB: stratagems, ID `000008335006`]\n- **Explicit Conditions:**\n  - Cost of 1 CP [DB: stratagems].\n  - Timing is your Shooting phase [DB: stratagems].\n  - Target must be a friendly **GRENADES** unit [DB: stratagems].\n  - Target must not be within Engagement Range of one or more enemy units [DB: stratagems].\n  - Target excludes units that Advanced, Fell Back, or have shot this turn [DB: stratagems].\n- **Relevant Facts:**\n  - *Intercessor Squad* has the **Grenades** keyword [DB: datasheets_keywords].\n  - Missing facts: Current CP total, phase/turn status, engagement status, and whether the unit Advanced, Fell Back, or shot this turn.\n- **Outcome:** **Conditional** (the unit has the required keyword, but the situational restrictions must be satisfied).",
+      "index": 0,
+      "extras": {
+       "signature": "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"
+      }
+     }
+    ],
+    "additional_kwargs": {},
+    "response_metadata": {
+     "safety_ratings": [],
+     "finish_reason": "STOP",
+     "model_name": "gemini-3.8-flash",
+     "model_provider": "google_genai"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a16f84-4aba-75d3-a151-cd66c71840b7",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 5168,
+     "output_tokens": 2941,
+     "total_tokens": 8109,
+     "input_token_details": {
+      "cache_read": 0
+     },
+     "output_token_details": {
+      "reasoning": 1499
+     }
+    }
+   }
+  },
+  {
+   "type": "human",
+   "data": {
+    "content": "Can that same unit use it after advancing, and what must I pay?",
+    "additional_kwargs": {},
+    "response_metadata": {},
+    "type": "human",
+    "name": null,
+    "id": "5e9a7035-4288-44f8-aa93-055a8856d13b"
+   }
+  },
+  {
+   "type": "ai",
+   "data": {
+    "content": [],
+    "additional_kwargs": {
+     "function_call": {
+      "name": "search_rules",
+      "arguments": "{\"query\": \"Advance move shoot\"}"
+     },
+     "__gemini_function_call_thought_signatures__": {
+      "call_1142246": "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"
+     }
+    },
+    "response_metadata": {
+     "safety_ratings": [],
+     "finish_reason": "STOP",
+     "model_name": "gemini-3.8-flash",
+     "model_provider": "google_genai"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a16f84-bbc5-73a2-a836-dae4e6008fae",
+    "tool_calls": [
+     {
+      "name": "search_rules",
+      "args": {
+       "query": "Advance move shoot"
+      },
+      "id": "call_1142246",
+      "type": "tool_call"
+     }
+    ],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 12723,
+     "output_tokens": 514,
+     "total_tokens": 13237,
+     "input_token_details": {
+      "cache_read": 0
+     },
+     "output_token_details": {
+      "reasoning": 496
+     }
+    }
+   }
+  },
+  {
+   "type": "tool",
+   "data": {
+    "content": "[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nSection: ADVANCE MOVES\nWhen a unit Advances, make an Advance roll for that unit by rolling one D6. Add the result in inches to the Move characteristic of each model in that unit until the end of the phase. Each model in that unit can then make an Advance move by moving a distance in inches less than or equal to this total, but no model can be moved within Engagement Range of enemy models. A unit cannot shoot or declare a charge in the same turn that it Advanced.\n\n- Advance Move: Models move up to M+D6\".\n- Cannot move within Engagement Range of any enemy models.\n- Units that Advance cannot shoot or charge this turn.\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: 1. MOVE UNITS\n- When a unit moves it can make a Normal move, Advance or Remain Stationary.\n- Units that are within Engagement Range of any enemy models can only Fall Back or Remain Stationary.\n\n[Core Rules p. 42] (page footer p. 42: CORE RULES | STRATAGEMS)\nSection: FIRE OVERWATCH\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nA hail of wildfire can drive back advancing foes.\n\nWHEN: Your opponent's Movement or Charge phase, just after an enemy unit is set up or when an enemy unit starts or ends a Normal, Advance, Fall Back or Charge move.\n\nTARGET: One unit from your army that is within 24\" of that enemy unit and that would be eligible to shoot if it were your Shooting phase.\n\nEFFECT: Your unit can shoot that enemy unit as if it were your Shooting phase.\n\nRESTRICTIONS: Until the end of the phase, each time a model in your unit makes a ranged attack, an unmodified Hit roll of 6 is required to score a hit, irrespective of the attacking weapon's Ballistic Skill or any modifiers. You can only use this Stratagem once per turn.\n\n[Core Rules p. 19] (page footer p. 19: CORE RULES | SHOOTING PHASE)\nFigure label: Use the following sequence when a unit shoots.\nSection: SHOOTING PHASE > SELECT TARGETS\nMAKE RANGED ATTACKS\n\nREPEAT FOR NEXT ELIGIBLE UNIT\n\nIn your Shooting phase, if you have one or more eligible units from your army on the battlefield, you can select those units, one at a time, and shoot with them. Each unit can only be selected to shoot once per phase. Once all of the units you selected have shot, progress to your Charge phase.\n\nA unit is eligible to shoot unless any of the following apply:\n\n- That unit Advanced this turn.\n- That unit Fell Back this turn.\n\n[Core Rules p. 25] (page footer p. 25: CORE RULES | WEAPON ABILITIES)\nSection: ASSAULT\nAssault weapons fire so indiscriminately that they can be shot from the hip as warriors dash forward.\n\nWeapons with [ASSAULT] in their profile are known as Assault weapons. If a unit that Advanced this turn contains any models equipped with Assault weapons, it is still eligible to shoot in this turn's Shooting phase. When such a unit is selected to shoot, you can only resolve attacks using Assault weapons its models are equipped with.\n\n- Can be shot even if the bearer's unit Advanced.\n\n[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nSection: FALL BACK MOVES\nWhen a unit Falls Back, each model in that unit can make a Fall Back move by moving a distance in inches less than or equal to its Move characteristic, and when doing so you can move it within Engagement Range of enemy models, provided it does not end that move within Engagement Range of any enemy models - if this is not possible, that unit cannot Fall Back.\n\nA unit cannot shoot or declare a charge in the same turn that it Fell Back.\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: MOVEMENT PHASE\nThe ground shakes to the tread of marching feet and the growl of engines as armies advance across the battlefield and vie for advantageous positions.\n\n[Core Rules p. 54] (page footer p. 54: CORE RULES | AIRCRAFT)\nSection: AIRCRAFT AND THE MOVEMENT OF OTHER MODELS\nWhen a unit is selected to move in the Movement phase, if the only enemy models that are within Engagement Range of that unit are Aircraft models, then that unit can still make a Normal or Advance move.\n\nWhenever a model makes any kind of move, it can be moved over enemy Aircraft models as if they were not there, and can be moved within Engagement Range of enemy Aircraft models, but it cannot end that move on top of another model or within Engagement Range of any enemy Aircraft models.\n\n- Units can still make a Normal or Advance move if they are only within Engagement Range of enemy Aircraft.\n- Models can move within Engagement Range of enemy Aircraft, but cannot end a move within Engagement Range of enemy Aircraft.\n- Models can move over Aircraft when they make any kind of move.\n\n[DB: stratagems] Core records; publication/edition not recorded.\nExact-name candidates: [\"FIRE OVERWATCH\"]\n{\"columns\": [\"id\", \"name\", \"FactionId\", \"type\", \"cpCost\", \"turn\", \"phase\", \"detachment\", \"description\"], \"rows\": [[\"000008335009\", \"FIRE OVERWATCH\", \"\", \"Core – Strategic Ploy Stratagem\", \"1\", \"Opponent’s turn\", \"Movement or Charge phase\", \"\", \"WHEN: Your opponent’s Movement or Charge phase, just after an enemy unit is set up or when an enemy unit starts or ends a Normal, Advance or Fall Back move, or declares a charge.\\nTARGET: One unit from your army that is within 24\\\" of that enemy unit and that would be eligible to shoot if it were your Shooting phase.\\nEFFECT: If that enemy unit is visible to your unit, your unit can shoot that enemy unit as if it were your Shooting phase.\\nRESTRICTIONS: You cannot target a TITANIC unit with this Stratagem. Until the end of the phase, each time a model in your unit makes a ranged attack, an unmodified Hit roll of 6 is required to score a hit, irrespective of the attacking weapon’s Ballistic Skill or any modifiers. You can only use this Stratagem once per turn.\"], [\"000010810008\", \"FIRE OVERWATCH\", \"\", \"Core Stratagem\", \"1\", \"Opponent’s turn\", \"Movement phase\", \"\", \"WHEN: End of your opponent’s Movement phase.\\nTARGET: One friendly unengaged unit (excluding TITANIC units).\\nEFFECT: Your unit shoots using snap shooting.\"]], \"truncated\": false, \"error\": null}\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+    "additional_kwargs": {},
+    "response_metadata": {},
+    "type": "tool",
+    "name": "search_rules",
+    "id": "82654dc3-cf4b-4c32-a752-dc5468c92279",
+    "tool_call_id": "call_1142246",
+    "artifact": {
+     "chunks": [
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0048",
+        "text": "Section: ADVANCE MOVES\nWhen a unit Advances, make an Advance roll for that unit by rolling one D6. Add the result in inches to the Move characteristic of each model in that unit until the end of the phase. Each model in that unit can then make an Advance move by moving a distance in inches less than or equal to this total, but no model can be moved within Engagement Range of enemy models. A unit cannot shoot or declare a charge in the same turn that it Advanced.\n\n- Advance Move: Models move up to M+D6\".\n- Cannot move within Engagement Range of any enemy models.\n- Units that Advance cannot shoot or charge this turn.",
+        "pages": [
+         14
+        ],
+        "section": "ADVANCE MOVES",
+        "content_type": "text",
+        "pictures": [],
+        "page_footers": [
+         "CORE RULES | MOVEMENT PHASE"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.03278688524590164
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0044",
+        "text": "Section: 1. MOVE UNITS\n- When a unit moves it can make a Normal move, Advance or Remain Stationary.\n- Units that are within Engagement Range of any enemy models can only Fall Back or Remain Stationary.",
+        "pages": [
+         13
+        ],
+        "section": "1. MOVE UNITS",
+        "content_type": "text",
+        "pictures": [],
+        "page_footers": [
+         "CORE RULES | MOVEMENT PHASE"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.03125
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0164",
+        "text": "Section: FIRE OVERWATCH\n1CP\n\nCORE - STRATEGIC PLOY STRATAGEM\n\nA hail of wildfire can drive back advancing foes.\n\nWHEN: Your opponent's Movement or Charge phase, just after an enemy unit is set up or when an enemy unit starts or ends a Normal, Advance, Fall Back or Charge move.\n\nTARGET: One unit from your army that is within 24\" of that enemy unit and that would be eligible to shoot if it were your Shooting phase.\n\nEFFECT: Your unit can shoot that enemy unit as if it were your Shooting phase.\n\nRESTRICTIONS: Until the end of the phase, each time a model in your unit makes a ranged attack, an unmodified Hit roll of 6 is required to score a hit, irrespective of the attacking weapon's Ballistic Skill or any modifiers. You can only use this Stratagem once per turn.",
+        "pages": [
+         42
+        ],
+        "section": "FIRE OVERWATCH",
+        "content_type": "text",
+        "pictures": [],
+        "page_footers": [
+         "CORE RULES | STRATAGEMS"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.030158730158730156
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0066",
+        "text": "Figure label: Use the following sequence when a unit shoots.\nSection: SHOOTING PHASE > SELECT TARGETS\nMAKE RANGED ATTACKS\n\nREPEAT FOR NEXT ELIGIBLE UNIT\n\nIn your Shooting phase, if you have one or more eligible units from your army on the battlefield, you can select those units, one at a time, and shoot with them. Each unit can only be selected to shoot once per phase. Once all of the units you selected have shot, progress to your Charge phase.\n\nA unit is eligible to shoot unless any of the following apply:\n\n- That unit Advanced this turn.\n- That unit Fell Back this turn.",
+        "pages": [
+         19
+        ],
+        "section": "SHOOTING PHASE > SELECT TARGETS",
+        "content_type": "text",
+        "pictures": [
+         "#/pictures/39"
+        ],
+        "page_footers": [
+         "CORE RULES | SHOOTING PHASE"
+        ],
+        "picture_labels": [
+         "Use the following sequence when a unit shoots."
+        ]
+       },
+       "score": 0.02886002886002886
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0093",
+        "text": "Section: ASSAULT\nAssault weapons fire so indiscriminately that they can be shot from the hip as warriors dash forward.\n\nWeapons with [ASSAULT] in their profile are known as Assault weapons. If a unit that Advanced this turn contains any models equipped with Assault weapons, it is still eligible to shoot in this turn's Shooting phase. When such a unit is selected to shoot, you can only resolve attacks using Assault weapons its models are equipped with.\n\n- Can be shot even if the bearer's unit Advanced.",
+        "pages": [
+         25
+        ],
+        "section": "ASSAULT",
+        "content_type": "text",
+        "pictures": [],
+        "page_footers": [
+         "CORE RULES | WEAPON ABILITIES"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.028629032258064516
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0049",
+        "text": "Section: FALL BACK MOVES\nWhen a unit Falls Back, each model in that unit can make a Fall Back move by moving a distance in inches less than or equal to its Move characteristic, and when doing so you can move it within Engagement Range of enemy models, provided it does not end that move within Engagement Range of any enemy models - if this is not possible, that unit cannot Fall Back.\n\nA unit cannot shoot or declare a charge in the same turn that it Fell Back.",
+        "pages": [
+         14
+        ],
+        "section": "FALL BACK MOVES",
+        "content_type": "text",
+        "pictures": [],
+        "page_footers": [
+         "CORE RULES | MOVEMENT PHASE"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.028381642512077296
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0042",
+        "text": "Section: MOVEMENT PHASE\nThe ground shakes to the tread of marching feet and the growl of engines as armies advance across the battlefield and vie for advantageous positions.",
+        "pages": [
+         13
+        ],
+        "section": "MOVEMENT PHASE",
+        "content_type": "text",
+        "pictures": [],
+        "page_footers": [
+         "CORE RULES | MOVEMENT PHASE"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.02819138376017471
+      },
+      {
+       "chunk": {
+        "chunk_id": "core_rules-0212",
+        "text": "Section: AIRCRAFT AND THE MOVEMENT OF OTHER MODELS\nWhen a unit is selected to move in the Movement phase, if the only enemy models that are within Engagement Range of that unit are Aircraft models, then that unit can still make a Normal or Advance move.\n\nWhenever a model makes any kind of move, it can be moved over enemy Aircraft models as if they were not there, and can be moved within Engagement Range of enemy Aircraft models, but it cannot end that move on top of another model or within Engagement Range of any enemy Aircraft models.\n\n- Units can still make a Normal or Advance move if they are only within Engagement Range of enemy Aircraft.\n- Models can move within Engagement Range of enemy Aircraft, but cannot end a move within Engagement Range of enemy Aircraft.\n- Models can move over Aircraft when they make any kind of move.",
+        "pages": [
+         54
+        ],
+        "section": "AIRCRAFT AND THE MOVEMENT OF OTHER MODELS",
+        "content_type": "text",
+        "pictures": [],
+        "page_footers": [
+         "CORE RULES | AIRCRAFT"
+        ],
+        "picture_labels": []
+       },
+       "score": 0.027730294396961064
+      }
+     ],
+     "stratagem_names": [
+      "FIRE OVERWATCH"
+     ],
+     "stratagems": {
+      "columns": [
+       "id",
+       "name",
+       "FactionId",
+       "type",
+       "cpCost",
+       "turn",
+       "phase",
+       "detachment",
+       "description"
+      ],
+      "rows": [
+       [
+        "000008335009",
+        "FIRE OVERWATCH",
+        "",
+        "Core – Strategic Ploy Stratagem",
+        "1",
+        "Opponent’s turn",
+        "Movement or Charge phase",
+        "",
+        "WHEN: Your opponent’s Movement or Charge phase, just after an enemy unit is set up or when an enemy unit starts or ends a Normal, Advance or Fall Back move, or declares a charge.\nTARGET: One unit from your army that is within 24\" of that enemy unit and that would be eligible to shoot if it were your Shooting phase.\nEFFECT: If that enemy unit is visible to your unit, your unit can shoot that enemy unit as if it were your Shooting phase.\nRESTRICTIONS: You cannot target a TITANIC unit with this Stratagem. Until the end of the phase, each time a model in your unit makes a ranged attack, an unmodified Hit roll of 6 is required to score a hit, irrespective of the attacking weapon’s Ballistic Skill or any modifiers. You can only use this Stratagem once per turn."
+       ],
+       [
+        "000010810008",
+        "FIRE OVERWATCH",
+        "",
+        "Core Stratagem",
+        "1",
+        "Opponent’s turn",
+        "Movement phase",
+        "",
+        "WHEN: End of your opponent’s Movement phase.\nTARGET: One friendly unengaged unit (excluding TITANIC units).\nEFFECT: Your unit shoots using snap shooting."
+       ]
+      ],
+      "truncated": false,
+      "error": null
+     },
+     "related_sections": []
+    },
+    "status": "success"
+   }
+  },
+  {
+   "type": "ai",
+   "data": {
+    "content": [
+     {
+      "type": "text",
+      "text": "### Cost to Use\n\nTo use **GRENADE**, the controlling player must pay **1 CP** [Core Rules p. 41–42, DB: stratagems]. \n- Under the Core Rules, when using a Stratagem, the player reduces their Command point total by the amount listed on the card (1 CP); if the player does not have enough CP, they cannot use it [Core Rules p. 41].\n- In the database record, `cpCost` is `1` [DB: stratagems].\n\n---\n\n### Applicability After Advancing\n\n#### Source 1: Database Record (`stratagems`, ID `000008335006`; source and edition not recorded)\n- **Citation:** [DB: stratagems]\n- **Explicit Conditions:**\n  - Cost: 1 CP.\n  - Timing: Your Shooting phase.\n  - Target: One **GRENADES** unit from your army **(excluding units that Advanced, Fell Back or have shot this turn)** that is not within Engagement Range of one or more enemy units.\n- **Relevant Facts:**\n  - Fact supplied by user: The unit has Advanced (\"after advancing\").\n  - Fact established by tool: *Intercessor Squad* has the **Grenades** keyword [DB: datasheets_keywords].\n- **Missing Facts:** None regarding the advance condition.\n- **Supported Conclusion:** **Supported prohibition**. The database text explicitly excludes units that Advanced this turn from being targeted.\n\n---\n\n#### Source 2: Core Rules (10th edition)\n- **Citation:** [Core Rules p. 14, 19, 41–42]\n- **Explicit Conditions:**\n  - Cost: 1 CP [Core Rules p. 41–42].\n  - Timing: Your Shooting phase [Core Rules p. 42].\n  - Target: One **Grenades** unit from your army that is not within Engagement Range of any enemy units and **has not been selected to shoot this phase** [Core Rules p. 42].\n  - Advancing rule: A unit cannot shoot or declare a charge in the same turn that it Advanced [Core Rules p. 14], and a unit is not eligible to shoot if it Advanced this turn [Core Rules p. 19].\n- **Relevant Facts:**\n  - Fact supplied by user: The unit has Advanced.\n  - Fact established by tool: *Intercessor Squad* has the **Grenades** keyword [DB: datasheets_keywords].\n  - Ineligibility to shoot: An Advanced unit is not eligible to shoot [Core Rules p. 19].\n- **Missing Facts / Evidence Gap:**\n  - The TARGET condition in the Core Rules requires that the unit *\"has not been selected to shoot this phase\"* rather than requiring the unit to be *\"eligible to shoot\"*, nor does the Stratagem's card text explicitly mention Advancing [Core Rules p. 42].\n  - Nonselection, a completed action, and ineligibility are distinct predicates. The retrieved Core Rules passages do not state whether ineligibility to shoot prevents selection under the wording of GRENADE, nor do they explicitly permit or prohibit an Advanced unit from being targeted.\n- **Supported Conclusion:** **Undetermined**. The absence of an explicit Advance exclusion in [Core Rules p. 42] proves neither permission nor prohibition, and the retrieved passages do not settle whether a unit that cannot be selected to shoot due to Advancing satisfies the predicate \"has not been selected to shoot this phase\".",
+      "index": 0,
+      "extras": {
+       "signature": "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"
+      }
+     }
+    ],
+    "additional_kwargs": {},
+    "response_metadata": {
+     "safety_ratings": [],
+     "finish_reason": "STOP",
+     "model_name": "gemini-3.8-flash",
+     "model_provider": "google_genai"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a16f84-d0d6-70d3-abba-6ae57845d430",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 14869,
+     "output_tokens": 2151,
+     "total_tokens": 17020,
+     "input_token_details": {
+      "cache_read": 0
+     },
+     "output_token_details": {
+      "reasoning": 1384
+     }
+    }
+   }
+  }
+ ],
+ "model_calls": [
+  {
+   "node": "agent",
+   "input_count": 1,
+   "tool_choice": "validated",
+   "context": null
+  },
+  {
+   "node": "agent",
+   "input_count": 4,
+   "tool_choice": "validated",
+   "context": null
+  },
+  {
+   "node": "final",
+   "input_count": 6,
+   "tool_choice": "none",
+   "context": null
+  },
+  {
+   "node": "agent",
+   "input_count": 8,
+   "tool_choice": "validated",
+   "context": null
+  },
+  {
+   "node": "agent",
+   "input_count": 10,
+   "tool_choice": "validated",
+   "context": null
+  }
+ ]
+}

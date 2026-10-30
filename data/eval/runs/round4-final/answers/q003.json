@@ -1,0 +1,603 @@
+{
+ "question": {
+  "question_id": "q003",
+  "question": "What can units do in the Movment faze?",
+  "reference": "During the Movement phase, a unit can make a Normal move, Advance, or Remain Stationary, unless that unit is within Engagement Range of any enemy models. If a unit is within Engagement Range of any enemy models, it can either Remain Stationary or Fall Back.",
+  "reference_contexts": [
+   "Section: 1. MOVE UNITS\nStart your Movement phase by selecting one unit from your army that is on the battlefield to move:\n\n- Unless that unit is within Engagement Range of any enemy models, it can make a Normal move, or Advance, or Remain Stationary.\n- If that unit is within Engagement Range of any enemy models, it can either Remain Stationary or Fall Back.\n\nAfter you have finished moving that unit, select another unit from your army to move, and so on, until you have done so with all of your units. Once you have moved all of your units, progress to the Reinforcements step of your Movement phase.\n\nEach time you move a unit, you can move any of its models you choose to. The controlling player chooses the order in which to move their models. Whenever you move a model, you can pivot it and/or change its position on the battlefield along any path, but no part of its base can be moved across an enemy model or cross the edge of the battlefield. It can be moved over friendly models as if they were not there if you wish, but it cannot end its move on top of another model. The only exception to this is when moving Monster or Vehicle models; such models cannot be moved over other friendly Monster or Vehicle models and must be moved around them instead. The distance a model moves is measured using the part of its base that moves furthest along its path. If a model does not have a base, measure using whichever part of that model moves the furthest.\n\n- When a unit moves it can make a Normal move, Advance or Remain Stationary.\n- Units that are within Engagement Range of any enemy models can only Fall Back or Remain Stationary."
+  ],
+  "synthesizer": "single_hop_specific_query_synthesizer"
+ },
+ "answer": "In Warhammer 40,000 (10th Edition), the **Movement phase** is split into two sequential steps: **1. Move Units** and **2. Reinforcements** [Core Rules p. 13].\n\n---\n\n### Step 1: Move Units\nThe controlling player selects units from their army on the battlefield one at a time to move [Core Rules p. 13]. What a unit can do depends on whether it is currently within Engagement Range of any enemy models:\n\n#### 1. Units Not Within Engagement Range of Any Enemy Models\nSuch a unit can choose one of the following options [Core Rules p. 13]:\n* **Normal Move:** Each model in the unit can move a distance in inches up to its Move ($M$) characteristic. No model can move within Engagement Range of any enemy models [Core Rules p. 13].\n* **Advance:** Roll one D6 and add the result to the Move characteristic of each model in the unit until the end of the phase. Each model can move up to this total distance ($M + \\text{D6}\"$), but cannot move within Engagement Range of enemy models. The unit cannot shoot or declare a charge in the same turn [Core Rules p. 13, 14].\n* **Remain Stationary:** None of the unit's models can be moved for the rest of the phase [Core Rules p. 13].\n\n#### 2. Units Within Engagement Range of Any Enemy Models\nSuch a unit can only choose between two options [Core Rules p. 13]:\n* **Fall Back:** Each model in the unit can move up to its Move ($M$) characteristic. Models can move within Engagement Range of enemy models during this move, but cannot end the move within Engagement Range of any enemy models (if this is not possible, the unit cannot Fall Back). The unit cannot shoot or declare a charge in the same turn [Core Rules p. 13, 14].\n* **Remain Stationary:** None of the unit's models are moved [Core Rules p. 13].\n\n---\n\n### Transport Interactions (Embarking & Disembarking)\nDuring the Move Units step, units can also interact with friendly Transports:\n\n* **Disembark:** A unit that starts the Movement phase embarked in a Transport can disembark before or after the Transport moves (unless the Transport has Advanced or Fallen Back) [Core Rules p. 17]:\n  * Disembarking models must be placed wholly within 3\" of the Transport and not within Engagement Range of enemy models [Core Rules p. 17].\n  * If the unit disembarks before the Transport moves (or if the Transport Remained Stationary), it can act normally (make a Normal move, Advance, shoot, charge, fight), but cannot choose to Remain Stationary [Core Rules p. 17].\n  * If it disembarks after the Transport makes a Normal move, the unit counts as having made a Normal move; it cannot move further in this phase or declare a charge this turn, but can otherwise act normally [Core Rules p. 17].\n* **Embark:** If a unit makes a Normal, Advance, or Fall Back move and every model in the unit ends that move within 3\" of a friendly Transport, it can embark into that Transport (provided it did not disembark in the same phase) [Core Rules p. 17].\n\n---\n\n### Step 2: Reinforcements\nOnce all units on the battlefield that the player wishes to move have finished moving, the phase moves to the Reinforcements step [Core Rules p. 13, 16]:\n\n* **Arrive from Reserves:** The player can select one or more Reserves units from their army and set them up on the battlefield, one at a time, according to the rules that placed them in Reserves (such as *Deep Strike*) [Core Rules p. 16].\n* **Restrictions & Effects:** Units arriving from Reserves count as having made a Normal move in the turn they are set up; they cannot move further during this phase, but can otherwise act normally later in the turn (shoot, declare a charge, fight) [Core Rules p. 16].\n\nOnce all desired Reserves units have been set up, the Movement phase ends [Core Rules p. 16].",
+ "agent_contexts": [
+  "[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: MOVEMENT PHASE\nThe ground shakes to the tread of marching feet and the growl of engines as armies advance across the battlefield and vie for advantageous positions.\n\n[Core Rules p. 10] (page footer p. 10: CORE RULES | THE BATTLE ROUND)\nFigure label: COMMAND PHASE\nSection: THE BATTLE ROUND > MOVEMENT PHASE\nYour units manoeuvre across the battlefield and reinforcements enter the fray.\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: NORMAL MOVES\nWhen a unit makes a Normal move, each model in that unit can move a distance in inches less than or equal to its Move (M) characteristic, but no model can be moved within Engagement Range of any enemy models (pg 7).\n\n- Normal Move: Models move up to M\".\n- Cannot move within Engagement Range of any enemy models.\n\nYour Movement phase is split into two steps. First you can move your units, then you can set up reinforcements.\n\n[Core Rules p. 16] (page footer p. 16: CORE RULES | MOVEMENT PHASE)\nSection: 2. REINFORCEMENTS\nSome units have a rule that allows them to start the battle in Reserves, such as Deep Strike (pg 39). Such units will arrive later in the battle and are known as Reserves units. Any Reserves units that have not been set up on the battlefield when the battle ends count as having been destroyed.\n\nIn the Reinforcements step of your Movement phase, if you have any Reserves units in your army, you can select one or more of them and set them up on the battlefield, one at a time. Once all your Reserves units that you wish to set up this turn have been set up, your Movement phase ends and you progress to your Shooting phase.\n\nDetails of how to set up Reserves units are described in the same rules that enabled the unit to be set up in Reserves. These rules will typically specify a distance away from all enemy models; whenever such a distance is specified, it always applies to the horizontal distance, even though normally you measure to and from the closest part of a model's base.\n\nReserves units always count as having made a Normal move in the turn they are set up on the battlefield, and so cannot move further during this phase. Otherwise, units set up in this way can act normally this turn (shoot, declare a charge, fight, etc.).\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: 1. MOVE UNITS\nStart your Movement phase by selecting one unit from your army that is on the battlefield to move:\n\n- Unless that unit is within Engagement Range of any enemy models, it can make a Normal move, or Advance, or Remain Stationary.\n- If that unit is within Engagement Range of any enemy models, it can either Remain Stationary or Fall Back.\n\nAfter you have finished moving that unit, select another unit from your army to move, and so on, until you have done so with all of your units. Once you have moved all of your units, progress to the Reinforcements step of your Movement phase.\n\nEach time you move a unit, you can move any of its models you choose to. The controlling player chooses the order in which to move their models. Whenever you move a model, you can pivot it and/or change its position on the battlefield along any path, but no part of its base can be moved across an enemy model or cross the edge of the battlefield. It can be moved over friendly models as if they were not there if you wish, but it cannot end its move on top of another model. The only exception to this is when moving Monster or Vehicle models; such models cannot be moved over other friendly Monster or Vehicle models and must be moved around them instead. The distance a model moves is measured using the part of its base that moves furthest along its path. If a model does not have a base, measure using whichever part of that model moves the furthest.\n\n[Core Rules p. 17] (page footer p. 17: CORE RULES | TRANSPORTS)\nSection: DISEMBARK\nIf a unit from your army starts your Movement phase embarked within a Transport model, that unit can disembark in that phase.\n\nWhen a unit disembarks from a Transport model, set it up on the battlefield so that it is wholly within 3\" of that Transport model and not within Engagement Range of any enemy models. If, for any reason, a disembarking model cannot be set up, that model's unit cannot disembark.\n\nUnits that disembark from a Transport model that either Remained Stationary this phase or has not yet made a Normal, Advance or Fall Back move this phase can then act normally (make a Normal move, Advance, shoot, declare a charge, fight, etc.) in the remainder of the turn. Such a disembarking unit cannot choose to Remain Stationary.\n\nUnits that disembark from a Transport model that made a Normal move this phase count as having made a Normal move themselves; they cannot move further during this phase. Such a unit also cannot declare a charge in the same turn, but can otherwise act normally in the remainder of the turn.\n\nUnits cannot disembark from a Transport model that either Advanced or Fell Back this turn.\n\n[Core Rules p. 3]\nFigure label: 1 COMMAND PHASE\nSection: Introduction\n1 COMMAND PHASE\n\n2 MOVEMENT PHASE\n\n3 SHOOTING PHASE\n\n4 CHARGE PHASE\n\n5 FIGHT PHASE\n\nIn a game as wide-ranging as Warhammer 40,000, there may be times when you are not sure exactly how to resolve a situation that has come up during play. When this happens, have a quick chat with your opponent and apply the solution that makes the most sense to both of you (or seems the most fun!). If no single solution presents itself, you and your opponent should roll off, and whoever rolls highest gets to choose what happens. Then you can get on with the fighting!\n\n[Core Rules p. 17] (page footer p. 17: CORE RULES | TRANSPORTS)\nSection: DISEMBARK\nUnits cannot disembark from a Transport model that either Advanced or Fell Back this turn.\n\n- Units that start your Movement phase embarked within a Transport can disembark this phase, provided their Transport has not Advanced or Fallen Back.\n- If a unit disembarks before its Transport moves, it can act normally.\n- If a unit disembarks after its Transport moves, it cannot move or charge this turn, but can otherwise act normally.\n- Disembarking units must be set up wholly within 3\" of their Transport and not within Engagement Range of any enemy models (or the unit cannot disembark).\n- Units that disembark this turn cannot Remain Stationary.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+  "[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: 1. MOVE UNITS\n- When a unit moves it can make a Normal move, Advance or Remain Stationary.\n- Units that are within Engagement Range of any enemy models can only Fall Back or Remain Stationary.\n\n[Core Rules p. 17] (page footer p. 17: CORE RULES | TRANSPORTS)\nSection: EMBARK\nIf a unit makes a Normal, Advance or Fall Back move, and every model in that unit ends that move within 3\" of a friendly Transport model, they can embark within it. A unit cannot embark if it has already disembarked from a Transport model in the same phase. Remove the unit from the battlefield and place it to one side - it is now embarked within that Transport model. Unless otherwise stated, units cannot do anything or be affected in any way while they are embarked.\n\n- A unit can embark within a friendly Transport if all of its models end a Normal, Advance or Fall Back move within 3\" of that Transport.\n- A unit cannot embark and disembark in the same phase.\n\n[Core Rules p. 17] (page footer p. 17: CORE RULES | TRANSPORTS)\nSection: DISEMBARK\nIf a unit from your army starts your Movement phase embarked within a Transport model, that unit can disembark in that phase.\n\nWhen a unit disembarks from a Transport model, set it up on the battlefield so that it is wholly within 3\" of that Transport model and not within Engagement Range of any enemy models. If, for any reason, a disembarking model cannot be set up, that model's unit cannot disembark.\n\nUnits that disembark from a Transport model that either Remained Stationary this phase or has not yet made a Normal, Advance or Fall Back move this phase can then act normally (make a Normal move, Advance, shoot, declare a charge, fight, etc.) in the remainder of the turn. Such a disembarking unit cannot choose to Remain Stationary.\n\nUnits that disembark from a Transport model that made a Normal move this phase count as having made a Normal move themselves; they cannot move further during this phase. Such a unit also cannot declare a charge in the same turn, but can otherwise act normally in the remainder of the turn.\n\nUnits cannot disembark from a Transport model that either Advanced or Fell Back this turn.\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: REMAIN STATIONARY\nIf a unit Remains Stationary, none of its models can be moved for the rest of the phase.\n\n[Core Rules p. 17] (page footer p. 17: CORE RULES | TRANSPORTS)\nSection: DISEMBARK\nUnits cannot disembark from a Transport model that either Advanced or Fell Back this turn.\n\n- Units that start your Movement phase embarked within a Transport can disembark this phase, provided their Transport has not Advanced or Fallen Back.\n- If a unit disembarks before its Transport moves, it can act normally.\n- If a unit disembarks after its Transport moves, it cannot move or charge this turn, but can otherwise act normally.\n- Disembarking units must be set up wholly within 3\" of their Transport and not within Engagement Range of any enemy models (or the unit cannot disembark).\n- Units that disembark this turn cannot Remain Stationary.\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: 1. MOVE UNITS\nStart your Movement phase by selecting one unit from your army that is on the battlefield to move:\n\n- Unless that unit is within Engagement Range of any enemy models, it can make a Normal move, or Advance, or Remain Stationary.\n- If that unit is within Engagement Range of any enemy models, it can either Remain Stationary or Fall Back.\n\nAfter you have finished moving that unit, select another unit from your army to move, and so on, until you have done so with all of your units. Once you have moved all of your units, progress to the Reinforcements step of your Movement phase.\n\nEach time you move a unit, you can move any of its models you choose to. The controlling player chooses the order in which to move their models. Whenever you move a model, you can pivot it and/or change its position on the battlefield along any path, but no part of its base can be moved across an enemy model or cross the edge of the battlefield. It can be moved over friendly models as if they were not there if you wish, but it cannot end its move on top of another model. The only exception to this is when moving Monster or Vehicle models; such models cannot be moved over other friendly Monster or Vehicle models and must be moved around them instead. The distance a model moves is measured using the part of its base that moves furthest along its path. If a model does not have a base, measure using whichever part of that model moves the furthest.\n\n[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nSection: FALL BACK MOVES\nWhen a unit Falls Back, each model in that unit can make a Fall Back move by moving a distance in inches less than or equal to its Move characteristic, and when doing so you can move it within Engagement Range of enemy models, provided it does not end that move within Engagement Range of any enemy models - if this is not possible, that unit cannot Fall Back.\n\nA unit cannot shoot or declare a charge in the same turn that it Fell Back.\n\n[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nSection: ADVANCE MOVES\nWhen a unit Advances, make an Advance roll for that unit by rolling one D6. Add the result in inches to the Move characteristic of each model in that unit until the end of the phase. Each model in that unit can then make an Advance move by moving a distance in inches less than or equal to this total, but no model can be moved within Engagement Range of enemy models. A unit cannot shoot or declare a charge in the same turn that it Advanced.\n\n- Advance Move: Models move up to M+D6\".\n- Cannot move within Engagement Range of any enemy models.\n- Units that Advance cannot shoot or charge this turn.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge."
+ ],
+ "retriever_contexts": [
+  "[Core Rules p. 39] (page footer p. 39: CORE RULES | DEPLOYMENT ABILITIES)\nSection: SCOUTS\nScouts form the vanguard of many armies. Unnoticed by the enemy, they range ahead of the main force.\n\nSome units have 'Scouts x\"' listed in their abilities. If every model in a unit has this ability, then at the start of the first battle round, before the first turn begins, it can make a Normal move of up to x\" as if it were your Movement phase - as can any Dedicated Transport model such a unit starts the battle embarked within (provided only models with this ability are embarked within that Dedicated Transport model). A unit that moves using this ability must end that move more than 9\" horizontally away from all enemy models. If both players have units that can do this, the player who is taking the first turn moves their units first.\n\nExample: A unit has the Scouts 6\" ability. At the start of the first battle round, the controlling player can make a Normal move with that unit of up to 6\".\n\n- Scouts x\": Unit can make a Normal move of up to x\" before the first turn begins.\n- If embarked in a Dedicated Transport, that Dedicated Transport can make this move instead.\n- Must end this move more than 9\" horizontally away from all enemy models.",
+  "[Core Rules p. 16] (page footer p. 16: CORE RULES | MOVEMENT PHASE)\nSection: 2. REINFORCEMENTS\nSome units have a rule that allows them to start the battle in Reserves, such as Deep Strike (pg 39). Such units will arrive later in the battle and are known as Reserves units. Any Reserves units that have not been set up on the battlefield when the battle ends count as having been destroyed.\n\nIn the Reinforcements step of your Movement phase, if you have any Reserves units in your army, you can select one or more of them and set them up on the battlefield, one at a time. Once all your Reserves units that you wish to set up this turn have been set up, your Movement phase ends and you progress to your Shooting phase.\n\nDetails of how to set up Reserves units are described in the same rules that enabled the unit to be set up in Reserves. These rules will typically specify a distance away from all enemy models; whenever such a distance is specified, it always applies to the horizontal distance, even though normally you measure to and from the closest part of a model's base.\n\nReserves units always count as having made a Normal move in the turn they are set up on the battlefield, and so cannot move further during this phase. Otherwise, units set up in this way can act normally this turn (shoot, declare a charge, fight, etc.).",
+  "[Core Rules p. 33] (page footer p. 33: CORE RULES | FIGHT PHASE | FIGHT)\nSection: 1. PILE IN\nWhen a unit Piles In, you can move each model in that unit that is not already in base-to-base contact with an enemy model up to 3\" - this is a Pile-in move. For a Pile In to be possible, a unit must be able to end these moves within Engagement Range of one or more enemy units and in Unit Coherency. If these conditions cannot be met, no models in the unit can make Pile-in moves this phase and you progress to making melee attacks with that unit. Otherwise, the unit can make Pile-in moves.\n\nEach time a model makes a Pile-in move, it must end that move closer to the closest enemy model. If it can also end that move in base-to-base contact with one or more enemy models while still satisfying all of the conditions above, it must do so. The controlling player chooses the order in which to move their models.\n\n- Pile-in Move: Up to 3\".\n- Every model that moves must end closer to the closest enemy model, and in base-to-base contact with an enemy model if possible. The unit must end in Unit Coherency and within Engagement Range of at least one enemy unit (or no models can Pile In).",
+  "[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: 1. MOVE UNITS\nStart your Movement phase by selecting one unit from your army that is on the battlefield to move:\n\n- Unless that unit is within Engagement Range of any enemy models, it can make a Normal move, or Advance, or Remain Stationary.\n- If that unit is within Engagement Range of any enemy models, it can either Remain Stationary or Fall Back.\n\nAfter you have finished moving that unit, select another unit from your army to move, and so on, until you have done so with all of your units. Once you have moved all of your units, progress to the Reinforcements step of your Movement phase.\n\nEach time you move a unit, you can move any of its models you choose to. The controlling player chooses the order in which to move their models. Whenever you move a model, you can pivot it and/or change its position on the battlefield along any path, but no part of its base can be moved across an enemy model or cross the edge of the battlefield. It can be moved over friendly models as if they were not there if you wish, but it cannot end its move on top of another model. The only exception to this is when moving Monster or Vehicle models; such models cannot be moved over other friendly Monster or Vehicle models and must be moved around them instead. The distance a model moves is measured using the part of its base that moves furthest along its path. If a model does not have a base, measure using whichever part of that model moves the furthest.",
+  "[Core Rules p. 17] (page footer p. 17: CORE RULES | TRANSPORTS)\nSection: EMBARK\nIf a unit makes a Normal, Advance or Fall Back move, and every model in that unit ends that move within 3\" of a friendly Transport model, they can embark within it. A unit cannot embark if it has already disembarked from a Transport model in the same phase. Remove the unit from the battlefield and place it to one side - it is now embarked within that Transport model. Unless otherwise stated, units cannot do anything or be affected in any way while they are embarked.\n\n- A unit can embark within a friendly Transport if all of its models end a Normal, Advance or Fall Back move within 3\" of that Transport.\n- A unit cannot embark and disembark in the same phase.",
+  "[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: NORMAL MOVES\nWhen a unit makes a Normal move, each model in that unit can move a distance in inches less than or equal to its Move (M) characteristic, but no model can be moved within Engagement Range of any enemy models (pg 7).\n\n- Normal Move: Models move up to M\".\n- Cannot move within Engagement Range of any enemy models.\n\nYour Movement phase is split into two steps. First you can move your units, then you can set up reinforcements.",
+  "[Core Rules p. 53] (page footer p. 53: CORE RULES | AIRCRAFT)\nSection: AIRCRAFT IN THE MOVEMENT PHASE\nAircraft models cannot Advance, Fall Back or Remain Stationary. If, when an Aircraft model is selected to move in the Movement phase, any enemy units are within Engagement Range of it, that Aircraft model can still make a Normal move.\n\nEach time an Aircraft model makes a Normal move, first move the model straight forward, and it must move a minimum of 20\" - all parts of the model's base must end the move at least this far from where they started. After it has moved, it can pivot on the spot up to 90° - this does not contribute to how far the model moves. If, when making a Normal move, any part of an Aircraft model's base crosses the edge of the battlefield, or it cannot move a minimum of 20\", that model's move ends and it is placed into Strategic Reserves. There is no upper limit to how far Aircraft models can move, and their Move characteristic is therefore 20+\".\n\nIf placed into Strategic Reserves, an Aircraft model will always arrive from Strategic Reserves in your next turn.\n\n- Aircraft can only make a Normal move, and can do so even when within Engagement Range of enemy models.\n- Aircraft must move straight forward at least 20\", and can then make one pivot of up to 90°.\n- Aircraft that cross the edge of the battlefield, or that cannot make their minimum move, are placed into Strategic Reserves.",
+  "[Core Rules p. 54] (page footer p. 54: CORE RULES | AIRCRAFT)\nSection: AIRCRAFT AND THE MOVEMENT OF OTHER MODELS\nWhen a unit is selected to move in the Movement phase, if the only enemy models that are within Engagement Range of that unit are Aircraft models, then that unit can still make a Normal or Advance move.\n\nWhenever a model makes any kind of move, it can be moved over enemy Aircraft models as if they were not there, and can be moved within Engagement Range of enemy Aircraft models, but it cannot end that move on top of another model or within Engagement Range of any enemy Aircraft models.\n\n- Units can still make a Normal or Advance move if they are only within Engagement Range of enemy Aircraft.\n- Models can move within Engagement Range of enemy Aircraft, but cannot end a move within Engagement Range of enemy Aircraft.\n- Models can move over Aircraft when they make any kind of move."
+ ],
+ "retriever_k": 8,
+ "trace": {
+  "system_prompt": "You are a rules assistant for Warhammer 40,000. You answer from two sources: the Core Rules (10th edition) and a database of datasheets, weapons, stratagems, factions and detachments.\n\n## Tools\n\n- `search_rules`: how the game works (phases, actions, abilities, keywords, terrain). Write the query in English, with the rulebook's terms, whatever the language of the question. Specify the concept: victory points and objective control for scoring, Command points for Stratagem costs, army points for army construction.\n- `run_sql`: facts about units, their models, weapons, keywords and abilities, and about stratagems, detachments, enhancements and factions. Call `run_sql` with one read-only SQLite SELECT or WITH query in its required `sql` string parameter, then answer from the returned result. Follow the database schema below: for a specific named unit, join `datasheets`, `datasheets_models` and `source` in a single query (example 1) instead of separate queries per table. If the tool returns an error, correct the query and try again.\n- Use both when a question mixes rules and unit data. The number of tool rounds per question is limited: search with purpose.\n- Before seeking more evidence, inspect successful results from every earlier turn. They remain available in the conversation. If those results already establish the answer, answer directly; do not query the same fact again merely to confirm it. After each new result, stop as soon as the question is supported. If evidence is still missing, retrieve only the missing fields together where possible, or state the gap instead of pursuing optional detail.\n- A broad category of units, such as \"a Space Marine\", that maps to a faction and keywords: query it with `run_sql` before you answer, keeping each value's datasheet IDs, units and model profiles in the result (example 2 of the schema). Use at most one aggregate query and one representative unit query for the category; do not issue a separate query for each characteristic value. Ask which unit is meant only when no faction or keyword fits.\n- For a named Stratagem, search the rulebook. `search_rules` also queries exact-name core database records for retrieved Stratagem sections. Inspect both parts of its result; do not repeat a successful associated lookup. If either source is missing, use a targeted search or SQL query while tools remain, and report any remaining gap. Unit keywords still need `run_sql`.\n\n## Answering\n\n- Answer only from the tool results of this conversation. If a search does not supply the necessary passage, search again with a specific rule or section name while tools remain. If it is still missing, say what the retrieved passages do not establish and what you searched. Unsuccessful retrieval never proves that the rulebook has no such rule. Do not invent values or fill gaps from general game knowledge.\n- Organize an evidence answer in this order: source/version and scope, including which facts the user supplied and which the tools established; explicit conditions and results in the source's order; then the supported conclusion and any evidence gap. For an if/otherwise rule, preserve every branch and their common timing. Distinguish ways to score from the rule for determining a winner.\n- For a rule or procedure, preserve its cost, timing, eligible target, effect, restrictions and exceptions where the evidence gives them. For how to use a Stratagem, explain its CP payment from the `STRATAGEMS` and `1. COMMAND` sections and illustrate how the card labels WHEN, TARGET, EFFECT and RESTRICTIONS work from the retrieved Stratagem cards; once those sections and cards are retrieved, answer from them without searching again for a separate definition of those card labels. Identify the actor, whose phase it is, every recipient, and quantifiers such as \"both players\" and \"each phase\"; avoid ambiguous pronouns. Do not merge source versions. Give an exception only with its trigger and timing. If you choose an example, attribute it to one source or separate material versions; do not use a joint citation to imply that different versions are identical. An example figure is illustrative, not a datasheet fact about a real unit.\n- Cite every fact: [Core Rules p. N] for the rulebook (p. N–M for a passage over two pages), [DB: table] for the database.\n- Editions: the rulebook is the 10th edition. For a database record, give its edition only when it is recorded: for a datasheet, join `source` and give its name and edition; edition '0' means that none is recorded (a Warhammer Legends or Forge World pack: name it as such). Stratagems, detachments, enhancements and abilities have no source: say that their source is not recorded. Never give one edition to the database as a whole.\n- When evidence contains versions of the same rule, compare costs, timing, targets, effects and restrictions. For an applicability question or follow-up, give a short entry for EACH source: source/version and citation; its explicit conditions; the relevant facts supplied by the user or established by a tool, labelled by origin; any missing facts; and the conclusion supported by that source. These are checkable evidence statements, not a narrative of your reasoning. Preserve who a restriction applies to, including the controlling player. Nonselection, a completed action, and ineligibility are different predicates: none establishes another without cited evidence. Do not import exclusions across sources. An exclusion absent from a retrieved passage proves neither permission nor prohibition; say when that source does not settle the case. Describe material differences, not assumed clarifications.\n- Categories: a broad name such as \"a Space Marine\" is a category, not a unit. Resolve it to a faction and keywords (for example factionId 'SM' with the keyword Battleline or Infantry), leave out Warhammer Legends unless asked, use aggregate counts by publication/edition for a typical value and separate limited examples for exceptions, report the per-publication/edition counts as returned without summing them across publications or editions in prose, and say how you read the question: the units the answer covers and what it leaves out. Do not answer with a question when the results let you answer this way. Name the counting unit (datasheets or model profiles). A truncated example list cannot support an overall distribution.\n- Profiles: a characteristic belongs to a model profile, not to a unit. When a unit you give as an exception has profiles of different values, state every profile/value variant of that exception; never give one profile's characteristic as the value of the whole unit. Cite the table name, not a record ID as though it were a table.\n- Missions: use the page footer to name the mission for both scoring and winner rules. A question about ways to score needs concrete award conditions, amounts and timing; an introduction or a winner rule does not supply them. Search again for victory points and objective control only if no mission scoring rule has been retrieved yet; once a mission's scoring rule is present, answer from it without further searches for generic examples. Keep mission-specific scoring separate from generic examples and winner conditions. Preserve the source's shared timing and all ordered winner branches, including the destroyed-army condition, otherwise VP comparison and tie. State any remaining evidence gap.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.\n\n## Database schema\n\n# The datasheet database (`wahadb_clean.sqlite`)\n\nA SQLite copy of Wahapedia's Warhammer 40,000 data: units (datasheets), their models, weapons, keywords and\nabilities, and stratagems, detachments and enhancements. Text encoding is already repaired. Last update of the\ndata: 2026-09-01.\n\n## Rules for writing SQL\n\n- Every column is `TEXT`, numbers included: compare and sort numbers with `CAST(t AS INTEGER)`. Some stat values are\n  not numbers (`D3`, `D6`, `N/A`, `Melee`, `-`).\n- There are no declared keys: join on the columns listed under Joins, with their exact case (`Id` vs `id`,\n  `FactionId` vs `factionId`, `DatasheetId`).\n- `=` compares text exactly and is case-sensitive; `LIKE` ignores the case of ASCII letters. Keywords are written\n  like `Infantry`, `Battleline`, `Grenades`; stratagem names in capitals, like `GRENADE`.\n- One `SELECT` (or `WITH ... SELECT`) per call. Select the columns you need and filter; results are cut after 50 rows.\n- Booleans are the text `'true'` or `'false'`.\n\n## Tables\n\n| Table | One row is | Main columns |\n|---|---|---|\n| `factions` | a faction (25) | `Id` (`SM` = Space Marines, `CSM` = Chaos Space Marines, `TAU`, `TYR`, …), `name` |\n| `datasheets` | a unit's datasheet (1 680) | `Id`, `name`, `factionId`, `sourceId`, `role`, `loadout`, `transport`, `legend` (lore text, not Warhammer Legends), `virtual`, `link` |\n| `datasheets_models` | a model profile of a datasheet (a unit can have several, one per `line`) | `DatasheetId`, `line`, `name`, `m` (Move), `t` (Toughness), `sv` (Save), `invSv` (invulnerable save, `-` if none), `w` (Wounds), `ld` (Leadership), `oc` (Objective Control), `baseSize` |\n| `datasheets_wargear` | a weapon profile of a datasheet | `DatasheetId`, `name`, `range` (inches, or `Melee`), `type` (`Ranged`/`Melee`), `a` (Attacks), `bsWs` (BS or WS: `3` means 3+), `s` (Strength), `ap` (`0`, `-1`, …), `d` (Damage), `description` (weapon abilities) |\n| `datasheets_keywords` | a keyword of a datasheet | `DatasheetId`, `keyword`, `model` (the models it applies to; empty = the unit), `isFactionKeyword` |\n| `datasheets_abilities` | an ability on a datasheet | `DatasheetId`, `line`, `abilityId`, `name`, `description`, `type` (`Core`, `Faction`, `Datasheet`, `Wargear`, …), `parameter` |\n| `abilities` | a Core or Faction ability's text | `Id`, `name`, `factionId`, `description` |\n| `datasheets_unit_composition` | a line of unit composition | `DatasheetId`, `line`, `description` |\n| `datasheets_options` | a wargear option | `DatasheetId`, `line`, `description` |\n| `datasheets_models_cost` | a points cost | `DatasheetId`, `line`, `description` (unit size), `cost` (points) |\n| `datasheets_leader` | a leader-to-unit link | `LeaderId` (the leader's datasheet), `attachedId` (a unit it can lead) |\n| `stratagems` | a stratagem | `id`, `name`, `FactionId`, `type`, `cpCost`, `turn`, `phase`, `detachment`, `detachmentId`, `description` (lines `WHEN:`, `TARGET:`, `EFFECT:`, `RESTRICTIONS:`) |\n| `datasheets_stratagems` | a datasheet-to-stratagem link | `DatasheetId`, `stratagemId` |\n| `detachments` | a detachment | `Id`, `factionId`, `name`, `type` |\n| `detachment_abilities` | a detachment rule | `Id`, `detachmentId`, `name`, `description` |\n| `enhancements` | an enhancement | `id`, `FactionId`, `name`, `cost`, `detachmentId`, `description` |\n| `source` | a publication | `Id`, `name`, `type`, `edition`, `version`, `errataDate` |\n\n## Joins\n\n- `datasheets.Id` = `DatasheetId` of every `datasheets_*` table; `datasheets.factionId` = `factions.Id`;\n  `datasheets.sourceId` = `source.Id`.\n- `datasheets_abilities.abilityId` = `abilities.Id`: see the abilities trap below.\n- `datasheets_stratagems.stratagemId` = `stratagems.id`; `stratagems.FactionId` = `factions.Id`.\n- `detachments.Id` = `detachment_abilities.detachmentId` = `stratagems.detachmentId` = `enhancements.detachmentId`.\n- `datasheets_leader.LeaderId` and `.attachedId` = `datasheets.Id`.\n\n## Traps\n\n- **Unit names are not unique** (1 680 datasheets, 1 291 names): the same name can exist in several factions or\n  sources. Filter by `factionId` when it matters, and say which one you used.\n- **A broad name is a category, not a unit.** \"A Space Marine\" is not a datasheet name: `name LIKE '%Space Marine%'`\n  finds only odd units. Use the faction (`factionId = 'SM'`) and keywords from `datasheets_keywords` (`Battleline`,\n  `Infantry`, `Vehicle`, …), then give the typical value and the notable exceptions (example 2).\n- **A characteristic belongs to a model profile, not to a unit.** A datasheet can have profiles of different values\n  (a sergeant and a heavier veteran, for example): keep each profile's name in a category result, so that a unit\n  that is an exception for one profile is not given that value as a whole (example 2).\n- **Warhammer Legends and Forge World.** A datasheet's source tells where it comes from: `source.name` ends with\n  `(Warhammer Legends)` for Legends units (retired from standard play) and with `(Forge World)` for Forge World\n  units. Exclude Legends unless the question asks for them: `source.name NOT LIKE '%(Warhammer Legends)%'`. Do not\n  use `datasheets.legend` for this: it is lore text.\n- **Editions are per record.** `source.edition` is `'11'`, `'10'`, or `'0'` (no edition recorded: Legends and Forge\n  World packs). Two datasheets have no source (`sourceId` empty). `stratagems`, `detachments`, `enhancements` and\n  `abilities` have no source column: their edition is not recorded. The Core Rules rulebook is 10th edition.\n- **Abilities are in two places.** Core and Faction abilities have an `abilityId` and their text in `abilities`; the\n  others (`Datasheet`, `Wargear`, …) have an empty `abilityId` and their text in `datasheets_abilities.description`.\n  `abilities` repeats each ability once per faction (91 rows, 71 `Id`s), so join it through\n  `(SELECT DISTINCT Id, name, description FROM abilities)`, never on `Id` alone (example 4).\n- **Core stratagems** have an empty `FactionId` and come in two forms. Rows of `type` `Core Stratagem` are linked to\n  datasheets in `datasheets_stratagems`; rows whose `type` reads like the rulebook's labels (`Core – Wargear\n  Stratagem`, `Core – Strategic Ploy Stratagem`, …) are linked to no datasheet. A name can have both forms\n  (`COMMAND RE-ROLL`) or only one (`GRENADE` exists only as `Core – Wargear Stratagem`), and their texts can differ;\n  their source is not recorded. Which units can use a core stratagem is written in its `TARGET:` line (for\n  `GRENADE`, a unit with the `Grenades` keyword). Other rows with an empty `FactionId` belong to other game modes\n  (`Boarding Actions`, `Challenger`) or describe core actions (`Movement Ability`, `Shooting Ability`).\n- **Game modes of detachments.** `detachments.type` is empty for the standard game and `Boarding Actions` for that\n  game mode (59 of 327 detachments); a faction's stratagems include those of its Boarding Actions detachments (for\n  Space Marines, `Boarding Strike`). For a question about the standard game, leave those out. A stratagem whose\n  `detachmentId` matches no row of `detachments` (six Aeldari `Army Rules` stratagems) has an unknown game mode,\n  not the standard one.\n- **Rows can repeat.** `datasheets_keywords` holds 16 358 rows but 12 172 different ones, and a datasheet's points\n  rows can appear twice, between header rows such as `YOUR UNIT COSTS` with an empty `cost`. Use `DISTINCT` when you\n  list or count.\n- **Model profiles.** A datasheet can have several rows in `datasheets_models` (one per kind of model, by `line`);\n  keep all profiles of a unit together when they differ. Filter units by their keywords or an `EXISTS` condition,\n  then return all profiles of those units; filtering model rows to one characteristic hides mixed-profile units.\n- Some `datasheets_abilities.type` values are leftovers of the export in Russian (for example\n  `Special (правая колонка)`); treat them as other datasheet abilities. The datasheet `Example Wargear` is a\n  placeholder (`virtual = 'true'`).\n\n## Examples\n\nAll examples run as written; replace the names and IDs.\n\n1. A unit's model profiles, with its faction and source:\n\n```sql\nSELECT d.name, f.name AS faction, m.name AS model, m.m, m.t, m.sv, m.invSv, m.w, m.ld, m.oc,\n       s.name AS source, s.edition\nFROM datasheets d\nJOIN factions f ON f.Id = d.factionId\nJOIN datasheets_models m ON m.DatasheetId = d.Id\nLEFT JOIN source s ON s.Id = d.sourceId\nWHERE d.name = 'Intercessor Squad' AND d.factionId = 'SM'\nORDER BY CAST(m.line AS INTEGER);\n```\n\n2. A category: Space Marine Battleline units, Legends excluded. Use one query for representative units across\n   the observed Toughness values. It ranks units with mixed profiles first, chooses at most two representatives\n   per value, then returns every profile of each chosen unit. This is a sample even if `truncated` is false.\n   Keep `source` and `edition` as the publication column names:\n\n```sql\nWITH category_profiles AS (\n  SELECT DISTINCT d.Id, d.name, s.name AS source, s.edition,\n                  m.line, m.name AS model, m.t\n  FROM datasheets d\n  JOIN datasheets_models m ON m.DatasheetId = d.Id\n  LEFT JOIN source s ON s.Id = d.sourceId\n  WHERE d.factionId = 'SM'\n    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Battleline')\n    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')\n),\nunit_variants AS (\n  SELECT Id, COUNT(DISTINCT t) AS toughness_values\n  FROM category_profiles\n  GROUP BY Id\n),\nranked AS (\n  SELECT p.Id, p.name, p.source, p.edition, p.t,\n         ROW_NUMBER() OVER (\n           PARTITION BY p.t\n           ORDER BY v.toughness_values DESC, p.name, p.Id\n         ) AS representative\n  FROM (\n    SELECT DISTINCT Id, name, source, edition, t FROM category_profiles\n  ) p\n  JOIN unit_variants v ON v.Id = p.Id\n),\nselected AS (\n  SELECT DISTINCT Id, name, source, edition\n  FROM ranked\n  WHERE representative <= 2\n)\nSELECT s.Id, s.name, s.source, s.edition,\n       GROUP_CONCAT(p.model || ': T' || p.t, '; ') AS profiles\nFROM selected s\nJOIN category_profiles p ON p.Id = s.Id\nGROUP BY s.Id, s.name, s.source, s.edition\nORDER BY s.name, s.Id;\n```\n\nFor an overall distribution, query the complete category separately, grouping by publication and edition.\n`model_profiles` counts distinct datasheet/model-line profiles, not individual miniatures; `datasheets` counts\ndistinct units having that Toughness. A mixed-profile unit can appear in multiple Toughness groups, so do not\nsum these unit counts to obtain a total. No LIMIT is applied before this aggregation. A truncated aggregate\nresult is still incomplete; narrow its publication/category scope before making overall claims:\n\n```sql\nWITH profiles AS (\n  SELECT DISTINCT d.Id, m.line, m.t, s.Id AS source_id, s.name AS source, s.edition\n  FROM datasheets d\n  JOIN datasheets_models m ON m.DatasheetId = d.Id\n  LEFT JOIN source s ON s.Id = d.sourceId\n  WHERE d.factionId = 'SM'\n    AND d.Id IN (SELECT DatasheetId FROM datasheets_keywords WHERE keyword = 'Battleline')\n    AND (s.name IS NULL OR s.name NOT LIKE '%(Warhammer Legends)%')\n)\nSELECT source_id, source, edition, t, COUNT(*) AS model_profiles, COUNT(DISTINCT Id) AS datasheets\nFROM profiles\nGROUP BY source_id, source, edition, t\nORDER BY source, edition, CAST(t AS INTEGER), t;\n```\n\n3. A unit's weapons:\n\n```sql\nSELECT w.name, w.range, w.type, w.a, w.bsWs, w.s, w.ap, w.d, w.description\nFROM datasheets_wargear w\nWHERE w.DatasheetId = '000001157'  -- Intercessor Squad (SM)\nORDER BY CAST(w.line AS INTEGER), CAST(w.lineInWargear AS INTEGER);\n```\n\n4. A unit's abilities, from both places, one row per ability:\n\n```sql\nSELECT da.type,\n       COALESCE(a.name, da.name)               AS ability_name,\n       COALESCE(a.description, da.description) AS ability_text\nFROM datasheets_abilities da\nLEFT JOIN (SELECT DISTINCT Id, name, description FROM abilities) a ON a.Id = da.abilityId\nWHERE da.DatasheetId = '000000070'  -- Tactical Squad (SM)\nORDER BY CAST(da.line AS INTEGER);\n```\n\n5. A core stratagem's text, in every form, and the units that have the keyword its target needs:\n\n```sql\nSELECT name, type, cpCost, turn, phase, description\nFROM stratagems\nWHERE name = 'GRENADE' AND FactionId = '';\n```\n\n```sql\nSELECT DISTINCT d.name\nFROM datasheets d\nJOIN datasheets_keywords k ON k.DatasheetId = d.Id AND k.keyword = 'Grenades'\nWHERE d.factionId = 'SM'\nORDER BY d.name;\n```\n\n6. The stratagems of a unit's own faction, with their detachment and game mode (`game_mode`: empty = the standard\n   game, `Boarding Actions`, or `NULL` when the detachment is not in `detachments`):\n\n```sql\nSELECT s.name, s.FactionId AS faction, s.type, s.detachment, dt.type AS game_mode, s.cpCost, s.phase\nFROM datasheets d\nJOIN datasheets_stratagems ds ON ds.DatasheetId = d.Id\nJOIN stratagems s ON s.id = ds.stratagemId AND s.FactionId = d.factionId\nLEFT JOIN detachments dt ON dt.Id = s.detachmentId\nWHERE d.Id = '000001157'  -- Intercessor Squad (SM)\nORDER BY dt.type, s.detachment, s.name;\n```\n\n7. A unit's keywords:\n\n```sql\nSELECT DISTINCT keyword, model, isFactionKeyword\nFROM datasheets_keywords\nWHERE DatasheetId = '000000070'  -- Tactical Squad (SM)\nORDER BY isFactionKeyword DESC, keyword;\n```\n\n8. A faction's detachments, with their rules:\n\n```sql\nSELECT dt.name AS detachment, da.name AS rule, da.description\nFROM detachments dt\nLEFT JOIN detachment_abilities da ON da.detachmentId = dt.Id\nWHERE dt.factionId = 'SM'\nORDER BY dt.name;\n```\n\n9. The units a leader can lead:\n\n```sql\nSELECT attached.name\nFROM datasheets leader\nJOIN datasheets_leader l ON l.LeaderId = leader.Id\nJOIN datasheets attached ON attached.Id = l.attachedId\nWHERE leader.Id = '000000073'  -- Captain (SM)\nORDER BY attached.name;\n```\n\n10. A unit's points:\n\n```sql\nSELECT DISTINCT description AS unit_size, cost\nFROM datasheets_models_cost\nWHERE DatasheetId = '000001157' AND cost != ''  -- Intercessor Squad (SM)\nORDER BY CAST(cost AS INTEGER);\n```\n",
+  "final_prompt": "You are a rules assistant for Warhammer 40,000. You answer from two sources: the Core Rules (10th edition) and a database of datasheets, weapons, stratagems, factions and detachments.\n\n## Tools are spent\n\nThe tool budget for this question is spent: no tool can be called any more. Answer now, from the tool results above. Where they are not enough, give what they show and say what is missing.\n\n## Answering\n\n- Answer only from the tool results of this conversation. If a search does not supply the necessary passage, search again with a specific rule or section name while tools remain. If it is still missing, say what the retrieved passages do not establish and what you searched. Unsuccessful retrieval never proves that the rulebook has no such rule. Do not invent values or fill gaps from general game knowledge.\n- Organize an evidence answer in this order: source/version and scope, including which facts the user supplied and which the tools established; explicit conditions and results in the source's order; then the supported conclusion and any evidence gap. For an if/otherwise rule, preserve every branch and their common timing. Distinguish ways to score from the rule for determining a winner.\n- For a rule or procedure, preserve its cost, timing, eligible target, effect, restrictions and exceptions where the evidence gives them. For how to use a Stratagem, explain its CP payment from the `STRATAGEMS` and `1. COMMAND` sections and illustrate how the card labels WHEN, TARGET, EFFECT and RESTRICTIONS work from the retrieved Stratagem cards; once those sections and cards are retrieved, answer from them without searching again for a separate definition of those card labels. Identify the actor, whose phase it is, every recipient, and quantifiers such as \"both players\" and \"each phase\"; avoid ambiguous pronouns. Do not merge source versions. Give an exception only with its trigger and timing. If you choose an example, attribute it to one source or separate material versions; do not use a joint citation to imply that different versions are identical. An example figure is illustrative, not a datasheet fact about a real unit.\n- Cite every fact: [Core Rules p. N] for the rulebook (p. N–M for a passage over two pages), [DB: table] for the database.\n- Editions: the rulebook is the 10th edition. For a database record, give its edition only when it is recorded: for a datasheet, join `source` and give its name and edition; edition '0' means that none is recorded (a Warhammer Legends or Forge World pack: name it as such). Stratagems, detachments, enhancements and abilities have no source: say that their source is not recorded. Never give one edition to the database as a whole.\n- When evidence contains versions of the same rule, compare costs, timing, targets, effects and restrictions. For an applicability question or follow-up, give a short entry for EACH source: source/version and citation; its explicit conditions; the relevant facts supplied by the user or established by a tool, labelled by origin; any missing facts; and the conclusion supported by that source. These are checkable evidence statements, not a narrative of your reasoning. Preserve who a restriction applies to, including the controlling player. Nonselection, a completed action, and ineligibility are different predicates: none establishes another without cited evidence. Do not import exclusions across sources. An exclusion absent from a retrieved passage proves neither permission nor prohibition; say when that source does not settle the case. Describe material differences, not assumed clarifications.\n- Categories: a broad name such as \"a Space Marine\" is a category, not a unit. Resolve it to a faction and keywords (for example factionId 'SM' with the keyword Battleline or Infantry), leave out Warhammer Legends unless asked, use aggregate counts by publication/edition for a typical value and separate limited examples for exceptions, report the per-publication/edition counts as returned without summing them across publications or editions in prose, and say how you read the question: the units the answer covers and what it leaves out. Do not answer with a question when the results let you answer this way. Name the counting unit (datasheets or model profiles). A truncated example list cannot support an overall distribution.\n- Profiles: a characteristic belongs to a model profile, not to a unit. When a unit you give as an exception has profiles of different values, state every profile/value variant of that exception; never give one profile's characteristic as the value of the whole unit. Cite the table name, not a record ID as though it were a table.\n- Missions: use the page footer to name the mission for both scoring and winner rules. A question about ways to score needs concrete award conditions, amounts and timing; an introduction or a winner rule does not supply them. Search again for victory points and objective control only if no mission scoring rule has been retrieved yet; once a mission's scoring rule is present, answer from it without further searches for generic examples. Keep mission-specific scoring separate from generic examples and winner conditions. Preserve the source's shared timing and all ordered winner branches, including the destroyed-army condition, otherwise VP comparison and tie. State any remaining evidence gap.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+  "final_instruction": "Tools are no longer available. Answer now in text, from the tool results above; if they are not enough, say what is missing.",
+  "model_settings": {
+   "model": "gemini-3.8-flash",
+   "temperature": null,
+   "frequency_penalty": null,
+   "presence_penalty": null,
+   "top_p": null,
+   "top_k": null,
+   "max_output_tokens": null,
+   "n": 1,
+   "safety_settings": null,
+   "response_modalities": null,
+   "media_resolution": null,
+   "thinking_budget": null,
+   "include_thoughts": null,
+   "thinking_level": null,
+   "thinking_config": null,
+   "image_config": null
+  },
+  "tools": [
+   {
+    "type": "function",
+    "function": {
+     "name": "search_rules",
+     "description": "Search the Core Rules: how the game works (phases, actions, keywords, terrain). Retrieved Stratagem sections also include exact-name core database records when found.",
+     "parameters": {
+      "properties": {
+       "query": {
+        "description": "In English, with the rulebook's terms, whatever the question's language.",
+        "type": "string"
+       }
+      },
+      "required": [
+       "query"
+      ],
+      "type": "object"
+     }
+    }
+   },
+   {
+    "type": "function",
+    "function": {
+     "name": "run_sql",
+     "description": "Query units, weapons, abilities, stratagems, detachments and factions with read-only SQL.",
+     "parameters": {
+      "properties": {
+       "sql": {
+        "description": "One SQLite SELECT or WITH query that follows the database schema.",
+        "type": "string"
+       }
+      },
+      "required": [
+       "sql"
+      ],
+      "type": "object"
+     }
+    }
+   }
+  ],
+  "messages": [
+   {
+    "type": "human",
+    "data": {
+     "content": "What can units do in the Movment faze?",
+     "additional_kwargs": {},
+     "response_metadata": {},
+     "type": "human",
+     "name": null,
+     "id": "db2ce6a7-4914-4d59-a90a-2e4b163369f7"
+    }
+   },
+   {
+    "type": "ai",
+    "data": {
+     "content": [],
+     "additional_kwargs": {
+      "function_call": {
+       "name": "search_rules",
+       "arguments": "{\"query\": \"Movement phase\"}"
+      },
+      "__gemini_function_call_thought_signatures__": {
+       "call_1328385": "EtsCCtgCAWkUfRPx1uuoMWa7i5I33ZSohy4WkhZx8c2ESQkIzYu0GYvH+6ylsziTkfYZIaQAM7Eq2tM/8TXHJk5Bvr8eNP+Oxxm/bmXFzEZV/NCMT5txvnICK2XTm5Uacs0yoL+OLFRiwsLm253ymNvI4ZlE3ldxksry8d9pXVuqkCHY0QlmWLkES6zLHrJySPhDTXj4Sgx7/EtizlcvkH2a5NKD0IKIlXfh++smUYNyZRqPlKukPE+jccgLrsUtCfut3nXBYLwoZGn+emWWYSMXqnUU7ks/B/5GYJIfQ3BsnUS227sAhcrJ2CA5XpX7X7rbmPXsew0eyQCvb2IGK//F37hLojtBXLAXjIrx7dy9zbCn3KYu6m5q+evsz54fdHUPznH19PL6wBbGt2jR5FobBt8iISuEd5NbajeSxWF5cN/syMaDEbmIxi+7fJT9QAPYwNnEjym1LR4TouU="
+      }
+     },
+     "response_metadata": {
+      "safety_ratings": [],
+      "finish_reason": "STOP",
+      "model_name": "gemini-3.8-flash",
+      "model_provider": "google_genai"
+     },
+     "type": "ai",
+     "name": null,
+     "id": "lc_run--01a16f87-2e26-76f2-bfdc-9944da489437",
+     "tool_calls": [
+      {
+       "name": "search_rules",
+       "args": {
+        "query": "Movement phase"
+       },
+       "id": "call_1328385",
+       "type": "tool_call"
+      }
+     ],
+     "invalid_tool_calls": [],
+     "usage_metadata": {
+      "input_tokens": 6007,
+      "output_tokens": 69,
+      "total_tokens": 6076,
+      "input_token_details": {
+       "cache_read": 0
+      },
+      "output_token_details": {
+       "reasoning": 52
+      }
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "data": {
+     "content": "[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: MOVEMENT PHASE\nThe ground shakes to the tread of marching feet and the growl of engines as armies advance across the battlefield and vie for advantageous positions.\n\n[Core Rules p. 10] (page footer p. 10: CORE RULES | THE BATTLE ROUND)\nFigure label: COMMAND PHASE\nSection: THE BATTLE ROUND > MOVEMENT PHASE\nYour units manoeuvre across the battlefield and reinforcements enter the fray.\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: NORMAL MOVES\nWhen a unit makes a Normal move, each model in that unit can move a distance in inches less than or equal to its Move (M) characteristic, but no model can be moved within Engagement Range of any enemy models (pg 7).\n\n- Normal Move: Models move up to M\".\n- Cannot move within Engagement Range of any enemy models.\n\nYour Movement phase is split into two steps. First you can move your units, then you can set up reinforcements.\n\n[Core Rules p. 16] (page footer p. 16: CORE RULES | MOVEMENT PHASE)\nSection: 2. REINFORCEMENTS\nSome units have a rule that allows them to start the battle in Reserves, such as Deep Strike (pg 39). Such units will arrive later in the battle and are known as Reserves units. Any Reserves units that have not been set up on the battlefield when the battle ends count as having been destroyed.\n\nIn the Reinforcements step of your Movement phase, if you have any Reserves units in your army, you can select one or more of them and set them up on the battlefield, one at a time. Once all your Reserves units that you wish to set up this turn have been set up, your Movement phase ends and you progress to your Shooting phase.\n\nDetails of how to set up Reserves units are described in the same rules that enabled the unit to be set up in Reserves. These rules will typically specify a distance away from all enemy models; whenever such a distance is specified, it always applies to the horizontal distance, even though normally you measure to and from the closest part of a model's base.\n\nReserves units always count as having made a Normal move in the turn they are set up on the battlefield, and so cannot move further during this phase. Otherwise, units set up in this way can act normally this turn (shoot, declare a charge, fight, etc.).\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: 1. MOVE UNITS\nStart your Movement phase by selecting one unit from your army that is on the battlefield to move:\n\n- Unless that unit is within Engagement Range of any enemy models, it can make a Normal move, or Advance, or Remain Stationary.\n- If that unit is within Engagement Range of any enemy models, it can either Remain Stationary or Fall Back.\n\nAfter you have finished moving that unit, select another unit from your army to move, and so on, until you have done so with all of your units. Once you have moved all of your units, progress to the Reinforcements step of your Movement phase.\n\nEach time you move a unit, you can move any of its models you choose to. The controlling player chooses the order in which to move their models. Whenever you move a model, you can pivot it and/or change its position on the battlefield along any path, but no part of its base can be moved across an enemy model or cross the edge of the battlefield. It can be moved over friendly models as if they were not there if you wish, but it cannot end its move on top of another model. The only exception to this is when moving Monster or Vehicle models; such models cannot be moved over other friendly Monster or Vehicle models and must be moved around them instead. The distance a model moves is measured using the part of its base that moves furthest along its path. If a model does not have a base, measure using whichever part of that model moves the furthest.\n\n[Core Rules p. 17] (page footer p. 17: CORE RULES | TRANSPORTS)\nSection: DISEMBARK\nIf a unit from your army starts your Movement phase embarked within a Transport model, that unit can disembark in that phase.\n\nWhen a unit disembarks from a Transport model, set it up on the battlefield so that it is wholly within 3\" of that Transport model and not within Engagement Range of any enemy models. If, for any reason, a disembarking model cannot be set up, that model's unit cannot disembark.\n\nUnits that disembark from a Transport model that either Remained Stationary this phase or has not yet made a Normal, Advance or Fall Back move this phase can then act normally (make a Normal move, Advance, shoot, declare a charge, fight, etc.) in the remainder of the turn. Such a disembarking unit cannot choose to Remain Stationary.\n\nUnits that disembark from a Transport model that made a Normal move this phase count as having made a Normal move themselves; they cannot move further during this phase. Such a unit also cannot declare a charge in the same turn, but can otherwise act normally in the remainder of the turn.\n\nUnits cannot disembark from a Transport model that either Advanced or Fell Back this turn.\n\n[Core Rules p. 3]\nFigure label: 1 COMMAND PHASE\nSection: Introduction\n1 COMMAND PHASE\n\n2 MOVEMENT PHASE\n\n3 SHOOTING PHASE\n\n4 CHARGE PHASE\n\n5 FIGHT PHASE\n\nIn a game as wide-ranging as Warhammer 40,000, there may be times when you are not sure exactly how to resolve a situation that has come up during play. When this happens, have a quick chat with your opponent and apply the solution that makes the most sense to both of you (or seems the most fun!). If no single solution presents itself, you and your opponent should roll off, and whoever rolls highest gets to choose what happens. Then you can get on with the fighting!\n\n[Core Rules p. 17] (page footer p. 17: CORE RULES | TRANSPORTS)\nSection: DISEMBARK\nUnits cannot disembark from a Transport model that either Advanced or Fell Back this turn.\n\n- Units that start your Movement phase embarked within a Transport can disembark this phase, provided their Transport has not Advanced or Fallen Back.\n- If a unit disembarks before its Transport moves, it can act normally.\n- If a unit disembarks after its Transport moves, it cannot move or charge this turn, but can otherwise act normally.\n- Disembarking units must be set up wholly within 3\" of their Transport and not within Engagement Range of any enemy models (or the unit cannot disembark).\n- Units that disembark this turn cannot Remain Stationary.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+     "additional_kwargs": {},
+     "response_metadata": {},
+     "type": "tool",
+     "name": "search_rules",
+     "id": "8c4e8ffa-0721-4d64-ba88-a1ebb673f23c",
+     "tool_call_id": "call_1328385",
+     "artifact": {
+      "chunks": [
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0042",
+         "text": "Section: MOVEMENT PHASE\nThe ground shakes to the tread of marching feet and the growl of engines as armies advance across the battlefield and vie for advantageous positions.",
+         "pages": [
+          13
+         ],
+         "section": "MOVEMENT PHASE",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | MOVEMENT PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03252247488101534
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0030",
+         "text": "Figure label: COMMAND PHASE\nSection: THE BATTLE ROUND > MOVEMENT PHASE\nYour units manoeuvre across the battlefield and reinforcements enter the fray.",
+         "pages": [
+          10
+         ],
+         "section": "THE BATTLE ROUND > MOVEMENT PHASE",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/20"
+         ],
+         "page_footers": [
+          "CORE RULES | THE BATTLE ROUND"
+         ],
+         "picture_labels": [
+          "COMMAND PHASE"
+         ]
+        },
+        "score": 0.032266458495966696
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0046",
+         "text": "Section: NORMAL MOVES\nWhen a unit makes a Normal move, each model in that unit can move a distance in inches less than or equal to its Move (M) characteristic, but no model can be moved within Engagement Range of any enemy models (pg 7).\n\n- Normal Move: Models move up to M\".\n- Cannot move within Engagement Range of any enemy models.\n\nYour Movement phase is split into two steps. First you can move your units, then you can set up reinforcements.",
+         "pages": [
+          13
+         ],
+         "section": "NORMAL MOVES",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | MOVEMENT PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.030621785881252923
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0054",
+         "text": "Section: 2. REINFORCEMENTS\nSome units have a rule that allows them to start the battle in Reserves, such as Deep Strike (pg 39). Such units will arrive later in the battle and are known as Reserves units. Any Reserves units that have not been set up on the battlefield when the battle ends count as having been destroyed.\n\nIn the Reinforcements step of your Movement phase, if you have any Reserves units in your army, you can select one or more of them and set them up on the battlefield, one at a time. Once all your Reserves units that you wish to set up this turn have been set up, your Movement phase ends and you progress to your Shooting phase.\n\nDetails of how to set up Reserves units are described in the same rules that enabled the unit to be set up in Reserves. These rules will typically specify a distance away from all enemy models; whenever such a distance is specified, it always applies to the horizontal distance, even though normally you measure to and from the closest part of a model's base.\n\nReserves units always count as having made a Normal move in the turn they are set up on the battlefield, and so cannot move further during this phase. Otherwise, units set up in this way can act normally this turn (shoot, declare a charge, fight, etc.).",
+         "pages": [
+          16
+         ],
+         "section": "2. REINFORCEMENTS",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | MOVEMENT PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.030303030303030304
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0043",
+         "text": "Section: 1. MOVE UNITS\nStart your Movement phase by selecting one unit from your army that is on the battlefield to move:\n\n- Unless that unit is within Engagement Range of any enemy models, it can make a Normal move, or Advance, or Remain Stationary.\n- If that unit is within Engagement Range of any enemy models, it can either Remain Stationary or Fall Back.\n\nAfter you have finished moving that unit, select another unit from your army to move, and so on, until you have done so with all of your units. Once you have moved all of your units, progress to the Reinforcements step of your Movement phase.\n\nEach time you move a unit, you can move any of its models you choose to. The controlling player chooses the order in which to move their models. Whenever you move a model, you can pivot it and/or change its position on the battlefield along any path, but no part of its base can be moved across an enemy model or cross the edge of the battlefield. It can be moved over friendly models as if they were not there if you wish, but it cannot end its move on top of another model. The only exception to this is when moving Monster or Vehicle models; such models cannot be moved over other friendly Monster or Vehicle models and must be moved around them instead. The distance a model moves is measured using the part of its base that moves furthest along its path. If a model does not have a base, measure using whichever part of that model moves the furthest.",
+         "pages": [
+          13
+         ],
+         "section": "1. MOVE UNITS",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | MOVEMENT PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.02844551282051282
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0060",
+         "text": "Section: DISEMBARK\nIf a unit from your army starts your Movement phase embarked within a Transport model, that unit can disembark in that phase.\n\nWhen a unit disembarks from a Transport model, set it up on the battlefield so that it is wholly within 3\" of that Transport model and not within Engagement Range of any enemy models. If, for any reason, a disembarking model cannot be set up, that model's unit cannot disembark.\n\nUnits that disembark from a Transport model that either Remained Stationary this phase or has not yet made a Normal, Advance or Fall Back move this phase can then act normally (make a Normal move, Advance, shoot, declare a charge, fight, etc.) in the remainder of the turn. Such a disembarking unit cannot choose to Remain Stationary.\n\nUnits that disembark from a Transport model that made a Normal move this phase count as having made a Normal move themselves; they cannot move further during this phase. Such a unit also cannot declare a charge in the same turn, but can otherwise act normally in the remainder of the turn.\n\nUnits cannot disembark from a Transport model that either Advanced or Fell Back this turn.",
+         "pages": [
+          17
+         ],
+         "section": "DISEMBARK",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | TRANSPORTS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.02819138376017471
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0002",
+         "text": "Figure label: 1 COMMAND PHASE\nSection: Introduction\n1 COMMAND PHASE\n\n2 MOVEMENT PHASE\n\n3 SHOOTING PHASE\n\n4 CHARGE PHASE\n\n5 FIGHT PHASE\n\nIn a game as wide-ranging as Warhammer 40,000, there may be times when you are not sure exactly how to resolve a situation that has come up during play. When this happens, have a quick chat with your opponent and apply the solution that makes the most sense to both of you (or seems the most fun!). If no single solution presents itself, you and your opponent should roll off, and whoever rolls highest gets to choose what happens. Then you can get on with the fighting!",
+         "pages": [
+          3
+         ],
+         "section": "Introduction",
+         "content_type": "text",
+         "pictures": [
+          "#/pictures/1"
+         ],
+         "page_footers": [
+          ""
+         ],
+         "picture_labels": [
+          "1 COMMAND PHASE"
+         ]
+        },
+        "score": 0.02804284323271665
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0061",
+         "text": "Section: DISEMBARK\nUnits cannot disembark from a Transport model that either Advanced or Fell Back this turn.\n\n- Units that start your Movement phase embarked within a Transport can disembark this phase, provided their Transport has not Advanced or Fallen Back.\n- If a unit disembarks before its Transport moves, it can act normally.\n- If a unit disembarks after its Transport moves, it cannot move or charge this turn, but can otherwise act normally.\n- Disembarking units must be set up wholly within 3\" of their Transport and not within Engagement Range of any enemy models (or the unit cannot disembark).\n- Units that disembark this turn cannot Remain Stationary.",
+         "pages": [
+          17
+         ],
+         "section": "DISEMBARK",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | TRANSPORTS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.02690100430416069
+       }
+      ],
+      "stratagem_names": [],
+      "stratagems": null,
+      "related_sections": []
+     },
+     "status": "success"
+    }
+   },
+   {
+    "type": "ai",
+    "data": {
+     "content": [],
+     "additional_kwargs": {
+      "function_call": {
+       "name": "search_rules",
+       "arguments": "{\"query\": \"Advance Fall Back Remain Stationary Embark\"}"
+      },
+      "__gemini_function_call_thought_signatures__": {
+       "call_1282516": "EqECCp4CAWkUfRNphU2nNY5ou4geCa2xHvPz+W9htKcr9nWhAnFcCM+VVPR9Oi7lC/UBye+fb3SbbP8OsgPvZ+k6PwfXqGqpF1D6Qky4nJSB3jL5yplbHigm6L1LFRBN2m9nVSbSl2NrGR+nrnM9oHuOJ+tflMjrqRf4nxQnGp4E/DVhHuHucGB1GjpZW0Sq+Yt5LKV3M148QBcT7aKDe8+A042fJ4ajkGs1kFypsL15oVuRKsGJqlrg0+f6rnP0fpR5FSQKQHDx/yZdrK95QUtEWgfyiQya35WcSzK6908ju805OEqLpw1nscqTkbyWvAcoKKDNiXMd2PiIqZNUM6PqCQndpJsuCj7OfTg+awsbFn57ItPjDSGTpPrFl0Zk+pC/Zw=="
+      }
+     },
+     "response_metadata": {
+      "safety_ratings": [],
+      "finish_reason": "STOP",
+      "model_name": "gemini-3.8-flash",
+      "model_provider": "google_genai"
+     },
+     "type": "ai",
+     "name": null,
+     "id": "lc_run--01a16f87-3ddd-7ab0-8445-f33a1a78e6dd",
+     "tool_calls": [
+      {
+       "name": "search_rules",
+       "args": {
+        "query": "Advance Fall Back Remain Stationary Embark"
+       },
+       "id": "call_1282516",
+       "type": "tool_call"
+      }
+     ],
+     "invalid_tool_calls": [],
+     "usage_metadata": {
+      "input_tokens": 7664,
+      "output_tokens": 56,
+      "total_tokens": 7720,
+      "input_token_details": {
+       "cache_read": 0
+      },
+      "output_token_details": {
+       "reasoning": 34
+      }
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "data": {
+     "content": "[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: 1. MOVE UNITS\n- When a unit moves it can make a Normal move, Advance or Remain Stationary.\n- Units that are within Engagement Range of any enemy models can only Fall Back or Remain Stationary.\n\n[Core Rules p. 17] (page footer p. 17: CORE RULES | TRANSPORTS)\nSection: EMBARK\nIf a unit makes a Normal, Advance or Fall Back move, and every model in that unit ends that move within 3\" of a friendly Transport model, they can embark within it. A unit cannot embark if it has already disembarked from a Transport model in the same phase. Remove the unit from the battlefield and place it to one side - it is now embarked within that Transport model. Unless otherwise stated, units cannot do anything or be affected in any way while they are embarked.\n\n- A unit can embark within a friendly Transport if all of its models end a Normal, Advance or Fall Back move within 3\" of that Transport.\n- A unit cannot embark and disembark in the same phase.\n\n[Core Rules p. 17] (page footer p. 17: CORE RULES | TRANSPORTS)\nSection: DISEMBARK\nIf a unit from your army starts your Movement phase embarked within a Transport model, that unit can disembark in that phase.\n\nWhen a unit disembarks from a Transport model, set it up on the battlefield so that it is wholly within 3\" of that Transport model and not within Engagement Range of any enemy models. If, for any reason, a disembarking model cannot be set up, that model's unit cannot disembark.\n\nUnits that disembark from a Transport model that either Remained Stationary this phase or has not yet made a Normal, Advance or Fall Back move this phase can then act normally (make a Normal move, Advance, shoot, declare a charge, fight, etc.) in the remainder of the turn. Such a disembarking unit cannot choose to Remain Stationary.\n\nUnits that disembark from a Transport model that made a Normal move this phase count as having made a Normal move themselves; they cannot move further during this phase. Such a unit also cannot declare a charge in the same turn, but can otherwise act normally in the remainder of the turn.\n\nUnits cannot disembark from a Transport model that either Advanced or Fell Back this turn.\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: REMAIN STATIONARY\nIf a unit Remains Stationary, none of its models can be moved for the rest of the phase.\n\n[Core Rules p. 17] (page footer p. 17: CORE RULES | TRANSPORTS)\nSection: DISEMBARK\nUnits cannot disembark from a Transport model that either Advanced or Fell Back this turn.\n\n- Units that start your Movement phase embarked within a Transport can disembark this phase, provided their Transport has not Advanced or Fallen Back.\n- If a unit disembarks before its Transport moves, it can act normally.\n- If a unit disembarks after its Transport moves, it cannot move or charge this turn, but can otherwise act normally.\n- Disembarking units must be set up wholly within 3\" of their Transport and not within Engagement Range of any enemy models (or the unit cannot disembark).\n- Units that disembark this turn cannot Remain Stationary.\n\n[Core Rules p. 13] (page footer p. 13: CORE RULES | MOVEMENT PHASE)\nSection: 1. MOVE UNITS\nStart your Movement phase by selecting one unit from your army that is on the battlefield to move:\n\n- Unless that unit is within Engagement Range of any enemy models, it can make a Normal move, or Advance, or Remain Stationary.\n- If that unit is within Engagement Range of any enemy models, it can either Remain Stationary or Fall Back.\n\nAfter you have finished moving that unit, select another unit from your army to move, and so on, until you have done so with all of your units. Once you have moved all of your units, progress to the Reinforcements step of your Movement phase.\n\nEach time you move a unit, you can move any of its models you choose to. The controlling player chooses the order in which to move their models. Whenever you move a model, you can pivot it and/or change its position on the battlefield along any path, but no part of its base can be moved across an enemy model or cross the edge of the battlefield. It can be moved over friendly models as if they were not there if you wish, but it cannot end its move on top of another model. The only exception to this is when moving Monster or Vehicle models; such models cannot be moved over other friendly Monster or Vehicle models and must be moved around them instead. The distance a model moves is measured using the part of its base that moves furthest along its path. If a model does not have a base, measure using whichever part of that model moves the furthest.\n\n[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nSection: FALL BACK MOVES\nWhen a unit Falls Back, each model in that unit can make a Fall Back move by moving a distance in inches less than or equal to its Move characteristic, and when doing so you can move it within Engagement Range of enemy models, provided it does not end that move within Engagement Range of any enemy models - if this is not possible, that unit cannot Fall Back.\n\nA unit cannot shoot or declare a charge in the same turn that it Fell Back.\n\n[Core Rules p. 14] (page footer p. 14: CORE RULES | MOVEMENT PHASE)\nSection: ADVANCE MOVES\nWhen a unit Advances, make an Advance roll for that unit by rolling one D6. Add the result in inches to the Move characteristic of each model in that unit until the end of the phase. Each model in that unit can then make an Advance move by moving a distance in inches less than or equal to this total, but no model can be moved within Engagement Range of enemy models. A unit cannot shoot or declare a charge in the same turn that it Advanced.\n\n- Advance Move: Models move up to M+D6\".\n- Cannot move within Engagement Range of any enemy models.\n- Units that Advance cannot shoot or charge this turn.\n\n## Applicability evidence\n\nFor each source, distinguish these outcomes: supported permission, supported prohibition, conditional (the cited conditions decide the outcome but relevant facts are missing), and undetermined. Supported permission requires either an explicit authorization or an applicable general rule whose conditions are established by the evidence. The absence of a prohibition in a retrieved passage is undetermined, not permission. A specific cited restriction can override a general permission. Keep conflicting sources separate, and mark incomplete or unsuccessful retrieval as undetermined rather than resolving the gap from general knowledge.",
+     "additional_kwargs": {},
+     "response_metadata": {},
+     "type": "tool",
+     "name": "search_rules",
+     "id": "321fea74-ef5d-4b97-8f0c-eb148ab94286",
+     "tool_call_id": "call_1282516",
+     "artifact": {
+      "chunks": [
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0044",
+         "text": "Section: 1. MOVE UNITS\n- When a unit moves it can make a Normal move, Advance or Remain Stationary.\n- Units that are within Engagement Range of any enemy models can only Fall Back or Remain Stationary.",
+         "pages": [
+          13
+         ],
+         "section": "1. MOVE UNITS",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | MOVEMENT PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03278688524590164
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0059",
+         "text": "Section: EMBARK\nIf a unit makes a Normal, Advance or Fall Back move, and every model in that unit ends that move within 3\" of a friendly Transport model, they can embark within it. A unit cannot embark if it has already disembarked from a Transport model in the same phase. Remove the unit from the battlefield and place it to one side - it is now embarked within that Transport model. Unless otherwise stated, units cannot do anything or be affected in any way while they are embarked.\n\n- A unit can embark within a friendly Transport if all of its models end a Normal, Advance or Fall Back move within 3\" of that Transport.\n- A unit cannot embark and disembark in the same phase.",
+         "pages": [
+          17
+         ],
+         "section": "EMBARK",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | TRANSPORTS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03225806451612903
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0060",
+         "text": "Section: DISEMBARK\nIf a unit from your army starts your Movement phase embarked within a Transport model, that unit can disembark in that phase.\n\nWhen a unit disembarks from a Transport model, set it up on the battlefield so that it is wholly within 3\" of that Transport model and not within Engagement Range of any enemy models. If, for any reason, a disembarking model cannot be set up, that model's unit cannot disembark.\n\nUnits that disembark from a Transport model that either Remained Stationary this phase or has not yet made a Normal, Advance or Fall Back move this phase can then act normally (make a Normal move, Advance, shoot, declare a charge, fight, etc.) in the remainder of the turn. Such a disembarking unit cannot choose to Remain Stationary.\n\nUnits that disembark from a Transport model that made a Normal move this phase count as having made a Normal move themselves; they cannot move further during this phase. Such a unit also cannot declare a charge in the same turn, but can otherwise act normally in the remainder of the turn.\n\nUnits cannot disembark from a Transport model that either Advanced or Fell Back this turn.",
+         "pages": [
+          17
+         ],
+         "section": "DISEMBARK",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | TRANSPORTS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03125763125763126
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0045",
+         "text": "Section: REMAIN STATIONARY\nIf a unit Remains Stationary, none of its models can be moved for the rest of the phase.",
+         "pages": [
+          13
+         ],
+         "section": "REMAIN STATIONARY",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | MOVEMENT PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.031009615384615385
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0061",
+         "text": "Section: DISEMBARK\nUnits cannot disembark from a Transport model that either Advanced or Fell Back this turn.\n\n- Units that start your Movement phase embarked within a Transport can disembark this phase, provided their Transport has not Advanced or Fallen Back.\n- If a unit disembarks before its Transport moves, it can act normally.\n- If a unit disembarks after its Transport moves, it cannot move or charge this turn, but can otherwise act normally.\n- Disembarking units must be set up wholly within 3\" of their Transport and not within Engagement Range of any enemy models (or the unit cannot disembark).\n- Units that disembark this turn cannot Remain Stationary.",
+         "pages": [
+          17
+         ],
+         "section": "DISEMBARK",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | TRANSPORTS"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.03057889822595705
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0043",
+         "text": "Section: 1. MOVE UNITS\nStart your Movement phase by selecting one unit from your army that is on the battlefield to move:\n\n- Unless that unit is within Engagement Range of any enemy models, it can make a Normal move, or Advance, or Remain Stationary.\n- If that unit is within Engagement Range of any enemy models, it can either Remain Stationary or Fall Back.\n\nAfter you have finished moving that unit, select another unit from your army to move, and so on, until you have done so with all of your units. Once you have moved all of your units, progress to the Reinforcements step of your Movement phase.\n\nEach time you move a unit, you can move any of its models you choose to. The controlling player chooses the order in which to move their models. Whenever you move a model, you can pivot it and/or change its position on the battlefield along any path, but no part of its base can be moved across an enemy model or cross the edge of the battlefield. It can be moved over friendly models as if they were not there if you wish, but it cannot end its move on top of another model. The only exception to this is when moving Monster or Vehicle models; such models cannot be moved over other friendly Monster or Vehicle models and must be moved around them instead. The distance a model moves is measured using the part of its base that moves furthest along its path. If a model does not have a base, measure using whichever part of that model moves the furthest.",
+         "pages": [
+          13
+         ],
+         "section": "1. MOVE UNITS",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | MOVEMENT PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.030303030303030304
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0049",
+         "text": "Section: FALL BACK MOVES\nWhen a unit Falls Back, each model in that unit can make a Fall Back move by moving a distance in inches less than or equal to its Move characteristic, and when doing so you can move it within Engagement Range of enemy models, provided it does not end that move within Engagement Range of any enemy models - if this is not possible, that unit cannot Fall Back.\n\nA unit cannot shoot or declare a charge in the same turn that it Fell Back.",
+         "pages": [
+          14
+         ],
+         "section": "FALL BACK MOVES",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | MOVEMENT PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.02862400327131466
+       },
+       {
+        "chunk": {
+         "chunk_id": "core_rules-0048",
+         "text": "Section: ADVANCE MOVES\nWhen a unit Advances, make an Advance roll for that unit by rolling one D6. Add the result in inches to the Move characteristic of each model in that unit until the end of the phase. Each model in that unit can then make an Advance move by moving a distance in inches less than or equal to this total, but no model can be moved within Engagement Range of enemy models. A unit cannot shoot or declare a charge in the same turn that it Advanced.\n\n- Advance Move: Models move up to M+D6\".\n- Cannot move within Engagement Range of any enemy models.\n- Units that Advance cannot shoot or charge this turn.",
+         "pages": [
+          14
+         ],
+         "section": "ADVANCE MOVES",
+         "content_type": "text",
+         "pictures": [],
+         "page_footers": [
+          "CORE RULES | MOVEMENT PHASE"
+         ],
+         "picture_labels": []
+        },
+        "score": 0.02821939586645469
+       }
+      ],
+      "stratagem_names": [],
+      "stratagems": null,
+      "related_sections": []
+     },
+     "status": "success"
+    }
+   },
+   {
+    "type": "ai",
+    "data": {
+     "content": [
+      {
+       "type": "text",
+       "text": "In Warhammer 40,000 (10th Edition), the **Movement phase** is split into two sequential steps: **1. Move Units** and **2. Reinforcements** [Core Rules p. 13].\n\n---\n\n### Step 1: Move Units\nThe controlling player selects units from their army on the battlefield one at a time to move [Core Rules p. 13]. What a unit can do depends on whether it is currently within Engagement Range of any enemy models:\n\n#### 1. Units Not Within Engagement Range of Any Enemy Models\nSuch a unit can choose one of the following options [Core Rules p. 13]:\n* **Normal Move:** Each model in the unit can move a distance in inches up to its Move ($M$) characteristic. No model can move within Engagement Range of any enemy models [Core Rules p. 13].\n* **Advance:** Roll one D6 and add the result to the Move characteristic of each model in the unit until the end of the phase. Each model can move up to this total distance ($M + \\text{D6}\"$), but cannot move within Engagement Range of enemy models. The unit cannot shoot or declare a charge in the same turn [Core Rules p. 13, 14].\n* **Remain Stationary:** None of the unit's models can be moved for the rest of the phase [Core Rules p. 13].\n\n#### 2. Units Within Engagement Range of Any Enemy Models\nSuch a unit can only choose between two options [Core Rules p. 13]:\n* **Fall Back:** Each model in the unit can move up to its Move ($M$) characteristic. Models can move within Engagement Range of enemy models during this move, but cannot end the move within Engagement Range of any enemy models (if this is not possible, the unit cannot Fall Back). The unit cannot shoot or declare a charge in the same turn [Core Rules p. 13, 14].\n* **Remain Stationary:** None of the unit's models are moved [Core Rules p. 13].\n\n---\n\n### Transport Interactions (Embarking & Disembarking)\nDuring the Move Units step, units can also interact with friendly Transports:\n\n* **Disembark:** A unit that starts the Movement phase embarked in a Transport can disembark before or after the Transport moves (unless the Transport has Advanced or Fallen Back) [Core Rules p. 17]:\n  * Disembarking models must be placed wholly within 3\" of the Transport and not within Engagement Range of enemy models [Core Rules p. 17].\n  * If the unit disembarks before the Transport moves (or if the Transport Remained Stationary), it can act normally (make a Normal move, Advance, shoot, charge, fight), but cannot choose to Remain Stationary [Core Rules p. 17].\n  * If it disembarks after the Transport makes a Normal move, the unit counts as having made a Normal move; it cannot move further in this phase or declare a charge this turn, but can otherwise act normally [Core Rules p. 17].\n* **Embark:** If a unit makes a Normal, Advance, or Fall Back move and every model in the unit ends that move within 3\" of a friendly Transport, it can embark into that Transport (provided it did not disembark in the same phase) [Core Rules p. 17].\n\n---\n\n### Step 2: Reinforcements\nOnce all units on the battlefield that the player wishes to move have finished moving, the phase moves to the Reinforcements step [Core Rules p. 13, 16]:\n\n* **Arrive from Reserves:** The player can select one or more Reserves units from their army and set them up on the battlefield, one at a time, according to the rules that placed them in Reserves (such as *Deep Strike*) [Core Rules p. 16].\n* **Restrictions & Effects:** Units arriving from Reserves count as having made a Normal move in the turn they are set up; they cannot move further during this phase, but can otherwise act normally later in the turn (shoot, declare a charge, fight) [Core Rules p. 16].\n\nOnce all desired Reserves units have been set up, the Movement phase ends [Core Rules p. 16].",
+       "index": 0,
+       "extras": {
+        "signature": "EvwWCvkWAWkUfRNFoc9v6nQFFwn4itYHj2rb3O84182ZBWOStO0H+jRL3z0E2VzDEldIsPnGTgfJ2fvWUFab7ov7NWIPi6WeWEDV8Zd6VBxg1Xnw2zif+5uXkBRkStR+TXXZU0DamYpJNQvbK/Nwh8bJqML0XBSSr0UAvs1tGvTXUaL+WOQ9CaPxZeLwoGbCOO9+Od9iFwu48fM/h2WZ8F2BR9lrGJSnb+6bpyMtgSGUhV1W6VPahA+Xs/tqhVaR0g75Wm5uVgEU3gUBd4IubRUrnOQmO5bZojyqMYGmL7x0O31/lhnI0gdPECWtv9/nmEmB1RNsJRyExQAzItD0fIlIF8UUmB/UPIMGBqCNR4SYU40aFmVhjLCZsC07NpvqDWVEE9nVZXjgXo1AkqSwe7skcddfbnr23I3Xe8NYoEzl1tQdA3ZlVhAcPwC3SITWnd2auP2ZPT/uxCqD0UZOu5IAvJV4pwTKyo1Z0cYB8NskN+vPEQHuFes7oLjDjnI6H2L3jvp/lB9HyHr48RAk0FvlhKMCPlsu3WgmQEeMDSe0eXwmJbdz6GrwVSQPQif7Xs+j8yPKfsWs2U4XUTiVCL3PbuRObBuIXS8wIyEo/dL4+qRmFaD/4/NCJuPhwL3cKdPhkgyCNwy2vtP+nqjvA2oGr4Akq6ERb/sRbUKSqw2teq/wzI101OFQ6lJKwT/MlGDkRobI1Alq/aILBr4NMPyIzIj5iKFMMMlPXu5wLKssjzdv8OLI0YoLdsCJSAGO03nvcRG/nfbBCKVHON12BAmSucJ5WwxbRWKxY3HPzvsJNG+2OSBbG8KiPp/J1mZ5P3krWD5Na/E3Gmo3KabBqWQKLNqlmgTp0s5p7iur1RknZX1IOOpFoVQWP5bVZvkPJexSMf3sLZFTDWdKvabjeic4q1nYFpZtl7m9xmtoxAAQhcYVw45c067FX3B9lGBs/FNhm9RR3FSptRoIUSdc4YlN1tEQI/QLsOYZO8NUR5TnlgjFpa1xDu8Yw9pg9i2SQG0PTmHSK4Uihqnxgyhe9krkJt3Cgi2mFRuO1hUZiaGe3806/bVdduNIfHxbkII81e+jLohgrYqCn9AXGOAh6C+yg7QyL4TWbK+xMO4y3uBrCKMG+zb7WZl7GKj1fIjZSjPT6M4cQn7hvuNwVHCACVuWbXLlziMaednmMIbjwr6OonmRLfAx6oqhSaoYbSPocnjE8foe2a/ZgX4cZpws1uBheK/Lb7BrjtMKkhSIE0rfUnocq2lDkLBVfNQMHI8AlxsmbXI7kylRn9ULNNmGrTsNxBkXxaK14exhHxP6WFHO0Z2WhOfNYo1pfq9bjUfsxMhN1Wo+x+bf1/E+sxYcFi27iIfFxXBhxhKDAxG1gJeFG5REGmAuB0vz+sVhuHghrO7FQ1wWy9TOxMEWc6/xcpfiX+ZLYgfHC3+eSO75SiQt8GAwZ6ypk19QTtHOYzhK34bKezF309AGYOdUtNIl5X3HJZD532+23ylC6hiA2z3k9UzHp3W051HhsBrJ41v87hmSnn8H61u1FuwALhbkTm/MUtrXUFWU1iS9uEl1yIdSJ3doXmOT/YZ5n0f4ZSQeaeDuivjsRJ/He2A9b9aAsT+FvHsrS+O+6tlcZIp6yNFdaKz+Gb+3XLETBDQAxFSZ1pU8XowrzfbLgU9W/7DAkkNcvg3E51RupuG0Kdk2+Kz40FC2CrbZ95xdDZg9OHOYLJNNYHNjax1ZiqoV8umz5WtvpkcaeUPmAz70BeiN54yJzp0sfemYW+jDJiA5xHGgXA9fS0am6TJK07+c/+vU3bwwVtA+pFPDqgq1DHI5dXzA8IWCc0B/pyWIfiUlJ6Ov7rZu+gXcfJeDF9FcR8s+Fd8LqRNgCOjba/eTDkWp7njCU4X62PU9ONYo9Fz6UkePJ5+70MlJxGUYvCtQpTBZLy37AErNQhA4tG/5cwpazfgpj5DNpCZqAF2X9YSAqIyO8w+PMWVMKLXGfS13AwEPR1Mzcbmr1BC3b4OAZ/fMdwmHTxKV8+j2MyKmp8C1gsPV3lQdK4mx9l1ssV9+qPqEH2fmc/OqJc/ltXK1tv+6hi38nMnEzLYPqqCi6YEy3l3+zmVHGo+Im6f2wOg/p3WHI5ueiIn/xOQsCj/pVQ/qK28wsUMsbdfoKYpsrqCoIo++uRKK2QWoAF55I9UW3UloWtbJhwCGK/MO58DJvPAhAB6KcN6qKxg/Zbp3/6HXX9GeRCZp5zrvQqmIOcqo0oDmSuGMuEuF/7GQ9wZRAgsOPzQTwqn36GJHI2u9iAf9niDcSqZG9EaTuRMU3JMFBvC43IPUJYG11I/p4ZXyNNgLijmC/xTn/QrslknsGFu6b0UnIMa61xwtf8qiV6UV/enVOFSdVleZnA1ecurbRzHbOujVGaDh2ncpa3QMMS87J80w9A9o/VRkpOTTiq0uG5KMB4yg9cMp8aJqGRIITsfDNk7XHBo7ZogObFoO4j2d2MYSRJY8E3RfbIRLuvNMDdzzFm6kulvfprYoXb+YYpD0R5M2NE54eAQbQfre4d67B/+202gs+f6/eUJD09tv1pj0aVNJ0cksjscNDdnbf9or5fBL8GWmEi3WoKuR/dZJ99PVlTrIO9Bfog8+QziBYnDukWrHpL+2sm9PJ0jLK1IIbrugU1ouOenhEUB6413eyhsuwbeBHCz4OPGHr6Fh5RsSsmzncg1q3vF6qkpXaqdexGxdWqqB6L05UUG1MWTxCkCHUf33plfgM3sPXi5QCj+P2xdVHJ1uvkpnb7MKAC75p5v1AOdDuKhpnMeCAyKyAeEakTWrOSNh7FL/fLFNahT54s9hEBVYMB8zq6N37VR4fCT+5ws9RownV/RgIdx7pqlN/3e1xTGN0F6f73ryYr2SkJIqBzzWTtV6/gYVUtZKokKYCcFQJg1boXLhv3yTj9BkUenZdjtHRt7o22FZ0RHq7/YbciCyPHDLTVlJta8n/6SYczuFnXZhWxK7cCuEbx0jf/wljBmIEwGPf9EVDRGA8gJ+cycNFjMOfT0DHYk4ASl2mIfFRQVbRKeZkaPngxdOdaisQJ7QFvYELjWzaafLw6oSl/a5tWYszl7KRiFvWvXMn/TnpMiqyYErQEpNjPT8OuspEz19aRHr7Akg7C1W3CaPGlpseR0HJ6N4a1OnO2VsVsdzJkn0Nv7Wvb2B47rBLxxYcWf2XBgj9e3E6B/F/jLuXlpj8ypo73Rh63PqEB/8tK8TKw3bMzLznNvVlp1TH1bnz/S+7kXGlRQiUBekY3nQtdjfVnaocZi1tefRl32Dc+f59aX4odzlak/mV9kWwzIzESZF5ZG6tcvcvE/Ra4gaTJDPbCy38aF3n+SzcfeNfPxU1IAm9pFey2euvDo3uLa+3g7yK+vTLOL2MKk9XUuLzz1IidESsJK7kNbsNFe3+ndf1hslcBThRc2tlMnhw1iAcPIF2kwIS04xrz4unF89N+o06spFWib2KKl0v4eKVquV5IfgDA54+dqUITJiTbtSa8E3OinoccHE2FvmY6ol+cELcQ58HclhBFANFrHj+V+XlzRm+jaf7AUgOpYLbHaR1Y75CsVlYKxvCbzBMB/ML4VpkfxARVYYvs1638e1vjYpGIwfE0VQ/9/4gfqcUlSWDEDQmqnDGWKcusvlP9DsOfhQLGTWYnAfeLVtF/LOr+f/O11s2YcdrG4NpS/aHgF3NHzNyOqJFNHN62xjN5eFQOzwaWm06LO94LXuALBrw87udk+DdCVZbC+MIPqaP4BThBC9JVjwvJ75jBWzy1kfX7XtEi1/TPKBXLfi0UqyQjNmzITEFDht6MP5VMsDfJ2/xyeRJJxqwqyTZ7r3XDwcgX8tYdz5Zdjz/KYydm9MXI5sjr6kY7BiIiEC8HRGZVmJ8Pzngxnsu73VVFGq"
+       }
+      }
+     ],
+     "additional_kwargs": {},
+     "response_metadata": {
+      "safety_ratings": [],
+      "finish_reason": "STOP",
+      "model_name": "gemini-3.8-flash",
+      "model_provider": "google_genai"
+     },
+     "type": "ai",
+     "name": null,
+     "id": "lc_run--01a16f87-6ad1-72a2-842b-f773569c3557",
+     "tool_calls": [],
+     "invalid_tool_calls": [],
+     "usage_metadata": {
+      "input_tokens": 9206,
+      "output_tokens": 1523,
+      "total_tokens": 10729,
+      "input_token_details": {
+       "cache_read": 0
+      },
+      "output_token_details": {
+       "reasoning": 607
+      }
+     }
+    }
+   }
+  ],
+  "model_calls": [
+   {
+    "node": "agent",
+    "input_count": 1,
+    "tool_choice": "validated",
+    "context": null
+   },
+   {
+    "node": "agent",
+    "input_count": 3,
+    "tool_choice": "validated",
+    "context": null
+   },
+   {
+    "node": "agent",
+    "input_count": 5,
+    "tool_choice": "validated",
+    "context": null
+   }
+  ]
+ },
+ "chat_attempts": [
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  }
+ ],
+ "embedding_attempts": [
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  },
+  {
+   "status": 200,
+   "error": null
+  }
+ ],
+ "source_notes": [],
+ "context_policy": "conversation-tool-outputs-v1"
+}

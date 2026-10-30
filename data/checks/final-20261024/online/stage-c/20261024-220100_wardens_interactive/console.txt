@@ -1,0 +1,45 @@
+Source, Version, and Scope                                                                          
+
+ • User-supplied facts: Unit name "Wardens of Ultramar".                                            
+ • Tool-established facts: Datasheet lookup joining the unit's datasheet [DB: datasheets], model    
+   profiles [DB: datasheets_models], and publication source [DB: source].                           
+ • Recorded publication & edition:                                                                  
+    • Publication (Source): Space Marines [DB: source]                                              
+    • Edition: 11 [DB: source]                                                                      
+
+----------------------------------------------------------------------------------------------------
+
+Model Profiles and Toughness                                                                        
+
+The unit Wardens of Ultramar (Space Marines, Datasheet ID 000004188) contains two distinct model    
+profiles [DB: datasheets, datasheets_models]:                                                       
+
+ 1 Ancient Gadriel, Veteran Sergeant Metaurus (line 1)                                              
+    • Toughness (T): 4 [DB: datasheets_models]                                                      
+ 2 Gaius Silva, Aemelia Minervas, Dainal Kornelius, Lucia Vestha (line 2)                           
+    • Toughness (T): 3 [DB: datasheets_models]                                                      
+
+----------------------------------------------------------------------------------------------------
+
+Conclusion                                                                                          
+
+ • Publication: Space Marines [DB: source]                                                          
+ • Edition: 11 [DB: source]                                                                         
+ • Toughness by Profile:                                                                            
+    • Ancient Gadriel, Veteran Sergeant Metaurus: T4 [DB: datasheets_models]                        
+    • Gaius Silva, Aemelia Minervas, Dainal Kornelius, Lucia Vestha: T3 [DB: datasheets_models]     
+ • Evidence Gap: None; all requested profile characteristics and publication fields are fully       
+   recorded.                                                                                        
+
+Source notes (retrieved evidence, not verification of the answer):                                  
+
+ • This turn: Database publication for Wardens of Ultramar (ID 000004188): Space Marines; edition   
+   11.                                                                                              
+1. run_sql: SELECT d.Id, d.name, f.name AS faction, m.name AS model, m.line, m.t,
+       s.name AS source, s.edition
+FROM datasheets d
+JOIN factions f ON f.Id = d.factionId
+JOIN datasheets_models m ON m.DatasheetId = d.Id
+LEFT JOIN source s ON s.Id = d.sourceId
+WHERE d.name LIKE '%Wardens of Ultramar%'
+ORDER BY CAST(m.line AS INTEGER);
