@@ -224,15 +224,16 @@ Datasheet SQLite ── encoding cleanup ── read-only query interface ──
 Saved answers + contexts ── RAGAS ── faithfulness / relevance / retrieval / factual matching
 ```
 
-| Technical choice | Rationale |
-|---|---|
-| Docling, PDFium and structural chunking | Preserve multi-column layout, tables, page locations, vector dice, figure labels and rule-card structure without sending the source PDF to another model. |
-| BM25 + Gemini embeddings + equal-weight RRF | Combine exact terminology with semantic retrieval while avoiding direct comparison of incompatible raw scores. `TOP_K = 8` is the smallest tested depth covering all known saved-query misses. |
-| Conservative spelling tolerance | Correct observed misspellings such as `Movment`, `attaks` and `eligable` while protecting known entity-name tokens taken only from explicit database name fields. |
-| SQLite retrieval | Query unit profiles, model attributes and publication metadata as structured facts rather than embedding them as prose. |
-| LangGraph | Coordinate rule search and SQL, preserve short multi-turn state, enforce tool-round limits and expose a separate no-tool final-answer path. |
-| Deterministic safeguards | Reuse complete structured evidence and format narrow database-attribute answers directly, reducing redundant calls and unsupported classifications without replacing normal reasoning. |
-| RAGAS plus human review | Measure retrieval, relevance, faithfulness and reference agreement while retaining manual checks for semantic correctness and source boundaries. |
+
+| Component | Implementation | Rationale |
+|---|---|---|
+| Rulebook ingestion | Docling, PDFium and structural chunking | Preserve multi-column layout, tables, page locations, vector dice, figure labels and rule-card structure without sending the source PDF to another model. |
+| Rule retrieval | BM25, Gemini embeddings and equal-weight RRF with `TOP_K = 8` | Combine exact terminology with semantic retrieval while avoiding direct comparison of incompatible raw scores. |
+| Spelling handling | Conservative correction protected by explicit database entity names | Correct observed misspellings such as `Movment`, `attaks` and `eligable` without expanding known proper names as similar corpus words. |
+| Structured retrieval | Read-only SQLite queries | Query unit profiles, model attributes and publication metadata as structured facts rather than embedding them as prose. |
+| Agent orchestration | LangGraph | Coordinate rule search and SQL, preserve short multi-turn state, enforce tool-round limits and expose a separate no-tool final-answer path. |
+| Grounding safeguards | Structured evidence reuse and deterministic formatting for narrow database facts | Reduce redundant calls and unsupported classifications when complete structured evidence is available. |
+| Evaluation | RAGAS plus human review | Measure retrieval, relevance, faithfulness and reference agreement while retaining manual checks for semantic correctness and source boundaries. |
 
 The rules retriever uses a fixed 1:1 reciprocal-rank fusion and returns eight chunks. SQLite accepts
 only read-only queries and limits results to 50 rows, three seconds of virtual-machine execution and
@@ -265,31 +266,16 @@ The supporting evaluation archive is included at
 [Google Drive](https://drive.google.com/file/d/1zBxryCG6mMU_OohWUiv7skjWeMZLk_M1/view?usp=drive_link).
 
 
-## Limitations and further information
+## Limitations
 
-- **Source inputs:** the original PDF and database are supplied separately by the course and are not
-  included in this repository. A new user must obtain the matching files separately.
-- **PDF graphics:** standard vector dice and known layout structures are recovered, but the parser is
-  not a general image-understanding system. Unrecognized graphics are not indexed.
-- **Layout hierarchy:** figure labels and page footers mitigate Docling ordering errors, but some
-  sidebars can still appear under neighbouring headings.
-- **Spelling tolerance:** protection applies to known entities found in explicit database name
-  fields. An unknown proper noun can still be expanded as a similar corpus word.
-- **Database provenance:** the supplied SQLite file mixes publication and edition labels. Answers
-  must preserve those labels rather than infer one global edition from the majority of rows.
-- **SQL round threshold:** after the tool round containing the second SQL request finishes, the graph
-  starts no further tool round and produces its final answer. Every parallel request already emitted
-  in that round still executes, including a possible additional SQL or another tool, so this is not
-  a strict two-query maximum.
-- **Conversation size:** in-memory history is intended for short local sessions and is not
-  automatically summarized. Use `/reset` between topics.
-- **Model variability:** deterministic routing removes several observed failure modes, but answers
-  that require generation can still vary. One passing acceptance run does not prove perfect
-  reliability.
-- **Evaluation scope:** ten questions cannot estimate accuracy over the whole rulebook or database.
-  RAGAS uses an LLM judge and short synthetic references. The pipeline saved final scores and input
-  fingerprints, but not intermediate claim decompositions or NLI verdicts, so exact judge decisions
-  cannot be reconstructed from a score alone.
+- **Source inputs:** the original PDF and database are supplied separately by the course and are not included in this repository. A new user must obtain the matching files separately.
+- **PDF extraction:** standard vector dice and known layout structures are recovered, but the parser is not a general image-understanding system. Unrecognized graphics are not indexed, and some sidebars can still appear under neighbouring headings.
+- **Spelling tolerance:** protection applies to known entities found in explicit database name fields. An unknown proper noun may still be mistaken for a similar term in the indexed text.
+- **Database provenance:** the supplied database combines records from multiple publications and edition labels. Answers report the metadata stored for each record rather than assuming one edition for the whole database.
+- **Conversation size:** in-memory history is intended for short local sessions and is not automatically summarized. Use `/reset` between topics.
+- **Model variability:** generated answers can vary and may occasionally over-interpret missing information. For rules-sensitive decisions, users should verify the cited sources.
+
+
 ## Troubleshooting
 
 | Symptom | Resolution |
@@ -304,6 +290,4 @@ The supporting evaluation archive is included at
 | macOS reports no `x86_64` wheel | Use a native Apple Silicon terminal (`uname -m` must print `arm64`), remove `.venv` and run `uv sync` again. |
 | `403 PERMISSION_DENIED` | Verify the effective API key, AI Studio project status and key restrictions. Do not retry until the permission problem is resolved. |
 
-For implementation details, read the module docstrings and the formal [evaluation report](EVALUATION_REPORT.md). The project keeps parsing, retrieval, storage, agent and
-evaluation responsibilities in separate modules under `src/rag/`, with command-line entry points
-under `src/scripts/`.
+
