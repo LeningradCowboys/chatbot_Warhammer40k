@@ -36,6 +36,3 @@ wheels/
 
 !/data/checks/final-20261024/
 !/data/checks/r102-20261024/
-!/data/delivery/
-/data/delivery/*
-!/data/delivery/evaluation-attachments-v2.zip

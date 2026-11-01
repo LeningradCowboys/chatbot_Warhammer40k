@@ -15,7 +15,7 @@ metrics, but its LLM-judged results are not treated as a direct percentage of co
 
 ## 2. Final evaluation configuration
 
-The saved Round 4 run used the following configuration.
+The saved Round 4 evaluation and the six-scenario acceptance suite in Section 3 were run on the same version of the project, using gemini-3.8-flash. The final submission later added a fresh database lookup for the Wardens follow-up, strengthened the instructions against drawing conclusions from missing evidence, and made application-initiated database lookups visible in the source notes. These changes did not alter the underlying rules corpus, database, embeddings or evaluation set. The saved answers, scores, traces and input fingerprints provide the record of those runs. The saved Round 4 run used the following configuration.
 
 | Setting | Value |
 |---|---|
@@ -51,9 +51,7 @@ ATTACKS` procedure, and Battle-shock is represented more often than those other 
 database, schema, source modules and lock file. This prevents a resumed run from silently combining
 scores from incompatible inputs or settings.
 
-The saved numerical results belong to the evaluated run included in the archive. Later maintenance
-is not represented in these scores, and a new run of the submitted code may produce different
-answers and metrics.
+The saved numerical results belong to the archived run. Because generation and judging are stochastic, a new run may produce different answers and metrics.
 
 ## 3. End-to-end acceptance
 
@@ -69,9 +67,11 @@ correctness and source use.
 | Grenades | 2 / 1 | One rules search supplied complete Core Rules and exact database evidence; the answer kept their Advance/Fall Back and measurement differences separate. |
 | Unit rules + Advance follow-up | 5 / 2 | Database evidence supported its explicit prohibition after Advancing, while Core Rules silence was reported as undetermined rather than permission; the 1CP cost was preserved. |
 
-Result: **6/6 PASS**, using 17 chat and 6 embedding requests. Every request returned HTTP 200
+Result: 6/6 PASS, using 17 chat and 6 embedding requests. Every request returned HTTP 200
 without retry. One successful run per scenario is regression evidence, not a statistical reliability
 estimate.
+
+Later checks of the submitted version with gemini-3.6-flash covered eight selected questions and scenarios, and all eight runs completed. Some answers still over-interpreted missing evidence or omitted rule details. These behaviours remain a limitation for rules-sensitive use.
 
 ## 4. Round 4 RAGAS results
 
@@ -148,8 +148,9 @@ one isolated change caused an improvement or regression.
 
 ## 7. Evidence and reproducibility
 
-The supporting evaluation archive is included at
-`data/delivery/evaluation-attachments-v2.zip`.
+The supporting evaluation archive is available on Google Drive as
+[`evaluation-attachments.zip`](https://drive.google.com/file/d/1zBxryCG6mMU_OohWUiv7skjWeMZLk_M1/view?usp=drive_link).
+
 
 Inside the extracted archive, the most relevant paths are:
 
@@ -159,12 +160,11 @@ Inside the extracted archive, the most relevant paths are:
 | `data/eval/runs/round4-final/answers/` | Ten saved answers, contexts, agent traces and answer request counts |
 | `data/eval/runs/round4-final/scores.jsonl` | Fifty final score records |
 | `data/checks/final-20261024/online/stage-c-review.md` | Six-scenario semantic review |
-| `SHA256SUMS` | Integrity hashes for the extracted package |
+
 
 ## 8. Limitations
 
-- Ten questions and one generated answer per acceptance scenario do not measure system-wide
-  reliability or generation variability.
+- Ten questions and one run per acceptance scenario do not measure system-wide reliability or generation variability.
 - `TOP_K = 8` was tuned against known saved queries, so Round 4 retrieval metrics are in-sample;
   Context Recall `1.000` is not evidence of recall on new questions.
 - The answer model and RAGAS judge used the exact same model, `gemini-3.8-flash`, rather than an

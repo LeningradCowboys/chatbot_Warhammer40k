@@ -1,26 +1,23 @@
 # Warhammer 40k RAG Chatbot
 *Group members: Zhexi WANG, Zhiyi CHEN*
 
-## Overview
+## Introduction
 
-This project is a multi-source retrieval-augmented generation (RAG) chatbot for Warhammer 40,000.
-It answers questions from two complementary sources:
+This project is a multi-source RAG chatbot for Warhammer 40,000.
+It answers questions from two sources:
 
 - the 10th-edition Core Rules PDF, cited by page; and
 - a SQLite datasheet database, cited by table and retaining publication and edition metadata.
 
-The command-line chat can search either source, combine their evidence, keep short multi-turn
-conversations and explain which tools supplied an answer. The implementation uses Gemini through
-Google AI Studio for generation and embeddings.
+The command-line chat can search either source, combine their evidence, keep short multi-turn conversations and explain which tools supplied an answer. The implementation uses Gemini through Google AI Studio for generation and embeddings.
 
 ## Quick start
 
 ### Requirements
 
-- **Windows x64**, or an **Apple Silicon Mac** with macOS 14 or newer. Intel Macs are not supported.
+- Windows x64, or an Apple Silicon Mac with macOS 14 or newer. Intel Macs are not supported.
 - [uv](https://docs.astral.sh/uv/), which installs Python 3.12 and the locked dependencies.
-- A Google AI Studio API key for indexing, chat and online evaluation. Parsing, chunking and offline
-  tests do not need a key.
+- A Google AI Studio API key for indexing, chat and online evaluation. Parsing, chunking and offline tests do not need a key.
 
 Install `uv`:
 
@@ -36,17 +33,14 @@ cd chatbot
 uv sync --locked
 ```
 
-Install the evaluation group before running RAGAS or the complete offline test suite:
+Install the evaluation dependencies for RAGAS and the complete test suite:
 
 ```text
 uv sync --locked --group eval
 ```
 
-With only the base `uv sync`, `pytest` skips `test_evaluate.py`,
-`test_evaluation_testset.py` and `test_ragas_adapters.py` because RAGAS is unavailable.
-The first complete test run also downloads tiktoken's `cl100k_base` and `o200k_base` encoding files.
-After they are cached the suite runs offline; an empty-cache machine must allow that first download or
-pre-provision both files.
+The first complete test run may download tiktoken encoding files; later runs can run offline once they are cached.
+
 
 ### Data
 
@@ -60,25 +54,16 @@ and place them under `data/raw/` with exactly these names:
 | Datasheet database | `data/raw/wahadb.sqlite` | 9,699,328 bytes | `364f412c3c1802d24ccc97eb74ffac78e6a5894a312b2fde685045945595fbc5` |
 | Database dictionary, reference only | `data/raw/SQL_AGENT_DATA_DICTIONARY.md` | 15,934 bytes | `5a0e527b430ab5538d6ecad0aa05b515eca61214ad10705aae9e3b946c04be4a` |
 
-Create the directory with `mkdir data\raw` on Windows or `mkdir -p data/raw` on macOS. A different
-PDF version changes page positions and causes real-data tests to fail.
-
-The parsed rulebook is committed so that most users can skip the expensive parse:
+The committed parsed rulebook allows users to skip the parsing step:
 
 | File | Size | SHA-256 of canonical LF bytes |
 |---|---:|---|
 | `data/processed/core_rules.md` | 155,312 bytes | `612cc2c7a5921e667bdd60f0f7c104d00257d7dd1a4dd9b9686d46d55bbf90e7` |
 | `data/processed/core_rules.json` | 1,368,144 bytes | `71f9cc80ba100b398f73ffe3dd687275f6a7421686a1d325ee071172c1ebdc11` |
 
-They were produced with Docling 2.132.0, docling-core 2.99.0 and pypdfium2 5.13.0 on Windows 11
-x64. Parsing on another platform can produce small floating-point layout differences; the committed
-files are the canonical input to chunking.
+The committed parse was generated on Windows 11 x64 with Docling 2.132.0, docling-core 2.99.0 and pypdfium2 5.13.0; other platforms may produce minor floating-point layout differences. It is the canonical input to chunking.
 
-The repository includes the derived artifacts needed to run and review the project: the canonical
-parsed rulebook, structural chunks and embedding index, frozen test set and saved Round 4 results,
-final validation records, and the sanitized evaluation archive. Licensed source inputs and the
-generated clean SQLite database are not committed; `prepare_db` recreates the clean database from
-the separately supplied original.
+The repository also includes the chunks, embedding index, frozen test set, saved Round 4 results and final validation records. Licensed sources and the generated clean database are excluded; `prepare_db` rebuilds the clean database from the supplied original.
 
 ### API key
 
@@ -93,12 +78,9 @@ The default models are `gemini-3.8-flash` and `gemini-embedding-001`. `CHAT_TEMP
 
 ### Prepare the derived data
 
-The parsed rulebook, structural chunks and embedding index are already included in the repository.
-For normal chat and evaluation, place the source database under `data/raw/` and run only step 3
-(`prepare_db`). Steps 1, 2 and 4 are provided only to reproduce the committed derived artifacts.
+For normal chat and evaluation, place `wahadb.sqlite` under `data/raw/` and run step 3. Steps 1, 2 and 4 are only needed to rebuild the committed rulebook and index artifacts.
 
-Run commands from the repository root. Every writer refuses to overwrite its input or write inside
-`data/raw/`.
+Run all commands from the repository root.
 
 1. Parse the PDF only if the committed parse is unavailable or must be reproduced:
 
@@ -112,8 +94,7 @@ Run commands from the repository root. Every writer refuses to overwrite its inp
    uv run python -m src.scripts.chunk
    ```
 
-   This produces `data/index/rules_chunks.jsonl`. The reference run contains 255 chunks and retains
-   page numbers, section labels, table structure, figure labels and page footers.
+   This creates `data/index/rules_chunks.jsonl` with 255 structural chunks preserving page and layout metadata.
 
 3. Prepare the SQLite database:
 
@@ -130,11 +111,7 @@ Run commands from the repository root. Every writer refuses to overwrite its inp
    uv run python -m src.scripts.build_index
    ```
 
-   The command embeds all chunks with `gemini-embedding-001` and stores the vectors together with
-   their input fingerprint in `data/index/rules_embeddings.npz`. The default request budget is 18
-   embedding HTTP attempts, including failed attempts and SDK retries. The reference set contains
-   255 chunks, sent in three batches of at most 100; the default therefore allows up to six attempts
-   per batch. Use `--budget N` to choose a different safety limit
+   The command embeds the 255 chunks with `gemini-embedding-001` in batches of up to 100 and stores the vectors and input fingerprint in `data/index/rules_embeddings.npz`. The default budget is 18 HTTP attempts, including failures and SDK retries; use `--budget N` to change it.
 
 ## Usage and testing
 
@@ -162,15 +139,7 @@ Answers cite evidence as `[Core Rules p. N]` or `[DB: table_name]`. Separate sou
 database publication/edition values, mission labels, query errors and truncation. They describe the
 retrieved evidence and do not independently verify every generated claim.
 
-**NOTE**: If the terminal remains silent for an unusually long time, press `Ctrl+C` rather than submitting the
-question repeatedly. If `gemini-3.8-flash` repeatedly hangs or returns HTTP 503, set the following
-in `.env`, then **restart the chat**:
-
-```text
-CHAT_MODEL=gemini-3.6-flash
-```
-
-The application does not switch models automatically.
+**NOTE**: If the chat hangs, press `Ctrl+C` rather than submitting the question again. For repeated timeouts or HTTP 503 responses, set `CHAT_MODEL=gemini-3.6-flash` in `.env` and restart the chat; model fallback is not automatic.
 
 
 ### Testing
@@ -185,32 +154,16 @@ The application does not switch models automatically.
 
 ### Evaluation
 
-This workflow reruns the complete ten-question frozen test set against the real Gemini API. The
-saved Round 4 answers and scores are already included in the repository; use a new run name for any
-new evaluation so that the historical results are not overwritten.
+This workflow reruns the frozen ten-question test set against the Gemini API. Saved Round 4 answers and scores are included in the repository; use a new run name to avoid overwriting them.
 
-Install the evaluation dependency group, prepare the database and index, and replace `N` and `M`
-below with positive integer safety limits for the available chat and embedding quota. The commands
-are templates; do not enter the letters `N` and `M` literally:
+Install the evaluation dependencies and prepare the database and index. Replace `N` and `M` below with positive integer chat and embedding budgets:
 
 ```text
 uv run python -m src.scripts.evaluate answer --run my-run --chat-budget N --embedding-budget M
 uv run python -m src.scripts.evaluate score --run my-run --chat-budget N --embedding-budget M
 ```
 
-`evaluate answer` saves each generated answer, its retrieved contexts and its trace. `evaluate score` calculates the five RAGAS metrics from the saved answers without regenerating them. A run
-manifest fingerprints the test set, code, corpus, vectors, database, schema, models and lock file;
-continuation is refused if those inputs change.
-
-The historical Round 4 answer step used 32 chat and 32 embedding requests. Its checkpointed scoring
-runs used a further 192 chat and 20 embedding attempts. A free-tier project limited to 20 chat
-requests per day cannot complete the entire workflow in one day.
-
-Request limits apply separately to each command invocation, and failed attempts and SDK retries
-count against them. Completed answers and scores are checkpointed, so rerunning with the same
-compatible run name continues the unfinished work. Local budget exhaustion exits with status 2;
-provider errors such as HTTP 429 or 503 can also stop a run, while previously completed checkpoints
-remain saved.
+`answer` saves answers, contexts and traces; `score` computes the five RAGAS metrics without regenerating answers. Each run fingerprints its inputs and refuses incompatible continuation. Compatible reruns resume from completed checkpoints. Budgets include failed attempts and SDK retries; local exhaustion exits with status 2, while provider errors stop the run without deleting completed work.
 
 ## Architecture and design choices
 
@@ -232,7 +185,7 @@ Saved answers + contexts ── RAGAS ── faithfulness / relevance / retrieva
 | Spelling handling | Conservative correction protected by explicit database entity names | Correct observed misspellings such as `Movment`, `attaks` and `eligable` without expanding known proper names as similar corpus words. |
 | Structured retrieval | Read-only SQLite queries | Query unit profiles, model attributes and publication metadata as structured facts rather than embedding them as prose. |
 | Agent orchestration | LangGraph | Coordinate rule search and SQL, preserve short multi-turn state, enforce tool-round limits and expose a separate no-tool final-answer path. |
-| Grounding safeguards | Structured evidence reuse and deterministic formatting for narrow database facts | Reduce redundant calls and unsupported classifications when complete structured evidence is available. |
+| Grounding safeguards | Fresh application-side profile lookup and deterministic formatting for narrow database facts | Keep follow-up answers grounded in complete structured records and avoid unsupported classifications. |
 | Evaluation | RAGAS plus human review | Measure retrieval, relevance, faithfulness and reference agreement while retaining manual checks for semantic correctness and source boundaries. |
 
 The rules retriever uses a fixed 1:1 reciprocal-rank fusion and returns eight chunks. SQLite accepts
@@ -243,8 +196,7 @@ unambiguous and not truncated.
 
 ## Evaluation results
 
-The final RAGAS evaluation completed all 10/10 frozen questions and produced 50/50 valid
-metric scores. The separate end-to-end acceptance suite passed 6/6 scenarios.
+The saved Round 4 RAGAS evaluation completed all 10/10 frozen questions and produced 50/50 valid metric scores. The separate end-to-end acceptance suite passed 6/6 scenarios on the version used for the saved evaluation.
 
 | Final Round 4 metric | Mean |
 |---|---:|
@@ -254,16 +206,11 @@ metric scores. The separate end-to-end acceptance suite passed 6/6 scenarios.
 | Context Recall | 1.000 |
 | Factual Correctness | 0.257 |
 
-The saved Round 4 results and their supporting artifacts are included with the project. Because
-model generation and judging are stochastic, a new evaluation run is not expected to reproduce the
-saved scores exactly.
+The saved Round 4 results are included in the repository. Because
+model generation and judging are stochastic, a new evaluation run is not expected to reproduce the saved scores exactly.
 
-Detailed settings, per-question results, coverage limitations and qualitative analysis are available
-in [EVALUATION_REPORT.md](EVALUATION_REPORT.md).
-
-The supporting evaluation archive is included at
-`data/delivery/evaluation-attachments-v2.zip` and mirrored on
-[Google Drive](https://drive.google.com/file/d/1zBxryCG6mMU_OohWUiv7skjWeMZLk_M1/view?usp=drive_link).
+Detailed settings, per-question results, coverage limitations and qualitative analysis are available in [EVALUATION_REPORT.md](EVALUATION_REPORT.md). The supporting evaluation archive is available on Google Drive as
+[`evaluation-attachments.zip`](https://drive.google.com/file/d/1zBxryCG6mMU_OohWUiv7skjWeMZLk_M1/view?usp=drive_link)
 
 
 ## Limitations
